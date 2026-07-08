@@ -1,0 +1,319 @@
+---
+title: "Tipos de Datos y Extracción Tabular"
+author: "Oscar Leonardo Bustos"
+format:
+  revealjs:
+    logo: assets/logo_RGB.png
+    embed-resources: true
+    theme: default
+    slide-number: true
+    show-slide-number: all
+    transition: slide
+    chalkboard: false
+    width: 1050
+    height: 700
+bibliography: references.bib
+---
+
+
+
+
+
+
+# Dominios de Datos
+
+
+
+## Dominios de Datos
+
+- ¿Cuáles son los datos que se encuentran en una organización?
+
+
+
+
+
+
+
+
+
+## El Rol de los Metadatos
+
+- **Concepto central:** Son "Datos acerca de los datos". Son el contexto que permite transformar datos crudos en información útil.
+- **Calidad del metadato:** Deben ser oportunos y estar siempre actualizados para reflejar la realidad de la organización.
+- **Clasificación principal:**
+  - **Metadatos de Negocio:** Glosario de términos, reglas de negocio, métricas y dueños de los datos (*Data Stewards*).
+  - **Metadatos Técnicos:** Diccionarios de datos, tipos de datos, diagramas ER y linaje de datos.
+  - **Metadatos Operacionales:** Logs de ejecución, fechas de última actualización y auditorías.
+- **Valor estratégico:** Mantener consistencia entre el vocabulario de Negocio y el técnico garantiza una comunicación efectiva entre las áreas e IT.
+
+
+
+
+
+
+## Datos Maestros
+
+- Entidades principales para el negocio:
+  - Clientes
+  - Productos
+- ¿Más Ejemplos?
+- La Confianza es clave.
+- Tienen un impacto muy fuerte
+- ¿Qué pasa cuando los datos maestros no son confiables?
+
+
+
+
+## Datos Operacionales
+
+- Datos derivados de las transacciones de negocio
+- Estructurados
+- Alto nivel de detalle
+- Alcance generalmente es Local (LOB)
+- Si la confianza en este dominio es buena, facilita los procesos para derivar Datos Analíticos
+
+
+
+
+## Datos No Estructurados
+
+- También tiene un propósito operacional
+- Se distinguen pues suelen tener requerimientos diferentes
+- Suelen ser "fotos instantáneas" durante los procesos de negocio. Una vez creados se mantienen estáticos.
+- Contratos, imágenes, notas en un CRM.
+- Con el tiempo pueden perder precisión
+- Ej. La persona que escribió un texto ya no trabaja en la organización.
+
+
+
+
+## Datos Analíticos
+
+- Se derivan de los Datos Operacionales, apoyándose en los demás dominios
+- Producir Datos Analíticos requiere normalmente:
+  - Integración
+  - Limpieza
+  - Eliminar duplicados
+- Debe tener buenos niveles de precisión, consistencia y relevancia.
+- El alcance puede ser tanto local como empresarial.
+
+
+
+
+## Modelo de Referencia de Información
+
+- **Metadatos:** Especificaciones de Negocio.
+- **Datos Maestros:** Generada de acuerdo a las definiciones de Metadatos.
+- **Datos Operacionales Y Datos No Estructurados:** Referencian a los datos Maestros.
+- **Datos Analíticos:** Derivados de los otros dominios.
+
+
+
+
+# Ejemplo: Twitter
+
+
+
+## Metadatos y Datos Maestros Twitter
+
+- **Metadatos twitter:**
+  - Campos que definen un usuario
+  - Campos que definen un tweet
+  - Diccionario de Datos BDs
+- **Datos Maestros Twitter:**
+  - Cuentas
+  - Relación follow
+  - Perfil
+
+
+
+
+## Datos Operacionales y No Estructurados
+
+- **Datos Operacionales (Estructurados):**
+  - Tweets, Mensajes, Solicitudes, Logs...
+- **Datos no estructurados:**
+  - Texto de tweets, Mensajes, Fotos, Videos...
+
+
+
+
+## Datos Analíticos Twitter
+
+- Tendencias
+- Top hashtags
+- Estadísticas (\#RTs, \#Favs)
+- Servicios de personalización
+
+
+
+
+# Bodegas de Datos y ETL
+
+
+
+## Mapa General de Datos Analíticos
+
+- **Fuentes de Datos:** ERP, Archivos (CSV), etc.
+- **Bodega de Datos (Data Warehouse):** ODS, EDW, Data Marts (DM).
+- **Consumo:** Reportes, OLAP, Minería de Datos.
+
+
+
+
+## Tipos de Bodegas de Datos
+
+**Operational Data Store (ODS)**
+- Datos limpios, única fuente de verdad.
+- Relativamente Normalizados (3ra y 4ta forma normal).
+- Alta cantidad de detalles, corto rango de tiempo.
+
+
+**Enterprise Data Warehouse (EDW)**
+- Multidimensional (Dimensiones y Hechos), no está normalizado.
+- Nivel de detalle menor a ODS (algunas agregaciones/resúmenes).
+- Rango de tiempo mayor.
+
+
+
+
+## Tipos de Bodegas de Datos (Cont.)
+
+**Data Mart (DM)**
+- Multidimensional.
+- Orientado a un área de la empresa en particular.
+- Agregaciones y resúmenes.
+
+
+
+
+## ETL
+
+- **Extracción (E):**
+  - Conectarse a una fuente de datos.
+  - Seleccionar y leer los datos relevantes.
+- **Transformación (T):**
+  - Hacer operaciones sobre los datos.
+- **Carga (L):**
+  - Guardar el resultado en un destino.
+
+
+
+
+# Extracción y Formatos
+
+
+
+## Extracción - Fuentes de Datos Tabulares
+
+\begin{table}[htbp]
+
+\resizebox{\textwidth}{!}{
+
+| **Formato** | **Open Source** | **Tipos Complejos** | **Optimizado para** |
+| --- | --- | --- | --- |
+| EXCEL | No (xlsx sí) | Sí | Análisis de datos en hojas de cálculo. |
+| FEATHER / ORC | Sí | No / Sí | Rápido intercambio de datos. Big Data. |
+| PARQUET | Sí | Sí | Procesamiento eficiente de big data. Compresión. |
+| SAS / SPSS / STATA | No | No | Análisis estadístico / econométrico. |
+| SQL | Sí | No | Consultas a bases de datos relacionales. |
+| CSV | Sí | No | Análisis general, intercambio de datos. |
+
+}
+\end{table}
+
+
+
+
+## Extracción - Fuentes de Datos Jerárquico
+
+\begin{table}[htbp]
+
+\resizebox{\textwidth}{!}{
+
+| **Formato** | **Open Source** | **Tipos Complejos** | **Optimizado para** |
+| --- | --- | --- | --- |
+| HDF | Sí | Sí | Grandes volúmenes de datos. |
+| PICKLE | Sí | Sí | Serialización de objetos Python. |
+| JSON | Sí | Sí | Intercambio de datos entre APIs. |
+| XML | Sí | Sí | Manejo de datos estructurados. |
+| HTML | Sí | No | Extracción de tablas desde páginas web. |
+
+}
+\end{table}
+
+
+
+
+## CSV (comma-separated values)
+
+- Es un archivo en el que los datos están organizados en FILAS y los atributos o campos se separan entre sí por un caracter separador.
+- La primera fila suele ser el encabezado.
+- Cada línea debe tener el mismo número de campos, que pueden ser numéricos o cadenas de caracteres.
+- Opciones de formato:
+  - **Separador:** "," ó ";" (TSV usa tabs).
+  - **Comillas:** Opcionales, pero permiten diferenciar texto de un número (Ej. Teléfono) y evitan la eliminación de ceros a la izquierda.
+
+
+
+
+## Carga (L) - Destinos
+
+- **Csv:**
+  - *Ventajas:* Archivo de texto plano, interoperabilidad, formato abierto.
+  - *Desventajas:* No es estándar universal, problemas con tipos de datos.
+- **Excel:**
+  - *Ventajas:* Permite manejar nativamente tipos de datos más complejos.
+  - *Desventajas:* Tamaño grande, no es estándar abierto completamente.
+- **Table (Knime):**
+  - *Ventajas:* Compresión, permite trabajar con otros flujos fácilmente.
+  - *Desventajas:* No interoperable con otras herramientas.
+
+
+
+
+# Bases de Datos y SQL
+
+
+
+## DBMS y SQL
+
+- Un DBMS es un software que permite almacenar, organizar y recuperar información de manera eficiente.
+- Garantiza la integridad y seguridad de los datos almacenados.
+- **SQL (Structured Query Language):** Lenguaje típico para la administración y consulta en bases de datos relacionales.
+
+
+
+
+## Integrar fuentes - Operación JOIN
+
+- **Inner Join:** Selecciona todos los registros de A y B que cumplan la condición de cruce.
+- **Left Join:** Selecciona todos los registros de A y las coincidencias de B.
+- **Right Join:** Selecciona todos los registros de B y las coincidencias de A.
+- **Full Join:** Selecciona todos los registros de A y B sin importar si coinciden o no.
+
+
+
+
+## Seleccionar y Agrupar (SQL)
+
+- **Seleccionar y Filtrar:**
+  - `SELECT <campos> FROM <tabla> WHERE <criterio>`
+- **Agrupaciones:**
+  - `GROUP BY`: Resumir datos con respecto a un grupo de columnas.
+  - En `SELECT` solo deben aparecer las columnas de agrupamiento y agregaciones de otras columnas (`MIN, MAX, AVG, COUNT...`).
+
+
+
+
+## Enlaces de Interés
+
+- **Datasets públicos:**
+  - https://github.com/caesar0301/awesome-public-datasets
+  - https://www.data.gov/
+  - https://www.datos.gov.co/
+- **Referencias:**
+  - Beaulieu, Alan. *Learning SQL: Generate, Manipulate, and Retrieve Data.* O'Reilly Media, 2020.
+  - *Data integration blueprint and modeling techniques for a scalable and sustainable architecture*, Anthony Giordano, IBM Press Pearson, 2011.
+
+
