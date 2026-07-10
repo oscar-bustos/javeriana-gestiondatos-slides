@@ -99,7 +99,7 @@ Objetivos de la Preparación de datos
 - Consiste en tomar valores de un atributo que abarcan un rango de valores y representarlos en otro rango de valores
 - El objetivo de la normalización es transformar los atributos para que estén en una escala similar. Esto mejora el rendimiento y la estabilidad del entrenamiento del modelo.
 
-![Resumen de Técnicas de Normalización](assets/normalizations-at-a-glance-v2.svg){width="80%"}
+![Resumen de Técnicas de Normalización](assets/normalizations-at-a-glance-v2.svg){width="65%"}
 
 Tomado de: [developers.google.com](https://developers.google.com/machine-learning/data-prep/transform/normalization)
 
@@ -112,14 +112,14 @@ Tomado de: [developers.google.com](https://developers.google.com/machine-learnin
 - El objetivo de la normalización es transformar los atributos para que estén en una escala similar.
 \begin{figure}
 
-![](assets/MinMax.png){width="60%"}  \caption{Min Max\footnotemark}
+![](assets/MinMax.png){width="50%"}  \caption{Min Max\footnotemark}
 \end{figure}
 \footnotetext[1]{Tomado de https://developers.google.com/machine-learning/data-prep/transform/normalization }
 
 
 
 
-## Normalización Min Max
+## Normalización Min Max {.smaller}
 
 
 Ecuación:
@@ -140,7 +140,7 @@ x' = (x - x_{min}) / (x_{max} - x_{min})
 ## Normalización Estadística o Z-Score
 
 
-![Z score](assets/norm-z-score.svg){width="70%"}
+![Z score](assets/norm-z-score.svg){width="55%"}
 
 Tomado de: [developers.google.com](https://developers.google.com/machine-learning/data-prep/transform/normalization)
 
@@ -148,7 +148,7 @@ Tomado de: [developers.google.com](https://developers.google.com/machine-learnin
 
 
 
-## Normalización Estadística o Z-Score
+## Normalización Estadística o Z-Score {.smaller}
 
 Ecuación:
 \begin{equation}
@@ -167,7 +167,7 @@ x' = (x - \mu) / \sigma
 ## Normalización Logarítmica
 
 
-![Log normalization](assets/norm-log-scaling-movie-ratings.svg){width="70%"}
+![Log normalization](assets/norm-log-scaling-movie-ratings.svg){width="55%"}
 
 Tomado de: [developers.google.com](https://developers.google.com/machine-learning/data-prep/transform/normalization)
 
@@ -186,7 +186,7 @@ x' = \log (x)
 
 
 
-## Ejemplo de Código Python para Z Score
+## Ejemplo de Código Python para Z Score {.smaller}
 
 
 \begin{verbatim}
@@ -203,7 +203,7 @@ print(scaler.transform([[2, 2]])
 
 
 
-## Ejemplo de Código Python para Min Max
+## Ejemplo de Código Python para Min Max {.smaller}
 
 
 \begin{verbatim}

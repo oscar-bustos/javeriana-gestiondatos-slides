@@ -1,6 +1,6 @@
 ---
 title: "Metodologías y Análisis Exploratorio de Datos"
-subtitle: "Gestión de Datos"
+subtitle: "Gestión de Datos - Sesión 1"
 author: "Oscar Bustos"
 format:
   revealjs:
@@ -18,46 +18,40 @@ nocite: |
   @*
 ---
 
+<style>
+.reveal figcaption {
+  text-align: center !important;
+}
+.smaller-text {
+  font-size: 0.75em !important;
+}
+</style>
 
-
-
-# Presentación
-
-
+# Bienvenidos y Presentación
 
 ## ¡Conozcámonos!
-
-
 
 ¡Hola a todos!
 
+::: {.callout-tip title="Dinámica Inicial"}
+Comparte tu **Nombre**, **profesión**, **dónde trabajas**, **maestría** y tus **expectativas** sobre el uso de datos en tu vida laboral.
+:::
 
-
-¿Podrían compartir un poco sobre ustedes?
-
-
-
-Digan su **Nombre**, su **profesión**, dónde **trabajan**, en qué **maestría** están y que les llama la **atención** sobre esta clase.
-
-
-
-
-
-
-## ¡Conozcámonos!
-
+## El Docente
 
 :::: {.columns}
 
-
 ::: {.column width="70%"}
-- Soy Oscar Bustos
-- Ingeniero Metratrónico, PhD. (c) en Ingeniería - PUJ
-- Docente Javeriano, Tech Manager en Mercadolibre
-- Me gusta todo lo relacionado con IA / Advanced Analytics
+- **Oscar Bustos**
 
+- Ing. Mecatrónico, PhD. (c) en Ingeniería - PUJ
+
+- Docente Javeriano
+
+- Tech Manager en Mercado Libre
+
+- Apasionado por resolver problemas reales con IA y Analítica
 :::
-
 
 ::: {.column width="30%"}
 ![](assets/FotoReciente.png){width="100%"}
@@ -65,395 +59,624 @@ Digan su **Nombre**, su **profesión**, dónde **trabajan**, en qué **maestría
 
 ::::
 
-
-
-
-
-# Evaluación y Logística
-
-
+# Reglas del Curso y Logística
 
 ## Estructura del Curso
 
-- **Módulo 1 - Preparación de datos**
-  - Talleres 20\%
-- **Módulo 2 - Integración de datos**
-  - Talleres 20\%
-  - Parcial Taller Individual (Módulos 1 y 2) 20\%
-  - Proyecto en Grupo 20\%
-- **Módulo 3 - Herramientas de Big Data**
-  - Talleres 20\%
+El curso se divide en 3 módulos principales:
 
+- **Módulo 1: Preparación de datos**
 
+  - Talleres prácticos (20%)
 
+- **Módulo 2: Integración de datos**
 
-## Reglas
+  - Talleres (20%)
 
-- Todas las clases tienen un **taller práctico** asociado, para entregar antes de empezar la siguiente sesión
-- Los talleres se resuelven y envían en **parejas**.<br>
-- El proyecto en grupo debe ser integrado por **4 personas**, 2 parejas idealmente.<br>
-- Todas las entregas se hacen a través del **Campus Virtual**<br>
+  - Proyecto en grupo (20%)
 
-## Reglas - Continuación
+  - Parcial Taller Individual (20%)
 
-- Todas las clases son **presenciales**. No obstante, se pueden transmitir virtualmente a petición de algún estudiante.
-- Las clases empiezan a las **6:10pm** y hay un descanso de 15 minutos a las **7:30pm**
-- Esta es una clase **amigable con la IA**. Se promueve el uso de la IA para generación de código Python para que el estudiante se enfoque en el análisis de los datos.
+- **Módulo 3: Herramientas de Big Data**
 
+  - Talleres prácticos (20%)
 
+## Reglas del Curso
 
+Pautas clave para el desarrollo de las actividades:
 
-## Lecturas
+- **Talleres prácticos**: Uno por clase, entrega antes de la siguiente sesión.
 
-- Todas las clases tienen al menos una lectura asociada
-- Todas los libros se encuentran en la plataforma de O'Reilly
-- Se puede acceder a través de los recursos virtuales de la biblioteca en el siguiente enlace: [https://javeriana.libguides.com/az.php?a=o](https://javeriana.libguides.com/az.php?a=o)
+- **Parejas**: Se resuelven y entregan en parejas.
 
+- **Proyecto de curso**: Desarrollado en grupos de 4 personas (2 parejas).
 
+- **Entregas**: Exclusivamente a través del Campus Virtual.
 
+## Dinámica de Clase y Uso de IA
 
+- **Presencialidad**: Clases presenciales (transmisión virtual opcional).
 
+- **Horario**: Inicia a las 6:10pm. Descanso de 15 min a las 7:30pm.
 
-## Libros de la Clase - Modulo 1
+- **Clase amigable con la IA**:
 
+  - Se promueve el uso de IA para generación de código Python.
 
-![](assets/PythonDataAnalysis.png){width="30%"} 
-![](assets/ExploratoryDataAnalysis.jpg){width="30%"} 
-![](assets/DataScienceBusiness.jpg){width="30%"}
+  - El objetivo principal es enfocarse en el **análisis** de datos.
 
+## Bibliografía y Lecturas
 
+- **Lecturas obligatorias**: Cada clase tiene lecturas asociadas.
 
+- **Acceso digital**: Todos los libros están en la plataforma O'Reilly.
 
-## Libros de la Clase - Modulo 2
+- **Biblioteca Javeriana**: Accede gratis con tus credenciales en:
+  [javeriana.libguides.com/az.php?a=o](https://javeriana.libguides.com/az.php?a=o)
 
+- Las referencias bibliográficas se listan al final de la presentación.
 
-![](assets/DataIntensive.jpg){width="30%"} 
-![](assets/DatawarehouseToolkit.jpg){width="30%"} 
-![](assets/SQLite.jpg){width="30%"} 
+## Libros de la Clase - Módulo 1
 
+::: {layout-ncol=3}
+![Python for Data Analysis](assets/PythonDataAnalysis.png){height=300px}
 
+![Exploratory Data Analysis](assets/ExploratoryDataAnalysis.jpg){height=300px}
 
+![Data Science for Business](assets/DataScienceBusiness.jpg){height=300px}
+:::
 
+## Libros de la Clase - Módulo 2
 
-## Libros de la Clase - Modulo 3
+::: {layout-ncol=3}
+![Designing Data-Intensive Applications](assets/DataIntensive.jpg){height=300px}
 
+![The Data Warehouse Toolkit](assets/DatawarehouseToolkit.jpg){height=300px}
 
-![](assets/BigDataFundamentals.jpg){width="30%"} 
-![](assets/PracticalNaturalLanguageProcessing.jpg){width="30%"} 
+![Using SQLite](assets/SQLite.jpg){height=300px}
+:::
 
+## Libros de la Clase - Módulo 3
 
+::: {layout-ncol=2}
+![Big Data Fundamentals](assets/BigDataFundamentals.jpg){height=300px}
 
+![Practical Natural Language Processing](assets/PracticalNaturalLanguageProcessing.jpg){height=300px}
+:::
 
+## Cronograma General
 
+::: {.r-stretch}
+![Lecturas y Actividades del Semestre](assets/Lecturas.png){fig-align="center"}
+:::
 
-# Motivación de la Clase
+# Motivación y Metodología CRISP-DM
 
+## Motivación: ¿A qué dedicamos tiempo?
 
+::: {.callout-note title="Pregunta a la clase"}
+En el día a día de un científico de datos, ¿en qué actividades creen que se invierte la mayor parte del tiempo?
+:::
 
-## Motivación
+*(Piensen en carga, limpieza, modelado, visualización, etc.)*
 
+## Motivación: ¿A qué dedicamos tiempo?
 
 :::: {.columns}
 
+::: {.column width="60%"}
+Estudio de Anaconda (2020) sobre el tiempo en Ciencia de Datos:
 
-::: {.column width="50%"}
-Pensando en su trabajo actual, ¿cuánto de su tiempo dedica a cada una de las siguientes tareas?
+- **Carga y preparación**: Cerca del 45%.
+
+- **Limpieza de datos**: Cerca del 26%.
+
+- *¡Más del 70% del tiempo se va en preparación de datos!*
+
 :::
 
-
 ::: {.column width="40%"}
-![](assets/Stacked-Chart.svg){width="100%"}
+![](assets/Stacked-Chart.svg){fig-align="center" width="100%"}
 :::
 
 ::::
-
-
-[https://www.anaconda.com/resources/whitepaper/state-of-data-science-2020](https://www.anaconda.com/resources/whitepaper/state-of-data-science-2020)
-
-
-
-
-## Motivación
-
-
-:::: {.columns}
-
-
-::: {.column width="50%"}
-Qué pasa si no se preparan los datos?
-:::
-
-
-::: {.column width="40%"}
-![](assets/Garbage.png){width="100%"}
-:::
-
-::::
-
-
-
-
-
 
 ## Objetivos de Formación
 
+Al finalizar el curso serás capaz de:
 
-Aprender las técnicas clave para **extraer y preparar datos **con fines analíticos en entornos **organizacionales**.
+- **Recolección y consolidación**: Extraer información de múltiples fuentes.
 
-- Aprender los mecanismos de **recolección y consolidación** de información de distintas fuentes (bases de datos empresariales, fuentes abiertas, fuentes web)
-- Realizar **preparación** y análisis básico de datos, incluyendo transformación y visualización, y opciones de manejo de datos perdidos y atípicos
-- Comprender las implicaciones del manejo de **grandes volúmenes de datos** y cómo las tecnologías de big data contribuyen a su manejo apropiado.
+- **Preparación de datos**: Limpiar y tratar datos atípicos o perdidos.
 
+- **Entendimiento de Big Data**: Comprender tecnologías para grandes volúmenes.
 
+- **Garbage in, Garbage out**: Si los datos son basura, el modelo dará basura.
 
+## Introducción a CRISP-DM
 
-## Cronograma
+- **Definición**: *Cross-Industry Standard Process for Data Mining*.
 
+- **Propósito**: Estructurar proyectos analíticos para evitar pérdidas.
 
-![](assets/Lecturas.png){width="80%"}
+- Es un proceso **cíclico e iterativo**, no lineal.
 
+- Conecta directamente el negocio con los datos y el modelado.
 
-
-
-
-# Metodologías en Analítica
-
-
-
-## Minería de Datos
-
-
-![](assets/mineriaDatos.png){width="60%"}
-Tomado de: Data Science for Business
-
-
-
-
-## CRISP-DM
-
+## Las Fases de CRISP-DM
 
 :::: {.columns}
 
+::: {.column width="55%"}
+1. **Comprensión del Negocio**
 
-::: {.column width="50%"}
-CRoss-Industry Standard Process for Data Mining.
+2. **Entendimiento de los Datos**
+
+3. **Preparación de los Datos**
+
+4. **Modelamiento**
+
+5. **Evaluación**
+
+6. **Despliegue**
 :::
 
-
-::: {.column width="40%"}
+::: {.column width="45%"}
 ![](assets/CrispDM.jpg){width="100%"}
-Tomado de: Data Science for Business
 :::
 
 ::::
 
-
-
-
-
-
-
 ## CRISP-DM: Comprensión del Negocio
 
-Se debe pensar detenidamente sobre el **problema a resolver** y  el **escenario de uso**. Para ello se deben resolver las siguientes preguntas clave:
-- ¿Qué exactamente queremos hacer?
-- ¿Cómo exactamente lo haríamos?
-- ¿Qué partes de este escenario de uso constituyen posibles modelos de minería de datos?
-Basado en el principio de Data-Driven Decision Making
+Fase inicial: definir objetivos comerciales y traducirlos a minería.
 
+- **Preguntas esenciales**:
 
+  - ¿Qué problema queremos resolver exactamente?
 
+  - ¿Cómo se usará la solución en el negocio?
 
+  - ¿Qué constituye un éxito para el proyecto?
 
+- Basado en la toma de decisiones guiada por datos (DDD).
 
-## CRISP-DM: Comprensión del Negocio
+## Pensamiento Analítico: Caso Walmart
 
-![](assets/menti.jpg){width="80%"}
+Walmart analizó sus ventas históricas previas al huracán Frances (2004) para anticipar picos de demanda.
 
+::: {.callout-note title="Pregunta a la clase"}
+¿Qué productos inusuales descubrió Walmart que se vendían 7 veces más?
+:::
 
+::: {.fragment .fade-in}
+**Respuesta**: Cerveza y Pop-Tarts de fresa. Llenaron los camiones y maximizaron ventas.
+:::
 
+## Pensamiento Analítico: Caso Target
 
+Target deseaba detectar si una cliente estaba embarazada meses antes de dar a luz para enviarle cupones anticipados de pañales.
+
+::: {.callout-note title="Pregunta a la clase"}
+¿Cómo lograrías esta predicción usando solo datos históricos de compra?
+:::
+
+::: {.fragment .fade-in}
+**Respuesta**: Detectaron cambios en el consumo (vitaminas prenatales, lociones sin aroma, etc.) y estimaron la fecha del parto.
+:::
+
+## Datos como Activo: Capital One
+
+Signet Bank quería crear modelos predictivos de riesgo para ofrecer tarjetas de crédito a finales de los 80.
+
+::: {.callout-note title="Pregunta a la clase"}
+Si careces de datos de clientes riesgosos (porque siempre fueron rechazados), ¿cómo entrenas el modelo?
+:::
+
+::: {.fragment .fade-in}
+**Respuesta**: Otorgaron tarjetas aleatoriamente a pérdida. *Compraron los datos* y lideraron el mercado.
+:::
+
+## Tareas de Minería: Caso Netflix
+
+Netflix recopila tu historial de reproducción y valoraciones para sugerirte nuevas películas y series.
+
+::: {.callout-note title="Pregunta a la clase"}
+Si Netflix te agrupa con usuarios de gustos similares para recomendarte títulos, ¿es una tarea supervisada o no supervisada?
+:::
+
+::: {.fragment .fade-in}
+**Respuesta**: Es una combinación, pero la agrupación es **No Supervisada** (Clustering / Co-occurrence Grouping).
+:::
+
+## CRISP-DM: El Fracaso Analítico
+
+Diseñas un modelo de Machine Learning con 99% de precisión matemática. Sin embargo, el proyecto no genera retorno y el negocio lo descarta.
+
+::: {.callout-note title="Pregunta a la clase"}
+¿En qué fase de la metodología CRISP-DM se falló fundamentalmente?
+:::
+
+::: {.fragment .fade-in}
+**Respuesta**: En **Business Understanding** (definición del problema) o en la **Evaluación** (no alineada a KPIs del negocio).
+:::
+
+# CRISP-DM - Entendimiento de los Datos & EDA
 
 ## CRISP-DM: Entendimiento de los Datos
 
-- **Recopilación inicial de Datos**: Reunir todos los datos necesarios provenientes de diversas fuentes relevantes.
-- **Descripción de los Datos**: Resumir las principales características de los datos recopilados, incluyendo medidas de tendencia central y dispersión.
-- **Explorar los Datos**: Realizar un análisis exploratorio inicial para identificar patrones, relaciones y anomalías en los datos.
-- **Verificar la calidad de los datos**: Asegurarse de que los datos sean precisos, completos y consistentes para garantizar su idoneidad para el análisis.
-*Si la información no es suficiente para el problema de analítica, se puede regresar al proceso anterior.*
+Esta fase consiste en familiarizarse con los datos para identificar su calidad y descubrir insights preliminares.
 
+**Actividades clave**:
 
+- Recopilación inicial de datos de diversas fuentes.
 
+- Descripción del volumen, formato y variables.
 
+- Verificación de la calidad (errores, vacíos).
 
-## CRISP-DM
+- **Análisis Exploratorio de Datos (EDA)**.
 
+## ¿Qué es el EDA (Exploratory Data Analysis)?
 
-![](assets/CrispDMActividades.jpg){width="60%"}
+Es la aproximación para analizar bases de datos resumiendo sus características principales, frecuentemente usando métodos visuales.
 
-Actividades del proceso CRISP-DM
+**Objetivos**:
 
+- Entendimiento de la estructura y propiedades de los datos.
 
+- Detectar problemas de calidad y anomalías.
 
+- Probar supuestos iniciales antes de crear modelos.
 
+## Caso de Estudio: Titanic
 
-# Herramientas
-
-
-## Popularidad de los lenguajes de programación
-
-
-![](assets/popularidadLenguajes.png){width="60%"}
-Tomado de [https://www.tiobe.com/tiobe-index/](https://www.tiobe.com/tiobe-index/)
-
-
-
-
-
-## Herramientas Sugeridas
-
-\begin{table}[h]
-
-
-| **Nombre** | **Descripción** | **Enlace** |
-| --- | --- | --- |
-| Google Colab | Herramienta de ambiente de ejecución en la nube para documentar y ejecutar código Python | [https://colab.research.google.com](https://colab.research.google.com) |
-| Google Gemini | Modelo LLM para aprendizaje de programación Python | [https://gemini.google.com/](https://gemini.google.com/) |
-| N8N | Plataforma de desarrollo de workflows | [https://n8n.io/](https://n8n.io/) |
-
-\caption{Herramientas de IA}
-\end{table}
-
-
-
-
-
-## Google Colab
-
-
-:::: {.columns}
-
-
+::: {.columns}
 ::: {.column width="40%"}
-Ambiente de desarrollo en Python o R para el análisis de datos. Permite la ejecución en la nube de programas, con una cantidad generosa de recursos.
+![](assets/titanic.jpg){width="100%"}
 :::
 
+::: {.column width="60%" .smaller-text}
+**Objetivo:** Predecir la supervivencia de pasajeros con datos reales de la tragedia (1912).
 
-::: {.column width="60%"}
-![](assets/colabIDE.jpg){width="100%"}
+**Preguntas de reflexión:**
+
+- ¿Cuáles creen que son las variables más importantes para predecir la supervivencia?
+
+- ¿Qué problemas de calidad de datos esperan?
+
+- ¿Qué sesgos históricos podrían existir?
+:::
 :::
 
-::::
+## Google Colab: Entorno de Trabajo
 
+**Google Colab** es un entorno en la nube basado en Jupyter Notebooks.
 
+- No requiere instalación ni configuración local.
 
+- Permite ejecutar código **Python** paso a paso.
 
+- Combina texto, código y visualizaciones, ideal para análisis de datos.
 
-## Google Colab con Gemini
+**¿Por qué Python en lugar de Excel?**
 
+- Repetibilidad, automatización y auditoría del proceso.
 
-:::: {.columns}
+- Capacidad para manejar grandes volúmenes de datos.
 
+- Amplio ecosistema de librerías (*Pandas*, *Numpy*, *Scikit-Learn*).
 
-::: {.column width="40%"}
-Cuenta con el chat de Gemini embebido en el ambiente de desarrollo. Asiste en la escritura de código.
-:::
+## Carga de Datos en Python
 
-
-::: {.column width="60%"}
-![](assets/colabIDEGemini.jpg){width="100%"}
-:::
-
-::::
-
-
-
-
-
-## Análisis Exploratorio de Datos
-
-
-:::: {.columns}
-
-
-::: {.column width="50%"}
-**Prompt**: Haz un analisis exploratorio de datos del archivo de github datasciencedojo titanic.csv usando la librería ydata-profiling. Instala la ultima version disponible de la libreria.
-:::
-
-
-::: {.column width="50%"}
-![](assets/ColabAgentico.png){width="100%"}
-:::
-
-::::
-
-
-
-
-
-## Ejemplo de Código: EDA
+Usamos **Pandas** para cargar y manipular los datos iniciales del Titanic.
 
 ```python
 import pandas as pd
+import numpy as np
 
-# Define the URL for the dataset
-titanic_url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
+# URL del dataset Titanic
+url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
 
-# Read the CSV file into a pandas DataFrame
-df = pd.read_csv(titanic_url)
+# Cargar a un DataFrame de Pandas
+df = pd.read_csv(url)
 
-# Display the first few rows of the DataFrame to verify it loaded correctly
-print("Dataset loaded successfully. First 5 rows:")
+# Verificar las primeras filas
 print(df.head())
 ```
 
+## 1. Distribución de Datos (Data Distribution)
 
+:::: {.columns}
+::: {.column width="55%"}
+```python
+# Histograma de edades
+df['Age'].hist(bins=20)
 
+# Gráfico de densidad de tarifa
+df['Fare'].plot(kind='kde')
+```
+:::
+::: {.column width="45%" .smaller-text}
+Entender la forma y extensión de las variables.
 
-## Ejemplo de Código: EDA
+- **Asimetría (Skewness)**: Inclinación.
+
+- **Curtosis**: Concentración en la media.
+
+- **Dispersión**: Rango y variabilidad.
+:::
+::::
+
+## 2. Datos Faltantes (Missing Data)
+
+:::: {.columns}
+::: {.column width="55%"}
+```python
+# Conteo de nulos por columna
+df.isnull().sum()
+
+# Imputar con la media
+media = df['Age'].mean()
+df['Age'] = df['Age'].fillna(media)
+
+# Eliminar nulos restantes
+df.dropna(inplace=True)
+```
+:::
+::: {.column width="45%" .smaller-text}
+Valores `NaN` pueden distorsionar los análisis.
+
+- **Eliminación**: Borrar filas (pérdida de datos).
+
+- **Imputación**: Rellenar con media, mediana o usando modelos predictivos.
+:::
+::::
+
+## 3. Valores Atípicos (Outliers)
+
+:::: {.columns}
+::: {.column width="55%"}
+```python
+# Filtro por rango (IQR)
+Q1 = df['Fare'].quantile(0.25)
+Q3 = df['Fare'].quantile(0.75)
+IQR = Q3 - Q1
+
+lim_sup = Q3 + 1.5 * IQR
+outliers = df[df['Fare'] > lim_sup]
+```
+:::
+::: {.column width="45%" .smaller-text}
+Observaciones que se desvían significativamente.
+
+- Pueden ser errores o fenómenos reales.
+
+- **Detección**: Puntaje Z o Rango Intercuartílico (IQR).
+:::
+::::
+
+## 4. Correlación (Correlation)
+
+:::: {.columns}
+::: {.column width="55%"}
+```python
+# Variables numéricas
+num = df[['Age', 'Fare', 'Pclass']]
+
+# Matriz de correlación
+corr = num.corr(method='pearson')
+print(corr)
+```
+:::
+::: {.column width="45%" .smaller-text}
+Relación lineal entre variables numéricas.
+
+- **1**: Positiva perfecta.
+
+- **-1**: Negativa perfecta.
+
+- **0**: Sin relación lineal.
+:::
+::::
+
+## 5. Patrones y Tendencias (Patterns & Trends)
+
+:::: {.columns}
+::: {.column width="55%"}
+```python
+# Supervivencia por clase
+tend = df.groupby('Pclass')['Survived'].mean()
+
+# Gráfico de línea
+tend.plot(kind='line', marker='o')
+```
+:::
+::: {.column width="45%" .smaller-text}
+Identificar comportamientos a lo largo de una dimensión.
+
+- Ayuda a visualizar relaciones no obvias.
+
+- **Herramientas**: Gráficos de línea, promedios móviles, agrupaciones secuenciales.
+:::
+::::
+
+## 6. Tipos de Datos (Data Types)
+
+:::: {.columns}
+::: {.column width="55%"}
+```python
+# Revisar tipos actuales
+print(df.dtypes)
+
+# Convertir tipos
+df['Survived'] = df['Survived'].astype('category')
+df['Fare'] = pd.to_numeric(df['Fare'])
+```
+:::
+::: {.column width="45%" .smaller-text}
+Identificar la naturaleza de cada columna para el análisis.
+
+- **Numéricos**: `int`, `float`.
+
+- **Categóricos**: Ordinales o nominales.
+
+- **Otros**: Booleanos, fechas, textos.
+:::
+::::
+
+## 7. Visualización de Datos (Data Visualization)
+
+:::: {.columns}
+::: {.column width="55%"}
+```python
+# Barras: Pasajeros por puerto
+df['Embarked'].value_counts().plot(kind='bar')
+
+# Dispersión: Edad vs Tarifa
+df.plot.scatter(x='Age', y='Fare')
+```
+:::
+::: {.column width="45%" .smaller-text}
+Facilitan la identificación de patrones de forma intuitiva.
+
+- **Histogramas**: Distribución.
+
+- **Dispersión**: Relaciones mutuas.
+
+- **Barras**: Frecuencia de categorías.
+:::
+::::
+
+## 8. Estadísticas Descriptivas (Summary Statistics)
+
+:::: {.columns}
+::: {.column width="55%"}
+```python
+# Resumen general (Pandas)
+print(df.describe())
+
+# Estadísticas con Numpy
+std_edad = np.std(df['Age'])
+min_tarifa = np.min(df['Fare'])
+```
+:::
+::: {.column width="45%" .smaller-text}
+Resumen de tendencia central y dispersión.
+
+- **Central**: Media, mediana.
+
+- **Dispersión**: Desviación estándar, mínimo, máximo.
+
+- **Posición**: Cuartiles (Q1, Q3).
+:::
+::::
+
+## 9. Control de Calidad de Datos (Data Quality)
+
+:::: {.columns}
+::: {.column width="55%"}
+```python
+# Conteo de duplicados
+dups = df.duplicated().sum()
+
+# Eliminar duplicados
+df.drop_duplicates(inplace=True)
+
+# Validar reglas lógicas
+invalid = df[df['Age'] < 0]
+```
+:::
+::: {.column width="45%" .smaller-text}
+Asegurar la confiabilidad de la información.
+
+- **Duplicados**: Filas idénticas repetidas.
+
+- **Inconsistencias**: Errores tipográficos.
+
+- **Valores Inválidos**: Fuera del dominio lógico (ej. edades negativas).
+:::
+::::
+
+## 10. Relación de Características (Feature Relationships)
+
+:::: {.columns}
+::: {.column width="55%"}
+```python
+# Agrupación y comparación
+agrup = df.groupby(['Sex', 'Pclass'])['Survived'].mean()
+print(agrup)
+
+# Tabla cruzada (Crosstab)
+cruz = pd.crosstab(df['Sex'], df['Survived'])
+```
+:::
+::: {.column width="45%" .smaller-text}
+Exploración multivariada de interacciones.
+
+- **Agrupaciones**: Promedios por segmento cruzado.
+
+- **Tablas cruzadas**: Frecuencias entre variables categóricas.
+:::
+::::
+
+## Flujo de Trabajo en EDA
+
+Un proceso típico y estructurado:
+
+1. **Entender negocio y datos**: Contexto del problema.
+
+2. **Visión general**: Conocer tamaño (shape) y tipos de datos.
+
+3. **Limpieza inicial**: Tratar faltantes, duplicados y atípicos.
+
+4. **Análisis Univariado**: Explorar cada variable por separado.
+
+5. **Análisis Bivariado**: Explorar relaciones cruzadas.
+
+6. **Reporte / Documentación**: Extraer insights y siguientes pasos.
+
+## Retos del Titanic: Datos Faltantes
+
+Afrontando problemas prácticos en los datos del Titanic:
+
+- **Edad Faltante (20%)**:
+
+  - Si eliminamos, perdemos información de otras variables.
+
+  - Si imputamos con la media general, sesgamos la varianza.
+
+  - *Solución*: Imputar usando prefijos de nombres (Mr., Miss., Mrs.).
+
+## Reto Titanic: Fugas de Información
+
+Un modelo de supervivencia alcanza un 99% de precisión al incluir la variable *Número de Bote Salvavidas*.
+
+::: {.callout-note title="Pregunta a la clase"}
+¿Por qué este modelo es inútil para la toma de decisiones?
+:::
+
+::: {.fragment .fade-in}
+**Respuesta**: Es *Data Leakage*. Al comprar el boleto (momento de la predicción) no se sabe quién abordará un bote salvavidas.
+:::
+
+## EDA Automatizado con ydata-profiling
+
+Librerías modernas permiten generar reportes completos en segundos.
 
 ```python
 from ydata_profiling import ProfileReport
 
-# Generate the profile report
-profile = ProfileReport(df, title="Titanic Dataset Profile Report")
+# Crear el reporte interactivo
+profile = ProfileReport(df, title="Titanic Profile Report")
 
-print("Profile report generated successfully.")
+# Mostrar dentro de Google Colab o Jupyter
 profile.to_notebook_iframe()
 ```
 
+- **Advertencia**: *El reporte automatiza la tarea, pero no el análisis.* El criterio humano decide cómo resolver las alertas detectadas.
 
-
-
-
-## Análisis Exploratorio de Datos
-
-
-:::: {.columns}
-
-
-::: {.column width="40%"}
-**Prompt**: Haz un analisis exploratorio de datos del archivo de github datasciencedojo titanic.csv usando la librería ydata-profiling. Instala la ultima version disponible de la libreria.
-:::
-
-
-::: {.column width="60%"}
-![](assets/colabYdata.jpg){width="100%"}
-:::
-
-::::
-
-
-
-
-
-
-
-
-## References
+## Referencias
 
 ::: {#refs}
 :::
-
-
-

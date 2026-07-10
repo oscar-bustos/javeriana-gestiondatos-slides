@@ -204,7 +204,7 @@ bibliography: references.bib
 
 
 
-## Extracción - Fuentes de Datos Tabulares
+## Extracción - Fuentes de Datos Tabulares {.smaller}
 
 \begin{table}[htbp]
 
@@ -225,7 +225,7 @@ bibliography: references.bib
 
 
 
-## Extracción - Fuentes de Datos Jerárquico
+## Extracción - Fuentes de Datos Jerárquico {.smaller}
 
 \begin{table}[htbp]
 

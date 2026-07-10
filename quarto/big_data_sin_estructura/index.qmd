@@ -47,24 +47,17 @@ nocite: |
 
 ## Las 3 Vs de Big Data
 
-
 :::: {.columns}
 
-
-::: {.column width="50%"}
-
+::: {.column width="55%"}
 - **Volumen (Volume):** Se refiere a la gran cantidad de datos, desde terabytes hasta zettabytes.
 - **Velocidad (Velocity):** Alude a la rapidez con la que se generan y procesan los datos, desde lotes (batch) hasta flujos en tiempo real (streaming).
 - **Variedad (Variety):** Describe los diferentes tipos de datos, tanto estructurados como no estructurados.
-
 :::
 
-
-
-::: {.column width="50%"}
-![](assets/5v.png){width="100%"}
+::: {.column width="40%"}
+![](assets/5v.png){width="90%"}
 :::
-
 
 ::::
 
@@ -74,24 +67,17 @@ nocite: |
 
 ## Volumen (Escala)
 
-
 :::: {.columns}
 
-
-::: {.column width="50%"}
-
+::: {.column width="55%"}
 - El volumen de datos está creciendo exponencialmente.
 - Se proyectó un aumento de 44 veces en el universo digital entre 2009 y 2020, pasando de 0.8 a 35.2 zettabytes.
 - Ejemplos como el crecimiento de tweets diarios en Twitter ilustran este aumento exponencial en la recolección y generación de datos.
-
 :::
 
-
-
-::: {.column width="50%"}
-![](assets/01fig12.jpg){width="100%"}
+::: {.column width="40%"}
+![](assets/01fig12.jpg){width="90%"}
 :::
-
 
 ::::
 
@@ -101,28 +87,20 @@ nocite: |
 
 ## Fuentes Masivas de Generación de Datos
 
-
 :::: {.columns}
 
-
-::: {.column width="50%"}
-
+::: {.column width="55%"}
 - **Plataformas Digitales:** Se generan más de **147 Zettabytes** de datos al día, impulsados por plataformas como Meta y Google.
 - **Dispositivos Conectados (IoT):**
   - Más de **30 mil millones** de dispositivos IoT activos.
   - Más de **7.5 mil millones** de smartphones con múltiples sensores (GPS, cámara).
   - Superados los **1,2 mil millones** de medidores inteligentes.
   - [Fuente Statista](https://www.statista.com/statistics/1183457/iot-connected-devices-worldwide/)
-
-
 :::
 
-
-
-::: {.column width="50%"}
-![](assets/01fig13.jpg){width="100%"}
+::: {.column width="40%"}
+![](assets/01fig13.jpg){width="90%"}
 :::
-
 
 ::::
 
@@ -132,26 +110,19 @@ nocite: |
 
 ## Variedad
 
-
 :::: {.columns}
 
-
-::: {.column width="50%"}
-
+::: {.column width="55%"}
 - **Datos Relacionales:** Tablas, transacciones, datos heredados (legacy).
 - **Datos de Texto:** Contenido web.
 - **Datos Semiestructurados:** Como archivos XML.
 - **Datos de Grafos:** Redes sociales, web semántica (RDF).
 - **Datos en Streaming:** Datos que se analizan una sola vez a medida que llegan.
-
 :::
 
-
-
-::: {.column width="50%"}
-![](assets/01fig16.jpg){width="100%"}
+::: {.column width="40%"}
+![](assets/01fig16.jpg){width="90%"}
 :::
-
 
 ::::
 
@@ -175,8 +146,7 @@ nocite: |
 
 ## Visión Única del Cliente
 
-
-![](assets/vista360.png){width="70%"}
+![](assets/vista360.png){width="55%"}
 
 
 
@@ -215,16 +185,14 @@ nocite: |
 
 ## ETL
 
-
-![](assets/04fig03.jpg){width="70%"}
+![](assets/04fig03.jpg){width="55%"}
 
 
 
 
 ## Data Warehouse
 
-
-![](assets/04fig05.jpg){width="70%"}
+![](assets/04fig05.jpg){width="55%"}
 
 
 
@@ -243,25 +211,18 @@ nocite: |
 
 ## Data Lake
 
-
 :::: {.columns}
 
-
-::: {.column width="50%"}
-
+::: {.column width="55%"}
 - Es un repositorio centralizado para almacenar grandes cantidades de datos **crudos** en su formato nativo.
 - Almacena datos estructurados y no estructurados.
 - Utiliza un modelo **Schema-on-Read**: el esquema se aplica al leer los datos, no al escribirlos.
 - Sirve como fuente para múltiples tareas: ETL, machine learning, visualización, etc.
-
 :::
 
-
-
-::: {.column width="50%"}
-![](assets/ebdl_0108.png){width="100%"}
+::: {.column width="40%"}
+![](assets/ebdl_0108.png){width="90%"}
 :::
-
 
 ::::
 
@@ -285,25 +246,18 @@ nocite: |
 
 ## Zonas del Data Lake Empresarial
 
-
 :::: {.columns}
 
-
-::: {.column width="50%"}
-
+::: {.column width="55%"}
 - **Landing Zone (Ingesta):** Datos crudos. Gobernanza mínima.
 - **Gold Zone (Curada):** Datos confiables y de alta calidad. Fuerte gobernanza.
 - **Work Zone (Trabajo):** Espacio para experimentación de Científicos de Datos.
 - **Sensitive Zone (Sensible):** Datos con acceso restringido y gobernanza estricta.
-
 :::
 
-
-
-::: {.column width="50%"}
-![](assets/ebdl_0109.png){width="100%"}
+::: {.column width="40%"}
+![](assets/ebdl_0109.png){width="90%"}
 :::
-
 
 ::::
 
@@ -313,8 +267,7 @@ nocite: |
 
 ## Ecosistema AWS
 
-
-![](assets/AWSArch.png){width="90%"}
+![](assets/AWSArch.png){width="75%"}
 
 Fuente: \href{}{https://aws.amazon.com/blogs/architecture/text-analytics-on-aws-implementing-a-data-lake-architecture-with-opensearch/}
 
@@ -364,8 +317,7 @@ Ahora, ¿cómo responderías las siguientes consultas:
 
 ## Motivación
 
-
-![](assets/similaridad.png){width="80%"}
+![](assets/similaridad.png){width="60%"}
 
 
 Martínez Pinilla, M. F. (2023). Búsqueda semántica de sentencias judiciales usando técnicas actuales del NLP y métodos de recuperación de información.
@@ -390,9 +342,7 @@ Martínez Pinilla, M. F. (2023). Búsqueda semántica de sentencias judiciales u
 
 ## 
 
-
-
-![](assets/embeddings.png){width="80%"}
+![](assets/embeddings.png){width="65%"}
 \vfill
  Fuente: https://www.datacamp.com/blog/the-top-5-vector-databases
 
@@ -401,8 +351,7 @@ Martínez Pinilla, M. F. (2023). Búsqueda semántica de sentencias judiciales u
 
 ## Arquitectura de Referencia
 
-
-![](assets/arquitecturaReferenciaLLM.png){width="80%"}
+![](assets/arquitecturaReferenciaLLM.png){width="65%"}
 \vfill
  Fuente: https://www.datacamp.com/blog/the-top-5-vector-databases
 
@@ -413,8 +362,7 @@ Martínez Pinilla, M. F. (2023). Búsqueda semántica de sentencias judiciales u
 
 ## Arquitectura de Referencia
 
-
-![](assets/awsArchitecture.png){width="80%"}
+![](assets/awsArchitecture.png){width="65%"}
 \vfill
  Fuente: https://aws.amazon.com/solutions/guidance/chatbots-with-vector-databases-on-aws/
 
@@ -456,215 +404,130 @@ Implica el desarrollo de algoritmos y modelos para comprender, interpretar y gen
 
 
 
-## Procesamiento del lenguaje natural
-
+## Procesamiento del Lenguaje Natural {.smaller}
 
 \begin{verbatim}
 from sklearn.feature_extraction.text import CountVectorizer
-def build_inverted_index(documents, stopwords):
-vectorizer = CountVectorizer(stop_words=stopwords)
-X = vectorizer.fit_transform(documents)
-return {term: set(X[:, i].nonzero()[0]) for i, term in
-enumerate(vectorizer.get_feature_names_out())}
-documents = [
-"el gato corre por el tejado en una noche estrellada",
-"un perro ladra mientras la luna brilla",
-"las estrellas iluminan el cielo nocturno"
-]
-stopwords = ["el", "un", "la", "en", "por", "mientras"]
-inverted_index = build_inverted_index(documents, stopwords)
-for word, doc_ids in inverted_index.items():
-print(f"{word}: {sorted(doc_ids)}")
+def build_inverted_index(docs, stopwords):
+    vectorizer = CountVectorizer(stop_words=stopwords)
+    X = vectorizer.fit_transform(docs)
+    return {term: set(X[:, i].nonzero()[0]) for i, term in
+            enumerate(vectorizer.get_feature_names_out())}
+
+docs = ["el gato corre por el tejado", "un perro ladra bajo la luna"]
+inverted_index = build_inverted_index(docs, ["el", "un", "la", "en", "por"])
+for word, ids in inverted_index.items():
+    print(f"{word}: {sorted(ids)}")
 \end{verbatim}
 
 
 
 
-## Procesamiento del leguaje Natural
-
-
-
-
-
-## Procesamiento del leguaje Natural
+## Procesamiento del Lenguaje Natural: n-gramas {.smaller}
 
 \begin{verbatim}
 from sklearn.feature_extraction.text import CountVectorizer
-def build_inverted_index(documents, stopwords):
-vectorizer = CountVectorizer(stop_words=stopwords, ngram_range=(3, 3))
-X = vectorizer.fit_transform(documents)
-return {term: set(X[:, i].nonzero()[0]) for i, term in
-enumerate(vectorizer.get_feature_names_out())}
+def build_inverted_index(docs, stopwords):
+    vectorizer = CountVectorizer(stop_words=stopwords, ngram_range=(3, 3))
+    X = vectorizer.fit_transform(docs)
+    return {term: set(X[:, i].nonzero()[0]) for i, term in
+            enumerate(vectorizer.get_feature_names_out())}
 
-documents = [
-"el gato corre por el tejado en una noche estrellada",
-"un perro ladra mientras la luna brilla",
-"las estrellas iluminan el cielo nocturno"
-]
-stopwords = ["el", "un", "la", "en", "por", "mientras"]
-inverted_index = build_inverted_index(documents, stopwords)
-for word, doc_ids in inverted_index.items():
-print(f"{word}: {sorted(doc_ids)}")
+docs = ["el gato corre por el tejado", "un perro ladra bajo la luna"]
+inverted_index = build_inverted_index(docs, ["el", "un", "la", "en", "por"])
+for word, ids in inverted_index.items():
+    print(f"{word}: {sorted(ids)}")
 \end{verbatim}
 
 
 
 
-## Procesamiento del leguaje Natural
-
-
-\vfill
- https://www.bbc.com/mundo/articles/cpqejezdgl7o
-
-
-
-
-## Procesamiento del leguaje Natural
-
-
-
-
-
-## Procesamiento del leguaje Natural
-
-
-
-
-
-## Procesamiento del leguaje Natural
+## Procesamiento del Lenguaje Natural: Nube de Palabras {.smaller}
 
 \begin{verbatim}
-import requests
+import requests, matplotlib.pyplot as plt
 from bs4 import BeautifulSoup
-import matplotlib.pyplot as plt
 from wordcloud import WordCloud
-import nltk
 from nltk.corpus import stopwords
 
-nltk.download('stopwords')
-stopwords_es = set(stopwords.words("spanish"))
+stop_es = set(stopwords.words("spanish"))
 url = "https://www.bbc.com/mundo/articles/cpqejezdgl7o"
 soup = BeautifulSoup(requests.get(url).text, "html.parser")
 texto = " ".join([p.get_text() for p in soup.find_all("p")])
-nube = WordCloud(stopwords=stopwords_es, width=800,
-height=400).generate(texto)
+nube = WordCloud(stopwords=stop_es, width=800, height=400).generate(texto)
 plt.imshow(nube), plt.axis("off"), plt.show()
 \end{verbatim}
 
 
 
 
-## Procesamiento del leguaje Natural
+## Procesamiento del Lenguaje Natural: Otras Áreas
 
-Lexicones
-
-
-
-
-## Procesamiento del leguaje Natural
-
-Análisis de Sentimientos
+- **Léxicos (Lexicones):** Diccionarios de palabras con polaridades o clasificaciones predefinidas.
+- **Análisis de Sentimientos:** Determinación de la actitud o emoción expresada en un texto.
 
 
 
 
-## Procesamiento del leguaje Natural
+## Procesamiento del Lenguaje Natural: PDF
 
-Extraer un texto del PDF:
-- Utiliza herramientas como pdftotext (en Linux/macOS) o aplicaciones en línea.
-- Guarda el texto extraído en un archivo .txt.
+- **Extraer texto:** Usar `PdfReader` para leer páginas secuencialmente.
+- **Limpiar texto:** Eliminar caracteres especiales, números y stop words.
+- **Visualizar:** Generar nube de palabras con `wordcloud`.
 
-Limpiar el texto:
-- Elimina caracteres especiales, números y palabras comunes (stop words).
-- Puedes usar scripts en Python con librerías como nltk.
+---
 
-Generar la nube de palabras:
-- Puedes usar librerías de Python como wordcloud.
-
-**Cómo leer un libro en PDF en Segundos**
-
-
-
-
-## Procesamiento del leguaje Natural
+## Procesamiento del Lenguaje Natural: Código PDF {.smaller}
 
 \begin{verbatim}
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
-import nltk
-from nltk.corpus import stopwords
 from pypdf import PdfReader
 
-nltk.download('stopwords')
-stopwords_es = set(stopwords.words("spanish"))
+def extraer_texto(ruta_pdf):
+    lector = PdfReader(ruta_pdf)
+    return "".join([p.extract_text() or "" for p in lector.pages])
 
-def extraer_texto_pdf(ruta_pdf):
-texto = ""
-with open(ruta_pdf, 'rb') as archivo_pdf:
-lector_pdf = PdfReader(archivo_pdf)
-for pagina in lector_pdf.pages:
-texto += pagina.extract_text() or ""
-return texto
-
-ruta_pdf = "cienañossoledad.pdf"
-texto = extraer_texto_pdf(ruta_pdf)
-nube = WordCloud(stopwords=stopwords_es, width=800,
-height=400).generate(texto)
+texto = extraer_texto("cienañossoledad.pdf")
+nube = WordCloud(width=800, height=400).generate(texto)
 plt.imshow(nube), plt.axis("off"), plt.show()
 \end{verbatim}
 
 
 
 
-## Procesamiento del leguaje Natural
+## Embeddings: Motivación
 
-Embeddings
-
-
-
-
-## Procesamiento del leguaje Natural
-
-Embeddings
 \vfill
  https://developers.google.com/machine-learning/crash-course/embeddings/motivation-from-collaborative-filtering
 
+---
 
-
-
-## Procesamiento del leguaje Natural
+## Procesamiento del Lenguaje Natural: Embeddings {.smaller}
 
 \begin{verbatim}
 from sentence_transformers import SentenceTransformer, util
-import torch
-
 model = SentenceTransformer('all-mpnet-base-v2')
-
-words = ["cat", "kitten", "man", "woman", "queen",
-"king", "princess", "duchess", "empress"]
+words = ["cat", "kitten", "man", "woman", "king", "queen"]
 embeddings = model.encode(words, convert_to_tensor=True)
-print("Similitud entre palabras:")
-
 for i in range(len(words)):
-for j in range(i + 1, len(words)):
-sim = util.pytorch_cos_sim(embeddings[i],
-embeddings[j]).item()
-print(f"{words[i]} - {words[j]}: {sim:.4f}")
+    for j in range(i + 1, len(words)):
+        sim = util.pytorch_cos_sim(embeddings[i], embeddings[j]).item()
+        print(f"{words[i]} - {words[j]}: {sim:.4f}")
 \end{verbatim}
 
 
 
 
-## Embeddings
+## Embeddings: Concepto
 
-Embeddings
-- Aplica para imágenes, sonido, texto, entre otras
-- Generado mediante técnicas de Deep Learning
+- **Definición:** Representación vectorial de conceptos en un espacio continuo de baja dimensión.
+- **Alcance:** Aplica para imágenes, sonido, texto, entre otros.
+- **Generación:** Obtenido mediante técnicas de Deep Learning.
 
+---
 
-
-
-## Embeddings
+## Embeddings: Referencias
 
 \vfill
  https://www.datacamp.com/blog/the-top-5-vector-databases
@@ -672,130 +535,58 @@ Embeddings
 
 
 
-## Embeddings
 
-
-
-
-
-## Embeddings
-
-
-
-
-
-## Procesamiento de Imágenes
+## Procesamiento de Imágenes {.smaller}
 
 \begin{verbatim}
-import tensorflow_hub as hub
-import tensorflow as tf
-import numpy as np
+import tensorflow_hub as hub, tensorflow as tf, numpy as np
 from PIL import Image
 
 model = hub.load("https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/4")
+def get_embedding(img_path):
+    img = np.array(Image.open(img_path).convert("RGB").resize((224, 224))) / 255.0
+    tensor = tf.expand_dims(tf.convert_to_tensor(img, dtype=tf.float32), axis=0)
+    return np.squeeze(model(tensor))
 
-def get_image_embedding(image_path):
-image = np.array(Image.open(image_path).convert("RGB").resize((224, 224))) / 255.0
-image = tf.convert_to_tensor(image, dtype=tf.float32)
-image = tf.expand_dims(image, axis=0)  # Agregar dimensión de batch
-return np.squeeze(model(image))
-
-embedding = get_embedding("imagen.jpg") # Corregido de acuerdo al código original en PPT
-print("Embedding shape:", embedding.shape)
-print("Embedding vector:", embedding)
+emb = get_embedding("imagen.jpg")
+print("Shape:", emb.shape)
 \end{verbatim}
 
 
 
 
-## Similaridad de Objetos
+## Similaridad de Objetos: Concepto
 
-\vfill
- https://developers.google.com/machine-learning/crash-course/embeddings/motivation-from-collaborative-filtering
-
-
-
-
-## Similaridad de Objetos
+- **Enfoque:** Comparación de cercanía semántica entre vectores en el espacio latente.
+- **Referencias de interés:**
+  - [Google ML Course - Embeddings](https://developers.google.com/machine-learning/crash-course/embeddings/motivation-from-collaborative-filtering)
+  - [Weaviate - Distance Metrics](https://weaviate.io/blog/distance-metrics-in-vector-search)
 
 
 
 
-
-## Similaridad de Objetos
-
-\vfill
- https://weaviate.io/blog/distance-metrics-in-vector-search
-
-
-
-
-## Implementación en Chroma
+## Implementación en Chroma: Ingesta {.smaller}
 
 \begin{verbatim}
-https://docs.trychroma.com/getting-started
 import chromadb
-
 chroma_client = chromadb.Client()
-collection = chroma_client.create_collection(name="my_collection")
+collection = chroma_client.create_collection(name="my_coll")
+
+docs = ["The dog is a domesticated mammal.", 
+        "The cat is a small domesticated feline."]
+ids = ["dog", "cat"]
+collection.add(documents=docs, ids=ids)
 \end{verbatim}
 
+---
 
-
-
-## Implementación en Chroma
+## Implementación en Chroma: Consulta {.smaller}
 
 \begin{verbatim}
-collection.add(
-documents=[
-"The dog is a domesticated mammal of the Canidae family.",
-"The cat is a small domesticated feline mammal.",
-"The lion is a carnivorous mammal of the Felidae family.",
-"The elephant is the largest terrestrial mammal that exists.",
-"The whale is the largest mammal in the ocean.",
-"The eagle is a large diurnal bird of prey.",
-"The shark is a predatory cartilaginous fish.",
-"The snake is a limbless crawling reptile.",
-"The bear is a large omnivorous mammal.",
-"The monkey is a primate that inhabits mainly in jungles."
-],
-ids=["dog", "cat", "lion", "elephant", "whale", "eagle", "shark",
-"snake", "bear", "monkey"]
-)
-https://docs.trychroma.com/getting-started
+results = collection.query(query_texts=["pet"], n_results=1)
+# Output JSON obtenido:
+# { "ids": [["dog"]], "distances": [[1.077]] }
 \end{verbatim}
-
-
-
-
-## Implementación en Chroma
-
-\begin{verbatim}
-results = collection.query(
-query_texts=["pet"],
-n_results=2
-)
-results
-https://docs.trychroma.com/getting-started
-{
-"ids":[ ["dog", "cat"] ],
-"distances":[ [ 1.077420949935913, 1.149003505706787 ] ],
-"metadatas":[ [ "None", "None" ] ],
-"embeddings":"None",
-"documents":[
-[
-"The dog is a domesticated mammal of the Canidae family.",
-"The cat is a small domesticated feline mammal."
-]
-],
-"uris":"None", "data":"None"
-}
-\end{verbatim}
-
-
-
-
-## 
 
 
 

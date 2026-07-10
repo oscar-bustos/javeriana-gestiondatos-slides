@@ -46,27 +46,18 @@ nocite: |
 
 ## Las 4 Vs de Big Data
 
-
-
-
 :::: {.columns}
 
-
-::: {.column width="50%"}
-
+::: {.column width="55%"}
 - **Volumen (Volume):** Se refiere a la gran cantidad de datos, desde terabytes hasta zettabytes.
 - **Velocidad (Velocity):** Rapidez de generación y procesamiento, de lotes a flujos en tiempo real.
-- **Variedad (Variety):** Diversidad de estructuras (tabulares, multimedia, grafos libres).
+- **Variedad (Variety):** Diversidad de structures (tabulares, multimedia, grafos libres).
 - **Veracidad (Veracity):** La incertidumbre, inconsistencia y baja calidad inherente de fuentes crudas ruidosas.
-
 :::
 
-
-
-::: {.column width="50%"}
-![](assets/5v.png){width="100%"}
+::: {.column width="40%"}
+![](assets/5v.png){width="90%"}
 :::
-
 
 ::::
 
@@ -76,26 +67,17 @@ nocite: |
 
 ## Volumen (Escala)
 
-
-
-
 :::: {.columns}
 
-
-::: {.column width="50%"}
-
+::: {.column width="55%"}
 - El volumen de datos está creciendo exponencialmente.
 - Se proyectó un aumento de 44 veces en el universo digital entre 2009 y 2020, pasando de 0.8 a 35.2 zettabytes.
 - Ejemplos como el crecimiento de tweets diarios en Twitter ilustran este aumento exponencial en la recolección y generación de datos.
-
 :::
 
-
-
-::: {.column width="50%"}
-![](assets/01fig12.jpg){width="100%"}
+::: {.column width="40%"}
+![](assets/01fig12.jpg){width="90%"}
 :::
-
 
 ::::
 
@@ -112,7 +94,7 @@ nocite: |
 :::: {.columns}
 
 
-::: {.column width="50%"}
+::: {.column width="55%"}
 
 - **Plataformas Digitales:** Se generan más de **147 Zettabytes** de datos al día, impulsados por plataformas como Meta y Google.
 
@@ -127,8 +109,8 @@ nocite: |
 
 
 
-::: {.column width="50%"}
-![](assets/01fig13.jpg){width="100%"}
+::: {.column width="40%"}
+![](assets/01fig13.jpg){width="90%"}
 :::
 
 
@@ -147,9 +129,7 @@ nocite: |
 
 ## Era 1990s: El Sistema Monolítico Relacional (RDBMS)
 
-
 :::: {.columns}
-
 
 ::: {.column width="50%"}
 - **Arquitectura:** Crecimiento Vertical (Acoplada y dependiente de un hardware central físico gigantesco).
@@ -157,8 +137,7 @@ nocite: |
 - **Datos:** Estructurada (SQL transaccional). Máx. Gigabytes.
 :::
 
-
-::: {.column width="50%"}
+::: {.column width="45%"}
 \begin{center}
 ![](assets/era_1990.png){width="100%"}
 \end{center}
@@ -182,7 +161,7 @@ nocite: |
 ## Era 2000s: Data Warehouse y OLAP
 
 \begin{center}
-![](assets/era_2000.png){width="95%"}
+![](assets/era_2000.png){width="60%"}
 \end{center}
 - **Arquitectura:** Integración de silos en cubos interactivos para "Business Intelligence" (Procesamiento Batch tipo ETL sobre redes locales).
 - **Costos:** Storage **Moderado** (SAN) | Compute **Caro** para consultas bajo demanda.
@@ -193,17 +172,14 @@ nocite: |
 
 ## Modelamiento 2000s: Dimensional (Estrella/Copo Nieve)
 
-
 :::: {.columns}
-
 
 ::: {.column width="50%"}
 - **Paradigma:** Reglas de Kimball vs Inmon. Se aplastan y desnormalizan los datos deliberadamente creando esquemas de Estrella para consultas analíticas ultra veloces.
 - **Estructura:** División filosófica total entre *Tablas de Hechos* (Métricas/Eventos masivos) y *Tablas de Dimensiones* (Contexto/Atributos estáticos).
 :::
 
-
-::: {.column width="50%"}
+::: {.column width="45%"}
 \begin{center}
 ![](assets/dimensional_model.png){width="100%"}
 \end{center}
@@ -228,9 +204,7 @@ Antes de introducir clústeres modernos (2010s+), abandonar el Hardware acoplado
 
 ## Era 2010s: Hadoop, Data Lake y el Big Data Batch
 
-
 :::: {.columns}
-
 
 ::: {.column width="50%"}
 - **Arquitectura:** Adiós super-computador. Granja de nodos. Se manda "el código" al disco del dato. Nace el primer DataLake.
@@ -238,8 +212,7 @@ Antes de introducir clústeres modernos (2010s+), abandonar el Hardware acoplado
 - **Capacidad:** Petabytes de logs web y multimedia.
 :::
 
-
-::: {.column width="50%"}
+::: {.column width="45%"}
 \begin{center}
 ![](assets/era_2010.png){width="100%"}
 \end{center}
@@ -251,19 +224,17 @@ Antes de introducir clústeres modernos (2010s+), abandonar el Hardware acoplado
 
 
 
-## Solución Era 2010s: Cómputo Cerca al Disco
+## Solución Era 2010s: Cómputo Cerca al Disco {.smaller}
 
 ```python
-# En un Cluster Hadoop con Nodos distribuyendo 1 Petabyte de Logs:
-# NodeData_1 ejecuta este Mapper (su fraccion del trabajo paralela):
-def mapper(linea_texto_local):
-for log in linea_texto_local.split():
-yield (log.categoria, 1)
+def mapper(linea):
+    # Procesa fragmento local
+    for log in linea.split():
+        yield (log.categoria, 1)
 
-# Se satura el canal de red trasladando (Shuffle) los
-# pares, para ser absorbidos por el Nodo Reductor final:
-def reducer(categoria, conteo_parcial):
-yield (categoria, sum(conteo_parcial))
+def reducer(categoria, conteos):
+    # Combina y suma resultados
+    yield (categoria, sum(conteos))
 ```
 
 
@@ -275,16 +246,16 @@ yield (categoria, sum(conteo_parcial))
 :::: {.columns}
 
 
-::: {.column width="50%"}
+::: {.column width="55%"}
 - **Partición por Bloques:** Un archivo inmenso (`mydata.txt`) es fragmentado logísticamente por el NameNode en bloques de **64 MB** (o 128 MB).
 - **Tolerancia a Fallos:** Cada bloque se copia **3 veces** por defecto en distintos DataNodes asegurando Alta Disponibilidad.
 - **Data Locality:** Se obliga a procesar código en la misma CPU de la máquina física que aloja el bloque de texto para evadir cuellos de red de los viejos NAS/SAN.
 :::
 
 
-::: {.column width="50%"}
+::: {.column width="40%"}
 \begin{center}
-![](assets/hdfs_blocks.png){width="100%"}
+![](assets/hdfs_blocks.png){width="90%"}
 \end{center}
 :::
 
@@ -299,7 +270,7 @@ yield (categoria, sum(conteo_parcial))
 - **Paradigma NoSQL y Schema-on-Read:** Se elimina la norma de estructurar datos antes de guardar. Todo aterriza crudo en el *Landing Zone* (Data Puddle) y la estructura se infiere al momento de analizarlos visualmente (Ej. Tablas Virtuales Hive).
 - Transición de caos de archivos sueltos a **Lagos Empresariales Múltiples Zonas**.
 \begin{center}
-![](assets/diagrama_datalake_madurez.png){width="70%"}
+![](assets/diagrama_datalake_madurez.png){width="55%"}
 \end{center}
 
 
@@ -336,7 +307,7 @@ El cambio histórico en el hardware permitió la delegación total:
 ## Era 2015s: Spark, Polars In-Memory, y la Era Cloud
 
 \begin{center}
-![](assets/era_2015.png){width="95%"}
+![](assets/era_2015.png){width="70%"}
 \end{center}
 - **Arquitectura:** Algoritmos *In-Memory* enfocados a evitar tocar el disco reteniendo DataSets transitorios (RDD) en Memoria RAM y evaluando perezosamente.
 - **Costos Analíticos:** Storage **Ultra Barato** (S3 Nube) | Compute **Balanceado** (hasta *100x de velocidad*).
@@ -347,20 +318,17 @@ El cambio histórico en el hardware permitió la delegación total:
 
 ## Modelamiento 2015s: Almacenamiento Columnar
 
-
 :::: {.columns}
 
-
-::: {.column width="50%"}
+::: {.column width="55%"}
 - **El Paradigma Columnar:** Guardar archivos masivos en filas (`CSV`) quema I/O al escanear campos inútiles.
 - **Tecnología:** Los formatos abiertos como **Apache Parquet** u **ORC** agrupan los datos por columnas y los comprimen nativamente.
 - **Impacto:** Un *DataFrame* algorítmico leerá solo el bloque físico de "Costos", esquivando cargar millones de "Nombres", ahorrando 95\% de memoria RAM.
 :::
 
-
-::: {.column width="50%"}
+::: {.column width="40%"}
 \begin{center}
-![](assets/columnar_storage.png){width="100%"}
+![](assets/columnar_storage.png){width="90%"}
 \end{center}
 :::
 
@@ -370,21 +338,16 @@ El cambio histórico en el hardware permitió la delegación total:
 
 
 
-## Solución Era 2015s: Streaming Perezoso (Lazy Eval)
+## Solución Era 2015s: Streaming Perezoso (Lazy Eval) {.smaller}
 
 ```python
-# En la actualidad (2020s), una RAM pequena frente a un archivo masivo colapsa con Pandas eager. Solucion In-Memory Perezosa "Modern Polars":
 import polars as pl
 
-# POLARS: Carga Virtual Lazy Streaming. Abre flujos en paralelo y jamas
-# asimila la totalidad colapsando la RAM. Pone en batch al procesador:
 plan = (
-pl.scan_csv("gigante_500_gb.csv")
-.filter(pl.col("costo") > 100)
-.groupby("categoria").agg(pl.col("id").count())
+    pl.scan_csv("gigante_500_gb.csv")
+    .filter(pl.col("costo") > 100)
+    .groupby("categoria").agg(pl.col("id").count())
 )
-
-# Evalua el plan hasta la recoleccion interactiva final
 df = plan.collect(streaming=True)
 ```
 
@@ -393,20 +356,17 @@ df = plan.collect(streaming=True)
 
 ## Era 2020s+: Nube Serverless, Eventos y Streaming
 
-
 :::: {.columns}
 
-
-::: {.column width="50%"}
+::: {.column width="55%"}
 - **Arquitectura:** Fusión Lake y Warehouse (Lakehouse). Modelos en Stream persistente. "Serverless" Oculta el Hardware.
 - **Costos:** Storage **Despreciable**. Compute **Pago Instantáneo** elástico.
 - **Capacidad:** Exabytes listos para Data Apps (BigQuery/Databricks).
 :::
 
-
-::: {.column width="50%"}
+::: {.column width="40%"}
 \begin{center}
-![](assets/era_2020.png){width="100%"}
+![](assets/era_2020.png){width="90%"}
 \end{center}
 :::
 
@@ -419,7 +379,7 @@ df = plan.collect(streaming=True)
 ## Deep Dive 2020s: Arquitectura Lambda vs Kappa
 
 \begin{center}
-![](assets/diagrama_kappa_lambda.png){width="95%"}
+![](assets/diagrama_kappa_lambda.png){width="70%"}
 \end{center}
 - **Arquitectura Lambda:** Bifurcaba la estrategia. Usaba Hadoop clásico para recalcular los históricos globales (Capa Batch, exacto pero lento) y un canal vivo (Capa Speed) para la ventana urgente.
 - **Arquitectura Kappa:** Evolución unificadora dictada por el Lakehouse. Anula la necesidad del *Batch*; todo el historial es tratado perpetuamente como un *Stream* infinito.
@@ -429,21 +389,18 @@ df = plan.collect(streaming=True)
 
 ## Modelamiento 2020s: Arquitectura Medallón (Lakehouse)
 
-
 :::: {.columns}
 
-
-::: {.column width="50%"}
+::: {.column width="55%"}
 - **Paradigma Tabla Delta:** Formatos de Lakehouse añaden la capa transaccional ACID del RDBMS antiguo a los datos sueltos de S3.
 - **Zonas de Curado:** Ingestión lógica depurada en 3 niveles de pureza:
 - *Bronce* (Datos Crudos $\rightarrow$ *Plata* (Filtros y Limpieza) $\rightarrow$ *Oro* (Agregado final Dimensional/BI).
 :::
 
-
-::: {.column width="50%"}
+::: {.column width="40%"}
 \begin{center}
-![](assets/medallion_model.png){width="100%"}
-\end{center}
+![](assets/medallion_model.png){width="90%"}
+\end{center>
 :::
 
 ::::
@@ -458,21 +415,19 @@ Los servicios en Nube encapsulan las piezas Lakehouse y Big Data:
 
 :::: {.columns}
 
-
 ::: {.column width="50%"}
 \begin{center}
 **Amazon Web Services (AWS)**
 {S3 (Lake) $\rightarrow$ Glue (Ingesta) $\rightarrow$ Athena (Serverless)}<br>
-![](assets/AWSArch.png){width="100%"}
+![](assets/AWSArch.png){width="80%"}
 \end{center}
 :::
-
 
 ::: {.column width="50%"}
 \begin{center}
 **Google Cloud Analytics (GCP)**
 {GCS (Lake) $\rightarrow$ Dataflow (Streaming) $\rightarrow$ BigQuery (Analytics)}<br>
-![](assets/GCP.png){width="80%"}
+![](assets/GCP.png){width="65%"}
 \end{center}
 :::
 
@@ -482,22 +437,13 @@ Los servicios en Nube encapsulan las piezas Lakehouse y Big Data:
 
 
 
-## Solución Era 2020s+: Serverless Transparente
+## Solución Era 2020s+: Serverless Transparente {.smaller}
 
 ```sql
--- Google BigQuery (Serverless Distribuido)
--- Sin instalar nada de Python o clusters locativos.
--- Almacena exabytes y distribuye instantaneamente procesadores a peticion:
-
-SELECT
-country_name,
-COUNT(1) as total_visitas
-FROM
-`bigquery-public-data.google_analytics_sample.ga_sessions_*`
-WHERE
-device.browser = 'Chrome'
-GROUP BY
-country_name
+SELECT country_name, COUNT(1) as total_visitas
+FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+WHERE device.browser = 'Chrome'
+GROUP BY country_name
 ORDER BY 1 DESC LIMIT 10;
 ```
 

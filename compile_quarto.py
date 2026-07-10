@@ -26,15 +26,38 @@ def find_quarto():
             
     return None
 
-def compile_all():
-    quarto_bin = find_quarto()
-    if not quarto_bin:
-        print("Error: Quarto is not installed or could not be found.")
-        print("Please download and install Quarto from: https://quarto.org/docs/get-started/")
-        print("If already installed, make sure it is added to your system environment variables (PATH) or restart your editor/terminal.")
-        sys.exit(1)
+def compile_file(file_path, quarto_bin):
+    if not os.path.exists(file_path):
+        print(f"Error: File '{file_path}' does not exist.")
+        return False
         
-    print(f"Using Quarto binary: {quarto_bin}")
+    file_abs = os.path.abspath(file_path)
+    file_dir = os.path.dirname(file_abs)
+    file_name = os.path.basename(file_abs)
+    
+    print(f"\n==================================================")
+    print(f"Compiling: {file_abs}")
+    print(f"==================================================")
+    
+    try:
+        # Run quarto render inside the directory of the qmd file so relative paths resolve correctly
+        # Use shell=True to support .cmd wrappers and PATH resolution on Windows
+        result = subprocess.run(
+            [quarto_bin, "render", file_name],
+            cwd=file_dir,
+            shell=True
+        )
+        if result.returncode == 0:
+            print("-> Successfully compiled.")
+            return True
+        else:
+            print(f"-> Error: Quarto exited with code {result.returncode}")
+            return False
+    except Exception as e:
+        print(f"-> Exception occurred: {e}")
+        return False
+
+def compile_all(quarto_bin):
     script_dir = os.path.dirname(os.path.abspath(__file__))
     quarto_root = os.path.join(script_dir, 'quarto')
     
@@ -47,27 +70,24 @@ def compile_all():
         for file in files:
             if file.endswith('.qmd'):
                 qmd_path = os.path.join(root, file)
-                print(f"\n==================================================")
-                print(f"Compiling: {qmd_path}")
-                print(f"==================================================")
-                
-                try:
-                    # Run quarto render inside the directory of the qmd file so relative paths resolve correctly
-                    # Use shell=True to support .cmd wrappers and PATH resolution on Windows
-                    result = subprocess.run(
-                        [quarto_bin, "render", file],
-                        cwd=root,
-                        shell=True
-                    )
-                    if result.returncode == 0:
-                        print("-> Successfully compiled.")
-                        compiled_count += 1
-                    else:
-                        print(f"-> Error: Quarto exited with code {result.returncode}")
-                except Exception as e:
-                    print(f"-> Exception occurred: {e}")
+                if compile_file(qmd_path, quarto_bin):
+                    compiled_count += 1
                     
     print(f"\nCompilation process finished. Compiled {compiled_count} presentations.")
 
 if __name__ == '__main__':
-    compile_all()
+    quarto_bin = find_quarto()
+    if not quarto_bin:
+        print("Error: Quarto is not installed or could not be found.")
+        print("Please download and install Quarto from: https://quarto.org/docs/get-started/")
+        print("If already installed, make sure it is added to your system environment variables (PATH) or restart your editor/terminal.")
+        sys.exit(1)
+        
+    print(f"Using Quarto binary: {quarto_bin}")
+    
+    if len(sys.argv) > 1:
+        target = sys.argv[1]
+        success = compile_file(target, quarto_bin)
+        sys.exit(0 if success else 1)
+    else:
+        compile_all(quarto_bin)
