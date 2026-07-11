@@ -152,6 +152,17 @@ Pautas clave para el desarrollo de las actividades:
 
 # Motivación y Metodología CRISP-DM
 
+## Tarea / Asignación
+
+**Actividades a desarrollar:**
+
+1. Leer capítulos 1 y 2 del libro *Data Science for Business*.
+
+2. Explorar el [Cuaderno de Google NotebookLM](https://notebooklm.google.com/notebook/f7f29dfb-70df-4b77-ba81-40ebfa242c51):
+   - Revisar la infografía.
+   - Realizar los quices incluidos.
+   - Escuchar el podcast.
+
 ## Motivación: ¿A qué dedicamos tiempo?
 
 ::: {.callout-note title="Pregunta a la clase"}
@@ -301,6 +312,10 @@ Diseñas un modelo de Machine Learning con 99% de precisión matemática. Sin em
 **Respuesta**: En **Business Understanding** (definición del problema) o en la **Evaluación** (no alineada a KPIs del negocio).
 :::
 
+## ¡Pausa! 🍕
+
+Tomemos 15 minutos de descanso para recargar energías antes de continuar con la siguiente fase.
+
 # CRISP-DM - Entendimiento de los Datos & EDA
 
 ## CRISP-DM: Entendimiento de los Datos
@@ -359,13 +374,15 @@ Es la aproximación para analizar bases de datos resumiendo sus características
 
 - Combina texto, código y visualizaciones, ideal para análisis de datos.
 
-**¿Por qué Python en lugar de Excel?**
+## ¿Por qué Python en lugar de Excel?
 
-- Repetibilidad, automatización y auditoría del proceso.
+Excel es el software empresarial por excelencia, pero tiene limitaciones críticas:
 
-- Capacidad para manejar grandes volúmenes de datos.
+- **Automatización**: Python asegura repetibilidad, automatización y auditoría del proceso.
 
-- Amplio ecosistema de librerías (*Pandas*, *Numpy*, *Scikit-Learn*).
+- **Volumen**: Capacidad para manejar grandes volúmenes de datos sin interrupciones.
+
+- **Ecosistema**: Amplio conjunto de librerías (*Pandas*, *Numpy*, *Scikit-Learn*).
 
 ## Carga de Datos en Python
 
