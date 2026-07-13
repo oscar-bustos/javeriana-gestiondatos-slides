@@ -18,13 +18,9 @@ def main():
     print("Compiling presentations...")
     subprocess.run(["python", "compile_quarto.py"], cwd=script_dir)
 
-    # 2. Move them to docs/ and collect presentation info
+    # 2. Copy compiled index.html to docs/<dir_name>.html
     print("\nOrganizing docs/ folder...")
-    presentations = []
-
-    # Sort items so they appear in order
-    items = sorted(os.listdir(quarto_dir))
-    for item in items:
+    for item in os.listdir(quarto_dir):
         item_path = os.path.join(quarto_dir, item)
         if os.path.isdir(item_path):
             index_html = os.path.join(item_path, 'index.html')
@@ -32,250 +28,401 @@ def main():
                 dest_file = os.path.join(docs_dir, f"{item}.html")
                 shutil.copy2(index_html, dest_file)
                 print(f"Copied {item}/index.html -> docs/{item}.html")
-                
-                # Format a nice title
-                title = item.replace('_', ' ').title()
-                # Special formatting for common words
-                title = title.replace('Big Data', 'Big Data').replace('De', 'de').replace('Sin', 'sin')
-                presentations.append((f"docs/{item}.html", title))
 
-    # 3. Create a premium index.html in the root directory (workspace root)
-    index_path = os.path.join(workspace_root, 'index.html')
+    # 3. Create the premium docs/index.html
+    index_path = os.path.join(docs_dir, 'index.html')
     
-    # Generate cards HTML
-    cards_html = ""
-    for idx, (file_path, title) in enumerate(presentations, 1):
-        cards_html += f"""
+    # Definition of modules and presentations in the correct order
+    modules = [
+        {
+            "title": "Módulo 1: Calidad y Preparación de Datos",
+            "items": [
+                {
+                    "id": "comprension_datos",
+                    "num": "Clase 01",
+                    "title": "Comprensión de Datos",
+                    "description": "Metodologías de minería de datos (CRISP-DM) y Análisis Exploratorio de Datos (EDA).",
+                    "badge": "Comprensión",
+                    "badge_class": "badge-intro",
+                    "icon_class": "icon-gray",
+                    "icon_svg": '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" /></svg>'
+                },
+                {
+                    "id": "limpieza_datos",
+                    "num": "Clase 02",
+                    "title": "Limpieza de Datos",
+                    "description": "Detección y corrección de datos incorrectos, ruidosos, faltantes o atípicos (outliers).",
+                    "badge": "Limpieza",
+                    "badge_class": "badge-tabular",
+                    "icon_class": "icon-orange",
+                    "icon_svg": '<svg viewBox="0 0 24 24"><path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92.62 2.1 1 3.5 1 2.5 0 4.5-2 4.5-4.5 0-.4-.05-.79-.15-1.15L7 14zm15.66-9.15l-2.51-2.51a.996.996 0 0 0-1.41 0l-9.19 9.19 3.92 3.92 9.19-9.19c.4-.39.4-1.02 0-1.41z"/></svg>'
+                },
+                {
+                    "id": "vista_minable",
+                    "num": "Clase 03",
+                    "title": "Generación de Vista Minable",
+                    "description": "Consolidación y estructuración de datos para el entrenamiento de modelos de analítica.",
+                    "badge": "Vista Minable",
+                    "badge_class": "badge-tabular",
+                    "icon_class": "icon-purple",
+                    "icon_svg": '<svg viewBox="0 0 24 24"><path d="M12 2C7.58 2 4 3.79 4 6v12c0 2.21 3.58 4 8 4s8-1.79 8-4V6c0-2.21-3.58-4-8-4zm0 2c3.87 0 6 1.43 6 2s-2.13 2-6 2-6-1.43-6-2 2.13-2 6-2zm0 6c3.87 0 6 1.43 6 2s-2.13 2-6 2-6-1.43-6-2 2.13-2 6-2zm0 6c3.87 0 6 1.43 6 2s-2.13 2-6 2-6-1.43-6-2 2.13-2 6-2z"/></svg>'
+                }
+            ]
+        },
+        {
+            "title": "Módulo 2: Extracción e Integración de Datos",
+            "items": [
+                {
+                    "id": "extraccion_datos_tabular",
+                    "num": "Clase 04",
+                    "title": "Extracción de Fuentes Tabulares",
+                    "description": "Extracción e integración de datos desde motores SQL y archivos planos (CSV).",
+                    "badge": "Bases de Datos",
+                    "badge_class": "badge-tabular",
+                    "icon_class": "icon-blue",
+                    "icon_svg": '<svg viewBox="0 0 24 24"><path d="M4 19h16v-2H4v2zm0-4h16v-2H4v2zm0-4h16V9H4v2zm0-6v2h16V5H4z"/></svg>'
+                },
+                {
+                    "id": "fuentes_jerarquicas",
+                    "num": "Clase 05",
+                    "title": "Extracción de Fuentes Jerárquicas",
+                    "description": "Procesamiento e integración de datos semiestructurados en formato XML y JSON.",
+                    "badge": "Jerárquicas",
+                    "badge_class": "badge-tabular",
+                    "icon_class": "icon-green",
+                    "icon_svg": '<svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>'
+                }
+            ]
+        },
+        {
+            "title": "Módulo 3: Big Data",
+            "items": [
+                {
+                    "id": "big_data_sin_estructura",
+                    "num": "Clase 08",
+                    "title": "Introducción a Big Data",
+                    "description": "Fundamentos de Big Data, almacenamiento no estructurado y las 3 V's de los datos masivos.",
+                    "badge": "No Estructurado",
+                    "badge_class": "badge-intro",
+                    "icon_class": "icon-orange",
+                    "icon_svg": '<svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>'
+                },
+                {
+                    "id": "big_data_grandes_volumenes",
+                    "num": "Clase 09",
+                    "title": "Big Data (Grandes Volúmenes)",
+                    "description": "Arquitecturas modernas y almacenamiento distribuido (Data Lakes, HDFS) para analítica a gran escala.",
+                    "badge": "Grandes Volúmenes",
+                    "badge_class": "badge-tabular",
+                    "icon_class": "icon-purple",
+                    "icon_svg": '<svg viewBox="0 0 24 24"><path d="M20 13H4c-1.11 0-2 .89-2 2v4c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2v-4c0-1.11-.89-2-2-2zm-1 5H5v-2h14v2zm1-13H4c-1.11 0-2 .89-2 2v4c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V7c0-1.11-.89-2-2-2zm-1 5H5V8h14v2z"/></svg>'
+                }
+            ]
+        }
+    ]
+
+    # Generate grid content HTML
+    grid_html = ""
+    for module in modules:
+        grid_html += f'\n            <h2 class="section-title">{module["title"]}</h2>'
+        for item in module["items"]:
+            grid_html += f"""
             <div class="card">
-                <div class="card-content">
-                    <div class="card-num">Tema {idx:02d}</div>
-                    <h2 class="card-title">{title}</h2>
+                <div class="card-icon-header {item["icon_class"]}">
+                    {item["icon_svg"]}
                 </div>
-                <a href="{file_path}" class="card-link">
-                    Ver Diapositivas
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </a>
+                <div class="card-body">
+                    <span class="badge {item["badge_class"]}">{item["badge"]}</span>
+                    <h3 class="card-title">{item["num"]}: {item["title"]}</h3>
+                    <p class="card-text">{item["description"]}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{item["id"]}.html" class="btn" target="_blank">Ver Presentación</a>
+                </div>
             </div>"""
 
     html_content = f"""<!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Datos - Presentaciones</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Gestión de Datos - Javeriana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* --- Estilos Generales y Tema --- */
         :root {{
-            --bg-color: #0b0f19;
-            --card-bg: rgba(22, 30, 49, 0.7);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-primary: #6366f1;
-            --accent-secondary: #a855f7;
-            --accent-glow: rgba(99, 102, 241, 0.15);
+            --primary-color: #003576;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --section-header: #003576;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
         }}
-        
-        * {{
-            box-sizing: border-box;
+
+        body {{
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-        }}
-        
-        body {{
-            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 5rem 2rem;
-            overflow-x: hidden;
-            position: relative;
+            color: var(--text-color);
         }}
 
-        /* Ambient background glow */
-        body::before {{
-            content: '';
-            position: absolute;
-            top: -10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.05) 50%, transparent 100%);
-            z-index: -1;
-            pointer-events: none;
-            filter: blur(80px);
-        }}
-
-        .container {{
-            max-width: 1040px;
-            width: 100%;
-            z-index: 1;
-        }}
-
+        /* --- Header / Título Principal --- */
         header {{
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 40px 20px;
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
         }}
 
-        h1 {{
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #a5b4fc 0%, #c084fc 50%, #818cf8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            letter-spacing: -0.03em;
+        header h1 {{
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 600;
         }}
 
-        .subtitle {{
-            color: var(--text-secondary);
-            font-size: 1.25rem;
-            font-weight: 400;
-            max-width: 600px;
+        header p {{
+            font-size: 1.1em;
+            opacity: 0.9;
+        }}
+
+        /* --- Contenedor Principal (Grid) --- */
+        .container {{
+            max-width: 1200px;
             margin: 0 auto;
-            letter-spacing: -0.01em;
+            padding: 0 20px 50px;
         }}
 
         .grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }}
 
+        /* --- Tarjetas (Cards) del Menú --- */
         .card {{
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 2.5rem 2rem;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(12px);
-        }}
-
-        .card::before {{
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, rgba(168, 85, 247, 0.03) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            border: 1px solid #eee;
         }}
 
         .card:hover {{
-            transform: translateY(-6px);
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 20px 0 var(--accent-glow);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }}
 
-        .card:hover::before {{
-            opacity: 1;
+        /* Iconos visuales en la parte superior de la tarjeta */
+        .card-icon-header {{
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef2f7;
         }}
 
-        .card-content {{
-            position: relative;
-            z-index: 2;
-            margin-bottom: 2.5rem;
+        .card-icon-header svg {{
+            width: 60px;
+            height: 60px;
+            fill: var(--primary-color);
+            opacity: 0.8;
         }}
 
-        .card-num {{
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--accent-primary);
-            margin-bottom: 1rem;
+        /* Colores específicos para los iconos */
+        .icon-blue {{
+            background: #d6eaf8;
+        }}
+        .icon-blue svg {{
+            fill: #3498db;
+        }}
+
+        .icon-green {{
+            background: #d5f5e3;
+        }}
+        .icon-green svg {{
+            fill: #2ecc71;
+        }}
+
+        .icon-purple {{
+            background: #e8daef;
+        }}
+        .icon-purple svg {{
+            fill: #8e44ad;
+        }}
+
+        .icon-orange {{
+            background: #fdebd0;
+        }}
+        .icon-orange svg {{
+            fill: #e67e22;
+        }}
+
+        .icon-gray {{
+            background: #ebedef;
+        }}
+        .icon-gray svg {{
+            fill: #7f8c8d;
+        }}
+
+        /* Contenido de la tarjeta */
+        .card-body {{
+            padding: 25px;
+            flex-grow: 1;
+            text-align: center;
         }}
 
         .card-title {{
-            font-size: 1.5rem;
-            font-weight: 700;
-            line-height: 1.35;
-            color: var(--text-primary);
-            letter-spacing: -0.01em;
-        }}
-
-        .card-link {{
-            position: relative;
-            z-index: 2;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--text-primary);
-            text-decoration: none;
+            font-size: 1.3em;
+            margin: 10px 0;
+            color: var(--primary-color);
             font-weight: 600;
-            font-size: 0.95rem;
-            padding: 0.85rem 1.5rem;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 14px;
-            transition: all 0.3s ease;
-            width: 100%;
+        }}
+
+        .card-text {{
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }}
+
+        /* Botones */
+        .card-footer {{
+            padding: 20px;
+            background-color: transparent;
+            text-align: center;
+        }}
+
+        .btn {{
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }}
+
+        .btn:hover {{
+            background-color: #2980b9;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }}
+
+        /* --- Secciones --- */
+        .section-title {{
+            grid-column: 1 / -1;
+            font-size: 1.6rem;
+            color: var(--section-header);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }}
+
+        .badge {{
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+        }}
+
+        .badge-tabular {{
+            background-color: #e67e22;
+        }}
+
+        .badge-intro {{
+            background-color: #95a5a6;
+        }}
+
+        /* Logo Styles */
+        .header-content {{
+            display: flex;
+            align-items: center;
             justify-content: center;
-            letter-spacing: -0.01em;
+            flex-wrap: wrap;
+            gap: 20px;
         }}
 
-        .card:hover .card-link {{
-            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-            border-color: transparent;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25);
+        .javeriana-logo {{
+            height: 80px;
+            width: auto;
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }}
 
-        .card-link svg {{
-            transition: transform 0.3s ease;
+        .header-text {{
+            text-align: left;
         }}
 
-        .card:hover .card-link svg {{
-            transform: translateX(4px);
+        .footer {{
+            margin-top: 60px;
+            text-align: center;
+            color: #7f8c8d;
+            padding: 30px 20px;
+            border-top: 1px solid #eee;
+            background: #fff;
         }}
 
-        @media (max-width: 640px) {{
-            body {{
-                padding: 3rem 1.5rem;
-            }}
-            h1 {{
-                font-size: 2.5rem;
-            }}
-            .subtitle {{
-                font-size: 1.1rem;
+        @media (max-width: 768px) {{
+            .header-text {{
+                text-align: center;
             }}
         }}
     </style>
 </head>
+
 <body>
+
     <div class="container">
         <header>
-            <h1>Gestión de Datos</h1>
-            <p class="subtitle">Material de clase y presentaciones interactivas</p>
+            <div class="header-content">
+                <img src="assets/logo_RGB.png" alt="Logo PUJ" class="javeriana-logo">
+                <div class="header-text">
+                    <h1>Gestión de Datos</h1>
+                    <p class="subtitle">Pontificia Universidad Javeriana - Facultad de Ingeniería</p>
+                </div>
+            </div>
+            <p style="text-align:center; max-width:800px; margin: 20px auto 0; color:rgba(255,255,255,0.9);">
+                Material de clase y presentaciones interactivas del curso, organizado por módulos de aprendizaje.
+            </p>
         </header>
+
         <div class="grid">
-            {cards_html}
+            {grid_html}
+        </div>
+
+        <div class="footer">
+            <p style="font-weight: 600; color: var(--primary-color);">Pontificia Universidad Javeriana - Facultad de Ingeniería</p>
+            <p>Generado por la IA Gemini y Oscar Bustos</p>
+            <p><small style="color: #95a5a6;">Licenciado bajo Apache License 2.0</small></p>
         </div>
     </div>
+
 </body>
+
 </html>"""
 
     with open(index_path, 'w', encoding='utf-8') as f:
         f.write(html_content)
         
-    print(f"Created index page at index.html")
-    print("Done! The repository is ready for GitHub Pages (serving from root).")
+    print(f"Created index page at docs/index.html")
+    print("Done! The repository is ready for GitHub Pages (serving from /docs).")
 
 if __name__ == "__main__":
     main()

@@ -1,29 +1,370 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Datos - Presentaciones</title>
+    <title>Gestión de Datos - Javeriana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 2rem; }
-        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin-bottom: 10px; }
-        a { text-decoration: none; color: #3498db; font-size: 1.1em; font-weight: bold; display: block; padding: 10px; background: #f8f9fa; border-radius: 5px; transition: background 0.3s; }
-        a:hover { background: #e9ecef; }
+        /* --- Estilos Generales y Tema --- */
+        :root {
+            --primary-color: #003576;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --section-header: #003576;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* --- Header / Título Principal --- */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* --- Contenedor Principal (Grid) --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 50px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- Tarjetas (Cards) del Menú --- */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Iconos visuales en la parte superior de la tarjeta */
+        .card-icon-header {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef2f7;
+        }
+
+        .card-icon-header svg {
+            width: 60px;
+            height: 60px;
+            fill: var(--primary-color);
+            opacity: 0.8;
+        }
+
+        /* Colores específicos para los iconos */
+        .icon-blue {
+            background: #d6eaf8;
+        }
+        .icon-blue svg {
+            fill: #3498db;
+        }
+
+        .icon-green {
+            background: #d5f5e3;
+        }
+        .icon-green svg {
+            fill: #2ecc71;
+        }
+
+        .icon-purple {
+            background: #e8daef;
+        }
+        .icon-purple svg {
+            fill: #8e44ad;
+        }
+
+        .icon-orange {
+            background: #fdebd0;
+        }
+        .icon-orange svg {
+            fill: #e67e22;
+        }
+
+        .icon-gray {
+            background: #ebedef;
+        }
+        .icon-gray svg {
+            fill: #7f8c8d;
+        }
+
+        /* Contenido de la tarjeta */
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            margin: 10px 0;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .card-text {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        /* Botones */
+        .card-footer {
+            padding: 20px;
+            background-color: transparent;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        /* --- Secciones --- */
+        .section-title {
+            grid-column: 1 / -1;
+            font-size: 1.6rem;
+            color: var(--section-header);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .badge-tabular {
+            background-color: #e67e22;
+        }
+
+        .badge-intro {
+            background-color: #95a5a6;
+        }
+
+        /* Logo Styles */
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .javeriana-logo {
+            height: 80px;
+            width: auto;
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #7f8c8d;
+            padding: 30px 20px;
+            border-top: 1px solid #eee;
+            background: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .header-text {
+                text-align: center;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <h1>Presentaciones del Curso: Gestión de Datos</h1>
-    <p>A continuación se listan las diapositivas disponibles para el curso:</p>
-    <ul>
-        <li><a href="big_data_grandes_volumenes.html">Big Data Grandes Volumenes</a></li>
-        <li><a href="big_data_sin_estructura.html">Big Data Sin Estructura</a></li>
-        <li><a href="comprension_datos.html">Comprension Datos</a></li>
-        <li><a href="extraccion_datos_tabular.html">Extraccion Datos Tabular</a></li>
-        <li><a href="fuentes_jerarquicas.html">Fuentes Jerarquicas</a></li>
-        <li><a href="limpieza_datos.html">Limpieza Datos</a></li>
-        <li><a href="vista_minable.html">Vista Minable</a></li>
-    </ul>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <img src="assets/logo_RGB.png" alt="Logo PUJ" class="javeriana-logo">
+                <div class="header-text">
+                    <h1>Gestión de Datos</h1>
+                    <p class="subtitle">Pontificia Universidad Javeriana - Facultad de Ingeniería</p>
+                </div>
+            </div>
+            <p style="text-align:center; max-width:800px; margin: 20px auto 0; color:rgba(255,255,255,0.9);">
+                Material de clase y presentaciones interactivas del curso, organizado por módulos de aprendizaje.
+            </p>
+        </header>
+
+        <div class="grid">
+            
+            <h2 class="section-title">Módulo 1: Calidad y Preparación de Datos</h2>
+            <div class="card">
+                <div class="card-icon-header icon-gray">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" /></svg>
+                </div>
+                <div class="card-body">
+                    <span class="badge badge-intro">Comprensión</span>
+                    <h3 class="card-title">Clase 01: Comprensión de Datos</h3>
+                    <p class="card-text">Metodologías de minería de datos (CRISP-DM) y Análisis Exploratorio de Datos (EDA).</p>
+                </div>
+                <div class="card-footer">
+                    <a href="comprension_datos.html" class="btn" target="_blank">Ver Presentación</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon-header icon-orange">
+                    <svg viewBox="0 0 24 24"><path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92.62 2.1 1 3.5 1 2.5 0 4.5-2 4.5-4.5 0-.4-.05-.79-.15-1.15L7 14zm15.66-9.15l-2.51-2.51a.996.996 0 0 0-1.41 0l-9.19 9.19 3.92 3.92 9.19-9.19c.4-.39.4-1.02 0-1.41z"/></svg>
+                </div>
+                <div class="card-body">
+                    <span class="badge badge-tabular">Limpieza</span>
+                    <h3 class="card-title">Clase 02: Limpieza de Datos</h3>
+                    <p class="card-text">Detección y corrección de datos incorrectos, ruidosos, faltantes o atípicos (outliers).</p>
+                </div>
+                <div class="card-footer">
+                    <a href="limpieza_datos.html" class="btn" target="_blank">Ver Presentación</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon-header icon-purple">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C7.58 2 4 3.79 4 6v12c0 2.21 3.58 4 8 4s8-1.79 8-4V6c0-2.21-3.58-4-8-4zm0 2c3.87 0 6 1.43 6 2s-2.13 2-6 2-6-1.43-6-2 2.13-2 6-2zm0 6c3.87 0 6 1.43 6 2s-2.13 2-6 2-6-1.43-6-2 2.13-2 6-2zm0 6c3.87 0 6 1.43 6 2s-2.13 2-6 2-6-1.43-6-2 2.13-2 6-2z"/></svg>
+                </div>
+                <div class="card-body">
+                    <span class="badge badge-tabular">Vista Minable</span>
+                    <h3 class="card-title">Clase 03: Generación de Vista Minable</h3>
+                    <p class="card-text">Consolidación y estructuración de datos para el entrenamiento de modelos de analítica.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="vista_minable.html" class="btn" target="_blank">Ver Presentación</a>
+                </div>
+            </div>
+            <h2 class="section-title">Módulo 2: Extracción e Integración de Datos</h2>
+            <div class="card">
+                <div class="card-icon-header icon-blue">
+                    <svg viewBox="0 0 24 24"><path d="M4 19h16v-2H4v2zm0-4h16v-2H4v2zm0-4h16V9H4v2zm0-6v2h16V5H4z"/></svg>
+                </div>
+                <div class="card-body">
+                    <span class="badge badge-tabular">Bases de Datos</span>
+                    <h3 class="card-title">Clase 04: Extracción de Fuentes Tabulares</h3>
+                    <p class="card-text">Extracción e integración de datos desde motores SQL y archivos planos (CSV).</p>
+                </div>
+                <div class="card-footer">
+                    <a href="extraccion_datos_tabular.html" class="btn" target="_blank">Ver Presentación</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon-header icon-green">
+                    <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+                </div>
+                <div class="card-body">
+                    <span class="badge badge-tabular">Jerárquicas</span>
+                    <h3 class="card-title">Clase 05: Extracción de Fuentes Jerárquicas</h3>
+                    <p class="card-text">Procesamiento e integración de datos semiestructurados en formato XML y JSON.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="fuentes_jerarquicas.html" class="btn" target="_blank">Ver Presentación</a>
+                </div>
+            </div>
+            <h2 class="section-title">Módulo 3: Big Data</h2>
+            <div class="card">
+                <div class="card-icon-header icon-orange">
+                    <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+                </div>
+                <div class="card-body">
+                    <span class="badge badge-intro">No Estructurado</span>
+                    <h3 class="card-title">Clase 08: Introducción a Big Data</h3>
+                    <p class="card-text">Fundamentos de Big Data, almacenamiento no estructurado y las 3 V's de los datos masivos.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="big_data_sin_estructura.html" class="btn" target="_blank">Ver Presentación</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon-header icon-purple">
+                    <svg viewBox="0 0 24 24"><path d="M20 13H4c-1.11 0-2 .89-2 2v4c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2v-4c0-1.11-.89-2-2-2zm-1 5H5v-2h14v2zm1-13H4c-1.11 0-2 .89-2 2v4c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V7c0-1.11-.89-2-2-2zm-1 5H5V8h14v2z"/></svg>
+                </div>
+                <div class="card-body">
+                    <span class="badge badge-tabular">Grandes Volúmenes</span>
+                    <h3 class="card-title">Clase 09: Big Data (Grandes Volúmenes)</h3>
+                    <p class="card-text">Arquitecturas modernas y almacenamiento distribuido (Data Lakes, HDFS) para analítica a gran escala.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="big_data_grandes_volumenes.html" class="btn" target="_blank">Ver Presentación</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p style="font-weight: 600; color: var(--primary-color);">Pontificia Universidad Javeriana - Facultad de Ingeniería</p>
+            <p>Generado por la IA Gemini y Oscar Bustos</p>
+            <p><small style="color: #95a5a6;">Licenciado bajo Apache License 2.0</small></p>
+        </div>
+    </div>
+
 </body>
+
 </html>
