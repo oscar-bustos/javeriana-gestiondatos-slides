@@ -8,9 +8,9 @@ When this skill is triggered, you must follow these instructions:
 2. Verify if the active document is a `.qmd` file.
 3. If it is a `.qmd` file:
    - Run the compilation script from the workspace root targeting only this file:
-     - `CommandLine`: `python compile_quarto.py "<absolute_path_to_active_document>"`
+     - `CommandLine`: `python .agents/scripts/compile_quarto.py "<absolute_path_to_active_document>"`
      - `Cwd`: Workspace root (`c:\Users\olbus\Git\Javeriana\javeriana-gestiondatos-slides`)
    - If the user denies the command or it fails due to permissions, print the exact command they can run in their own terminal:
-     `python compile_quarto.py "<relative_path_to_active_document>"`
+     `python .agents/scripts/compile_quarto.py "<relative_path_to_active_document>"`
 4. If no `.qmd` file is active:
-   - Politely ask the user which file they would like to compile, and mention that you can run `python compile_quarto.py` to compile all slides in the workspace.
+   - Politely ask the user which file they would like to compile, and mention that you can run `python .agents/scripts/compile_quarto.py` to compile all slides in the workspace.

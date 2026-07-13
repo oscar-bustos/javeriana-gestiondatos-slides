@@ -1,0 +1,1164 @@
+[
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#libros-de-la-clase---modulo-3",
+    "href": "quarto/big_data_grandes_volumenes/index.html#libros-de-la-clase---modulo-3",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Libros de la Clase - Modulo 3",
+    "text": "Libros de la Clase - Modulo 3"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#qué-es-big-data",
+    "href": "quarto/big_data_grandes_volumenes/index.html#qué-es-big-data",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "¿Qué es Big Data?",
+    "text": "¿Qué es Big Data?\n\nNo hay una definición estandarizada.\nSe refiere a conjuntos de datos tan grandes y complejos que las herramientas tradicionales de procesamiento de datos son insuficientes.\nLos principales retos incluyen la captura, gestión, almacenamiento, búsqueda, compartición, transferencia, análisis y visualización de los datos."
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#las-4-vs-de-big-data",
+    "href": "quarto/big_data_grandes_volumenes/index.html#las-4-vs-de-big-data",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Las 4 Vs de Big Data",
+    "text": "Las 4 Vs de Big Data\n\n\n\nVolumen (Volume): Se refiere a la gran cantidad de datos, desde terabytes hasta zettabytes.\nVelocidad (Velocity): Rapidez de generación y procesamiento, de lotes a flujos en tiempo real.\nVariedad (Variety): Diversidad de structures (tabulares, multimedia, grafos libres).\nVeracidad (Veracity): La incertidumbre, inconsistencia y baja calidad inherente de fuentes crudas ruidosas."
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#volumen-escala",
+    "href": "quarto/big_data_grandes_volumenes/index.html#volumen-escala",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Volumen (Escala)",
+    "text": "Volumen (Escala)\n\n\n\nEl volumen de datos está creciendo exponencialmente.\nSe proyectó un aumento de 44 veces en el universo digital entre 2009 y 2020, pasando de 0.8 a 35.2 zettabytes.\nEjemplos como el crecimiento de tweets diarios en Twitter ilustran este aumento exponencial en la recolección y generación de datos."
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#fuentes-masivas-de-generación-de-datos",
+    "href": "quarto/big_data_grandes_volumenes/index.html#fuentes-masivas-de-generación-de-datos",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Fuentes Masivas de Generación de Datos",
+    "text": "Fuentes Masivas de Generación de Datos\n\n\n\nPlataformas Digitales: Se generan más de 147 Zettabytes de datos al día, impulsados por plataformas como Meta y Google.\nDispositivos Conectados (IoT):\n\nMás de 30 mil millones de dispositivos IoT activos.\nMás de 7.5 mil millones de smartphones con múltiples sensores (GPS, cámara).\nSuperados los 1,2 mil millones de medidores inteligentes.\nFuente Statista"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#era-1990s-el-sistema-monolítico-relacional-rdbms",
+    "href": "quarto/big_data_grandes_volumenes/index.html#era-1990s-el-sistema-monolítico-relacional-rdbms",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Era 1990s: El Sistema Monolítico Relacional (RDBMS)",
+    "text": "Era 1990s: El Sistema Monolítico Relacional (RDBMS)\n\n\n\nArquitectura: Crecimiento Vertical (Acoplada y dependiente de un hardware central físico gigantesco).\nCostos: Storage Extremo | Compute Ineficiente (Sin paralelismo).\nDatos: Estructurada (SQL transaccional). Máx. Gigabytes.\n\n\n\\begin{center}  \\end{center}"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#modelamiento-1990s-relacional-y-normalizado",
+    "href": "quarto/big_data_grandes_volumenes/index.html#modelamiento-1990s-relacional-y-normalizado",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Modelamiento 1990s: Relacional y Normalizado",
+    "text": "Modelamiento 1990s: Relacional y Normalizado\n\nParadigma: Reglas Codd y formas normales (1NF a 3NF) para evitar redundancia de disco a toda costa. El modelamiento E-R rige el ciclo.\nTransaccionalidad: Tolerancia cero a errores. Todo se agrupa en operaciones altamente consistentes, aisladas y atómicas (Garantías ACID).\nEstructura: Filas estrictas con tipos de datos fijos. Las analíticas requerían barrer el sistema mediante JOINs pesados matando el servidor productivo."
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#era-2000s-data-warehouse-y-olap",
+    "href": "quarto/big_data_grandes_volumenes/index.html#era-2000s-data-warehouse-y-olap",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Era 2000s: Data Warehouse y OLAP",
+    "text": "Era 2000s: Data Warehouse y OLAP\n\\begin{center}  \\end{center} - Arquitectura: Integración de silos en cubos interactivos para “Business Intelligence” (Procesamiento Batch tipo ETL sobre redes locales). - Costos: Storage Moderado (SAN) | Compute Caro para consultas bajo demanda. - Capacidad: Tablas pre-calculadas semi-complejas de hasta cientos de Terabytes operativos."
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#modelamiento-2000s-dimensional-estrellacopo-nieve",
+    "href": "quarto/big_data_grandes_volumenes/index.html#modelamiento-2000s-dimensional-estrellacopo-nieve",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Modelamiento 2000s: Dimensional (Estrella/Copo Nieve)",
+    "text": "Modelamiento 2000s: Dimensional (Estrella/Copo Nieve)\n\n\n\nParadigma: Reglas de Kimball vs Inmon. Se aplastan y desnormalizan los datos deliberadamente creando esquemas de Estrella para consultas analíticas ultra veloces.\nEstructura: División filosófica total entre Tablas de Hechos (Métricas/Eventos masivos) y Tablas de Dimensiones (Contexto/Atributos estáticos).\n\n\n\\begin{center}  \\end{center}"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#desafíos-de-la-escalabilidad-horizontal-distribuir",
+    "href": "quarto/big_data_grandes_volumenes/index.html#desafíos-de-la-escalabilidad-horizontal-distribuir",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Desafíos de la Escalabilidad Horizontal (Distribuir)",
+    "text": "Desafíos de la Escalabilidad Horizontal (Distribuir)\nAntes de introducir clústeres modernos (2010s+), abandonar el Hardware acoplado presentaba enormes retos de ingeniería informática pura: - Paralelización: Cómo fragmentar un solo algoritmo gigantesco en cientos de pedazos lógicos. - Saturación de Red (Comunicación): La transferencia innecesaria de archivos masivos ahoga cualquier fibra óptica comercial. - Balanceo de Carga: Evitar que un “Nodo” procese todo el trabajo mientras otros duermen por desbalances estadísticos en la fila. - Manejo de Fallos: Certeza matemática: un rack uniendo 5,000 computadoras “baratas” quemará discos duros y memorias físicas cada hora. El sistema general debe ser resiliente 24/7."
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#era-2010s-hadoop-data-lake-y-el-big-data-batch",
+    "href": "quarto/big_data_grandes_volumenes/index.html#era-2010s-hadoop-data-lake-y-el-big-data-batch",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Era 2010s: Hadoop, Data Lake y el Big Data Batch",
+    "text": "Era 2010s: Hadoop, Data Lake y el Big Data Batch\n\n\n\nArquitectura: Adiós super-computador. Granja de nodos. Se manda “el código” al disco del dato. Nace el primer DataLake.\nCostos: Storage Baratísimo | Compute Lento (I/O intensivo).\nCapacidad: Petabytes de logs web y multimedia.\n\n\n\\begin{center}  \\end{center}"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#solución-era-2010s-cómputo-cerca-al-disco",
+    "href": "quarto/big_data_grandes_volumenes/index.html#solución-era-2010s-cómputo-cerca-al-disco",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Solución Era 2010s: Cómputo Cerca al Disco",
+    "text": "Solución Era 2010s: Cómputo Cerca al Disco\ndef mapper(linea):\n    # Procesa fragmento local\n    for log in linea.split():\n        yield (log.categoria, 1)\n\ndef reducer(categoria, conteos):\n    # Combina y suma resultados\n    yield (categoria, sum(conteos))"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#deep-dive-2010s-hadoop-distributed-file-system-hdfs",
+    "href": "quarto/big_data_grandes_volumenes/index.html#deep-dive-2010s-hadoop-distributed-file-system-hdfs",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Deep Dive 2010s: Hadoop Distributed File System (HDFS)",
+    "text": "Deep Dive 2010s: Hadoop Distributed File System (HDFS)\n\n\n\nPartición por Bloques: Un archivo inmenso (mydata.txt) es fragmentado logísticamente por el NameNode en bloques de 64 MB (o 128 MB).\nTolerancia a Fallos: Cada bloque se copia 3 veces por defecto en distintos DataNodes asegurando Alta Disponibilidad.\nData Locality: Se obliga a procesar código en la misma CPU de la máquina física que aloja el bloque de texto para evadir cuellos de red de los viejos NAS/SAN.\n\n\n\\begin{center}  \\end{center}"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#madurez-y-modelamiento-en-los-2010s",
+    "href": "quarto/big_data_grandes_volumenes/index.html#madurez-y-modelamiento-en-los-2010s",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Madurez y Modelamiento en los 2010s",
+    "text": "Madurez y Modelamiento en los 2010s\n\nParadigma NoSQL y Schema-on-Read: Se elimina la norma de estructurar datos antes de guardar. Todo aterriza crudo en el Landing Zone (Data Puddle) y la estructura se infiere al momento de analizarlos visualmente (Ej. Tablas Virtuales Hive).\nTransición de caos de archivos sueltos a Lagos Empresariales Múltiples Zonas. \\begin{center}  \\end{center}"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#fundamentos-prácticos-modelos-de-nube-cloud",
+    "href": "quarto/big_data_grandes_volumenes/index.html#fundamentos-prácticos-modelos-de-nube-cloud",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Fundamentos Prácticos: Modelos de Nube (Cloud)",
+    "text": "Fundamentos Prácticos: Modelos de Nube (Cloud)\nEl cambio histórico en el hardware permitió la delegación total:\n\n\nServicios Big Data: - IaaS (Infraestructura): Alquilar CPUs/Discos virtuales en blanco (Ej. Amazon EC2). - PaaS (Plataforma): Ofrecen el motor de datos gestionado, tú montas tu código Spark analítico allí (Ej. Databricks, BigQuery). - SaaS (Software): Solución integral 100% frontal al usuario final.\n\nModelos de Despliegue: - Pública: 100% en centros de datos del proveedor Amazon/Google. - Privada: Granjas internas “On-Premise” seguras. - Híbrida: Bases nucleares privadas, y cargas experimentales / elásticas derivadas a la Nube."
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#era-2015s-spark-polars-in-memory-y-la-era-cloud",
+    "href": "quarto/big_data_grandes_volumenes/index.html#era-2015s-spark-polars-in-memory-y-la-era-cloud",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Era 2015s: Spark, Polars In-Memory, y la Era Cloud",
+    "text": "Era 2015s: Spark, Polars In-Memory, y la Era Cloud\n\\begin{center}  \\end{center} - Arquitectura: Algoritmos In-Memory enfocados a evitar tocar el disco reteniendo DataSets transitorios (RDD) en Memoria RAM y evaluando perezosamente. - Costos Analíticos: Storage Ultra Barato (S3 Nube) | Compute Balanceado (hasta 100x de velocidad). - Datos y Capacidad: Machine Learning iterativo sobre decenas de Petabytes."
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#modelamiento-2015s-almacenamiento-columnar",
+    "href": "quarto/big_data_grandes_volumenes/index.html#modelamiento-2015s-almacenamiento-columnar",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Modelamiento 2015s: Almacenamiento Columnar",
+    "text": "Modelamiento 2015s: Almacenamiento Columnar\n\n\n\nEl Paradigma Columnar: Guardar archivos masivos en filas (CSV) quema I/O al escanear campos inútiles.\nTecnología: Los formatos abiertos como Apache Parquet u ORC agrupan los datos por columnas y los comprimen nativamente.\nImpacto: Un DataFrame algorítmico leerá solo el bloque físico de “Costos”, esquivando cargar millones de “Nombres”, ahorrando 95% de memoria RAM.\n\n\n\\begin{center}  \\end{center}"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#solución-era-2015s-streaming-perezoso-lazy-eval",
+    "href": "quarto/big_data_grandes_volumenes/index.html#solución-era-2015s-streaming-perezoso-lazy-eval",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Solución Era 2015s: Streaming Perezoso (Lazy Eval)",
+    "text": "Solución Era 2015s: Streaming Perezoso (Lazy Eval)\nimport polars as pl\n\nplan = (\n    pl.scan_csv(\"gigante_500_gb.csv\")\n    .filter(pl.col(\"costo\") &gt; 100)\n    .groupby(\"categoria\").agg(pl.col(\"id\").count())\n)\ndf = plan.collect(streaming=True)"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#era-2020s-nube-serverless-eventos-y-streaming",
+    "href": "quarto/big_data_grandes_volumenes/index.html#era-2020s-nube-serverless-eventos-y-streaming",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Era 2020s+: Nube Serverless, Eventos y Streaming",
+    "text": "Era 2020s+: Nube Serverless, Eventos y Streaming\n\n\n\nArquitectura: Fusión Lake y Warehouse (Lakehouse). Modelos en Stream persistente. “Serverless” Oculta el Hardware.\nCostos: Storage Despreciable. Compute Pago Instantáneo elástico.\nCapacidad: Exabytes listos para Data Apps (BigQuery/Databricks).\n\n\n\\begin{center}  \\end{center}"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#deep-dive-2020s-arquitectura-lambda-vs-kappa",
+    "href": "quarto/big_data_grandes_volumenes/index.html#deep-dive-2020s-arquitectura-lambda-vs-kappa",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Deep Dive 2020s: Arquitectura Lambda vs Kappa",
+    "text": "Deep Dive 2020s: Arquitectura Lambda vs Kappa\n\\begin{center}  \\end{center} - Arquitectura Lambda: Bifurcaba la estrategia. Usaba Hadoop clásico para recalcular los históricos globales (Capa Batch, exacto pero lento) y un canal vivo (Capa Speed) para la ventana urgente. - Arquitectura Kappa: Evolución unificadora dictada por el Lakehouse. Anula la necesidad del Batch; todo el historial es tratado perpetuamente como un Stream infinito."
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#modelamiento-2020s-arquitectura-medallón-lakehouse",
+    "href": "quarto/big_data_grandes_volumenes/index.html#modelamiento-2020s-arquitectura-medallón-lakehouse",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Modelamiento 2020s: Arquitectura Medallón (Lakehouse)",
+    "text": "Modelamiento 2020s: Arquitectura Medallón (Lakehouse)\n\n\n\nParadigma Tabla Delta: Formatos de Lakehouse añaden la capa transaccional ACID del RDBMS antiguo a los datos sueltos de S3.\nZonas de Curado: Ingestión lógica depurada en 3 niveles de pureza:\nBronce (Datos Crudos \\(\\rightarrow\\) Plata (Filtros y Limpieza) \\(\\rightarrow\\) Oro (Agregado final Dimensional/BI).\n\n\n\\begin{center}  \\end{center&gt;"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#el-ecosistema-productivo-actual-aws-vs-gcp",
+    "href": "quarto/big_data_grandes_volumenes/index.html#el-ecosistema-productivo-actual-aws-vs-gcp",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "El Ecosistema Productivo Actual (AWS vs GCP)",
+    "text": "El Ecosistema Productivo Actual (AWS vs GCP)\nLos servicios en Nube encapsulan las piezas Lakehouse y Big Data:\n\n\n\\begin{center} Amazon Web Services (AWS) {S3 (Lake) \\(\\rightarrow\\) Glue (Ingesta) \\(\\rightarrow\\) Athena (Serverless)}  \\end{center}\n\n\\begin{center} Google Cloud Analytics (GCP) {GCS (Lake) \\(\\rightarrow\\) Dataflow (Streaming) \\(\\rightarrow\\) BigQuery (Analytics)}  \\end{center}"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#solución-era-2020s-serverless-transparente",
+    "href": "quarto/big_data_grandes_volumenes/index.html#solución-era-2020s-serverless-transparente",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Solución Era 2020s+: Serverless Transparente",
+    "text": "Solución Era 2020s+: Serverless Transparente\nSELECT country_name, COUNT(1) as total_visitas\nFROM `bigquery-public-data.google_analytics_sample.ga_sessions_*`\nWHERE device.browser = 'Chrome'\nGROUP BY country_name\nORDER BY 1 DESC LIMIT 10;"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#referencias-1",
+    "href": "quarto/big_data_grandes_volumenes/index.html#referencias-1",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "Referencias",
+    "text": "Referencias\n\nSpark: https://spark.apache.org/\nHadoop: http://hadoop.apache.org/\nCloudera: https://www.cloudera.com/\nDatabricks: https://databricks.com/"
+  },
+  {
+    "objectID": "quarto/big_data_grandes_volumenes/index.html#references",
+    "href": "quarto/big_data_grandes_volumenes/index.html#references",
+    "title": "Big Data Parte 2 - Grandes Volúmenes de Información",
+    "section": "References",
+    "text": "References\n\n\nErl, Thomas, Wajid Khattak, and Paul Buhler. 2016. Big Data Fundamentals: Concepts, Drivers & Techniques. Prentice Hall Press.\n\n\nKleppmann, Martin. 2017. Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems. \" O’Reilly Media, Inc.\".\n\n\nKreibich, Jay. 2010. Using SQLite. \" O’Reilly Media, Inc.\".\n\n\nMcKinney, Wes. 2022. Python for Data Analysis. \" O’Reilly Media, Inc.\".\n\n\nOluleye, Ayodele. 2023. Exploratory Data Analysis with Python Cookbook: Over 50 Recipes to Analyze, Visualize, and Extract Insights from Structured and Unstructured Data. Packt Publishing Ltd.\n\n\nProvost, Foster, and Tom Fawcett. 2013. Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking. \" O’Reilly Media, Inc.\".\n\n\nRALPH KIMBALL, Joe Caserta. 2004. The Data Warehouse Etl Toolkit: Practical Techniques for Extracting, Cleaning, Conforming, and Delivering Data. Indianapolis, IN: Wiley.\n\n\nVajjala, Sowmya, Bodhisattwa Majumder, Anuj Gupta, and Harshit Surana. 2020. Practical Natural Language Processing: A Comprehensive Guide to Building Real-World NLP Systems. O’Reilly Media."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#conozcámonos",
+    "href": "quarto/comprension_datos/index.html#conozcámonos",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "¡Conozcámonos!",
+    "text": "¡Conozcámonos!\n¡Hola a todos!\n\n\n\n\n\n\n\nDinámica Inicial\n\n\nComparte tu Nombre, profesión, dónde trabajas, maestría y tus expectativas sobre el uso de datos en tu vida laboral."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#el-docente",
+    "href": "quarto/comprension_datos/index.html#el-docente",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "El Docente",
+    "text": "El Docente\n\n\n\nOscar Bustos\nIng. Mecatrónico, PhD. (c) en Ingeniería - PUJ\nDocente Javeriano\nTech Manager en Mercado Libre\nApasionado por resolver problemas reales con IA y Analítica"
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#estructura-del-curso",
+    "href": "quarto/comprension_datos/index.html#estructura-del-curso",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Estructura del Curso",
+    "text": "Estructura del Curso\nEl curso se divide en 3 módulos principales:\n\nMódulo 1: Preparación de datos\n\nTalleres prácticos (20%)\n\nMódulo 2: Integración de datos\n\nTalleres (20%)\nProyecto en grupo (20%)\nParcial Taller Individual (20%)\n\nMódulo 3: Herramientas de Big Data\n\nTalleres prácticos (20%)"
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#reglas-del-curso",
+    "href": "quarto/comprension_datos/index.html#reglas-del-curso",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Reglas del Curso",
+    "text": "Reglas del Curso\nPautas clave para el desarrollo de las actividades:\n\nTalleres prácticos: Uno por clase, entrega antes de la siguiente sesión.\nParejas: Se resuelven y entregan en parejas.\nProyecto de curso: Desarrollado en grupos de 4 personas (2 parejas).\nEntregas: Exclusivamente a través del Campus Virtual."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#dinámica-de-clase-y-uso-de-ia",
+    "href": "quarto/comprension_datos/index.html#dinámica-de-clase-y-uso-de-ia",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Dinámica de Clase y Uso de IA",
+    "text": "Dinámica de Clase y Uso de IA\n\nPresencialidad: Clases presenciales (transmisión virtual opcional).\nHorario: Inicia a las 6:10pm. Descanso de 15 min a las 7:30pm.\nIA como Herramienta:\n\nApoyo técnico: Se promueve para la generación de código Python.\nPensamiento Crítico: La IA no reemplaza su capacidad analítica. ¡La interpretación de datos, decisiones y conclusiones deben ser 100% propias!"
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#bibliografía-y-lecturas",
+    "href": "quarto/comprension_datos/index.html#bibliografía-y-lecturas",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Bibliografía y Lecturas",
+    "text": "Bibliografía y Lecturas\n\nLecturas obligatorias: Cada clase tiene lecturas asociadas.\nAcceso digital: Todos los libros están en la plataforma O’Reilly.\nBiblioteca Javeriana: Accede gratis con tus credenciales en: javeriana.libguides.com/az.php?a=o\nLas referencias bibliográficas se listan al final de la presentación."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#libros-de-la-clase---módulo-1",
+    "href": "quarto/comprension_datos/index.html#libros-de-la-clase---módulo-1",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Libros de la Clase - Módulo 1",
+    "text": "Libros de la Clase - Módulo 1\n\n\n\n\n\n\nPython for Data Analysis\n\n\n\n\n\n\n\nExploratory Data Analysis\n\n\n\n\n\n\n\nData Science for Business"
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#libros-de-la-clase---módulo-2",
+    "href": "quarto/comprension_datos/index.html#libros-de-la-clase---módulo-2",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Libros de la Clase - Módulo 2",
+    "text": "Libros de la Clase - Módulo 2\n\n\n\n\n\n\nDesigning Data-Intensive Applications\n\n\n\n\n\n\n\nThe Data Warehouse Toolkit\n\n\n\n\n\n\n\nUsing SQLite"
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#libros-de-la-clase---módulo-3",
+    "href": "quarto/comprension_datos/index.html#libros-de-la-clase---módulo-3",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Libros de la Clase - Módulo 3",
+    "text": "Libros de la Clase - Módulo 3\n\n\n\n\n\n\nBig Data Fundamentals\n\n\n\n\n\n\n\nPractical Natural Language Processing"
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#cronograma-general",
+    "href": "quarto/comprension_datos/index.html#cronograma-general",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Cronograma General",
+    "text": "Cronograma General\n\nLecturas y Actividades del Semestre"
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#tarea-asignación",
+    "href": "quarto/comprension_datos/index.html#tarea-asignación",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Tarea / Asignación",
+    "text": "Tarea / Asignación\nActividades a desarrollar:\n\nLeer capítulos 1 y 2 del libro Data Science for Business.\nExplorar el Cuaderno de Google NotebookLM:\n\nRevisar la infografía.\nRealizar los quices incluidos.\nEscuchar el podcast."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#motivación-a-qué-dedicamos-tiempo",
+    "href": "quarto/comprension_datos/index.html#motivación-a-qué-dedicamos-tiempo",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Motivación: ¿A qué dedicamos tiempo?",
+    "text": "Motivación: ¿A qué dedicamos tiempo?\n\n\n\n\n\n\n\nPregunta a la clase\n\n\nEn el día a día de un científico de datos, ¿en qué actividades creen que se invierte la mayor parte del tiempo?\n\n\n\n\n(Piensen en carga, limpieza, modelado, visualización, etc.)"
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#motivación-a-qué-dedicamos-tiempo-1",
+    "href": "quarto/comprension_datos/index.html#motivación-a-qué-dedicamos-tiempo-1",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Motivación: ¿A qué dedicamos tiempo?",
+    "text": "Motivación: ¿A qué dedicamos tiempo?\n\n\nEstudio de Anaconda (2020) sobre el tiempo en Ciencia de Datos:\n\nCarga y preparación: Cerca del 45%.\nLimpieza de datos: Cerca del 26%.\n¡Más del 70% del tiempo se va en preparación de datos!"
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#objetivos-de-formación",
+    "href": "quarto/comprension_datos/index.html#objetivos-de-formación",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Objetivos de Formación",
+    "text": "Objetivos de Formación\nAl finalizar el curso serás capaz de:\n\nRecolección y consolidación: Extraer información de múltiples fuentes.\nPreparación de datos: Limpiar y tratar datos atípicos o perdidos.\nEntendimiento de Big Data: Comprender tecnologías para grandes volúmenes.\nGarbage in, Garbage out: Si los datos son basura, el modelo dará basura."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#introducción-a-crisp-dm",
+    "href": "quarto/comprension_datos/index.html#introducción-a-crisp-dm",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Introducción a CRISP-DM",
+    "text": "Introducción a CRISP-DM\n\nDefinición: Cross-Industry Standard Process for Data Mining.\nPropósito: Estructurar proyectos analíticos para evitar pérdidas.\nEs un proceso cíclico e iterativo, no lineal.\nConecta directamente el negocio con los datos y el modelado."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#las-fases-de-crisp-dm",
+    "href": "quarto/comprension_datos/index.html#las-fases-de-crisp-dm",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Las Fases de CRISP-DM",
+    "text": "Las Fases de CRISP-DM\n\n\n\nComprensión del Negocio\nEntendimiento de los Datos\nPreparación de los Datos\nModelamiento\nEvaluación\nDespliegue"
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#crisp-dm-comprensión-del-negocio",
+    "href": "quarto/comprension_datos/index.html#crisp-dm-comprensión-del-negocio",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "CRISP-DM: Comprensión del Negocio",
+    "text": "CRISP-DM: Comprensión del Negocio\nFase inicial: definir objetivos comerciales y traducirlos a minería.\n\nPreguntas esenciales:\n\n¿Qué problema queremos resolver exactamente?\n¿Cómo se usará la solución en el negocio?\n¿Qué constituye un éxito para el proyecto?\n\nBasado en la toma de decisiones guiada por datos (DDD)."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#pensamiento-analítico-caso-walmart",
+    "href": "quarto/comprension_datos/index.html#pensamiento-analítico-caso-walmart",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Pensamiento Analítico: Caso Walmart",
+    "text": "Pensamiento Analítico: Caso Walmart\nWalmart analizó sus ventas históricas previas al huracán Frances (2004) para anticipar picos de demanda.\n\n\n\n\n\n\n\nPregunta a la clase\n\n\n¿Qué productos inusuales descubrió Walmart que se vendían 7 veces más?\n\n\n\n\n\nRespuesta: Cerveza y Pop-Tarts de fresa. Llenaron los camiones y maximizaron ventas."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#pensamiento-analítico-caso-target",
+    "href": "quarto/comprension_datos/index.html#pensamiento-analítico-caso-target",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Pensamiento Analítico: Caso Target",
+    "text": "Pensamiento Analítico: Caso Target\nTarget deseaba detectar si una cliente estaba embarazada meses antes de dar a luz para enviarle cupones anticipados de pañales.\n\n\n\n\n\n\n\nPregunta a la clase\n\n\n¿Cómo lograrías esta predicción usando solo datos históricos de compra?\n\n\n\n\n\nRespuesta: Detectaron cambios en el consumo (vitaminas prenatales, lociones sin aroma, etc.) y estimaron la fecha del parto."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#datos-como-activo-capital-one",
+    "href": "quarto/comprension_datos/index.html#datos-como-activo-capital-one",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Datos como Activo: Capital One",
+    "text": "Datos como Activo: Capital One\nSignet Bank quería crear modelos predictivos de riesgo para ofrecer tarjetas de crédito a finales de los 80.\n\n\n\n\n\n\n\nPregunta a la clase\n\n\nSi careces de datos de clientes riesgosos (porque siempre fueron rechazados), ¿cómo entrenas el modelo?\n\n\n\n\n\nRespuesta: Otorgaron tarjetas aleatoriamente a pérdida. Compraron los datos y lideraron el mercado."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#el-reto-de-los-datos-recolección-de-grandes-cantidades-de-datos",
+    "href": "quarto/comprension_datos/index.html#el-reto-de-los-datos-recolección-de-grandes-cantidades-de-datos",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "El Reto de los Datos: Recolección de grandes cantidades de datos",
+    "text": "El Reto de los Datos: Recolección de grandes cantidades de datos\nQueremos entrenar robots que naveguen por aceras. Requerimos millones de fotos detalladas y actualizadas.\n\nVehículos tipo Google Street View: Circulan por vías vehiculares, no peatonales. Mapear cada acera del mundo constantemente es logísticamente inviable y costosísimo.\n\n\n\n\n\n\n\n\nPregunta a la clase\n\n\n¿Qué estrategia alternativa y radicalmente distinta nos permitiría capturar esta inmensa cantidad de datos espaciales sin desplegar una flota propia?"
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#solución-gamificación-pokémon-go",
+    "href": "quarto/comprension_datos/index.html#solución-gamificación-pokémon-go",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Solución: Gamificación (Pokémon GO)",
+    "text": "Solución: Gamificación (Pokémon GO)\n\n\n\n\n\nPokémon GO\n\n\n\n Crear el juego es costoso, pero su modelo de crowdsourcing es brillante.\nMillones de jugadores mapean el entorno físico por diversión. El producto (juego) incentiva y financia la captura de datos."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#tareas-de-minería-caso-netflix",
+    "href": "quarto/comprension_datos/index.html#tareas-de-minería-caso-netflix",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Tareas de Minería: Caso Netflix",
+    "text": "Tareas de Minería: Caso Netflix\nNetflix recopila tu historial de reproducción y valoraciones para sugerirte nuevas películas y series.\n\n\n\n\n\n\n\nPregunta a la clase\n\n\nSi Netflix te agrupa con usuarios de gustos similares para recomendarte títulos, ¿es una tarea supervisada o no supervisada?\n\n\n\n\n\nRespuesta: Es una combinación, pero la agrupación es No Supervisada (Clustering / Co-occurrence Grouping)."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#crisp-dm-el-fracaso-analítico",
+    "href": "quarto/comprension_datos/index.html#crisp-dm-el-fracaso-analítico",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "CRISP-DM: El Fracaso Analítico",
+    "text": "CRISP-DM: El Fracaso Analítico\nDiseñas un modelo de Machine Learning con 99% de precisión matemática. Sin embargo, el proyecto no genera retorno y el negocio lo descarta.\n\n\n\n\n\n\n\nPregunta a la clase\n\n\n¿En qué fase de la metodología CRISP-DM se falló fundamentalmente?\n\n\n\n\n\nRespuesta: En Business Understanding (definición del problema) o en la Evaluación (no alineada a KPIs del negocio)."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#pausa",
+    "href": "quarto/comprension_datos/index.html#pausa",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "¡Pausa! 🍕",
+    "text": "¡Pausa! 🍕\nTomemos 15 minutos de descanso para recargar energías antes de continuar con la siguiente fase."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#crisp-dm-entendimiento-de-los-datos",
+    "href": "quarto/comprension_datos/index.html#crisp-dm-entendimiento-de-los-datos",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "CRISP-DM: Entendimiento de los Datos",
+    "text": "CRISP-DM: Entendimiento de los Datos\nEsta fase consiste en familiarizarse con los datos para identificar su calidad y descubrir insights preliminares.\nActividades clave:\n\nRecopilación inicial de datos de diversas fuentes.\nDescripción del volumen, formato y variables.\nVerificación de la calidad (errores, vacíos).\nAnálisis Exploratorio de Datos (EDA)."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#qué-es-el-eda-exploratory-data-analysis",
+    "href": "quarto/comprension_datos/index.html#qué-es-el-eda-exploratory-data-analysis",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "¿Qué es el EDA (Exploratory Data Analysis)?",
+    "text": "¿Qué es el EDA (Exploratory Data Analysis)?\nEs la aproximación para analizar bases de datos resumiendo sus características principales, frecuentemente usando métodos visuales.\nObjetivos:\n\nEntendimiento de la estructura y propiedades de los datos.\nDetectar problemas de calidad y anomalías.\nProbar supuestos iniciales antes de crear modelos."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#caso-de-estudio-titanic",
+    "href": "quarto/comprension_datos/index.html#caso-de-estudio-titanic",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Caso de Estudio: Titanic",
+    "text": "Caso de Estudio: Titanic\n\n\n\n\nObjetivo: Predecir la supervivencia de pasajeros con datos reales de la tragedia (1912).\nPreguntas de reflexión:\n\n¿Cuáles creen que son las variables más importantes para predecir la supervivencia?\n¿Qué problemas de calidad de datos esperan?\n¿Qué sesgos históricos podrían existir?"
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#google-colab-entorno-de-trabajo",
+    "href": "quarto/comprension_datos/index.html#google-colab-entorno-de-trabajo",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Google Colab: Entorno de Trabajo",
+    "text": "Google Colab: Entorno de Trabajo\nGoogle Colab es un entorno en la nube basado en Jupyter Notebooks.\n\nNo requiere instalación ni configuración local.\nPermite ejecutar código Python paso a paso.\nCombina texto, código y visualizaciones, ideal para análisis de datos."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#por-qué-python-en-lugar-de-excel",
+    "href": "quarto/comprension_datos/index.html#por-qué-python-en-lugar-de-excel",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "¿Por qué Python en lugar de Excel?",
+    "text": "¿Por qué Python en lugar de Excel?\nExcel es el software empresarial por excelencia, pero tiene limitaciones críticas:\n\nAutomatización: Python asegura repetibilidad, automatización y auditoría del proceso.\nVolumen: Capacidad para manejar grandes volúmenes de datos sin interrupciones.\nEcosistema: Amplio conjunto de librerías (Pandas, Numpy, Scikit-Learn)."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#visión-general-carga-y-exploración",
+    "href": "quarto/comprension_datos/index.html#visión-general-carga-y-exploración",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "2. Visión General (Carga y Exploración)",
+    "text": "2. Visión General (Carga y Exploración)\nimport pandas as pd\nimport numpy as np\n\nurl = \"https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv\"\ndf = pd.read_csv(url)\n\nprint(f\"Tamaño: {df.shape}\")\nprint(df.info())\nprint(df.head())\n\nPrimer acercamiento a la materia prima.\n\nshape: Dimensiones del dataset.\ninfo(): Tipos de datos y memoria.\nhead(): Vistazo a los datos reales."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#limpieza-datos-faltantes",
+    "href": "quarto/comprension_datos/index.html#limpieza-datos-faltantes",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "3.1 Limpieza: Datos Faltantes",
+    "text": "3.1 Limpieza: Datos Faltantes\n# Conteo de nulos por columna\nprint(\"Nulos antes de imputar:\")\nprint(df.isnull().sum())\n\n# Imputar con la media\nmedia = df['Age'].mean()\ndf['Age'] = df['Age'].fillna(media)\n\n# Eliminar nulos restantes\ndf.dropna(inplace=True)\n\nprint(\"\\nNulos después de limpiar:\")\nprint(df.isnull().sum())\n\nValores NaN pueden distorsionar los análisis.\n\nEliminación: Borrar filas (pérdida de datos).\nImputación: Rellenar con media, mediana o usando modelos predictivos."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#limpieza-valores-atípicos",
+    "href": "quarto/comprension_datos/index.html#limpieza-valores-atípicos",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "3.2 Limpieza: Valores Atípicos",
+    "text": "3.2 Limpieza: Valores Atípicos\n# Filtro por rango (IQR)\nQ1 = df['Fare'].quantile(0.25)\nQ3 = df['Fare'].quantile(0.75)\nIQR = Q3 - Q1\n\nlim_sup = Q3 + 1.5 * IQR\noutliers = df[df['Fare'] &gt; lim_sup]\nprint(f\"Número de outliers en Fare: {len(outliers)}\")\n\nObservaciones que se desvían significativamente.\n\nPueden ser errores o fenómenos reales.\nDetección: Puntaje Z o Rango Intercuartílico (IQR)."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#limpieza-control-de-calidad",
+    "href": "quarto/comprension_datos/index.html#limpieza-control-de-calidad",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "3.3 Limpieza: Control de Calidad",
+    "text": "3.3 Limpieza: Control de Calidad\n# Conteo de duplicados\ndups = df.duplicated().sum()\nprint(f\"Duplicados encontrados: {dups}\")\n\n# Eliminar duplicados\ndf.drop_duplicates(inplace=True)\n\n# Validar reglas lógicas\ninvalid = df[df['Age'] &lt; 0]\nprint(f\"Edades negativas encontradas: {len(invalid)}\")\n\nAsegurar la confiabilidad de la información.\n\nDuplicados: Filas idénticas repetidas.\nInconsistencias: Errores tipográficos.\nValores Inválidos: Fuera del dominio lógico (ej. edades negativas)."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#univariado-distribución-histogramas",
+    "href": "quarto/comprension_datos/index.html#univariado-distribución-histogramas",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "4.1 Univariado: Distribución (Histogramas)",
+    "text": "4.1 Univariado: Distribución (Histogramas)\n# Histograma de edades\nimport matplotlib.pyplot as plt\ndf['Age'].hist(bins=20)\nplt.title('Distribución de Edades')\nplt.show()\n\n# Gráfico de densidad de tarifa\ndf['Fare'].plot(kind='kde')\nplt.title('Densidad de Tarifa')\nplt.show()\n\nEntender la forma y extensión de las variables.\n\nAsimetría (Skewness): Inclinación.\nCurtosis: Concentración en la media.\nDispersión: Rango y variabilidad."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#univariado-estadísticas-descriptivas",
+    "href": "quarto/comprension_datos/index.html#univariado-estadísticas-descriptivas",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "4.2 Univariado: Estadísticas Descriptivas",
+    "text": "4.2 Univariado: Estadísticas Descriptivas\n# Resumen general (Pandas)\nprint(df.describe())\n\n# Estadísticas con Numpy\nstd_edad = np.std(df['Age'])\nmin_tarifa = np.min(df['Fare'])\nprint(f\"\\nDesviación estándar de Edad: {std_edad}\")\nprint(f\"Tarifa Mínima: {min_tarifa}\")\n\nResumen de tendencia central y dispersión.\n\nCentral: Media, mediana.\nDispersión: Desviación estándar, mínimo, máximo.\nPosición: Cuartiles (Q1, Q3)."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#univariado-tipos-categóricos",
+    "href": "quarto/comprension_datos/index.html#univariado-tipos-categóricos",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "4.3 Univariado: Tipos Categóricos",
+    "text": "4.3 Univariado: Tipos Categóricos\n# Revisar tipos actuales\nprint(\"Tipos originales:\")\nprint(df.dtypes)\n\n# Convertir tipos\ndf['Survived'] = df['Survived'].astype('category')\ndf['Fare'] = pd.to_numeric(df['Fare'])\n\nprint(\"\\nTipos después de conversión:\")\nprint(df.dtypes)\n\nIdentificar la naturaleza de cada columna para el análisis.\n\nNuméricos: int, float.\nCategóricos: Ordinales o nominales.\nOtros: Booleanos, fechas, textos."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#bivariado-correlación-numérica",
+    "href": "quarto/comprension_datos/index.html#bivariado-correlación-numérica",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "5.1 Bivariado: Correlación Numérica",
+    "text": "5.1 Bivariado: Correlación Numérica\n# Variables numéricas\nnum = df[['Age', 'Fare', 'Pclass']]\n\n# Matriz de correlación\ncorr = num.corr(method='pearson')\nprint(corr)\n\nRelación lineal entre variables numéricas.\n\n1: Positiva perfecta.\n-1: Negativa perfecta.\n0: Sin relación lineal."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#bivariado-visualización-de-relaciones",
+    "href": "quarto/comprension_datos/index.html#bivariado-visualización-de-relaciones",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "5.2 Bivariado: Visualización de Relaciones",
+    "text": "5.2 Bivariado: Visualización de Relaciones\n# Barras: Pasajeros por puerto\ndf['Embarked'].value_counts().plot(kind='bar')\nplt.title('Pasajeros por Puerto')\nplt.show()\n\n# Dispersión: Edad vs Tarifa\ndf.plot.scatter(x='Age', y='Fare')\nplt.title('Edad vs Tarifa')\nplt.show()\n\nFacilitan la identificación de patrones de forma intuitiva.\n\nHistogramas: Distribución.\nDispersión: Relaciones mutuas.\nBarras: Frecuencia de categorías."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#bivariado-agrupaciones-y-tablas",
+    "href": "quarto/comprension_datos/index.html#bivariado-agrupaciones-y-tablas",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "5.3 Bivariado: Agrupaciones y Tablas",
+    "text": "5.3 Bivariado: Agrupaciones y Tablas\n# Agrupación y comparación\nif df['Survived'].dtype == 'category':\n    df['Survived'] = df['Survived'].astype(int)\n\nagrup = df.groupby(['Sex', 'Pclass'])['Survived'].mean()\nprint(\"Tasa de supervivencia por Sexo y Clase:\")\nprint(agrup)\n\n# Tabla cruzada (Crosstab)\ncruz = pd.crosstab(df['Sex'], df['Survived'])\nprint(\"\\nTabla Cruzada (Sexo vs Supervivencia):\")\nprint(cruz)\n\nExploración multivariada de interacciones.\n\nAgrupaciones: Promedios por segmento cruzado.\nTablas cruzadas: Frecuencias entre variables categóricas."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#bivariado-patrones-y-tendencias",
+    "href": "quarto/comprension_datos/index.html#bivariado-patrones-y-tendencias",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "5.4 Bivariado: Patrones y Tendencias",
+    "text": "5.4 Bivariado: Patrones y Tendencias\n# Supervivencia por clase\ntend = df.groupby('Pclass')['Survived'].mean()\n\n# Gráfico de línea\ntend.plot(kind='line', marker='o')\nplt.title('Tasa de Supervivencia por Clase')\nplt.ylabel('Supervivencia Media')\nplt.show()\n\nIdentificar comportamientos a lo largo de una dimensión.\n\nAyuda a visualizar relaciones no obvias.\nHerramientas: Gráficos de línea, agrupaciones secuenciales."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#flujo-de-trabajo-en-eda",
+    "href": "quarto/comprension_datos/index.html#flujo-de-trabajo-en-eda",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Flujo de Trabajo en EDA",
+    "text": "Flujo de Trabajo en EDA\nUn proceso típico y estructurado:\n\nEntender negocio y datos: Contexto del problema.\nVisión general: Tamaño (shape), tipos/nulos (info) y vistazo real (head).\nLimpieza inicial: Tratar faltantes, duplicados y atípicos.\nAnálisis Univariado: Explorar cada variable por separado.\nAnálisis Bi/Multivariado: Explorar interacciones y relaciones cruzadas.\nReporte e Insights: Extraer conclusiones y siguientes pasos (ej. Feature Eng.)."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#retos-del-titanic-datos-faltantes",
+    "href": "quarto/comprension_datos/index.html#retos-del-titanic-datos-faltantes",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Retos del Titanic: Datos Faltantes",
+    "text": "Retos del Titanic: Datos Faltantes\nAfrontando problemas prácticos en los datos del Titanic:\n\nEdad Faltante (20%):\n\nSi eliminamos, perdemos información de otras variables.\nSi imputamos con la media general, sesgamos la varianza.\nSolución: Imputar usando prefijos de nombres (Mr., Miss., Mrs.)."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#reto-titanic-fugas-de-información",
+    "href": "quarto/comprension_datos/index.html#reto-titanic-fugas-de-información",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Reto Titanic: Fugas de Información",
+    "text": "Reto Titanic: Fugas de Información\nUn modelo de supervivencia alcanza un 99% de precisión al incluir la variable Número de Bote Salvavidas.\n\n\n\n\n\n\n\nPregunta a la clase\n\n\n¿Por qué este modelo es inútil para la toma de decisiones?\n\n\n\n\n\nRespuesta: Es Data Leakage. Al comprar el boleto (momento de la predicción) no se sabe quién abordará un bote salvavidas."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#eda-automatizado-con-ydata-profiling",
+    "href": "quarto/comprension_datos/index.html#eda-automatizado-con-ydata-profiling",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "EDA Automatizado con ydata-profiling",
+    "text": "EDA Automatizado con ydata-profiling\nLibrerías modernas permiten generar reportes completos en segundos.\n# Instalar las librerias\n!pip install -U fg-data-profiling[notebook] -q\n\nimport data_profiling\nfrom data_profiling import ProfileReport\n\n# Crear el reporte interactivo\nprofile = ProfileReport(df, title=\"Titanic Profile Report\", explorative=True)\n\n# Mostrar dentro de Google Colab o Jupyter\nprofile.to_notebook_iframe()\n\nAdvertencia: El reporte automatiza la tarea, pero no el análisis. El criterio humano decide cómo resolver las alertas detectadas."
+  },
+  {
+    "objectID": "quarto/comprension_datos/index.html#referencias",
+    "href": "quarto/comprension_datos/index.html#referencias",
+    "title": "Metodologías y Análisis Exploratorio de Datos",
+    "section": "Referencias",
+    "text": "Referencias\n\n\nErl, Thomas, Wajid Khattak, and Paul Buhler. 2016. Big Data Fundamentals: Concepts, Drivers & Techniques. Prentice Hall Press.\n\n\nKleppmann, Martin. 2017. Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems. \" O’Reilly Media, Inc.\".\n\n\nKreibich, Jay. 2010. Using SQLite. \" O’Reilly Media, Inc.\".\n\n\nMcKinney, Wes. 2022. Python for Data Analysis. \" O’Reilly Media, Inc.\".\n\n\nOluleye, Ayodele. 2023. Exploratory Data Analysis with Python Cookbook: Over 50 Recipes to Analyze, Visualize, and Extract Insights from Structured and Unstructured Data. Packt Publishing Ltd.\n\n\nProvost, Foster, and Tom Fawcett. 2013. Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking. \" O’Reilly Media, Inc.\".\n\n\nRALPH KIMBALL, Joe Caserta. 2004. The Data Warehouse Etl Toolkit: Practical Techniques for Extracting, Cleaning, Conforming, and Delivering Data. Indianapolis, IN: Wiley.\n\n\nVajjala, Sowmya, Bodhisattwa Majumder, Anuj Gupta, and Harshit Surana. 2020. Practical Natural Language Processing: A Comprehensive Guide to Building Real-World NLP Systems. O’Reilly Media."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#dominios-de-datos-1",
+    "href": "quarto/extraccion_datos_tabular/index.html#dominios-de-datos-1",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Dominios de Datos",
+    "text": "Dominios de Datos\n\n¿Cuáles son los datos que se encuentran en una organización?"
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#el-rol-de-los-metadatos",
+    "href": "quarto/extraccion_datos_tabular/index.html#el-rol-de-los-metadatos",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "El Rol de los Metadatos",
+    "text": "El Rol de los Metadatos\n\nConcepto central: Son “Datos acerca de los datos”. Son el contexto que permite transformar datos crudos en información útil.\nCalidad del metadato: Deben ser oportunos y estar siempre actualizados para reflejar la realidad de la organización.\nClasificación principal:\n\nMetadatos de Negocio: Glosario de términos, reglas de negocio, métricas y dueños de los datos (Data Stewards).\nMetadatos Técnicos: Diccionarios de datos, tipos de datos, diagramas ER y linaje de datos.\nMetadatos Operacionales: Logs de ejecución, fechas de última actualización y auditorías.\n\nValor estratégico: Mantener consistencia entre el vocabulario de Negocio y el técnico garantiza una comunicación efectiva entre las áreas e IT."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#datos-maestros",
+    "href": "quarto/extraccion_datos_tabular/index.html#datos-maestros",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Datos Maestros",
+    "text": "Datos Maestros\n\nEntidades principales para el negocio:\n\nClientes\nProductos\n\n¿Más Ejemplos?\nLa Confianza es clave.\nTienen un impacto muy fuerte\n¿Qué pasa cuando los datos maestros no son confiables?"
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#datos-operacionales",
+    "href": "quarto/extraccion_datos_tabular/index.html#datos-operacionales",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Datos Operacionales",
+    "text": "Datos Operacionales\n\nDatos derivados de las transacciones de negocio\nEstructurados\nAlto nivel de detalle\nAlcance generalmente es Local (LOB)\nSi la confianza en este dominio es buena, facilita los procesos para derivar Datos Analíticos"
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#datos-no-estructurados",
+    "href": "quarto/extraccion_datos_tabular/index.html#datos-no-estructurados",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Datos No Estructurados",
+    "text": "Datos No Estructurados\n\nTambién tiene un propósito operacional\nSe distinguen pues suelen tener requerimientos diferentes\nSuelen ser “fotos instantáneas” durante los procesos de negocio. Una vez creados se mantienen estáticos.\nContratos, imágenes, notas en un CRM.\nCon el tiempo pueden perder precisión\nEj. La persona que escribió un texto ya no trabaja en la organización."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#datos-analíticos",
+    "href": "quarto/extraccion_datos_tabular/index.html#datos-analíticos",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Datos Analíticos",
+    "text": "Datos Analíticos\n\nSe derivan de los Datos Operacionales, apoyándose en los demás dominios\nProducir Datos Analíticos requiere normalmente:\n\nIntegración\nLimpieza\nEliminar duplicados\n\nDebe tener buenos niveles de precisión, consistencia y relevancia.\nEl alcance puede ser tanto local como empresarial."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#modelo-de-referencia-de-información",
+    "href": "quarto/extraccion_datos_tabular/index.html#modelo-de-referencia-de-información",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Modelo de Referencia de Información",
+    "text": "Modelo de Referencia de Información\n\nMetadatos: Especificaciones de Negocio.\nDatos Maestros: Generada de acuerdo a las definiciones de Metadatos.\nDatos Operacionales Y Datos No Estructurados: Referencian a los datos Maestros.\nDatos Analíticos: Derivados de los otros dominios."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#metadatos-y-datos-maestros-twitter",
+    "href": "quarto/extraccion_datos_tabular/index.html#metadatos-y-datos-maestros-twitter",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Metadatos y Datos Maestros Twitter",
+    "text": "Metadatos y Datos Maestros Twitter\n\nMetadatos twitter:\n\nCampos que definen un usuario\nCampos que definen un tweet\nDiccionario de Datos BDs\n\nDatos Maestros Twitter:\n\nCuentas\nRelación follow\nPerfil"
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#datos-operacionales-y-no-estructurados",
+    "href": "quarto/extraccion_datos_tabular/index.html#datos-operacionales-y-no-estructurados",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Datos Operacionales y No Estructurados",
+    "text": "Datos Operacionales y No Estructurados\n\nDatos Operacionales (Estructurados):\n\nTweets, Mensajes, Solicitudes, Logs…\n\nDatos no estructurados:\n\nTexto de tweets, Mensajes, Fotos, Videos…"
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#datos-analíticos-twitter",
+    "href": "quarto/extraccion_datos_tabular/index.html#datos-analíticos-twitter",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Datos Analíticos Twitter",
+    "text": "Datos Analíticos Twitter\n\nTendencias\nTop hashtags\nEstadísticas (#RTs, #Favs)\nServicios de personalización"
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#mapa-general-de-datos-analíticos",
+    "href": "quarto/extraccion_datos_tabular/index.html#mapa-general-de-datos-analíticos",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Mapa General de Datos Analíticos",
+    "text": "Mapa General de Datos Analíticos\n\nFuentes de Datos: ERP, Archivos (CSV), etc.\nBodega de Datos (Data Warehouse): ODS, EDW, Data Marts (DM).\nConsumo: Reportes, OLAP, Minería de Datos."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#tipos-de-bodegas-de-datos",
+    "href": "quarto/extraccion_datos_tabular/index.html#tipos-de-bodegas-de-datos",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Tipos de Bodegas de Datos",
+    "text": "Tipos de Bodegas de Datos\nOperational Data Store (ODS) - Datos limpios, única fuente de verdad. - Relativamente Normalizados (3ra y 4ta forma normal). - Alta cantidad de detalles, corto rango de tiempo.\nEnterprise Data Warehouse (EDW) - Multidimensional (Dimensiones y Hechos), no está normalizado. - Nivel de detalle menor a ODS (algunas agregaciones/resúmenes). - Rango de tiempo mayor."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#tipos-de-bodegas-de-datos-cont.",
+    "href": "quarto/extraccion_datos_tabular/index.html#tipos-de-bodegas-de-datos-cont.",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Tipos de Bodegas de Datos (Cont.)",
+    "text": "Tipos de Bodegas de Datos (Cont.)\nData Mart (DM) - Multidimensional. - Orientado a un área de la empresa en particular. - Agregaciones y resúmenes."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#etl",
+    "href": "quarto/extraccion_datos_tabular/index.html#etl",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "ETL",
+    "text": "ETL\n\nExtracción (E):\n\nConectarse a una fuente de datos.\nSeleccionar y leer los datos relevantes.\n\nTransformación (T):\n\nHacer operaciones sobre los datos.\n\nCarga (L):\n\nGuardar el resultado en un destino."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#extracción---fuentes-de-datos-tabulares",
+    "href": "quarto/extraccion_datos_tabular/index.html#extracción---fuentes-de-datos-tabulares",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Extracción - Fuentes de Datos Tabulares",
+    "text": "Extracción - Fuentes de Datos Tabulares"
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#extracción---fuentes-de-datos-jerárquico",
+    "href": "quarto/extraccion_datos_tabular/index.html#extracción---fuentes-de-datos-jerárquico",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Extracción - Fuentes de Datos Jerárquico",
+    "text": "Extracción - Fuentes de Datos Jerárquico"
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#csv-comma-separated-values",
+    "href": "quarto/extraccion_datos_tabular/index.html#csv-comma-separated-values",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "CSV (comma-separated values)",
+    "text": "CSV (comma-separated values)\n\nEs un archivo en el que los datos están organizados en FILAS y los atributos o campos se separan entre sí por un caracter separador.\nLa primera fila suele ser el encabezado.\nCada línea debe tener el mismo número de campos, que pueden ser numéricos o cadenas de caracteres.\nOpciones de formato:\n\nSeparador: “,” ó “;” (TSV usa tabs).\nComillas: Opcionales, pero permiten diferenciar texto de un número (Ej. Teléfono) y evitan la eliminación de ceros a la izquierda."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#carga-l---destinos",
+    "href": "quarto/extraccion_datos_tabular/index.html#carga-l---destinos",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Carga (L) - Destinos",
+    "text": "Carga (L) - Destinos\n\nCsv:\n\nVentajas: Archivo de texto plano, interoperabilidad, formato abierto.\nDesventajas: No es estándar universal, problemas con tipos de datos.\n\nExcel:\n\nVentajas: Permite manejar nativamente tipos de datos más complejos.\nDesventajas: Tamaño grande, no es estándar abierto completamente.\n\nTable (Knime):\n\nVentajas: Compresión, permite trabajar con otros flujos fácilmente.\nDesventajas: No interoperable con otras herramientas."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#dbms-y-sql",
+    "href": "quarto/extraccion_datos_tabular/index.html#dbms-y-sql",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "DBMS y SQL",
+    "text": "DBMS y SQL\n\nUn DBMS es un software que permite almacenar, organizar y recuperar información de manera eficiente.\nGarantiza la integridad y seguridad de los datos almacenados.\nSQL (Structured Query Language): Lenguaje típico para la administración y consulta en bases de datos relacionales."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#integrar-fuentes---operación-join",
+    "href": "quarto/extraccion_datos_tabular/index.html#integrar-fuentes---operación-join",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Integrar fuentes - Operación JOIN",
+    "text": "Integrar fuentes - Operación JOIN\n\nInner Join: Selecciona todos los registros de A y B que cumplan la condición de cruce.\nLeft Join: Selecciona todos los registros de A y las coincidencias de B.\nRight Join: Selecciona todos los registros de B y las coincidencias de A.\nFull Join: Selecciona todos los registros de A y B sin importar si coinciden o no."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#seleccionar-y-agrupar-sql",
+    "href": "quarto/extraccion_datos_tabular/index.html#seleccionar-y-agrupar-sql",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Seleccionar y Agrupar (SQL)",
+    "text": "Seleccionar y Agrupar (SQL)\n\nSeleccionar y Filtrar:\n\nSELECT &lt;campos&gt; FROM &lt;tabla&gt; WHERE &lt;criterio&gt;\n\nAgrupaciones:\n\nGROUP BY: Resumir datos con respecto a un grupo de columnas.\nEn SELECT solo deben aparecer las columnas de agrupamiento y agregaciones de otras columnas (MIN, MAX, AVG, COUNT...)."
+  },
+  {
+    "objectID": "quarto/extraccion_datos_tabular/index.html#enlaces-de-interés",
+    "href": "quarto/extraccion_datos_tabular/index.html#enlaces-de-interés",
+    "title": "Tipos de Datos y Extracción Tabular",
+    "section": "Enlaces de Interés",
+    "text": "Enlaces de Interés\n\nDatasets públicos:\n\nhttps://github.com/caesar0301/awesome-public-datasets\nhttps://www.data.gov/\nhttps://www.datos.gov.co/\n\nReferencias:\n\nBeaulieu, Alan. Learning SQL: Generate, Manipulate, and Retrieve Data. O’Reilly Media, 2020.\nData integration blueprint and modeling techniques for a scalable and sustainable architecture, Anthony Giordano, IBM Press Pearson, 2011."
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#repaso-1",
+    "href": "quarto/fuentes_jerarquicas/index.html#repaso-1",
+    "title": "Fuentes Jerarquicas",
+    "section": "Repaso",
+    "text": "Repaso\n\n\nBases de datos relacionales - Codd - 1970 - Basado en el álgebra relacional - Datos lógicamente organizados en tablas - Compuestas por filas y columnas"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#tablas-en-modelo-relacional",
+    "href": "quarto/fuentes_jerarquicas/index.html#tablas-en-modelo-relacional",
+    "title": "Fuentes Jerarquicas",
+    "section": "Tablas en modelo relacional",
+    "text": "Tablas en modelo relacional\n\n\n\n\n\n\n\n\nEntidad de CLIENTE\n\n\n\n\n\ncliente_id\nnombre_cliente\ndireccion\n\n\n\n\n1\nPablo\ncra 1 # 2 -3\n\n\n2\nMaría\ncalle 2 # 1 -3\n\n\n3\nCamila\ncra 3 # 4 -6\n\n\n\n\n\n\n\n\n\n\n\n\n\nEntidad de PRODUCTO\n\n\n\n\n\nproducto_id\nnombre_producto\n\n\n\n\n10\nEscoba\n\n\n11\nLápiz\n\n\n12\nBorrador\n\n\n\n\n\n\n\n\n\n\n\n\n\nTabla de ORDEN\n\n\n\n\n\norden_id\ncliente_id\nproducto_id\nfecha_orden\n\n\n\n\nAA01\n2\n10\n10/10/2020\n\n\nAA02\n3\n11\n11/10/2020\n\n\nAA03\n1\n12\n12/10/2020"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#modelo-entidad-relación",
+    "href": "quarto/fuentes_jerarquicas/index.html#modelo-entidad-relación",
+    "title": "Fuentes Jerarquicas",
+    "section": "Modelo Entidad Relación",
+    "text": "Modelo Entidad Relación"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#ventajas-del-modelo-relacional",
+    "href": "quarto/fuentes_jerarquicas/index.html#ventajas-del-modelo-relacional",
+    "title": "Fuentes Jerarquicas",
+    "section": "Ventajas del Modelo Relacional",
+    "text": "Ventajas del Modelo Relacional\n\nIntegración perfecta: Se conectan de forma nativa con casi cualquier herramienta de BI (Tableau, PowerBI) y librerías de ciencia de datos (Pandas, dplyr).\nDatos limpios desde el origen: Su estructura estricta evita duplicados y errores lógicos, lo que nos ahorra muchísimo tiempo en la fase de limpieza de datos.\nExtracción rápida y universal: SQL es el estándar de la industria. Permite filtrar, agrupar y preparar datasets rápidamente antes de pasarlos al modelo.\nAlta concurrencia: Soportan a múltiples analistas, científicos de datos y sistemas que consultan la información al mismo tiempo de forma segura."
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#desventajas-del-modelo-relacional",
+    "href": "quarto/fuentes_jerarquicas/index.html#desventajas-del-modelo-relacional",
+    "title": "Fuentes Jerarquicas",
+    "section": "Desventajas del Modelo Relacional",
+    "text": "Desventajas del Modelo Relacional\n\nPoca flexibilidad para experimentar: Si durante un proyecto descubres que necesitas añadir nuevas variables o atributos constantemente, alterar el esquema es lento y doloroso.\nCuello de botella con Big Data: Cuando el volumen de datos crece drásticamente (millones de registros históricos), las consultas complejas y los cruces masivos (JOINs) se vuelven muy lentos.\nMala gestión de datos no estructurados: No son la herramienta adecuada si tu modelo necesita procesar grandes volúmenes de texto libre para NLP, imágenes, audio o archivos JSON anidados.\nIneficiencia con estructuras complejas: Forzar relaciones jerárquicas, grafos o matrices muy dispersas (sparse data) en tablas planas complica el análisis y hace mucho más pesado el feature engineering."
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#tipos-de-base-de-datos",
+    "href": "quarto/fuentes_jerarquicas/index.html#tipos-de-base-de-datos",
+    "title": "Fuentes Jerarquicas",
+    "section": "Tipos de Base de datos",
+    "text": "Tipos de Base de datos\n\nTomado de: https://learn.microsoft.com/es-es/dotnet/architecture/cloud-native/relational-vs-nosql-data"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#tipos-de-base-de-datos-1",
+    "href": "quarto/fuentes_jerarquicas/index.html#tipos-de-base-de-datos-1",
+    "title": "Fuentes Jerarquicas",
+    "section": "Tipos de Base de datos",
+    "text": "Tipos de Base de datos"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#características-del-formato-xml",
+    "href": "quarto/fuentes_jerarquicas/index.html#características-del-formato-xml",
+    "title": "Fuentes Jerarquicas",
+    "section": "Características del Formato XML",
+    "text": "Características del Formato XML\n\nLegible para humanos y máquinas: Su formato basado en texto puro facilita la comprensión tanto para desarrolladores como para sistemas automatizados.\nExtensible: No tiene un vocabulario predefinido; permite definir etiquetas propias según las necesidades del dominio.\nEstructura jerárquica: Organiza los datos en forma de árbol, partiendo de un elemento raíz y llegando a múltiples nodos hijos.\nIndependiente del lenguaje/plataforma: Puede ser procesado por cualquier sistema operativo y lenguaje de programación."
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#características-del-formato-xml-1",
+    "href": "quarto/fuentes_jerarquicas/index.html#características-del-formato-xml-1",
+    "title": "Fuentes Jerarquicas",
+    "section": "Características del Formato XML",
+    "text": "Características del Formato XML\n\nAutocontenido: Los datos llevan consigo su propia descripción y contexto semántico mediante las etiquetas que los envuelven.\nLenguaje de consulta (XPath): Permite navegar y extraer fragmentos específicos de información dentro del documento de manera eficiente.\nValidación estructural (Extra): Permite una validación estricta mediante esquemas (como XSD o DTD) para garantizar que los datos cumplen un formato acordado.\nUso en estándares (Extra): Es la tecnología base para servicios web tradicionales (SOAP) y para formatos como SVG o RSS."
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#ejemplo-de-documento-xml",
+    "href": "quarto/fuentes_jerarquicas/index.html#ejemplo-de-documento-xml",
+    "title": "Fuentes Jerarquicas",
+    "section": "Ejemplo de Documento XML",
+    "text": "Ejemplo de Documento XML"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#modelo-jerárquico",
+    "href": "quarto/fuentes_jerarquicas/index.html#modelo-jerárquico",
+    "title": "Fuentes Jerarquicas",
+    "section": "Modelo Jerárquico",
+    "text": "Modelo Jerárquico\n\nTomado de https://todiagram.com/editor"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#lenguaje-de-consulta-xpath",
+    "href": "quarto/fuentes_jerarquicas/index.html#lenguaje-de-consulta-xpath",
+    "title": "Fuentes Jerarquicas",
+    "section": "Lenguaje de Consulta XPath",
+    "text": "Lenguaje de Consulta XPath\n\n\n\n\n\n\n\n\nExpresiones XPath\n\n\n\n\n\n\n\nXML de Ejemplo:"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#ejemplo-de-código-procesamiento-de-xml-con-pandas",
+    "href": "quarto/fuentes_jerarquicas/index.html#ejemplo-de-código-procesamiento-de-xml-con-pandas",
+    "title": "Fuentes Jerarquicas",
+    "section": "Ejemplo de Código: Procesamiento de XML con Pandas",
+    "text": "Ejemplo de Código: Procesamiento de XML con Pandas\nimport pandas as pd\n\nxml_data = \"\"\"\n&lt;empleados&gt;\n&lt;empleado id=\"101\"&gt;&lt;nombre&gt;Ana&lt;/nombre&gt;&lt;area&gt;Ventas&lt;/area&gt;&lt;/empleado&gt;\n&lt;empleado id=\"102\"&gt;&lt;nombre&gt;Luis&lt;/nombre&gt;&lt;area&gt;IT&lt;/area&gt;&lt;/empleado&gt;\n&lt;empleado id=\"103\"&gt;&lt;nombre&gt;Marta&lt;/nombre&gt;&lt;area&gt;Legal&lt;/area&gt;&lt;/empleado&gt;\n&lt;/empleados&gt;\n\"\"\"\n\ndf = pd.read_xml(xml_data)\n\nprint(df)"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#motivación",
+    "href": "quarto/fuentes_jerarquicas/index.html#motivación",
+    "title": "Fuentes Jerarquicas",
+    "section": "Motivación",
+    "text": "Motivación\n\n¿Qué problemas pueden encontrar en este DataSet?"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#motivación-1",
+    "href": "quarto/fuentes_jerarquicas/index.html#motivación-1",
+    "title": "Fuentes Jerarquicas",
+    "section": "Motivación",
+    "text": "Motivación\n\n\nObjetivos de la Preparación de datos\n\nObtención de la mayor cantidad de datos útiles para el proyecto de analítica (1)\nCorregir el mayor número de datos erróneos o inconsistentes e irrelevantes (2,3)\nPresentación de los datos de una manera apropiada para los modelos. (4)"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#actividades-limpieza-de-datos-1",
+    "href": "quarto/fuentes_jerarquicas/index.html#actividades-limpieza-de-datos-1",
+    "title": "Fuentes Jerarquicas",
+    "section": "Actividades limpieza de datos",
+    "text": "Actividades limpieza de datos\nAtributos (Columnas) - Detección y tratamiento de atributos con valores únicos. - Detección y tratamiento de atributos discretos con valores diferentes para cada registro. - Detección de atributos sinónimos con la variable objetivo. - Detección y tratamiento de atributos redundantes.\nDatos (Filas) - Detección y tratamiento de datos perdidos. - Detección y tratamiento de datos con valores inconsistentes o atípicos. - Detección y tratamiento de datos redundantes."
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#atributos-con-valores-únicos",
+    "href": "quarto/fuentes_jerarquicas/index.html#atributos-con-valores-únicos",
+    "title": "Fuentes Jerarquicas",
+    "section": "Atributos con valores únicos",
+    "text": "Atributos con valores únicos\n\n\n\nCaso: Todos los datos tienen el mismo valor\n\nEjemplo: Nacionalidad (todos son colombianos)\n\nCaso: Casi todos los valores son nulos\n\nEjemplo: Cabina (77.1 %)\n\nAcción: Eliminar la columna"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#atributos-discretos-con-valores-diferentes",
+    "href": "quarto/fuentes_jerarquicas/index.html#atributos-discretos-con-valores-diferentes",
+    "title": "Fuentes Jerarquicas",
+    "section": "Atributos discretos con valores diferentes",
+    "text": "Atributos discretos con valores diferentes\n\n\n\nCaso: Datos con valores diferentes para cada registro (Alta Cardinalidad)\n\nEjemplo: Dirección proveedor, número de teléfono\nEjemplo: Id del Pasajero, Nombre del Pasajero\n\nAcción: Eliminar la columna\nAcción: Hacer Ingeniería de Características\n\nEjemplo: Barrio, Localidad, Ciudad a partir de la Dirección"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#atributos-sinónimos-con-variable-objetivo",
+    "href": "quarto/fuentes_jerarquicas/index.html#atributos-sinónimos-con-variable-objetivo",
+    "title": "Fuentes Jerarquicas",
+    "section": "Atributos sinónimos con variable objetivo",
+    "text": "Atributos sinónimos con variable objetivo\n\nCaso: Datos sinónimos con la variable objetivo (técnicas supervisadas) o atributos no observables al momento de la predicción\n\nEjemplo: Fecha de reparación cuando se desea predecir si requiere reparación.\nEjemplo: Promedio de la deserción para predecir deserción.\nEjemplo: Número de asesinatos para predecir si habrá fallecidos\nEjemplo: TieneDiabetes, Edad en la que contrajo Diabetes\n\nAcción: Eliminar la columna"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#atributos-redundantes-concepto",
+    "href": "quarto/fuentes_jerarquicas/index.html#atributos-redundantes-concepto",
+    "title": "Fuentes Jerarquicas",
+    "section": "Atributos Redundantes: Concepto",
+    "text": "Atributos Redundantes: Concepto\nColinealidad: Ocurre cuando dos o más variables independientes están altamente correlacionadas.\nMétodo: Coeficiente de Correlación de Pearson - Fórmula: [ r = ]"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#atributos-redundantes-coeficiente-de-pearson",
+    "href": "quarto/fuentes_jerarquicas/index.html#atributos-redundantes-coeficiente-de-pearson",
+    "title": "Fuentes Jerarquicas",
+    "section": "Atributos Redundantes: Coeficiente de Pearson",
+    "text": "Atributos Redundantes: Coeficiente de Pearson\n\nEl coeficiente ( r ) toma valores entre -1 y 1:\n\n( r ): Alta correlación positiva.\n( r ): Alta correlación negativa.\n( r ): Sin correlación.\n\nCriterio de Colinealidad: [ |r| &gt; 0.5 ]"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#atributos-redundantes",
+    "href": "quarto/fuentes_jerarquicas/index.html#atributos-redundantes",
+    "title": "Fuentes Jerarquicas",
+    "section": "Atributos Redundantes",
+    "text": "Atributos Redundantes\n\nCaso: Atributos colineales entre sí.\nForma de detección: Coeficiente de correlación.\nAcción: Eliminar uno de los dos atributos."
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#datos-perdidos",
+    "href": "quarto/fuentes_jerarquicas/index.html#datos-perdidos",
+    "title": "Fuentes Jerarquicas",
+    "section": "Datos perdidos",
+    "text": "Datos perdidos\n\n\n\nCaso: Datos perdidos (Missing Values): Ocurren cuando no se almacena ningún valor para una variable en una observación.\n\nEjemplo: Representados como “?”, “NA”, 0 o celdas vacías."
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#datos-perdidos-eliminación-e-imputación-simple",
+    "href": "quarto/fuentes_jerarquicas/index.html#datos-perdidos-eliminación-e-imputación-simple",
+    "title": "Fuentes Jerarquicas",
+    "section": "Datos perdidos: Eliminación e Imputación Simple",
+    "text": "Datos perdidos: Eliminación e Imputación Simple\n\nDiagnóstico: Evaluar cada caso con expertos del negocio.\nEliminación:\n\nBorrar registros con campos perdidos.\nEliminar columna si la proporción de nulos es extrema.\n\nReemplazo Simple:\n\nSustituir por una constante global.\nReemplazar por la media (simétrica) o mediana (asimétrica).\nReemplazar por la moda en datos categóricos."
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#datos-perdidos-imputación-avanzada",
+    "href": "quarto/fuentes_jerarquicas/index.html#datos-perdidos-imputación-avanzada",
+    "title": "Fuentes Jerarquicas",
+    "section": "Datos perdidos: Imputación Avanzada",
+    "text": "Datos perdidos: Imputación Avanzada\n\nReemplazo por Clase: Usar media o mediana del campo por grupo/clase.\nDeducción: Inferir el valor a partir de otros atributos relacionados.\nImputación Predictiva: Estimar el valor faltante mediante modelos.\nSin Alteración: Dejarlo como valor faltante (si el modelo lo soporta)."
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#datos-atípicos",
+    "href": "quarto/fuentes_jerarquicas/index.html#datos-atípicos",
+    "title": "Fuentes Jerarquicas",
+    "section": "Datos Atípicos",
+    "text": "Datos Atípicos\nConcepto: Los datos atípicos son observaciones que se desvían significativamente del comportamiento general de los datos.\n\nDetección\n\nA través de herramientas Visuales"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#datos-atípicos-rango-intercuartílico-iqr",
+    "href": "quarto/fuentes_jerarquicas/index.html#datos-atípicos-rango-intercuartílico-iqr",
+    "title": "Fuentes Jerarquicas",
+    "section": "Datos Atípicos: Rango Intercuartílico (IQR)",
+    "text": "Datos Atípicos: Rango Intercuartílico (IQR)\n\nCálculo del IQR: ( = Q_3 - Q_1 )\nLímites de aceptación:\n\nLímite inferior: ( Q_1 - 1.5 )\nLímite superior: ( Q_3 + 1.5 )\n\n\nCondición de outliers: [ x &lt; Q_1 - 1.5 x &gt; Q_3 + 1.5 ]"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#datos-atípicos-1",
+    "href": "quarto/fuentes_jerarquicas/index.html#datos-atípicos-1",
+    "title": "Fuentes Jerarquicas",
+    "section": "Datos Atípicos",
+    "text": "Datos Atípicos\n\n\nReglas sugeridas por (Jafari 2022)"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#datos-atípicos-2",
+    "href": "quarto/fuentes_jerarquicas/index.html#datos-atípicos-2",
+    "title": "Fuentes Jerarquicas",
+    "section": "Datos Atípicos",
+    "text": "Datos Atípicos\n\nSoluciones:\n\nIgnorarlos (si la técnica es robusta).\nFiltrarlos (eliminar fila o columna).\nReemplazarlos (por nulo, límites, media o predicción).\nDiscretizar la columna."
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#métodos-para-manejo-de-datos-faltantes",
+    "href": "quarto/fuentes_jerarquicas/index.html#métodos-para-manejo-de-datos-faltantes",
+    "title": "Fuentes Jerarquicas",
+    "section": "Métodos para manejo de datos faltantes",
+    "text": "Métodos para manejo de datos faltantes"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#métodos-para-manejo-de-datos-duplicados",
+    "href": "quarto/fuentes_jerarquicas/index.html#métodos-para-manejo-de-datos-duplicados",
+    "title": "Fuentes Jerarquicas",
+    "section": "Métodos para manejo de datos duplicados",
+    "text": "Métodos para manejo de datos duplicados"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#arquitectura-de-data-observability",
+    "href": "quarto/fuentes_jerarquicas/index.html#arquitectura-de-data-observability",
+    "title": "Fuentes Jerarquicas",
+    "section": "Arquitectura de Data Observability",
+    "text": "Arquitectura de Data Observability\nConcepto: Permiten monitorear, analizar y comprender la calidad y el rendimiento de los datos, ayudando a diagnosticar y resolver incidentes de manera rápida y eficiente."
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#dashboards-de-data-observability",
+    "href": "quarto/fuentes_jerarquicas/index.html#dashboards-de-data-observability",
+    "title": "Fuentes Jerarquicas",
+    "section": "Dashboards de Data Observability",
+    "text": "Dashboards de Data Observability"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#comparación-de-herramientas",
+    "href": "quarto/fuentes_jerarquicas/index.html#comparación-de-herramientas",
+    "title": "Fuentes Jerarquicas",
+    "section": "Comparación de Herramientas",
+    "text": "Comparación de Herramientas"
+  },
+  {
+    "objectID": "quarto/fuentes_jerarquicas/index.html#references",
+    "href": "quarto/fuentes_jerarquicas/index.html#references",
+    "title": "Fuentes Jerarquicas",
+    "section": "References",
+    "text": "References\n\n\nErl, Thomas, Wajid Khattak, and Paul Buhler. 2016. Big Data Fundamentals: Concepts, Drivers & Techniques. Prentice Hall Press.\n\n\nJafari, Roy. 2022. Hands-on Data Preprocessing in Python: Learn How to Effectively Prepare Data for Successful Data Analytics. Packt Publishing Ltd.\n\n\nKleppmann, Martin. 2017. Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems. \" O’Reilly Media, Inc.\".\n\n\nKreibich, Jay. 2010. Using SQLite. \" O’Reilly Media, Inc.\".\n\n\nMcKinney, Wes. 2022. Python for Data Analysis. \" O’Reilly Media, Inc.\".\n\n\nOluleye, Ayodele. 2023. Exploratory Data Analysis with Python Cookbook: Over 50 Recipes to Analyze, Visualize, and Extract Insights from Structured and Unstructured Data. Packt Publishing Ltd.\n\n\nProvost, Foster, and Tom Fawcett. 2013. Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking. \" O’Reilly Media, Inc.\".\n\n\nRALPH KIMBALL, Joe Caserta. 2004. The Data Warehouse Etl Toolkit: Practical Techniques for Extracting, Cleaning, Conforming, and Delivering Data. Indianapolis, IN: Wiley.\n\n\nVajjala, Sowmya, Bodhisattwa Majumder, Anuj Gupta, and Harshit Surana. 2020. Practical Natural Language Processing: A Comprehensive Guide to Building Real-World NLP Systems. O’Reilly Media."
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#recordando",
+    "href": "quarto/limpieza_datos/index.html#recordando",
+    "title": "Limpieza de Datos",
+    "section": "Recordando…",
+    "text": "Recordando…\n\n¿Qué metodologías existen para los proyectos de minería de datos o de analítica de datos?\n¿Por qué es necesario preparar los datos?\n¿Por qué los datos tienen problemas?\n¿Qué sucede si no se preparan los datos?\n¿Qué actividades tiene el macro-proceso de preparación de datos?"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#metodología-crisp-dm",
+    "href": "quarto/limpieza_datos/index.html#metodología-crisp-dm",
+    "title": "Limpieza de Datos",
+    "section": "Metodología CRISP-DM",
+    "text": "Metodología CRISP-DM\n\nActividades del proceso CRISP-DM"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#motivación",
+    "href": "quarto/limpieza_datos/index.html#motivación",
+    "title": "Limpieza de Datos",
+    "section": "Motivación",
+    "text": "Motivación\n\n¿Qué problemas pueden encontrar en este DataSet?"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#motivación-1",
+    "href": "quarto/limpieza_datos/index.html#motivación-1",
+    "title": "Limpieza de Datos",
+    "section": "Motivación",
+    "text": "Motivación\n\n\nObjetivos de la Preparación de datos\n\nObtención de la mayor cantidad de datos útiles para el proyecto de analítica (1)\nCorregir el mayor número de datos erróneos o inconsistentes e irrelevantes (2,3)\nPresentación de los datos de una manera apropiada para los modelos. (4)"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#actividades-limpieza-de-datos-1",
+    "href": "quarto/limpieza_datos/index.html#actividades-limpieza-de-datos-1",
+    "title": "Limpieza de Datos",
+    "section": "Actividades limpieza de datos",
+    "text": "Actividades limpieza de datos\nAtributos (Columnas) - Detección y tratamiento de atributos con valores únicos. - Detección y tratamiento de atributos discretos con valores diferentes para cada registro. - Detección de atributos sinónimos con la variable objetivo. - Detección y tratamiento de atributos redundantes.\nDatos (Filas) - Detección y tratamiento de datos perdidos. - Detección y tratamiento de datos con valores inconsistentes o atípicos. - Detección y tratamiento de datos redundantes."
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#atributos-con-valores-únicos",
+    "href": "quarto/limpieza_datos/index.html#atributos-con-valores-únicos",
+    "title": "Limpieza de Datos",
+    "section": "Atributos con valores únicos",
+    "text": "Atributos con valores únicos\n\n\n\nCaso: Todos los datos tienen el mismo valor\n\nEjemplo: Nacionalidad (todos son colombianos)\n\nCaso: Casi todos los valores son nulos\n\nEjemplo: Cabina (77.1 %)\n\nAcción: Eliminar la columna"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#atributos-discretos-con-valores-diferentes",
+    "href": "quarto/limpieza_datos/index.html#atributos-discretos-con-valores-diferentes",
+    "title": "Limpieza de Datos",
+    "section": "Atributos discretos con valores diferentes",
+    "text": "Atributos discretos con valores diferentes\n\n\n\nCaso: Datos con valores diferentes para cada registro (Alta Cardinalidad)\n\nEjemplo: Dirección proveedor, número de teléfono\nEjemplo: Id del Pasajero, Nombre del Pasajero\n\nAcción: Eliminar la columna\nAcción: Hacer Ingeniería de Características\n\nEjemplo: Barrio, Localidad, Ciudad a partir de la Dirección"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#atributos-sinónimos-con-variable-objetivo",
+    "href": "quarto/limpieza_datos/index.html#atributos-sinónimos-con-variable-objetivo",
+    "title": "Limpieza de Datos",
+    "section": "Atributos sinónimos con variable objetivo",
+    "text": "Atributos sinónimos con variable objetivo\n\nCaso: Datos sinónimos con la variable objetivo (técnicas supervisadas) o atributos no observables al momento de la predicción\n\nEjemplo: Fecha de reparación cuando se desea predecir si requiere reparación.\nEjemplo: Promedio de la deserción para predecir deserción.\nEjemplo: Número de asesinatos para predecir si habrá fallecidos\nEjemplo: TieneDiabetes, Edad en la que contrajo Diabetes\n\nAcción: Eliminar la columna"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#atributos-redundantes-concepto",
+    "href": "quarto/limpieza_datos/index.html#atributos-redundantes-concepto",
+    "title": "Limpieza de Datos",
+    "section": "Atributos Redundantes: Concepto",
+    "text": "Atributos Redundantes: Concepto\nColinealidad: Ocurre cuando dos o más variables independientes están altamente correlacionadas.\nMétodo: Coeficiente de Correlación de Pearson - Fórmula: [ r = ]"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#atributos-redundantes-coeficiente-de-pearson",
+    "href": "quarto/limpieza_datos/index.html#atributos-redundantes-coeficiente-de-pearson",
+    "title": "Limpieza de Datos",
+    "section": "Atributos Redundantes: Coeficiente de Pearson",
+    "text": "Atributos Redundantes: Coeficiente de Pearson\n\nEl coeficiente ( r ) toma valores entre -1 y 1:\n\n( r ): Alta correlación positiva.\n( r ): Alta correlación negativa.\n( r ): Sin correlación.\n\nCriterio de Colinealidad: [ |r| &gt; 0.5 ]"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#atributos-redundantes",
+    "href": "quarto/limpieza_datos/index.html#atributos-redundantes",
+    "title": "Limpieza de Datos",
+    "section": "Atributos Redundantes",
+    "text": "Atributos Redundantes\n\nCaso: Atributos colineales entre sí.\nForma de detección: Coeficiente de correlación.\nAcción: Eliminar uno de los dos atributos."
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#datos-perdidos",
+    "href": "quarto/limpieza_datos/index.html#datos-perdidos",
+    "title": "Limpieza de Datos",
+    "section": "Datos perdidos",
+    "text": "Datos perdidos\n\n\n\nCaso: Datos perdidos (Missing Values): Ocurren cuando no se almacena ningún valor para una variable en una observación.\n\nEjemplo: Representados como “?”, “NA”, 0 o celdas vacías."
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#datos-perdidos-eliminación-e-imputación-simple",
+    "href": "quarto/limpieza_datos/index.html#datos-perdidos-eliminación-e-imputación-simple",
+    "title": "Limpieza de Datos",
+    "section": "Datos perdidos: Eliminación e Imputación Simple",
+    "text": "Datos perdidos: Eliminación e Imputación Simple\n\nDiagnóstico: Evaluar cada caso con expertos del negocio.\nEliminación:\n\nBorrar registros con campos perdidos.\nEliminar columna si la proporción de nulos es extrema.\n\nReemplazo Simple:\n\nSustituir por una constante global.\nReemplazar por la media (simétrica) o mediana (asimétrica).\nReemplazar por la moda en datos categóricos."
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#datos-perdidos-imputación-avanzada",
+    "href": "quarto/limpieza_datos/index.html#datos-perdidos-imputación-avanzada",
+    "title": "Limpieza de Datos",
+    "section": "Datos perdidos: Imputación Avanzada",
+    "text": "Datos perdidos: Imputación Avanzada\n\nReemplazo por Clase: Usar media o mediana del campo por grupo/clase.\nDeducción: Inferir el valor a partir de otros atributos relacionados.\nImputación Predictiva: Estimar el valor faltante mediante modelos.\nSin Alteración: Dejarlo como valor faltante (si el modelo lo soporta)."
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#datos-atípicos",
+    "href": "quarto/limpieza_datos/index.html#datos-atípicos",
+    "title": "Limpieza de Datos",
+    "section": "Datos Atípicos",
+    "text": "Datos Atípicos\nConcepto: Los datos atípicos son observaciones que se desvían significativamente del comportamiento general de los datos.\n\nDetección\n\nA través de herramientas Visuales"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#datos-atípicos-rango-intercuartílico-iqr",
+    "href": "quarto/limpieza_datos/index.html#datos-atípicos-rango-intercuartílico-iqr",
+    "title": "Limpieza de Datos",
+    "section": "Datos Atípicos: Rango Intercuartílico (IQR)",
+    "text": "Datos Atípicos: Rango Intercuartílico (IQR)\n\nCálculo del IQR: ( = Q_3 - Q_1 )\nLímites de aceptación:\n\nLímite inferior: ( Q_1 - 1.5 )\nLímite superior: ( Q_3 + 1.5 )\n\n\nCondición de outliers: [ x &lt; Q_1 - 1.5 x &gt; Q_3 + 1.5 ]"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#datos-atípicos-1",
+    "href": "quarto/limpieza_datos/index.html#datos-atípicos-1",
+    "title": "Limpieza de Datos",
+    "section": "Datos Atípicos",
+    "text": "Datos Atípicos\n\n\nReglas sugeridas por (Jafari 2022)"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#datos-atípicos-2",
+    "href": "quarto/limpieza_datos/index.html#datos-atípicos-2",
+    "title": "Limpieza de Datos",
+    "section": "Datos Atípicos",
+    "text": "Datos Atípicos\n\nSoluciones:\n\nIgnorarlos (si la técnica es robusta).\nFiltrarlos (eliminar fila o columna).\nReemplazarlos (por nulo, límites, media o predicción).\nDiscretizar la columna."
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#métodos-para-manejo-de-datos-faltantes",
+    "href": "quarto/limpieza_datos/index.html#métodos-para-manejo-de-datos-faltantes",
+    "title": "Limpieza de Datos",
+    "section": "Métodos para manejo de datos faltantes",
+    "text": "Métodos para manejo de datos faltantes"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#métodos-para-manejo-de-datos-duplicados",
+    "href": "quarto/limpieza_datos/index.html#métodos-para-manejo-de-datos-duplicados",
+    "title": "Limpieza de Datos",
+    "section": "Métodos para manejo de datos duplicados",
+    "text": "Métodos para manejo de datos duplicados"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#arquitectura-de-data-observability",
+    "href": "quarto/limpieza_datos/index.html#arquitectura-de-data-observability",
+    "title": "Limpieza de Datos",
+    "section": "Arquitectura de Data Observability",
+    "text": "Arquitectura de Data Observability\nConcepto: Monitorear, analizar y comprender la calidad y rendimiento de los datos para resolver incidentes rápidamente."
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#dashboards-de-data-observability",
+    "href": "quarto/limpieza_datos/index.html#dashboards-de-data-observability",
+    "title": "Limpieza de Datos",
+    "section": "Dashboards de Data Observability",
+    "text": "Dashboards de Data Observability"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#comparación-de-herramientas",
+    "href": "quarto/limpieza_datos/index.html#comparación-de-herramientas",
+    "title": "Limpieza de Datos",
+    "section": "Comparación de Herramientas",
+    "text": "Comparación de Herramientas"
+  },
+  {
+    "objectID": "quarto/limpieza_datos/index.html#references",
+    "href": "quarto/limpieza_datos/index.html#references",
+    "title": "Limpieza de Datos",
+    "section": "References",
+    "text": "References\n\n\nErl, Thomas, Wajid Khattak, and Paul Buhler. 2016. Big Data Fundamentals: Concepts, Drivers & Techniques. Prentice Hall Press.\n\n\nJafari, Roy. 2022. Hands-on Data Preprocessing in Python: Learn How to Effectively Prepare Data for Successful Data Analytics. Packt Publishing Ltd.\n\n\nKleppmann, Martin. 2017. Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems. \" O’Reilly Media, Inc.\".\n\n\nKreibich, Jay. 2010. Using SQLite. \" O’Reilly Media, Inc.\".\n\n\nMcKinney, Wes. 2022. Python for Data Analysis. \" O’Reilly Media, Inc.\".\n\n\nOluleye, Ayodele. 2023. Exploratory Data Analysis with Python Cookbook: Over 50 Recipes to Analyze, Visualize, and Extract Insights from Structured and Unstructured Data. Packt Publishing Ltd.\n\n\nProvost, Foster, and Tom Fawcett. 2013. Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking. \" O’Reilly Media, Inc.\".\n\n\nRALPH KIMBALL, Joe Caserta. 2004. The Data Warehouse Etl Toolkit: Practical Techniques for Extracting, Cleaning, Conforming, and Delivering Data. Indianapolis, IN: Wiley.\n\n\nVajjala, Sowmya, Bodhisattwa Majumder, Anuj Gupta, and Harshit Surana. 2020. Practical Natural Language Processing: A Comprehensive Guide to Building Real-World NLP Systems. O’Reilly Media."
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#recordando",
+    "href": "quarto/vista_minable/index.html#recordando",
+    "title": "Vista Minable",
+    "section": "Recordando…",
+    "text": "Recordando…\n\n¿Qué metodologías existen para los proyectos de minería de datos o analítica de datos?\n¿Por qué es necesario preparar los datos?\n¿Qué actividades de limpieza de atributos hay?\n¿Qué actividades de limpieza de datos hay?"
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#motivación",
+    "href": "quarto/vista_minable/index.html#motivación",
+    "title": "Vista Minable",
+    "section": "Motivación",
+    "text": "Motivación\n\n\nObjetivos de la Preparación de datos\n\nObtención de la mayor cantidad de datos útiles para el proyecto de analítica (1)\nCorregir el mayor número de datos erróneos o inconsistentes e irrelevantes (2,3)\nPresentación de los datos de una manera apropiada para los modelos. (4)"
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#definición",
+    "href": "quarto/vista_minable/index.html#definición",
+    "title": "Vista Minable",
+    "section": "Definición",
+    "text": "Definición\n\nEs una vista de datos materializada que recoge toda la información necesaria para realizar una tarea de Analítica.\nPrepare los datos lo mejor posible para reducir y facilitar el trabajo que debe hacer el algoritmo de minería."
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#proceso-de-creación-de-vista",
+    "href": "quarto/vista_minable/index.html#proceso-de-creación-de-vista",
+    "title": "Vista Minable",
+    "section": "Proceso de Creación de Vista",
+    "text": "Proceso de Creación de Vista\n\nNormalización\nDiscretización\nNumerización\nIngeniería de Características\nOverSampling o Undersampling\nAnonimización"
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#normalización-1",
+    "href": "quarto/vista_minable/index.html#normalización-1",
+    "title": "Vista Minable",
+    "section": "Normalización",
+    "text": "Normalización\n\nConsiste en tomar valores de un atributo que abarcan un rango de valores y representarlos en otro rango de valores\nEl objetivo de la normalización es transformar los atributos para que estén en una escala similar. Esto mejora el rendimiento y la estabilidad del entrenamiento del modelo.\n\n\nResumen de Técnicas de NormalizaciónTomado de: developers.google.com"
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#normalización-min-max",
+    "href": "quarto/vista_minable/index.html#normalización-min-max",
+    "title": "Vista Minable",
+    "section": "Normalización Min Max",
+    "text": "Normalización Min Max\n\nConvertir valores de características de punto flotante de su rango natural (por ejemplo, de 100 a 900) a un rango estándar, generalmente 0 y 1 (o, a veces, -1 a +1)\nEl objetivo de la normalización es transformar los atributos para que estén en una escala similar. \\begin{figure}\n\n\n\\end{figure}"
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#normalización-min-max-1",
+    "href": "quarto/vista_minable/index.html#normalización-min-max-1",
+    "title": "Vista Minable",
+    "section": "Normalización Min Max",
+    "text": "Normalización Min Max\nEcuación: \\[\\begin{equation}\nx' = (x - x_{min}) / (x_{max} - x_{min})\n\\end{equation}\\]\n\nHay una relación uno a uno entre el valor de la instancia original y el valor normalizado\nSi el primero era el doble del segundo al ser normalizados se mantendrá esta relación\nEscalamiento lineal es viable únicamente si se conocen los máximos y mínimos\nCuando es posible la existencia de atípicos, El min y el max se toman considerando (Q3 - Q1)"
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#normalización-estadística-o-z-score",
+    "href": "quarto/vista_minable/index.html#normalización-estadística-o-z-score",
+    "title": "Vista Minable",
+    "section": "Normalización Estadística o Z-Score",
+    "text": "Normalización Estadística o Z-Score\n\nZ scoreTomado de: developers.google.com"
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#normalización-estadística-o-z-score-1",
+    "href": "quarto/vista_minable/index.html#normalización-estadística-o-z-score-1",
+    "title": "Vista Minable",
+    "section": "Normalización Estadística o Z-Score",
+    "text": "Normalización Estadística o Z-Score\nEcuación: \\[\\begin{equation}\nx' = (x - \\mu) / \\sigma\n\\end{equation}\\] - Es una variación de la escala que representa el número de desviaciones estándar de la media. - Se usa para asegurarse de que las distribuciones de características tengan media = 0 y std = 1 - Es útil cuando hay algunos valores atípicos, pero no tan extremos como para que sea necesario recortarlos."
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#normalización-logarítmica",
+    "href": "quarto/vista_minable/index.html#normalización-logarítmica",
+    "title": "Vista Minable",
+    "section": "Normalización Logarítmica",
+    "text": "Normalización Logarítmica\n\nLog normalizationTomado de: developers.google.com"
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#normalización-logarítmica-1",
+    "href": "quarto/vista_minable/index.html#normalización-logarítmica-1",
+    "title": "Vista Minable",
+    "section": "Normalización Logarítmica",
+    "text": "Normalización Logarítmica\nEcuación: \\[\\begin{equation}\nx' = \\log (x)\n\\end{equation}\\] - Comprime un rango amplio a un rango estrecho. - Es útil cuando algunos de sus valores tienen muchos puntos, mientras que la mayoría de los demás valores tienen pocos puntos."
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#ejemplo-de-código-python-para-z-score",
+    "href": "quarto/vista_minable/index.html#ejemplo-de-código-python-para-z-score",
+    "title": "Vista Minable",
+    "section": "Ejemplo de Código Python para Z Score",
+    "text": "Ejemplo de Código Python para Z Score"
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#ejemplo-de-código-python-para-min-max",
+    "href": "quarto/vista_minable/index.html#ejemplo-de-código-python-para-min-max",
+    "title": "Vista Minable",
+    "section": "Ejemplo de Código Python para Min Max",
+    "text": "Ejemplo de Código Python para Min Max"
+  },
+  {
+    "objectID": "quarto/vista_minable/index.html#references",
+    "href": "quarto/vista_minable/index.html#references",
+    "title": "Vista Minable",
+    "section": "References",
+    "text": "References\n\n\nGiordano, Anthony. 2011. Data Integration Blueprint and Modeling Techniques for a Scalable and Sustainable Architecture. IBM Press Pearson.\n\n\nLarose, Daniel, and Chantal Larose. 2015. Data Mining and Predictive Analytics. Wiley.\n\n\nManning, Christopher D., Prabhakar Raghavan, and Hinrich Schütze. 2009. Introduction to Information Retrieval. Cambridge University Press.\n\n\nOrallo, José Hernández. 2005. Introducción a La Minería de Datos. Prentice Hall.\n\n\nPyle, Dorian. 1999. Data Preparation for Data Mining. Morgan Kaufmann Publishers.\n\n\nSuh, Sang C. 2012. Practical Applications of Data Mining. Jones & Bartlett Learning."
+  }
+]

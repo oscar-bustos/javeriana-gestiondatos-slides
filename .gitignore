@@ -1,5 +1,21 @@
-old/
-reference/
-.quarto/
-*_files/
-.ipynb_checkpoints/
+# Ignorar todo por defecto
+*
+
+# Permitir las carpetas que queremos versionar y su contenido
+!/docs/
+!/docs/**
+!/.agents/
+!/.agents/**
+
+# Permitir archivos específicos en la raíz
+!/.gitignore
+!/index.html
+!/README.md
+
+# Ignorar archivos temporales dentro de las carpetas permitidas
+**/.quarto/
+**/*_files/
+**/.ipynb_checkpoints/
+**/__pycache__/
+**/*.pyc
+
