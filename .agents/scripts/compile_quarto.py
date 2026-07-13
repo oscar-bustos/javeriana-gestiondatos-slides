@@ -49,6 +49,34 @@ def compile_file(file_path, quarto_bin):
         )
         if result.returncode == 0:
             print("-> Successfully compiled.")
+            
+            # Reubicar el HTML compilado a la carpeta docs/ y limpiar el temporal local
+            dir_name = os.path.basename(file_dir)
+            workspace_root = os.path.dirname(os.path.dirname(file_dir))
+            docs_dir = os.path.join(workspace_root, 'docs')
+            
+            if not os.path.exists(docs_dir):
+                os.makedirs(docs_dir)
+                
+            local_html = os.path.join(file_dir, 'index.html')
+            if os.path.exists(local_html):
+                dest_file = os.path.join(docs_dir, f"{dir_name}.html")
+                import shutil
+                import time
+                
+                max_retries = 10
+                for attempt in range(max_retries):
+                    try:
+                        shutil.copy2(local_html, dest_file)
+                        os.remove(local_html)
+                        print(f"-> Output HTML moved to: docs/{dir_name}.html")
+                        break
+                    except Exception as e:
+                        if attempt == max_retries - 1:
+                            print(f"-> Failed to move file: {e}")
+                            return False
+                        time.sleep(0.5)
+                
             return True
         else:
             print(f"-> Error: Quarto exited with code {result.returncode}")

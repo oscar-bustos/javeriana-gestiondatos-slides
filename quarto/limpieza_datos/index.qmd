@@ -1,0 +1,589 @@
+---
+title: "Limpieza de Datos"
+subtitle: "Gestión de Datos - Sesión 2"
+author: "Oscar Bustos"
+format:
+  revealjs:
+    embed-resources: true
+    theme: [default, custom.scss]
+    slide-number: true
+    show-slide-number: all
+    transition: slide
+    chalkboard: false
+    width: 1050
+    height: 700
+    logo: assets/logo_RGB.png
+bibliography: references.bib
+nocite: |
+  @*
+---
+
+<style>
+.reveal figcaption {
+  text-align: center !important;
+}
+.smaller-text {
+  font-size: 0.75em !important;
+}
+</style>
+
+
+
+
+
+
+# Repaso
+
+
+
+## Recordando...
+
+- ¿Qué metodologías existen para los proyectos de minería de datos o de analítica de datos?
+- ¿Por qué es necesario preparar los datos?
+- ¿Por qué los datos tienen problemas?
+- ¿Qué sucede si no se preparan los datos?
+- ¿Qué actividades tiene el macro-proceso de preparación de datos?
+
+
+
+
+
+# Generalidades
+
+
+
+## Metodología CRISP-DM
+
+![Actividades del proceso CRISP-DM](assets/CrispDMActividades.jpg){width="60%" fig-align="center"}
+
+
+
+
+
+
+
+## Motivación: Calidad de Datos
+
+![¿Qué problemas pueden encontrar en este DataSet?](assets/DatasetMalo.png){width="75%" fig-align="center"}
+
+
+
+
+
+## Motivación: Objetivos de Calidad
+
+:::: {.columns}
+
+::: {.column width="55%"}
+**Objetivos del Proceso:**
+
+- **Datos útiles:** Obtener la mayor cantidad de datos de calidad para analítica.
+- **Corrección:** Tratar inconsistencias, errores y datos irrelevantes.
+- **Formato:** Adaptar la presentación de los datos para los modelos.
+:::
+
+::: {.column width="45%"}
+![](assets/PreparacionDatos.png){width="100%" fig-align="center"}
+:::
+
+::::
+
+
+
+
+
+# Actividades limpieza de datos
+
+
+
+## Actividades: Limpieza de Columnas
+
+- Tratar columnas con valores únicos o nulos.
+- Manejar alta cardinalidad (valores distintos).
+- Eliminar sinónimos de la variable objetivo (fuga de datos).
+- Eliminar columnas redundantes o correlacionadas.
+
+---
+
+## Actividades: Limpieza de Filas
+
+- Tratar datos perdidos (missing values).
+- Corregir inconsistencias y valores atípicos (outliers).
+- Eliminar registros duplicados.
+
+
+
+# Niveles de Limpieza
+
+## Niveles de Limpieza de Datos
+
+- **Nivel I: Limpieza de la Tabla:** Estructura estándar, títulos legibles/codificables e identificación única de registros.
+- **Nivel II: Restructuración y Reformulación:** Adaptación del formato según el modelo o herramienta analítica.
+- **Nivel III: Evaluación y Corrección de Valores:** Tratamiento de datos perdidos (missing values), outliers y errores.
+
+---
+
+## Nivel I: Limpieza de la Tabla
+
+- **Objetivo:** Organizar visual y técnicamente la tabla antes de realizar análisis complejos.
+- **Características clave:**
+  1. Estructura de datos estándar y preferida (ej. DataFrame).
+  2. Títulos de columnas codificables e intuitivos (sin espacios ni operadores aritméticos).
+  3. Identificador único por fila (índices o llaves primarias).
+
+---
+
+## Ej. 1: Consolidación de Archivos
+
+Consolidar múltiples textos en un DataFrame:
+
+```python
+import pandas as pd
+from os import listdir
+
+archivos = listdir('Discursos/')
+df = pd.DataFrame(index=range(len(archivos)), columns=['Archivo','Contenido'])
+for i, nom in enumerate(archivos):
+    with open('Discursos/' + nom, 'r') as f:
+        df.loc[i] = [nom, f.read()]
+```
+
+---
+
+## Ej. 2: Indexación Multinivel
+
+Asignar múltiples columnas como índices para identificar de forma única e intuitiva las filas:
+
+```python
+# Eliminar columnas con valor único redundante
+df_temp = df.drop(columns=['Anio'])
+
+# Establecer índice multinivel
+df_temp.set_index(['Mes', 'Dia', 'Hora'], inplace=True)
+
+# Acceso rápido por índice
+registro = df_temp.loc[2, 24, '00:30:00']
+```
+
+---
+
+## Ej. 3: Diccionario de Columnas
+
+Para encuestas con preguntas muy largas, se usan claves cortas (`Q1`..`Qn`) y un mapeo indexado:
+
+```python
+# Crear claves cortas y diccionario de mapeo
+claves = [f'Q{i}' for i in range(1, 83)]
+dic_columnas = pd.Series(df.columns, index=claves)
+
+# Renombrar columnas para facilitar codificación
+df.columns = claves
+
+# Consultar la pregunta original
+pregunta_4 = dic_columnas['Q4']
+```
+
+---
+
+## Atributos con valores únicos
+
+:::: {.columns}
+
+::: {.column width="45%"}
+- **Mismo valor:** Todos los registros tienen idéntico valor (ej. Nacionalidad = Colombiana).
+- **Valores nulos:** Mayoría de registros vacíos (ej. Cabina con 77.1% nulos).
+- **Acción:** Eliminar la columna.
+:::
+
+::: {.column width="55%"}
+![](assets/TitanicDataset.png){width="100%" fig-align="center"}
+:::
+
+::::
+
+
+
+
+
+
+## Atributos discretos con valores diferentes 
+
+:::: {.columns}
+
+::: {.column width="45%"}
+- **Alta cardinalidad:** Valores únicos o distintos por registro (ej. ID de pasajero, nombre, teléfono).
+- **Acciones:**
+  - Eliminar la columna si no tiene poder predictivo.
+  - Ingeniería de características (ej. extraer Localidad o Ciudad a partir de la Dirección).
+:::
+
+::: {.column width="55%"}
+![](assets/TitanicDataset.png){width="100%" fig-align="center"}
+:::
+
+::::
+
+
+
+
+
+
+## Atributos Sinónimos / Fuga de Datos
+
+- **Concepto:** Variables correlacionadas con el objetivo o no observables en la predicción real (fuga de datos).
+- **Ejemplos:**
+  - *Fecha de reparación* para predecir si se dañará.
+  - *Edad de diagnóstico* para predecir si tiene diabetes.
+  - *Número de fallecidos* para predecir si hay accidente grave.
+- **Acción:** Eliminar la columna.
+
+
+
+
+
+
+
+
+
+## Atributos Redundantes: Concepto
+
+**Colinealidad:** Ocurre cuando dos o más variables independientes están altamente correlacionadas.
+
+**Coeficiente de Correlación de Pearson ($r$):**
+$$r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}$$
+
+---
+
+## Redundancia: Coeficiente de Pearson
+
+- El coeficiente $r$ varía entre -1 y 1:
+  - $r \approx 1$: Fuerte relación lineal positiva.
+  - $r \approx -1$: Fuerte relación lineal negativa.
+  - $r \approx 0$: Ausencia de correlación lineal.
+- **Criterio de Colinealidad:**
+  $$|r| > 0.5 \quad (\text{indica alta colinealidad})$$
+
+---
+
+## Detección de Redundancias
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- **Problema:** Variables correlacionadas redundan en información.
+- **Detección:** Matriz de correlación ($|r| > 0.5$).
+- **Acción:** Eliminar uno de los atributos colineales.
+:::
+
+::: {.column width="50%"}
+![](assets/Correlation.png){width="100%" fig-align="center"}
+:::
+
+::::
+
+
+
+# Nivel II: Formato de la Tabla
+
+## Reestructurar vs. Reformular
+
+- **Restructurar:** Cambiar la estructura del contenedor (ej. tabla a diccionario/Series) según la herramienta analítica.
+- **Reformular:** Cambiar la definición misma del objeto de estudio (ej. agregar registros de escala diaria a promedio mensual).
+- **Relación con objetivos:** Nivel II y III no pueden hacerse de forma aislada a las metas del negocio.
+
+---
+
+## Ej. 1: Reestructurar para Boxplot
+
+Para graficar boxplots de múltiples poblaciones, estructuramos los datos en un diccionario o `Series`:
+
+```python
+# Crear Series para almacenar arrays por clase (Churn)
+churn_opc = df.Churn.unique()
+box_sr = pd.Series('', index=churn_opc)
+
+for opc in churn_opc:
+    box_sr[opc] = df[df.Churn == opc].Fallas.values
+
+# Graficar usando Matplotlib
+plt.boxplot(box_sr, vert=False)
+```
+
+---
+
+## Ej. 2: Reformulación para Predicción
+
+Predecir demanda en mes $t$ requiriendo:
+
+- **$IA_1$:** Promedio histórico del mismo mes.
+- **$IA_2$:** Pendiente de regresión del mes.
+- **$IA_3$:** Demanda promedio de meses $t-2$, $t-3$, $t-4$.
+
+::: {.callout-note}
+A partir de un historial univariado, construimos una matriz con múltiples atributos explicativos.
+:::
+
+---
+
+## Código: Reformular Predicción
+
+```python
+# IA1: Promedio histórico del mismo mes
+def comp_ia1(r):
+    wdf = df.loc[:r.name].iloc[:-1]
+    return wdf[wdf.Mes == r.name.month].Demanda.mean()
+
+# IA3: Promedio de meses t-2, t-3 y t-4
+def comp_ia3(r):
+    wdf = df.loc[:r.name].iloc[-5:-2]
+    return wdf.Demanda.mean()
+
+pred_df['IA1'] = pred_df.apply(comp_ia1, axis=1)
+pred_df['IA3'] = pred_df.apply(comp_ia3, axis=1)
+```
+
+---
+
+## Datos Perdidos
+
+:::: {.columns}
+
+::: {.column width="45%"}
+- **Definición:** Ausencia de información para una variable en un registro (Missing Values).
+- **Representación:** Celdas vacías, `NaN`, `NA`, `null`, `?` o ceros (`0`) anómalos.
+:::
+
+::: {.column width="55%"}
+![](assets/TitanicDataset.png){width="100%" fig-align="center"}
+:::
+
+::::
+
+---
+
+## Tipos de Datos Perdidos
+
+- **MCAR (Missing Completely at Random):** Pérdida sin razones sistemáticas (ej. falla de red aleatoria).
+- **MAR (Missing at Random):** Pérdida sistemática ligada a otra variable observable (ej. alta velocidad causa falla del sensor).
+- **MNAR (Missing Not at Random):** Pérdida sistemática ligada al valor perdido (ej. sensores adulterados por exceso de emisiones).
+
+---
+
+## Diagnóstico de Datos Perdidos
+
+Se crea una variable oculta binaria ($1$ si es nulo, $0$ si no) y se analiza su relación con los otros atributos:
+
+- **MCAR:** No hay relación significativa con otras variables.
+- **MAR/MNAR:** Relación significativa con variables numéricas o categóricas.
+
+---
+
+## Diagnóstico: Atributos Numéricos
+
+Se compara la distribución de variables numéricas entre registros nulos y no nulos.
+
+- **Prueba Visual:** Boxplots e histogramas comparativos.
+- **Prueba Estadística:** Test T de Student de dos muestras (`scipy.stats.ttest_ind`).
+- **Interpretación:** Si $p\text{-value} > 0.05$, no hay diferencia significativa (MCAR compatible).
+
+---
+
+## Diagnóstico: Atributos Categóricos
+
+Se compara la distribución de categorías para registros nulos y no nulos.
+
+- **Prueba Visual:** Gráficos de barras comparativos.
+- **Prueba Estadística:** Test Chi-cuadrado de independencia (`scipy.stats.chi2_contingency`).
+- **Interpretación:** Si $p\text{-value} < 0.05$, existe una dependencia significativa (MAR/MNAR).
+
+---
+
+## Imputación Simple y Eliminación
+
+- **Diagnóstico:** Evaluar relevancia con expertos del negocio.
+- **Eliminación:**
+  - De registros (filas) con valores nulos.
+  - De columnas si el porcentaje de nulos es extremo.
+- **Imputación Simple:**
+  - Reemplazar por una constante o valor por defecto.
+  - Usar media (distribución simétrica) o mediana (distribución asimétrica).
+  - Usar la moda para variables categóricas.
+
+---
+
+## Imputación Avanzada
+
+- **Por Grupo/Clase:** Usar media o mediana según segmentos de datos (ej. salario medio por cargo).
+- **Deducción Lógica:** Inferir el valor usando reglas de negocio y otros atributos.
+- **Modelos Predictivos:** Estimar valores faltantes usando algoritmos (ej. KNN, regresión).
+- **Sin Alterar:** Dejar el nulo si el modelo lo permite (ej. XGBoost).
+
+
+
+
+## Datos Atípicos: Concepto
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- **Definición:** Observaciones numéricas o categóricas que se desvían significativamente del comportamiento general.
+- **Detección Visual:** Uso de gráficos de caja (boxplot), histogramas y diagramas de dispersión.
+:::
+
+::: {.column width="50%"}
+![](assets/DatasetConAtipicos.png){width="100%" fig-align="center"}
+:::
+
+::::
+
+---
+
+## Outliers: Método IQR
+
+- **Rango Intercuartílico:** $\text{IQR} = Q_3 - Q_1$
+- **Umbrales de Aceptación:**
+  - Límite inferior: $L_I = Q_1 - 1.5 \times \text{IQR}$
+  - Límite superior: $L_S = Q_3 + 1.5 \times \text{IQR}$
+- **Identificación de Outliers:**
+  $$x < L_I \quad \text{o} \quad x > L_S$$
+
+
+
+---
+
+## Niveles de Detección de Outliers
+
+- **Univariada:** Una sola variable. Usamos IQR ($[Q_1 - 1.5\text{IQR}, Q_3 + 1.5\text{IQR}]$) o frecuencia de categorías.
+- **Bivariada:** Relación entre dos variables:
+  - Num-Num: Diagramas de dispersión (Scatter).
+  - Cat-Cat: Tabla de contingencia y mapa de calor.
+  - Num-Cat: Boxplots múltiples por categoría.
+- **Multivariada:** Más de dos variables. Usamos algoritmos de clustering (K-Means).
+
+---
+
+## Outliers: Detección Multivariada
+
+Se utiliza clustering (**K-Means**) con diferentes valores de $k$ (ej. $2$ a $7$):
+
+- **Criterio de Outliers:** Observaciones agrupadas en clústeres extremadamente pequeños (uno o pocos elementos).
+- **Tratamiento por Capping (Tope):** Reemplazar los valores atípicos directamente por el límite estadístico (`lower_cap` o `upper_cap`) en lugar de eliminarlos.
+
+---
+
+## Guía de Tratamiento de Outliers
+
+:::: {.columns}
+
+::: {.column width="40%"}
+Reglas sugeridas por [@jafari2022hands]:
+
+![](assets/HandsOnDataPreprocessingPortada.jpg){height="300px" fig-align="center"}
+:::
+
+::: {.column width="60%"}
+![](assets/HandsOnDataPreprocessing.jpg){height="400px" fig-align="center"}
+:::
+
+::::
+
+---
+
+## Tratamiento de Outliers
+
+:::: {.columns}
+
+::: {.column width="55%"}
+- **Acciones posibles:**
+  - **Ignorar:** Si la técnica es robusta (ej. modelos basados en árboles).
+  - **Filtrar:** Eliminar registros atípicos.
+  - **Imputar:** Reemplazar por límites, media o predicciones.
+  - **Discretizar:** Convertir variables continuas a rangos discretos.
+:::
+
+::: {.column width="45%"}
+![](assets/DatasetMalo.png){width="100%" fig-align="center"}
+:::
+
+::::
+
+
+
+
+
+# Librerías en Python
+
+
+
+## Pandas: Datos Faltantes {.smaller}
+
+| **Método** | **Descripción** |
+| :--- | :--- |
+| `dropna()` | Elimina filas o columnas que contienen valores nulos. |
+| `fillna()` | Rellena valores nulos con una constante o método de interpolación. |
+| `isna()` | Devuelve máscara booleana indicando valores faltantes. |
+| `notna()` | Negación de `isna()`, indica valores válidos (no nulos). |
+
+---
+
+## Pandas: Funciones de Limpieza {.smaller}
+
+| **Método** | **Descripción** |
+| :--- | :--- |
+| `drop_duplicates()` | Elimina filas duplicadas del DataFrame. |
+| `replace()` | Reemplaza valores específicos usando mapeos o regex. |
+| `quantile()` | Calcula los cuantiles necesarios para el cálculo de IQR. |
+| `corr()` | Genera la matriz de correlación (Pearson/Spearman). |
+
+
+
+
+
+
+# Herramientas de Industria
+
+
+
+## Arquitectura de Observabilidad
+
+:::: {.columns}
+
+::: {.column width="45%"}
+- **Concepto:** Monitorear y comprender la calidad, linaje y rendimiento de los datos en tiempo real.
+- **Objetivo:** Detectar y resolver incidentes de calidad de forma proactiva.
+:::
+
+::: {.column width="55%"}
+![](assets/montecarlo.png){width="100%" fig-align="center"}
+:::
+
+::::
+
+---
+
+## Dashboards de Observabilidad
+
+![Dashboard de salud de datos en Monte Carlo](assets/healthDashboardMontecarlo.png){width="75%" fig-align="center"}
+
+---
+
+## Comparación de Herramientas {.smaller}
+
+| **Herramienta** | **Ventajas** | **Desventajas** | **Costo** |
+| :--- | :--- | :--- | :--- |
+| [Monte Carlo](https://www.montecarlodata.com/) | Fácil integración, alertas en tiempo real, observabilidad total. | Alta complejidad de configuración inicial. | Alto |
+| [Great Expectations](https://greatexpectations.io/) | Open-source, altamente personalizable, validaciones robustas. | Curva de aprendizaje alta, sin alertas nativas. | Gratis |
+| [Databand](https://www.ibm.com/es-es/products/databand) | Excelente monitoreo/alertas, integración con Airflow. | Comunidad pequeña, menor número de conectores. | Medio |
+| [Bigeye](https://www.bigeye.com/) | Configuración rápida, métricas de calidad automatizadas. | Poca personalización de reglas complejas. | Alto |
+
+: Comparación de herramientas de Data Observability
+
+---
+
+## Referencias
+
+::: {#refs}
+:::
+
+
+

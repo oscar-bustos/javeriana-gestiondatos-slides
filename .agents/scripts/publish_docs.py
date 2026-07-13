@@ -18,16 +18,8 @@ def main():
     print("Compiling presentations...")
     subprocess.run(["python", "compile_quarto.py"], cwd=script_dir)
 
-    # 2. Copy compiled index.html to docs/<dir_name>.html
-    print("\nOrganizing docs/ folder...")
-    for item in os.listdir(quarto_dir):
-        item_path = os.path.join(quarto_dir, item)
-        if os.path.isdir(item_path):
-            index_html = os.path.join(item_path, 'index.html')
-            if os.path.exists(index_html):
-                dest_file = os.path.join(docs_dir, f"{item}.html")
-                shutil.copy2(index_html, dest_file)
-                print(f"Copied {item}/index.html -> docs/{item}.html")
+    # 2. Compile step now automatically places HTML in docs/ and cleans up.
+    print("\nOrganizing docs/ folder (already done by compiler)...")
 
     # 3. Create the premium docs/index.html
     index_path = os.path.join(docs_dir, 'index.html')

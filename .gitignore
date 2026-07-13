@@ -7,15 +7,23 @@
 !/.agents/
 !/.agents/**
 
-# Permitir archivos específicos en la raíz
-!/.gitignore
-!/index.html
-!/README.md
-
 # Ignorar archivos temporales dentro de las carpetas permitidas
 **/.quarto/
 **/*_files/
 **/.ipynb_checkpoints/
 **/__pycache__/
 **/*.pyc
+
+# Permitir archivos de Quarto (.qmd y .bib)
+!/quarto/
+!/quarto/**/
+!/quarto/**/*.qmd
+!/quarto/**/*.bib
+
+# Permitir archivos específicos en la raíz
+!/.gitignore
+!/index.html
+!/README.md
+
+
 
