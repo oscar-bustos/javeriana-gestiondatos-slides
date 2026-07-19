@@ -242,6 +242,24 @@ pregunta_4 = dic_columnas['Q4']
 
 
 
+## Reto Titanic: Fuga de Datos
+
+Un modelo de supervivencia alcanza un 99% de precisión al incluir la variable *Número de Bote Salvavidas*.
+
+::: {.callout-note title="Pregunta a la clase"}
+¿Por qué este modelo es inútil para la toma de decisiones?
+:::
+
+::: {.fragment .fade-in}
+**Respuesta**: Es fuga de datos (*data leakage*). Al comprar el boleto (momento de la predicción) no se sabe quién abordará un bote salvavidas.
+:::
+
+
+
+
+
+
+
 
 
 
@@ -417,6 +435,22 @@ Se compara la distribución de categorías para registros nulos y no nulos.
 - **Deducción Lógica:** Inferir el valor usando reglas de negocio y otros atributos.
 - **Modelos Predictivos:** Estimar valores faltantes usando algoritmos (ej. KNN, regresión).
 - **Sin Alterar:** Dejar el nulo si el modelo lo permite (ej. XGBoost).
+
+
+
+
+
+
+## Reto Titanic: Datos Faltantes
+
+Afrontando problemas prácticos en los datos del Titanic:
+
+- **Edad Faltante (20%)**:
+  - Si eliminamos registros, perdemos información valiosa.
+  - Si imputamos con la media general, sesgamos la varianza.
+  - **Solución**: Imputar agrupando por prefijos de nombres (Mr., Miss., Mrs.).
+
+
 
 
 
