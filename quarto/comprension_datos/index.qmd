@@ -29,13 +29,17 @@ nocite: |
 
 # Bienvenidos y Presentación
 
-## ¡Conozcámonos!
+## ¡Presenta a tu Socio!
 
-¡Hola a todos!
+::: {.callout-tip title="Dinámica por Parejas (5 min)"}
+Entrevista a tu compañero/a y presenta al grupo:
 
-::: {.callout-tip title="Dinámica Inicial"}
-Comparte tu **Nombre**, **profesión**, **dónde trabajas**, **maestría** y tus **expectativas** sobre el uso de datos en tu vida laboral.
+- **Nombre** y profesión / pregrado de origen.
+- **Empresa** y cargo / área de desempeño actual.
+- **Proyecto o reto de datos** en su organización.
+- **Expectativa principal** sobre esta asignatura.
 :::
+
 
 ## El Docente
 
@@ -147,7 +151,7 @@ Pautas clave para el desarrollo de las actividades:
 ## Cronograma General
 
 ::: {.r-stretch}
-![Lecturas y Actividades del Semestre](assets/Lecturas.png){fig-align="center"}
+![Cronograma Gestión de Datos](assets/CronogramaGestion.png){fig-align="center"}
 :::
 
 # Motivación y Metodología CRISP-DM
