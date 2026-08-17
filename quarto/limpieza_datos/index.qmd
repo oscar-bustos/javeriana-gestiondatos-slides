@@ -45,7 +45,16 @@ nocite: |
 - ¿Qué actividades tiene el macro-proceso de preparación de datos?
 
 
+## Tarea / Asignación
 
+**Actividades a desarrollar:**
+
+1. Leer capítulos 9 , 10 y 11 del libro *Hands-On Data Preprocessing in Python*.
+
+2. Explorar el [Cuaderno de Google NotebookLM](https://notebook.google.com/notebook/e2719493-ad99-4abe-8f05-030eca72a7f9):
+   - Revisar la infografía.
+   - Realizar los quices incluidos.
+   - Escuchar el podcast.
 
 
 # Generalidades
@@ -117,21 +126,39 @@ nocite: |
 
 ## Niveles de Limpieza de Datos
 
-- **Nivel I: Limpieza de la Tabla:** Estructura estándar, títulos legibles/codificables e identificación única de registros.
-- **Nivel II: Restructuración y Reformulación:** Adaptación del formato según el modelo o herramienta analítica.
-- **Nivel III: Evaluación y Corrección de Valores:** Tratamiento de datos perdidos (missing values), outliers y errores.
+- **Nivel I (Estructura y Columnas):** Estructura base, índices y depuración de atributos.
+- **Nivel II (Formato y Granularidad):** Transformación del contenedor y reformulación analítica.
+- **Nivel III (Valores y Celdas):** Detección y corrección de nulos, outliers y errores.
 
 ---
 
 ## Nivel I: Limpieza de la Tabla
 
-- **Objetivo:** Organizar visual y técnicamente la tabla antes de realizar análisis complejos.
-- **Características clave:**
-  1. Estructura de datos estándar y preferida (ej. DataFrame).
-  2. Títulos de columnas codificables e intuitivos (sin espacios ni operadores aritméticos).
-  3. Identificador único por fila (índices o llaves primarias).
+- **Enfoque:** Organización estructural y depuración de columnas (*macro*).
+- **Estructura:** Formato estándar (DataFrame) e identificación única (índices).
+- **Codificación:** Títulos intuitivos/cortos y diccionarios de columnas.
+- **Depuración:** Eliminar columnas constantes, nulas totales o con fuga de datos.
+- **Redundancia:** Tratar variables colineales ($|r| > 0.5$) o de alta cardinalidad.
 
 ---
+
+## Ej. 1: Consolidación de Archivos
+
+:::: {.columns}
+
+::: {.column width="55%"}
+**¿Cómo analizar decenas de archivos sueltos?**
+
+- Información dispersa y difícil de consultar en lote.
+- Procesamiento manual inviable y propenso a errores.
+- **Meta:** Unificar todo el contenido en una única tabla estructurada.
+:::
+
+::: {.column width="45%"}
+![](assets/B17397_09_02.jpg){width="100%" fig-align="center"}
+:::
+::::
+
 
 ## Ej. 1: Consolidación de Archivos
 
@@ -303,11 +330,12 @@ $$r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \s
 
 # Nivel II: Formato de la Tabla
 
-## Reestructurar vs. Reformular
+## Nivel II: Formato y Granularidad
 
-- **Restructurar:** Cambiar la estructura del contenedor (ej. tabla a diccionario/Series) según la herramienta analítica.
-- **Reformular:** Cambiar la definición misma del objeto de estudio (ej. agregar registros de escala diaria a promedio mensual).
-- **Relación con objetivos:** Nivel II y III no pueden hacerse de forma aislada a las metas del negocio.
+- **Enfoque:** Adaptación estructural según herramientas y modelos.
+- **Reestructurar:** Transformar el contenedor (ej. DataFrame a Series con arrays).
+- **Reformular:** Cambiar granularidad (ej. escala diaria a mensual o rezagos temporales).
+- **Dependencia:** Guiado estrictamente por las metas y algoritmos del análisis.
 
 ---
 
@@ -359,6 +387,16 @@ def comp_ia3(r):
 pred_df['IA1'] = pred_df.apply(comp_ia1, axis=1)
 pred_df['IA3'] = pred_df.apply(comp_ia3, axis=1)
 ```
+
+# Nivel III: Evaluación y Corrección
+
+## Nivel III: Valores y Datos
+
+- **Enfoque:** Inspección y tratamiento celda por celda (*micro*).
+- **Datos perdidos:** Diagnóstico de mecanismos (MCAR, MAR, MNAR) e imputación.
+- **Valores atípicos:** Detección univariada (IQR) y multivariada (Clustering).
+- **Tratamiento:** Imputación, *capping* (límites estadísticos) o eliminación.
+- **Errores:** Corrección de inconsistencias y tipografías en registros.
 
 ---
 
@@ -418,14 +456,11 @@ Se compara la distribución de categorías para registros nulos y no nulos.
 
 ## Imputación Simple y Eliminación
 
-- **Diagnóstico:** Evaluar relevancia con expertos del negocio.
-- **Eliminación:**
-  - De registros (filas) con valores nulos.
-  - De columnas si el porcentaje de nulos es extremo.
-- **Imputación Simple:**
-  - Reemplazar por una constante o valor por defecto.
-  - Usar media (distribución simétrica) o mediana (distribución asimétrica).
-  - Usar la moda para variables categóricas.
+- **Diagnóstico:** Evaluar criticidad y patrones con expertos.
+- **Eliminar filas:** Cuando el porcentaje de registros perdidos es mínimo.
+- **Eliminar columnas:** Cuando la variable es casi toda nula o no aporta valor.
+- **Imputación univariada:** Media (simétrica), mediana (asimétrica) o moda.
+- **Constante:** Rellenar con valor por defecto o categoría "Desconocido".
 
 ---
 
@@ -443,12 +478,10 @@ Se compara la distribución de categorías para registros nulos y no nulos.
 
 ## Reto Titanic: Datos Faltantes
 
-Afrontando problemas prácticos en los datos del Titanic:
-
-- **Edad Faltante (20%)**:
-  - Si eliminamos registros, perdemos información valiosa.
-  - Si imputamos con la media general, sesgamos la varianza.
-  - **Solución**: Imputar agrupando por prefijos de nombres (Mr., Miss., Mrs.).
+- **Problema:** La variable *Edad* tiene un 20% de datos faltantes.
+- **Descarte de eliminación:** Perderíamos 1 de cada 5 pasajeros valiosos.
+- **Descarte de media general:** Distorsiona la varianza y estructura de edades.
+- **Solución:** Imputar la mediana agrupando por título (*Mr., Miss., Mrs., Master*).
 
 
 
@@ -487,12 +520,11 @@ Afrontando problemas prácticos en los datos del Titanic:
 
 ## Niveles de Detección de Outliers
 
-- **Univariada:** Una sola variable. Usamos IQR ($[Q_1 - 1.5\text{IQR}, Q_3 + 1.5\text{IQR}]$) o frecuencia de categorías.
-- **Bivariada:** Relación entre dos variables:
-  - Num-Num: Diagramas de dispersión (Scatter).
-  - Cat-Cat: Tabla de contingencia y mapa de calor.
-  - Num-Cat: Boxplots múltiples por categoría.
-- **Multivariada:** Más de dos variables. Usamos algoritmos de clustering (K-Means).
+- **Univariada:** Rango intercuartílico IQR o frecuencias por categoría.
+- **Bivariada (Num-Num):** Diagramas de dispersión (*scatter plot*).
+- **Bivariada (Num-Cat):** Diagramas de cajas (*boxplots*) comparativos.
+- **Bivariada (Cat-Cat):** Tablas de contingencia y mapas de calor.
+- **Multivariada:** Algoritmos de agrupamiento (*clustering* con K-Means).
 
 ---
 
