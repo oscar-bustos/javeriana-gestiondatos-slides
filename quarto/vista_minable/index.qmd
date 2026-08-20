@@ -311,43 +311,19 @@ Columna `Municipio` con 1,100 valores en Colombia. ¿Qué ocurre con One-Hot?
 
 ::::
 
-## Target Encoding: Entrada vs Salida
+## Target Encoding: Transformación
 
-:::: {.columns}
+| ID | Municipio | Ingreso | Impago ($y$) | Municipio_Enc | Interpretación del Valor |
+|:---:|:---|:---:|:---:|:---:|:---|
+| 1 | Bogotá | \$4.5M | **0** | **0.50** | Tasa local Bogotá ($1/2 = 50\%$) |
+| 2 | Medellín | \$3.8M | **0** | **0.25** | Tasa local Medellín |
+| 3 | Quibdó | \$1.8M | **1** | **0.70** | Tasa local Quibdó |
+| 4 | Bogotá | \$2.1M | **1** | **0.50** | Tasa local Bogotá ($1/2 = 50\%$) |
+| 5 | Guatapé | \$2.5M | **0** | **0.38\*** | \*$n=1 \to$ Suavizado a media global ($0.40$) |
 
-::: {.column width="48%"}
-**Tabla de Entrada (Raw):**
-
-| ID | Municipio | Ingreso | Impago ($y$) |
-|:---|:---|:---|:---|
-| 1 | Bogotá | \$4.5M | **0** |
-| 2 | Medellín | \$3.8M | **0** |
-| 3 | Quibdó | \$1.8M | **1** |
-| 4 | Bogotá | \$2.1M | **1** |
-| 5 | Guatapé | \$2.5M | **0** |
-
-::: {.smaller-text style="color: gray;"}
-Tasa global de impago ($\bar{y}$): $2/5 = 0.40$ (40%).
+::: {.smaller-text style="text-align: center; color: gray;"}
+Tasa global de impago ($\bar{y}$): $2/5 = 0.40$ (40%). Reemplaza 1,100 columnas dispersas por **1 sola columna continua**.
 :::
-:::
-
-::: {.column width="52%"}
-**Tabla de Salida (TargetEncoder):**
-
-| ID | Ingreso | Municipio_Enc | $y$ |
-|:---|:---|:---|:---|
-| 1 | \$4.5M | **0.50** | 0 |
-| 2 | \$3.8M | **0.25** | 0 |
-| 3 | \$1.8M | **0.70** | 1 |
-| 4 | \$2.1M | **0.50** | 1 |
-| 5 | \$2.5M | **0.38*** | 0 |
-
-::: {.smaller-text style="color: gray;"}
-\*Guatapé ($n=1$) se suaviza hacia la media global (0.40).
-:::
-:::
-
-::::
 
 ## TargetEncoder en Scikit-Learn
 

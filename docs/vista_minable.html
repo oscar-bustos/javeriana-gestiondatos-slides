@@ -1486,104 +1486,73 @@ font-size: 0.75em !important;
 </div>
 </div></div>
 </section>
-<section id="target-encoding-entrada-vs-salida" class="slide level2">
-<h2>Target Encoding: Entrada vs Salida</h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<p><strong>Tabla de Entrada (Raw):</strong></p>
+<section id="target-encoding-transformación" class="slide level2">
+<h2>Target Encoding: Transformación</h2>
 <table class="caption-top">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 14%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: center;">ID</th>
 <th style="text-align: left;">Municipio</th>
-<th style="text-align: left;">Ingreso</th>
-<th style="text-align: left;">Impago (<span class="math inline">\(y\)</span>)</th>
+<th style="text-align: center;">Ingreso</th>
+<th style="text-align: center;">Impago (<span class="math inline">\(y\)</span>)</th>
+<th style="text-align: center;">Municipio_Enc</th>
+<th style="text-align: left;">Interpretación del Valor</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: center;">1</td>
 <td style="text-align: left;">Bogotá</td>
-<td style="text-align: left;">$4.5M</td>
-<td style="text-align: left;"><strong>0</strong></td>
+<td style="text-align: center;">$4.5M</td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"><strong>0.50</strong></td>
+<td style="text-align: left;">Tasa local Bogotá (<span class="math inline">\(1/2 = 50\%\)</span>)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: center;">2</td>
 <td style="text-align: left;">Medellín</td>
-<td style="text-align: left;">$3.8M</td>
-<td style="text-align: left;"><strong>0</strong></td>
+<td style="text-align: center;">$3.8M</td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"><strong>0.25</strong></td>
+<td style="text-align: left;">Tasa local Medellín</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
+<td style="text-align: center;">3</td>
 <td style="text-align: left;">Quibdó</td>
-<td style="text-align: left;">$1.8M</td>
-<td style="text-align: left;"><strong>1</strong></td>
+<td style="text-align: center;">$1.8M</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong>0.70</strong></td>
+<td style="text-align: left;">Tasa local Quibdó</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">4</td>
+<td style="text-align: center;">4</td>
 <td style="text-align: left;">Bogotá</td>
-<td style="text-align: left;">$2.1M</td>
-<td style="text-align: left;"><strong>1</strong></td>
+<td style="text-align: center;">$2.1M</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong>0.50</strong></td>
+<td style="text-align: left;">Tasa local Bogotá (<span class="math inline">\(1/2 = 50\%\)</span>)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">5</td>
+<td style="text-align: center;">5</td>
 <td style="text-align: left;">Guatapé</td>
-<td style="text-align: left;">$2.5M</td>
-<td style="text-align: left;"><strong>0</strong></td>
+<td style="text-align: center;">$2.5M</td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"><strong>0.38*</strong></td>
+<td style="text-align: left;">*<span class="math inline">\(n=1 \to\)</span> Suavizado a media global (<span class="math inline">\(0.40\)</span>)</td>
 </tr>
 </tbody>
 </table>
-<div class="smaller-text" style="color: gray;">
-<p>Tasa global de impago (<span class="math inline">\(\bar{y}\)</span>): <span class="math inline">\(2/5 = 0.40\)</span> (40%).</p>
+<div class="smaller-text" style="text-align: center; color: gray;">
+<p>Tasa global de impago (<span class="math inline">\(\bar{y}\)</span>): <span class="math inline">\(2/5 = 0.40\)</span> (40%). Reemplaza 1,100 columnas dispersas por <strong>1 sola columna continua</strong>.</p>
 </div>
-</div><div class="column" style="width:52%;">
-<p><strong>Tabla de Salida (TargetEncoder):</strong></p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">ID</th>
-<th style="text-align: left;">Ingreso</th>
-<th style="text-align: left;">Municipio_Enc</th>
-<th style="text-align: left;"><span class="math inline">\(y\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">$4.5M</td>
-<td style="text-align: left;"><strong>0.50</strong></td>
-<td style="text-align: left;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">$3.8M</td>
-<td style="text-align: left;"><strong>0.25</strong></td>
-<td style="text-align: left;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">$1.8M</td>
-<td style="text-align: left;"><strong>0.70</strong></td>
-<td style="text-align: left;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">$2.1M</td>
-<td style="text-align: left;"><strong>0.50</strong></td>
-<td style="text-align: left;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">$2.5M</td>
-<td style="text-align: left;"><strong>0.38</strong>*</td>
-<td style="text-align: left;">0</td>
-</tr>
-</tbody>
-</table>
-<div class="smaller-text" style="color: gray;">
-<p>*Guatapé (<span class="math inline">\(n=1\)</span>) se suaviza hacia la media global (0.40).</p>
-</div>
-</div></div>
 </section>
 <section id="targetencoder-en-scikit-learn" class="slide level2">
 <h2>TargetEncoder en Scikit-Learn</h2>
