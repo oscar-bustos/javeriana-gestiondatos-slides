@@ -1446,7 +1446,7 @@ font-size: 0.75em !important;
 <section id="el-desafío-de-la-cardinalidad" class="slide level2">
 <h2>El Desafío de la Cardinalidad</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="width:48%;">
 <div title="Pregunta a la clase">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -1457,31 +1457,152 @@ font-size: 0.75em !important;
 <p><strong>Pregunta a la clase</strong></p>
 </div>
 <div class="callout-content">
-<p>Columna <code>Ciudad</code> con 1,100 municipios. ¿Qué ocurre con One-Hot?</p>
+<p>Columna <code>Municipio</code> con 1,100 valores en Colombia. ¿Qué ocurre con One-Hot?</p>
 </div>
 </div>
 </div>
 </div>
 <div class="fragment fade-in">
-<p><strong>Respuesta</strong>: Matriz dispersa de 1,100 columnas y alto sobreajuste.</p>
+<p><strong>Problema:</strong> Genera <strong>1,100 columnas</strong> dispersas (<span class="math inline">\(99.9\%\)</span> ceros), dispara la memoria y causa sobreajuste masivo.</p>
 </div>
-</div><div class="column" style="width:50%;">
-<div title="Sklearn: TargetEncoder">
+</div><div class="column" style="width:52%;">
+<div title="Estrategias de Mitigación">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Sklearn: TargetEncoder</strong></p>
+<p><strong>Estrategias de Mitigación</strong></p>
 </div>
 <div class="callout-content">
-<p><code>sklearn.preprocessing.TargetEncoder</code> codifica categorías según la media del target con regularización estadística.</p>
+<ul>
+<li><strong>Target Encoding (Sklearn):</strong> Codifica cada municipio en <strong>1 sola columna continua</strong>.</li>
+<li><strong>Rare Label Encoding:</strong> Agrupa municipios poco frecuentes en <code>&#39;Otros&#39;</code>.</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 </div></div>
+</section>
+<section id="target-encoding-entrada-vs-salida" class="slide level2">
+<h2>Target Encoding: Entrada vs Salida</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p><strong>Tabla de Entrada (Raw):</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">Municipio</th>
+<th style="text-align: left;">Ingreso</th>
+<th style="text-align: left;">Impago (<span class="math inline">\(y\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Bogotá</td>
+<td style="text-align: left;">$4.5M</td>
+<td style="text-align: left;"><strong>0</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Medellín</td>
+<td style="text-align: left;">$3.8M</td>
+<td style="text-align: left;"><strong>0</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Quibdó</td>
+<td style="text-align: left;">$1.8M</td>
+<td style="text-align: left;"><strong>1</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Bogotá</td>
+<td style="text-align: left;">$2.1M</td>
+<td style="text-align: left;"><strong>1</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Guatapé</td>
+<td style="text-align: left;">$2.5M</td>
+<td style="text-align: left;"><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="smaller-text" style="color: gray;">
+<p>Tasa global de impago (<span class="math inline">\(\bar{y}\)</span>): <span class="math inline">\(2/5 = 0.40\)</span> (40%).</p>
+</div>
+</div><div class="column" style="width:52%;">
+<p><strong>Tabla de Salida (TargetEncoder):</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">Ingreso</th>
+<th style="text-align: left;">Municipio_Enc</th>
+<th style="text-align: left;"><span class="math inline">\(y\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">$4.5M</td>
+<td style="text-align: left;"><strong>0.50</strong></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">$3.8M</td>
+<td style="text-align: left;"><strong>0.25</strong></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">$1.8M</td>
+<td style="text-align: left;"><strong>0.70</strong></td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">$2.1M</td>
+<td style="text-align: left;"><strong>0.50</strong></td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">$2.5M</td>
+<td style="text-align: left;"><strong>0.38</strong>*</td>
+<td style="text-align: left;">0</td>
+</tr>
+</tbody>
+</table>
+<div class="smaller-text" style="color: gray;">
+<p>*Guatapé (<span class="math inline">\(n=1\)</span>) se suaviza hacia la media global (0.40).</p>
+</div>
+</div></div>
+</section>
+<section id="targetencoder-en-scikit-learn" class="slide level2">
+<h2>TargetEncoder en Scikit-Learn</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> TargetEncoder</span>
+<span id="cb3-2"><a href></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href></a></span>
+<span id="cb3-4"><a href></a><span class="co"># 1,100 municipios condensados en 1 sola columna continua</span></span>
+<span id="cb3-5"><a href></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb3-6"><a href></a>    <span class="st">&#39;municipio&#39;</span>: [<span class="st">&#39;Bogotá&#39;</span>, <span class="st">&#39;Medellín&#39;</span>, <span class="st">&#39;Quibdó&#39;</span>, <span class="st">&#39;Bogotá&#39;</span>, <span class="st">&#39;Guatapé&#39;</span>],</span>
+<span id="cb3-7"><a href></a>    <span class="st">&#39;ingreso&#39;</span>: [<span class="fl">4.5</span>, <span class="fl">3.8</span>, <span class="fl">1.8</span>, <span class="fl">2.1</span>, <span class="fl">2.5</span>],</span>
+<span id="cb3-8"><a href></a>    <span class="st">&#39;impago&#39;</span>: [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb3-9"><a href></a>})</span>
+<span id="cb3-10"><a href></a></span>
+<span id="cb3-11"><a href></a>te <span class="op">=</span> TargetEncoder(smooth<span class="op">=</span><span class="st">&quot;auto&quot;</span>, cv<span class="op">=</span><span class="dv">5</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb3-12"><a href></a>df[<span class="st">&#39;municipio_te&#39;</span>] <span class="op">=</span> te.fit_transform(df[[<span class="st">&#39;municipio&#39;</span>]], df[<span class="st">&#39;impago&#39;</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><strong><code>cv=5</code>:</strong> Previene fuga de datos (<em>leakage</em>) en el entrenamiento.</li>
+<li><strong><code>smooth=&quot;auto&quot;</code>:</strong> Aplica contracción bayesiana a categorías raras.</li>
+</ul>
 </section>
 <section id="ponderación-en-modelos-de-distancia" class="slide level2">
 <h2>Ponderación en Modelos de Distancia</h2>
@@ -1519,8 +1640,8 @@ font-size: 0.75em !important;
 <ul>
 <li><p><strong>Binary Coding:</strong> Sin supuestos, pero pierde el orden.</p></li>
 <li><p><strong>OrdinalEncoder (Sklearn):</strong> Fija orden explícito:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OrdinalEncoder</span>
-<span id="cb3-2"><a href></a>oe <span class="op">=</span> OrdinalEncoder(categories<span class="op">=</span>[[<span class="st">&#39;Bajo&#39;</span>, <span class="st">&#39;Medio&#39;</span>, <span class="st">&#39;Alto&#39;</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OrdinalEncoder</span>
+<span id="cb4-2"><a href></a>oe <span class="op">=</span> OrdinalEncoder(categories<span class="op">=</span>[[<span class="st">&#39;Bajo&#39;</span>, <span class="st">&#39;Medio&#39;</span>, <span class="st">&#39;Alto&#39;</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>TargetEncoder / Dominio:</strong> Asigna magnitudes continuas reales.</p></li>
 </ul>
 </section>
@@ -1598,14 +1719,14 @@ font-size: 0.75em !important;
 <li><strong>Quantile:</strong> Equal Frequency.</li>
 <li>Ajusta cortes en train, aplica en test.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> KBinsDiscretizer</span>
-<span id="cb4-2"><a href></a></span>
-<span id="cb4-3"><a href></a>kbd <span class="op">=</span> KBinsDiscretizer(</span>
-<span id="cb4-4"><a href></a>    n_bins<span class="op">=</span><span class="dv">4</span>,</span>
-<span id="cb4-5"><a href></a>    encode<span class="op">=</span><span class="st">&#39;ordinal&#39;</span>,</span>
-<span id="cb4-6"><a href></a>    strategy<span class="op">=</span><span class="st">&#39;quantile&#39;</span></span>
-<span id="cb4-7"><a href></a>)</span>
-<span id="cb4-8"><a href></a>X_bin <span class="op">=</span> kbd.fit_transform(df[[<span class="st">&#39;edad&#39;</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> KBinsDiscretizer</span>
+<span id="cb5-2"><a href></a></span>
+<span id="cb5-3"><a href></a>kbd <span class="op">=</span> KBinsDiscretizer(</span>
+<span id="cb5-4"><a href></a>    n_bins<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb5-5"><a href></a>    encode<span class="op">=</span><span class="st">&#39;ordinal&#39;</span>,</span>
+<span id="cb5-6"><a href></a>    strategy<span class="op">=</span><span class="st">&#39;quantile&#39;</span></span>
+<span id="cb5-7"><a href></a>)</span>
+<span id="cb5-8"><a href></a>X_bin <span class="op">=</span> kbd.fit_transform(df[[<span class="st">&#39;edad&#39;</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="puntos-de-corte-en-discretización" class="slide level2">
@@ -1779,13 +1900,13 @@ font-size: 0.75em !important;
 <li>Comprime extremos en colas pesadas.</li>
 <li>Linealiza relaciones no lineales.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> FunctionTransformer</span>
-<span id="cb5-2"><a href></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-3"><a href></a></span>
-<span id="cb5-4"><a href></a>log_tf <span class="op">=</span> FunctionTransformer(</span>
-<span id="cb5-5"><a href></a>    np.log1p, validate<span class="op">=</span><span class="va">True</span></span>
-<span id="cb5-6"><a href></a>)</span>
-<span id="cb5-7"><a href></a>X_log <span class="op">=</span> log_tf.fit_transform(df[[<span class="st">&#39;precio&#39;</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> FunctionTransformer</span>
+<span id="cb6-2"><a href></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-3"><a href></a></span>
+<span id="cb6-4"><a href></a>log_tf <span class="op">=</span> FunctionTransformer(</span>
+<span id="cb6-5"><a href></a>    np.log1p, validate<span class="op">=</span><span class="va">True</span></span>
+<span id="cb6-6"><a href></a>)</span>
+<span id="cb6-7"><a href></a>X_log <span class="op">=</span> log_tf.fit_transform(df[[<span class="st">&#39;precio&#39;</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:52%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1854,11 +1975,11 @@ font-size: 0.75em !important;
 </section>
 <section id="suavizado-por-ventana-móvil" class="slide level2">
 <h2>Suavizado por Ventana Móvil</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href></a><span class="co"># Media móvil con ventana de tamaño 5</span></span>
-<span id="cb6-2"><a href></a>df[<span class="st">&#39;suavizado&#39;</span>] <span class="op">=</span> df[<span class="st">&#39;senal&#39;</span>].rolling(window<span class="op">=</span><span class="dv">5</span>).mean()</span>
-<span id="cb6-3"><a href></a></span>
-<span id="cb6-4"><a href></a><span class="co"># Suavizado exponencial ponderado</span></span>
-<span id="cb6-5"><a href></a>df[<span class="st">&#39;suavizado_exp&#39;</span>] <span class="op">=</span> df[<span class="st">&#39;senal&#39;</span>].ewm(alpha<span class="op">=</span><span class="fl">0.2</span>).mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href></a><span class="co"># Media móvil con ventana de tamaño 5</span></span>
+<span id="cb7-2"><a href></a>df[<span class="st">&#39;suavizado&#39;</span>] <span class="op">=</span> df[<span class="st">&#39;senal&#39;</span>].rolling(window<span class="op">=</span><span class="dv">5</span>).mean()</span>
+<span id="cb7-3"><a href></a></span>
+<span id="cb7-4"><a href></a><span class="co"># Suavizado exponencial ponderado</span></span>
+<span id="cb7-5"><a href></a>df[<span class="st">&#39;suavizado_exp&#39;</span>] <span class="op">=</span> df[<span class="st">&#39;senal&#39;</span>].ewm(alpha<span class="op">=</span><span class="fl">0.2</span>).mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Las primeras <span class="math inline">\(k-1\)</span> observaciones resultan en <code>NaN</code>.</li>
 <li>Se equilibra reducción de ruido contra pérdida de reactividad.</li>
@@ -1879,9 +2000,9 @@ font-size: 0.75em !important;
 <li>Cambia resolución temporal (días <span class="math inline">\(\to\)</span> semanas).</li>
 <li>Filtra ruido de alta frecuencia.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href></a>df_sem <span class="op">=</span> df.resample(</span>
-<span id="cb7-2"><a href></a>    <span class="st">&#39;W&#39;</span>, on<span class="op">=</span><span class="st">&#39;fecha&#39;</span></span>
-<span id="cb7-3"><a href></a>).agg({<span class="st">&#39;casos&#39;</span>: <span class="st">&#39;sum&#39;</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href></a>df_sem <span class="op">=</span> df.resample(</span>
+<span id="cb8-2"><a href></a>    <span class="st">&#39;W&#39;</span>, on<span class="op">=</span><span class="st">&#39;fecha&#39;</span></span>
+<span id="cb8-3"><a href></a>).agg({<span class="st">&#39;casos&#39;</span>: <span class="st">&#39;sum&#39;</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section></section>
 <section>
@@ -1928,10 +2049,10 @@ font-size: 0.75em !important;
 <li><strong>Undersampling:</strong> Reducir mayoritaria.</li>
 <li><strong>Oversampling (SMOTE):</strong> Sintetizar minoritaria.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href></a><span class="im">from</span> imblearn.over_sampling <span class="im">import</span> SMOTE</span>
-<span id="cb8-2"><a href></a></span>
-<span id="cb8-3"><a href></a>sm <span class="op">=</span> SMOTE(random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb8-4"><a href></a>X_res, y_res <span class="op">=</span> sm.fit_resample(X, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href></a><span class="im">from</span> imblearn.over_sampling <span class="im">import</span> SMOTE</span>
+<span id="cb9-2"><a href></a></span>
+<span id="cb9-3"><a href></a>sm <span class="op">=</span> SMOTE(random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb9-4"><a href></a>X_res, y_res <span class="op">=</span> sm.fit_resample(X, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:52%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1985,20 +2106,20 @@ font-size: 0.75em !important;
 <li><strong>Salida DataFrame:</strong> <code>.set_output(transform=&quot;pandas&quot;)</code>.</li>
 </ul>
 </div><div class="column" style="width:52%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
-<span id="cb9-2"><a href></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span>
-<span id="cb9-3"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler, OneHotEncoder</span>
-<span id="cb9-4"><a href></a></span>
-<span id="cb9-5"><a href></a>pre <span class="op">=</span> ColumnTransformer([</span>
-<span id="cb9-6"><a href></a>    (<span class="st">&#39;num&#39;</span>, StandardScaler(), [<span class="st">&#39;edad&#39;</span>]),</span>
-<span id="cb9-7"><a href></a>    (<span class="st">&#39;cat&#39;</span>, OneHotEncoder(), [<span class="st">&#39;ciudad&#39;</span>])</span>
-<span id="cb9-8"><a href></a>]).set_output(transform<span class="op">=</span><span class="st">&quot;pandas&quot;</span>)</span>
-<span id="cb9-9"><a href></a></span>
-<span id="cb9-10"><a href></a>pipe <span class="op">=</span> Pipeline([</span>
-<span id="cb9-11"><a href></a>    (<span class="st">&#39;prep&#39;</span>, pre),</span>
-<span id="cb9-12"><a href></a>    (<span class="st">&#39;model&#39;</span>, LogisticRegression())</span>
-<span id="cb9-13"><a href></a>])</span>
-<span id="cb9-14"><a href></a>pipe.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb10-2"><a href></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span>
+<span id="cb10-3"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler, OneHotEncoder</span>
+<span id="cb10-4"><a href></a></span>
+<span id="cb10-5"><a href></a>pre <span class="op">=</span> ColumnTransformer([</span>
+<span id="cb10-6"><a href></a>    (<span class="st">&#39;num&#39;</span>, StandardScaler(), [<span class="st">&#39;edad&#39;</span>]),</span>
+<span id="cb10-7"><a href></a>    (<span class="st">&#39;cat&#39;</span>, OneHotEncoder(), [<span class="st">&#39;ciudad&#39;</span>])</span>
+<span id="cb10-8"><a href></a>]).set_output(transform<span class="op">=</span><span class="st">&quot;pandas&quot;</span>)</span>
+<span id="cb10-9"><a href></a></span>
+<span id="cb10-10"><a href></a>pipe <span class="op">=</span> Pipeline([</span>
+<span id="cb10-11"><a href></a>    (<span class="st">&#39;prep&#39;</span>, pre),</span>
+<span id="cb10-12"><a href></a>    (<span class="st">&#39;model&#39;</span>, LogisticRegression())</span>
+<span id="cb10-13"><a href></a>])</span>
+<span id="cb10-14"><a href></a>pipe.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="más-allá-de-scikit-learn" class="slide level2">
@@ -2012,18 +2133,18 @@ font-size: 0.75em !important;
 <li><strong>Imbalanced-learn:</strong> Pipelines con balanceo (<code>imblearn.pipeline.Pipeline</code>).</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href></a><span class="im">from</span> feature_engine.encoding <span class="im">import</span> RareLabelEncoder</span>
-<span id="cb10-2"><a href></a><span class="im">from</span> feature_engine.outliers <span class="im">import</span> Winsorizer</span>
-<span id="cb10-3"><a href></a></span>
-<span id="cb10-4"><a href></a><span class="co"># Agrupa categorías con &lt; 5% frec.</span></span>
-<span id="cb10-5"><a href></a>rare_enc <span class="op">=</span> RareLabelEncoder(</span>
-<span id="cb10-6"><a href></a>    tol<span class="op">=</span><span class="fl">0.05</span>, n_categories<span class="op">=</span><span class="dv">3</span></span>
-<span id="cb10-7"><a href></a>)</span>
-<span id="cb10-8"><a href></a></span>
-<span id="cb10-9"><a href></a><span class="co"># Trunca atípicos automáticamente</span></span>
-<span id="cb10-10"><a href></a>winsor <span class="op">=</span> Winsorizer(</span>
-<span id="cb10-11"><a href></a>    capping_method<span class="op">=</span><span class="st">&#39;iqr&#39;</span>, tail<span class="op">=</span><span class="st">&#39;both&#39;</span></span>
-<span id="cb10-12"><a href></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href></a><span class="im">from</span> feature_engine.encoding <span class="im">import</span> RareLabelEncoder</span>
+<span id="cb11-2"><a href></a><span class="im">from</span> feature_engine.outliers <span class="im">import</span> Winsorizer</span>
+<span id="cb11-3"><a href></a></span>
+<span id="cb11-4"><a href></a><span class="co"># Agrupa categorías con &lt; 5% frec.</span></span>
+<span id="cb11-5"><a href></a>rare_enc <span class="op">=</span> RareLabelEncoder(</span>
+<span id="cb11-6"><a href></a>    tol<span class="op">=</span><span class="fl">0.05</span>, n_categories<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb11-7"><a href></a>)</span>
+<span id="cb11-8"><a href></a></span>
+<span id="cb11-9"><a href></a><span class="co"># Trunca atípicos automáticamente</span></span>
+<span id="cb11-10"><a href></a>winsor <span class="op">=</span> Winsorizer(</span>
+<span id="cb11-11"><a href></a>    capping_method<span class="op">=</span><span class="st">&#39;iqr&#39;</span>, tail<span class="op">=</span><span class="st">&#39;both&#39;</span></span>
+<span id="cb11-12"><a href></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="checklist-vista-minable" class="slide level2">

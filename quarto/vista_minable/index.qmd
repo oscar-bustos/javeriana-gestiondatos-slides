@@ -292,23 +292,82 @@ X_cat = ohe.fit_transform(df[['ciudad']])
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="48%"}
 ::: {.callout-note title="Pregunta a la clase"}
-Columna `Ciudad` con 1,100 municipios. ¿Qué ocurre con One-Hot?
+Columna `Municipio` con 1,100 valores en Colombia. ¿Qué ocurre con One-Hot?
 :::
 
 ::: {.fragment .fade-in}
-**Respuesta**: Matriz dispersa de 1,100 columnas y alto sobreajuste.
+**Problema:** Genera **1,100 columnas** dispersas ($99.9\%$ ceros), dispara la memoria y causa sobreajuste masivo.
 :::
 :::
 
-::: {.column width="50%"}
-::: {.callout-tip title="Sklearn: TargetEncoder"}
-`sklearn.preprocessing.TargetEncoder` codifica categorías según la media del target con regularización estadística.
+::: {.column width="52%"}
+::: {.callout-tip title="Estrategias de Mitigación"}
+- **Target Encoding (Sklearn):** Codifica cada municipio en **1 sola columna continua**.
+- **Rare Label Encoding:** Agrupa municipios poco frecuentes en `'Otros'`.
 :::
 :::
 
 ::::
+
+## Target Encoding: Entrada vs Salida
+
+:::: {.columns}
+
+::: {.column width="48%"}
+**Tabla de Entrada (Raw):**
+
+| ID | Municipio | Ingreso | Impago ($y$) |
+|:---|:---|:---|:---|
+| 1 | Bogotá | \$4.5M | **0** |
+| 2 | Medellín | \$3.8M | **0** |
+| 3 | Quibdó | \$1.8M | **1** |
+| 4 | Bogotá | \$2.1M | **1** |
+| 5 | Guatapé | \$2.5M | **0** |
+
+::: {.smaller-text style="color: gray;"}
+Tasa global de impago ($\bar{y}$): $2/5 = 0.40$ (40%).
+:::
+:::
+
+::: {.column width="52%"}
+**Tabla de Salida (TargetEncoder):**
+
+| ID | Ingreso | Municipio_Enc | $y$ |
+|:---|:---|:---|:---|
+| 1 | \$4.5M | **0.50** | 0 |
+| 2 | \$3.8M | **0.25** | 0 |
+| 3 | \$1.8M | **0.70** | 1 |
+| 4 | \$2.1M | **0.50** | 1 |
+| 5 | \$2.5M | **0.38*** | 0 |
+
+::: {.smaller-text style="color: gray;"}
+\*Guatapé ($n=1$) se suaviza hacia la media global (0.40).
+:::
+:::
+
+::::
+
+## TargetEncoder en Scikit-Learn
+
+```python
+from sklearn.preprocessing import TargetEncoder
+import pandas as pd
+
+# 1,100 municipios condensados en 1 sola columna continua
+df = pd.DataFrame({
+    'municipio': ['Bogotá', 'Medellín', 'Quibdó', 'Bogotá', 'Guatapé'],
+    'ingreso': [4.5, 3.8, 1.8, 2.1, 2.5],
+    'impago': [0, 0, 1, 1, 0]
+})
+
+te = TargetEncoder(smooth="auto", cv=5, random_state=42)
+df['municipio_te'] = te.fit_transform(df[['municipio']], df['impago'])
+```
+
+- **`cv=5`:** Previene fuga de datos (*leakage*) en el entrenamiento.
+- **`smooth="auto"`:** Aplica contracción bayesiana a categorías raras.
 
 ## Ponderación en Modelos de Distancia
 
