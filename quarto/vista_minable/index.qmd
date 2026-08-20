@@ -492,7 +492,47 @@ Para predecir impago: ¿qué variable sintética combina `Ingreso` y `Cuota`?
 $$IMC = \frac{\text{Peso (kg)}}{(\text{Estatura (m)})^2}$$
 
 - **Ratios Financieros:** Margen de ganancia, liquidez corriente.
-- **Sklearn:** `PolynomialFeatures` y `SplineTransformer` para interacciones automáticas ($N \to M$).
+- **Métricas:** Goles por partido, clics por impresión.
+
+## Transformación Polinómica
+
+:::: {.columns}
+
+::: {.column width="45%"}
+- **Problema:** Datos no separables linealmente (ej. clases concéntricas / dona).
+- **Idea:** Proyectar a un espacio de mayor dimensión: $(x_1, x_2) \to (x_1^2, x_2^2)$.
+- **Ventaja:** Modelos lineales simples resuelven patrones no lineales.
+:::
+
+::: {.column width="55%"}
+![Imagen generada con IA](assets/transformacion_polinomica.png){height="320px" fig-align="center"}
+:::
+
+::::
+
+## Generación de Features (Sklearn)
+
+:::: {.columns}
+
+::: {.column width="48%"}
+- **`PolynomialFeatures`:** Crea potencias e interacciones ($x_1^2, x_1 x_2, x_2^2$).
+- **`SplineTransformer`:** Modela no linealidades suaves por tramos.
+- **Riesgo:** Explosión dimensional $\binom{n+d}{d}$.
+:::
+
+::: {.column width="52%"}
+```python
+from sklearn.preprocessing import PolynomialFeatures
+
+# Grado 2: [x1, x2] -> [x1, x2, x1^2, x1*x2, x2^2]
+poly = PolynomialFeatures(
+    degree=2, include_bias=False
+)
+X_poly = poly.fit_transform(df[['x1', 'x2']])
+```
+:::
+
+::::
 
 ## Señales en Marcas de Tiempo
 
