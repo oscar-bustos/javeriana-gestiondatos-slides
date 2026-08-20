@@ -1817,6 +1817,30 @@ font-size: 0.75em !important;
 </figure>
 </div>
 </section>
+<section id="extracción-temporal-en-código" class="slide level2">
+<h2>Extracción Temporal en Código</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<ul>
+<li><strong><code>DatetimeFeatures</code>:</strong> Extrae componentes temporales en Pipelines.</li>
+<li><strong>Codificación Cíclica:</strong> <span class="math inline">\(\sin / \cos\)</span> conecta las 23:59 con las 00:00.</li>
+<li><strong><code>holidays</code>:</strong> Festivos locales (Colombia).</li>
+</ul>
+</div><div class="column" style="width:52%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href></a><span class="im">from</span> feature_engine.datetime <span class="im">import</span> DatetimeFeatures</span>
+<span id="cb7-2"><a href></a><span class="im">import</span> holidays</span>
+<span id="cb7-3"><a href></a></span>
+<span id="cb7-4"><a href></a><span class="co"># 1. Componentes en Pipeline</span></span>
+<span id="cb7-5"><a href></a>dt_f <span class="op">=</span> DatetimeFeatures(</span>
+<span id="cb7-6"><a href></a>    variables<span class="op">=</span>[<span class="st">&#39;fecha&#39;</span>],</span>
+<span id="cb7-7"><a href></a>    features_to_extract<span class="op">=</span>[<span class="st">&#39;hour&#39;</span>, <span class="st">&#39;day_of_week&#39;</span>, <span class="st">&#39;is_weekend&#39;</span>]</span>
+<span id="cb7-8"><a href></a>)</span>
+<span id="cb7-9"><a href></a></span>
+<span id="cb7-10"><a href></a><span class="co"># 2. Festivos en Colombia</span></span>
+<span id="cb7-11"><a href></a>co_cal <span class="op">=</span> holidays.Colombia()</span>
+<span id="cb7-12"><a href></a>df[<span class="st">&#39;festivo&#39;</span>] <span class="op">=</span> df[<span class="st">&#39;fecha&#39;</span>].isin(co_cal).astype(<span class="bu">int</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+</section>
 <section id="feature-extraction-casos" class="slide level2">
 <h2>Feature Extraction: Casos</h2>
 <ul>
@@ -1906,13 +1930,13 @@ font-size: 0.75em !important;
 <li>Comprime extremos en colas pesadas.</li>
 <li>Linealiza relaciones no lineales.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> FunctionTransformer</span>
-<span id="cb7-2"><a href></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-3"><a href></a></span>
-<span id="cb7-4"><a href></a>log_tf <span class="op">=</span> FunctionTransformer(</span>
-<span id="cb7-5"><a href></a>    np.log1p, validate<span class="op">=</span><span class="va">True</span></span>
-<span id="cb7-6"><a href></a>)</span>
-<span id="cb7-7"><a href></a>X_log <span class="op">=</span> log_tf.fit_transform(df[[<span class="st">&#39;precio&#39;</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> FunctionTransformer</span>
+<span id="cb8-2"><a href></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-3"><a href></a></span>
+<span id="cb8-4"><a href></a>log_tf <span class="op">=</span> FunctionTransformer(</span>
+<span id="cb8-5"><a href></a>    np.log1p, validate<span class="op">=</span><span class="va">True</span></span>
+<span id="cb8-6"><a href></a>)</span>
+<span id="cb8-7"><a href></a>X_log <span class="op">=</span> log_tf.fit_transform(df[[<span class="st">&#39;precio&#39;</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:52%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1981,11 +2005,11 @@ font-size: 0.75em !important;
 </section>
 <section id="suavizado-por-ventana-móvil" class="slide level2">
 <h2>Suavizado por Ventana Móvil</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href></a><span class="co"># Media móvil con ventana de tamaño 5</span></span>
-<span id="cb8-2"><a href></a>df[<span class="st">&#39;suavizado&#39;</span>] <span class="op">=</span> df[<span class="st">&#39;senal&#39;</span>].rolling(window<span class="op">=</span><span class="dv">5</span>).mean()</span>
-<span id="cb8-3"><a href></a></span>
-<span id="cb8-4"><a href></a><span class="co"># Suavizado exponencial ponderado</span></span>
-<span id="cb8-5"><a href></a>df[<span class="st">&#39;suavizado_exp&#39;</span>] <span class="op">=</span> df[<span class="st">&#39;senal&#39;</span>].ewm(alpha<span class="op">=</span><span class="fl">0.2</span>).mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href></a><span class="co"># Media móvil con ventana de tamaño 5</span></span>
+<span id="cb9-2"><a href></a>df[<span class="st">&#39;suavizado&#39;</span>] <span class="op">=</span> df[<span class="st">&#39;senal&#39;</span>].rolling(window<span class="op">=</span><span class="dv">5</span>).mean()</span>
+<span id="cb9-3"><a href></a></span>
+<span id="cb9-4"><a href></a><span class="co"># Suavizado exponencial ponderado</span></span>
+<span id="cb9-5"><a href></a>df[<span class="st">&#39;suavizado_exp&#39;</span>] <span class="op">=</span> df[<span class="st">&#39;senal&#39;</span>].ewm(alpha<span class="op">=</span><span class="fl">0.2</span>).mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Las primeras <span class="math inline">\(k-1\)</span> observaciones resultan en <code>NaN</code>.</li>
 <li>Se equilibra reducción de ruido contra pérdida de reactividad.</li>
@@ -2006,9 +2030,9 @@ font-size: 0.75em !important;
 <li>Cambia resolución temporal (días <span class="math inline">\(\to\)</span> semanas).</li>
 <li>Filtra ruido de alta frecuencia.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href></a>df_sem <span class="op">=</span> df.resample(</span>
-<span id="cb9-2"><a href></a>    <span class="st">&#39;W&#39;</span>, on<span class="op">=</span><span class="st">&#39;fecha&#39;</span></span>
-<span id="cb9-3"><a href></a>).agg({<span class="st">&#39;casos&#39;</span>: <span class="st">&#39;sum&#39;</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href></a>df_sem <span class="op">=</span> df.resample(</span>
+<span id="cb10-2"><a href></a>    <span class="st">&#39;W&#39;</span>, on<span class="op">=</span><span class="st">&#39;fecha&#39;</span></span>
+<span id="cb10-3"><a href></a>).agg({<span class="st">&#39;casos&#39;</span>: <span class="st">&#39;sum&#39;</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section></section>
 <section>
@@ -2055,10 +2079,10 @@ font-size: 0.75em !important;
 <li><strong>Undersampling:</strong> Reducir mayoritaria.</li>
 <li><strong>Oversampling (SMOTE):</strong> Sintetizar minoritaria.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href></a><span class="im">from</span> imblearn.over_sampling <span class="im">import</span> SMOTE</span>
-<span id="cb10-2"><a href></a></span>
-<span id="cb10-3"><a href></a>sm <span class="op">=</span> SMOTE(random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb10-4"><a href></a>X_res, y_res <span class="op">=</span> sm.fit_resample(X, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href></a><span class="im">from</span> imblearn.over_sampling <span class="im">import</span> SMOTE</span>
+<span id="cb11-2"><a href></a></span>
+<span id="cb11-3"><a href></a>sm <span class="op">=</span> SMOTE(random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb11-4"><a href></a>X_res, y_res <span class="op">=</span> sm.fit_resample(X, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:52%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -2112,20 +2136,20 @@ font-size: 0.75em !important;
 <li><strong>Salida DataFrame:</strong> <code>.set_output(transform=&quot;pandas&quot;)</code>.</li>
 </ul>
 </div><div class="column" style="width:52%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
-<span id="cb11-2"><a href></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span>
-<span id="cb11-3"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler, OneHotEncoder</span>
-<span id="cb11-4"><a href></a></span>
-<span id="cb11-5"><a href></a>pre <span class="op">=</span> ColumnTransformer([</span>
-<span id="cb11-6"><a href></a>    (<span class="st">&#39;num&#39;</span>, StandardScaler(), [<span class="st">&#39;edad&#39;</span>]),</span>
-<span id="cb11-7"><a href></a>    (<span class="st">&#39;cat&#39;</span>, OneHotEncoder(), [<span class="st">&#39;ciudad&#39;</span>])</span>
-<span id="cb11-8"><a href></a>]).set_output(transform<span class="op">=</span><span class="st">&quot;pandas&quot;</span>)</span>
-<span id="cb11-9"><a href></a></span>
-<span id="cb11-10"><a href></a>pipe <span class="op">=</span> Pipeline([</span>
-<span id="cb11-11"><a href></a>    (<span class="st">&#39;prep&#39;</span>, pre),</span>
-<span id="cb11-12"><a href></a>    (<span class="st">&#39;model&#39;</span>, LogisticRegression())</span>
-<span id="cb11-13"><a href></a>])</span>
-<span id="cb11-14"><a href></a>pipe.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb12-2"><a href></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span>
+<span id="cb12-3"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler, OneHotEncoder</span>
+<span id="cb12-4"><a href></a></span>
+<span id="cb12-5"><a href></a>pre <span class="op">=</span> ColumnTransformer([</span>
+<span id="cb12-6"><a href></a>    (<span class="st">&#39;num&#39;</span>, StandardScaler(), [<span class="st">&#39;edad&#39;</span>]),</span>
+<span id="cb12-7"><a href></a>    (<span class="st">&#39;cat&#39;</span>, OneHotEncoder(), [<span class="st">&#39;ciudad&#39;</span>])</span>
+<span id="cb12-8"><a href></a>]).set_output(transform<span class="op">=</span><span class="st">&quot;pandas&quot;</span>)</span>
+<span id="cb12-9"><a href></a></span>
+<span id="cb12-10"><a href></a>pipe <span class="op">=</span> Pipeline([</span>
+<span id="cb12-11"><a href></a>    (<span class="st">&#39;prep&#39;</span>, pre),</span>
+<span id="cb12-12"><a href></a>    (<span class="st">&#39;model&#39;</span>, LogisticRegression())</span>
+<span id="cb12-13"><a href></a>])</span>
+<span id="cb12-14"><a href></a>pipe.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="más-allá-de-scikit-learn" class="slide level2">
@@ -2139,18 +2163,18 @@ font-size: 0.75em !important;
 <li><strong>Imbalanced-learn:</strong> Pipelines con balanceo (<code>imblearn.pipeline.Pipeline</code>).</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href></a><span class="im">from</span> feature_engine.encoding <span class="im">import</span> RareLabelEncoder</span>
-<span id="cb12-2"><a href></a><span class="im">from</span> feature_engine.outliers <span class="im">import</span> Winsorizer</span>
-<span id="cb12-3"><a href></a></span>
-<span id="cb12-4"><a href></a><span class="co"># Agrupa categorías con &lt; 5% frec.</span></span>
-<span id="cb12-5"><a href></a>rare_enc <span class="op">=</span> RareLabelEncoder(</span>
-<span id="cb12-6"><a href></a>    tol<span class="op">=</span><span class="fl">0.05</span>, n_categories<span class="op">=</span><span class="dv">3</span></span>
-<span id="cb12-7"><a href></a>)</span>
-<span id="cb12-8"><a href></a></span>
-<span id="cb12-9"><a href></a><span class="co"># Trunca atípicos automáticamente</span></span>
-<span id="cb12-10"><a href></a>winsor <span class="op">=</span> Winsorizer(</span>
-<span id="cb12-11"><a href></a>    capping_method<span class="op">=</span><span class="st">&#39;iqr&#39;</span>, tail<span class="op">=</span><span class="st">&#39;both&#39;</span></span>
-<span id="cb12-12"><a href></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href></a><span class="im">from</span> feature_engine.encoding <span class="im">import</span> RareLabelEncoder</span>
+<span id="cb13-2"><a href></a><span class="im">from</span> feature_engine.outliers <span class="im">import</span> Winsorizer</span>
+<span id="cb13-3"><a href></a></span>
+<span id="cb13-4"><a href></a><span class="co"># Agrupa categorías con &lt; 5% frec.</span></span>
+<span id="cb13-5"><a href></a>rare_enc <span class="op">=</span> RareLabelEncoder(</span>
+<span id="cb13-6"><a href></a>    tol<span class="op">=</span><span class="fl">0.05</span>, n_categories<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb13-7"><a href></a>)</span>
+<span id="cb13-8"><a href></a></span>
+<span id="cb13-9"><a href></a><span class="co"># Trunca atípicos automáticamente</span></span>
+<span id="cb13-10"><a href></a>winsor <span class="op">=</span> Winsorizer(</span>
+<span id="cb13-11"><a href></a>    capping_method<span class="op">=</span><span class="st">&#39;iqr&#39;</span>, tail<span class="op">=</span><span class="st">&#39;both&#39;</span></span>
+<span id="cb13-12"><a href></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="checklist-vista-minable" class="slide level2">

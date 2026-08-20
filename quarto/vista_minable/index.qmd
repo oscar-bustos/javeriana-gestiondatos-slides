@@ -538,6 +538,35 @@ X_poly = poly.fit_transform(df[['x1', 'x2']])
 
 ![Imagen generada con IA](assets/timestamp_descomposicion.png){height="380px" fig-align="center"}
 
+## Extracción Temporal en Código
+
+:::: {.columns}
+
+::: {.column width="48%"}
+- **`DatetimeFeatures`:** Extrae componentes temporales en Pipelines.
+- **Codificación Cíclica:** $\sin / \cos$ conecta las 23:59 con las 00:00.
+- **`holidays`:** Festivos locales (Colombia).
+:::
+
+::: {.column width="52%"}
+```python
+from feature_engine.datetime import DatetimeFeatures
+import holidays
+
+# 1. Componentes en Pipeline
+dt_f = DatetimeFeatures(
+    variables=['fecha'],
+    features_to_extract=['hour', 'day_of_week', 'is_weekend']
+)
+
+# 2. Festivos en Colombia
+co_cal = holidays.Colombia()
+df['festivo'] = df['fecha'].isin(co_cal).astype(int)
+```
+:::
+
+::::
+
 ## Feature Extraction: Casos
 
 - **Emails / URLs:** Dominio corporativo, extensión país (`.co`, `.edu`).
