@@ -27,3 +27,8 @@
 
 
 
+
+!/quarto/**/*.png
+!/quarto/**/*.jpg
+!/quarto/**/*.svg
+!/quarto/**/*.scss

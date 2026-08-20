@@ -9,8 +9,10 @@ format:
     show-slide-number: all
     transition: slide
     chalkboard: false
-    width: 1050
-    height: 700
+    width: 1280
+    height: 720
+    margin: 0.04
+    center: false
     logo: assets/logo_RGB.png
 bibliography: references.bib
 nocite: |
@@ -26,220 +28,532 @@ nocite: |
 }
 </style>
 
+# Repaso y Fundamentos
 
-
-
-
-
-# Repaso
-
-
-
-## Recordando...
-
-- ¿Qué metodologías existen para los proyectos de minería de datos o analítica de datos?
-- ¿Por qué es necesario preparar los datos?
-- ¿Qué actividades de limpieza de atributos hay?
-- ¿Qué actividades de limpieza de datos hay?
-
-
-
-
-
-
-## Motivación
-
+## ¿Dónde estamos en CRISP-DM?
 
 :::: {.columns}
 
-
-::: {.column width="50%"}
-Objetivos de la Preparación de datos
-
-- Obtención de la mayor cantidad de **datos útiles** para el proyecto de analítica (1)
-- Corregir el mayor número de **datos erróneos** o inconsistentes e irrelevantes (2,3)
-- **Presentación de los datos** de una manera apropiada para los modelos. (4)
-
+::: {.column width="45%"}
+![Imagen generada con IA](assets/crisp_dm_preparacion.jpg){height="380px" fig-align="center"}
 :::
 
-
-::: {.column width="40%"}
-![](assets/PreparacionDatos.png){width="100%"}
+::: {.column width="55%"}
+- **Sesión 1:** Entendimiento y exploración (EDA).
+- **Sesión 2:** Limpieza Niveles I, II y III.
+- **Sesión 3:** Integración de fuentes.
+- **Hoy:** Preparación de la *Vista Minable*.
 :::
 
 ::::
 
+## ¿Por qué no basta con limpiar?
 
+:::: {.columns}
 
+::: {.column width="55%"}
+**Dataset limpio pero insuficiente:**
 
+- **Formato:** Modelos algebraicos fallan con texto (`'Bogotá'`).
+- **Escala:** Salarios de \$5M anulan la edad ($\Delta=5$) en distancias.
+- **Expresividad:** Fechas crudas no aportan sin extraer variables.
+:::
 
-# Vista Minable
+::: {.column width="45%"}
+::: {.callout-tip}
+### Lo que falta
+- **Necesidad:** Formatos.
+- **Corrección:** Escalas.
+- **Data Massaging:** Valor predictivo.
+:::
+:::
 
+::::
 
+## Tres Razones para Transformar
 
-## Definición
+::: {.callout-note}
+### Razones Fundamentales @jafari2022hands
+- **Necesidad:** Algoritmos que solo operan con ciertos tipos de datos.
+- **Corrección:** Evitar que escalas dispares distorsionen métricas.
+- **Efectividad:** Optimizar la capacidad predictiva (*Data Massaging*).
+:::
 
-- Es una vista de datos materializada que recoge toda la información necesaria para realizar una tarea  de Analítica.
-- Prepare los datos lo mejor posible para reducir y facilitar el trabajo que debe hacer el algoritmo de minería.
+## ¿Qué es la Vista Minable?
 
+:::: {.columns}
 
+::: {.column width="45%"}
+- **Artefacto final** entre Preparación y Modelamiento.
+- Tabla enriquecida tras limpieza y transformación.
+- Homologa tipos de datos al algoritmo.
+:::
 
+::: {.column width="55%"}
+![Imagen generada con IA](assets/vista_minable_flujo.jpg){height="320px" fig-align="center"}
+:::
 
+::::
+
+## Objetivos de la Preparación
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- **Datos útiles:** Maximizar información de valor.
+- **Calidad:** Tratar inconsistencias y vacíos.
+- **Representación:** Formato tabular óptimo.
+:::
+
+::: {.column width="50%"}
+![Imagen generada con IA](assets/PreparacionDatos.png){height="350px" fig-align="center"}
+
+::: {.smaller-text style="text-align: center; font-size: 0.6em; color: gray;"}
+Fuente: Adaptado de @jafari2022hands
+:::
+:::
+
+::::
+
+## Transformación vs. Data Massaging
+
+- **Data Transformation:** Término general para cualquier cambio técnico.
+- **Data Massaging:** Transformaciones orientadas a **efectividad**.
+- Su meta es *"hacer más para obtener más"* del algoritmo.
+- Abarca: ingeniería de características, transformaciones no lineales y reducción de ruido.
 
 ## Proceso de Creación de Vista
 
-- Normalización
-- Discretización
-- Numerización
-- Ingeniería de Características
-- OverSampling o Undersampling
-- Anonimización
+![Imagen generada con IA](assets/proceso_vista_minable.jpg){height="400px" fig-align="center"}
 
+# Escalamiento de Atributos
 
+## El Efecto de las Magnitudes
 
+![Imagen generada con IA](assets/efecto_magnitudes.png){height="400px" fig-align="center"}
 
-# Normalización
+## Magnitudes: La Paradoja de $\beta$
 
+Modelo para estimar **Gasto Mensual**:
+$$\hat{y} = \beta_0 + 50.000 \cdot \text{Edad} + 0.05 \cdot \text{Ingreso}$$
 
+::: {.callout-note title="Pregunta a la clase"}
+¿Influye la **Edad** ($\beta=50.000$) un millón de veces más que el **Ingreso** ($\beta=0.05$)?
+:::
 
+::: {.fragment .fade-in}
+**Respuesta**: ¡No! $+1$ año $\to +\$50\text{k}$ y $+\$1\text{M}$ $\to +\$50\text{k}$. Tienen **idéntico impacto real**.
+:::
 
-## Normalización
+## ¿Por qué Escalar en Modelos?
 
+:::: {.columns}
 
-- Consiste en tomar valores de un atributo que abarcan un rango de valores y representarlos en otro rango de valores
-- El objetivo de la normalización es transformar los atributos para que estén en una escala similar. Esto mejora el rendimiento y la estabilidad del entrenamiento del modelo.
+::: {.column width="50%"}
+- **Interpretabilidad:** Comparar peso real de $\beta$.
+- **Regularización:** Evita penalizar injustamente.
+- **Gradiente:** Convierte elípticas en circulares.
+- **Distancia:** KNN, K-Means sin sesgo.
+:::
 
-![Resumen de Técnicas de Normalización](assets/normalizations-at-a-glance-v2.svg){width="65%"}
+::: {.column width="50%"}
+![Imagen generada con IA](assets/gradiente_descendente.png){height="320px" fig-align="center"}
+:::
 
-Tomado de: [developers.google.com](https://developers.google.com/machine-learning/data-prep/transform/normalization)
+::::
 
+## Panorama de Normalización
 
+![Imagen generada con IA](assets/normalizations-at-a-glance-v2.svg){height="380px" fig-align="center"}
 
+::: {.smaller-text style="text-align: center; font-size: 0.6em; color: gray;"}
+Fuente: [Google Developers - Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/numerical-data/feature-vectors)
+:::
 
-## Normalización Min Max
+## Normalización Min-Max
 
-- Convertir valores de características de punto flotante de su rango natural (por ejemplo, de 100 a 900) a un rango estándar, generalmente 0 y 1 (o, a veces, -1 a +1)
-- El objetivo de la normalización es transformar los atributos para que estén en una escala similar.
-\begin{figure}
+:::: {.columns}
 
-![](assets/MinMax.png){width="50%"}  \caption{Min Max\footnotemark}
-\end{figure}
-\footnotetext[1]{Tomado de https://developers.google.com/machine-learning/data-prep/transform/normalization }
+::: {.column width="45%"}
+- Rango original a $[0, 1]$.
+- Preserva proporciones exactas.
 
+$$x' = \frac{x - x_{min}}{x_{max} - x_{min}}$$
 
+- **Sensible** a valores atípicos.
+:::
 
+::: {.column width="55%"}
+![Imagen generada con IA](assets/minmax_before_after.png){height="300px" fig-align="center"}
+:::
 
-## Normalización Min Max {.smaller}
+::::
 
+## El Caso del Atípico Extremo
 
-Ecuación:
-\begin{equation}
-x' = (x - x_{min}) / (x_{max} - x_{min})
-\end{equation}
+![Imagen generada con IA](assets/outlier_minmax.png){height="350px" fig-align="center"}
 
+::: {.callout-note title="Pregunta a la clase"}
+Salarios entre \$1M y \$5M. Ingresa un registro con \$50,000M. ¿Qué ocurre con Min-Max?
+:::
 
-- Hay una relación uno a uno entre el valor de la instancia
-  original y el valor normalizado
-- Si el primero era el doble del segundo al ser normalizados se mantendrá esta relación
-- Escalamiento lineal es viable únicamente si se conocen los máximos y mínimos
-- Cuando es posible la existencia de atípicos, El min y el max se toman considerando (Q3 - Q1)
+::: {.fragment .fade-in}
+**Respuesta**: Todos aplastados entre $0.00002$ y $0.0001$.
+:::
 
+## Estandarización (Z-Score)
 
+:::: {.columns}
 
+::: {.column width="45%"}
+- Centra $\mu = 0$, escala $\sigma = 1$.
 
-## Normalización Estadística o Z-Score
+$$z = \frac{x - \mu}{\sigma}$$
 
+- Robusto ante outliers moderados.
+- Ideal para PCA, SVM, regresión.
+:::
 
-![Z score](assets/norm-z-score.svg){width="55%"}
+::: {.column width="55%"}
+![Imagen generada con IA](assets/zscore_distribucion.png){height="300px" fig-align="center"}
+:::
 
-Tomado de: [developers.google.com](https://developers.google.com/machine-learning/data-prep/transform/normalization)
+::::
 
+## Normalización vs. Estandarización
 
+![Imagen generada con IA](assets/norm_vs_estandarizacion.png){height="320px" fig-align="center"}
 
+- Ambos buscan **corrección**, no efectividad (*massaging*).
 
+## Similitudes Prácticas y Tuning
 
-## Normalización Estadística o Z-Score {.smaller}
+- **Efecto cruzado:** Normalizar acerca las desviaciones; estandarizar acerca los rangos.
+- En la literatura suelen usarse como métodos intercambiables.
+- **Recomendación:** Probar ambos como hiperparámetro en validación cruzada.
 
-Ecuación:
-\begin{equation}
-x' = (x - \mu) / \sigma
-\end{equation}
-- Es una variación de la escala que representa el número de desviaciones estándar de la media.
-- Se usa para asegurarse de que las distribuciones de características tengan media = 0 y std = 1
-- Es útil cuando hay algunos valores atípicos, pero no tan extremos como para que sea necesario recortarlos.
+## Escalamiento en Scikit-Learn
 
+```python
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
+# Normalización Min-Max [0, 1]
+min_max = MinMaxScaler()
+X_norm = min_max.fit_transform(df[['edad', 'ingresos']])
 
+# Estandarización Z-Score (media 0, varianza 1)
+z_scaler = StandardScaler()
+X_std = z_scaler.fit_transform(df[['edad', 'ingresos']])
+```
 
+# Conversión Categórico-Numérico
 
+## Tipos de Variables Categóricas
 
+![Imagen generada con IA](assets/tipos_variables_categoricas.jpg){height="420px" fig-align="center"}
 
-## Normalización Logarítmica
+## Mapa de Conversión de Tipos
 
+![Imagen generada con IA](assets/conversion_tipos_mapa.jpg){height="420px" fig-align="center"}
 
-![Log normalization](assets/norm-log-scaling-movie-ratings.svg){width="55%"}
+## Binary Coding (One-Hot)
 
-Tomado de: [developers.google.com](https://developers.google.com/machine-learning/data-prep/transform/normalization)
+![Imagen generada con IA](assets/onehot_encoding.png){height="240px" fig-align="center"}
 
+```python
+import pandas as pd
+df_encoded = pd.get_dummies(df, columns=['continente', 'genero'])
+```
 
+## El Desafío de la Cardinalidad
 
+Tienes la columna `Ciudad de Nacimiento` con los 1,100 municipios de Colombia.
 
-## Normalización Logarítmica
+::: {.callout-note title="Pregunta a la clase"}
+¿Qué problema surge si aplicas One-Hot Encoding directamente?
+:::
 
-Ecuación:
-\begin{equation}
-x' = \log (x)
-\end{equation}
-- Comprime un rango amplio a un rango estrecho.
-- Es útil cuando algunos de sus valores tienen muchos puntos, mientras que la mayoría de los demás valores tienen pocos puntos.
+::: {.fragment .fade-in}
+**Respuesta**: Creas 1,100 columnas vacías (matriz dispersa), disparando la dimensionalidad y el sobreajuste.
+:::
 
+## Ponderación en Modelos de Distancia
 
+- Una variable nominal con $K$ categorías añade $K$ dimensiones.
+- Si no se ajusta, sobrepondera la distancia en clustering.
+- **Ajuste:** Dividir las columnas codificadas por $K$:
 
+$$X_{bin} = \frac{\text{OneHot}(X)}{K}$$
 
-## Ejemplo de Código Python para Z Score {.smaller}
+## El Trilema Ordinal
 
+Evaluamos satisfacción: `['Malo', 'Regular', 'Bueno', 'Excelente']`. Asignamos números $1, 2, 3, 4$.
 
-\begin{verbatim}
-from sklearn.preprocessing import StandardScaler
-data = [[0, 0], [0, 0], [1, 1], [1, 1]]
-scaler = StandardScaler()
-print(scaler.fit(data))
-print(scaler.mean_)
-print(scaler.transform(data))
-print(scaler.transform([[2, 2]])
+::: {.callout-note title="Pregunta a la clase"}
+¿Es la distancia entre 'Malo' y 'Regular' exactamente igual a la de 'Bueno' y 'Excelente'?
+:::
 
-\end{verbatim}
+::: {.fragment .fade-in}
+**Respuesta**: No necesariamente. El ranking asume distancias unitarias fijas que pueden no existir.
+:::
 
+## Estrategias en Atributos Ordinales
 
+- **Binary Coding:** No añade supuestos falsos, pero pierde el orden.
+- **Ranking:** Conserva el orden, pero inventa distancias idénticas.
+- **Attribute Construction:** Asigna valores reales con conocimiento experto.
+- La elección depende del modelo y del objetivo analítico.
 
+## Codificación con Dominio
 
-## Ejemplo de Código Python para Min Max {.smaller}
+- Usa conocimiento experto para sustituir rangos arbitrarios.
+- **Ejemplo 1:** *Nivel Educativo* $\to$ *Años promedio de estudio*.
+- **Ejemplo 2:** *Color nominal* $\to$ *Coordenadas numéricas RGB*.
+- Transforma categorías en magnitudes continuas reales (*Data Massaging*).
 
+## De Numérico a Categórico
 
-\begin{verbatim}
-from sklearn.preprocessing import MinMaxScaler
-data = [[-1, 2], [-0.5, 6], [0, 10], [1, 18]]
-scaler = MinMaxScaler()
-print(scaler.fit(data))
-print(scaler.data_max_)
-print(scaler.transform(data))
-print(scaler.transform([[2, 2]]))
-\end{verbatim}
+![Imagen generada con IA](assets/numerico_a_categorico.png){height="350px" fig-align="center"}
 
+- Facilita la interpretación humana (ej. Horas $\le 40$ vs $> 40$).
+- Permite reglas de asociación y tablas cruzadas.
 
+## Desafío en Discretización
 
+![Imagen generada con IA](assets/discretizacion_equal_width.png){height="320px" fig-align="center"}
 
-# Normalización
+::: {.callout-note title="Pregunta a la clase"}
+¿Qué ocurre si divides el salario en 4 intervalos de igual ancho (*Equal Width*)?
+:::
 
+::: {.fragment .fade-in}
+**Respuesta**: El primer bin acumula casi el 95% de los datos y los demás quedan vacíos.
+:::
 
+## Tipos de Discretización
 
+![Imagen generada con IA](assets/tipos_discretizacion.png){height="300px" fig-align="center"}
 
+```python
+# Equal Width vs Equal Frequency
+df['edad_ancho'] = pd.cut(df['edad'], bins=4)
+df['edad_freq'] = pd.qcut(df['edad'], q=4)
+```
 
+## Puntos de Corte en Discretización
 
-## References
+- $k$ puntos de corte generan $k+1$ categorías resultantes.
+- Pocos cortes simplifican en exceso; demasiados fragmentan.
+- **Guías prácticas:**
+  - Examinar el histograma previo de la variable.
+  - Aplicar estándares de la industria o del negocio.
+  - Mantener interpretabilidad directa.
+
+# Ingeniería de Características
+
+## Construcción vs. Extracción
+
+![Imagen generada con IA](assets/construccion_extraccion.jpg){height="420px" fig-align="center"}
+
+- Ambas buscan maximizar la **efectividad** (*Data Massaging*).
+
+## Variables de Negocio
+
+![Imagen generada con IA](assets/dti_scatter.png){height="350px" fig-align="center"}
+
+::: {.callout-note title="Pregunta a la clase"}
+Para predecir impago: ¿qué variable sintética combina `Ingreso` y `Cuota`?
+:::
+
+::: {.fragment .fade-in}
+**Respuesta**: **Debt-to-Income** = `Cuota / Ingreso`.
+:::
+
+## Attribute Construction: Casos
+
+- Transforma datos crudos en indicadores de alto valor explicativo.
+- **Índice de Masa Corporal (IMC):**
+
+$$IMC = \frac{\text{Peso (kg)}}{(\text{Estatura (m)})^2}$$
+
+- **Ratios Financieros:** Margen de ganancia, liquidez corriente.
+- **Métricas:** Goles por partido, clics por impresión.
+
+## Señales en Marcas de Tiempo
+
+![Imagen generada con IA](assets/timestamp_descomposicion.png){height="380px" fig-align="center"}
+
+## Feature Extraction: Casos
+
+- **Emails / URLs:** Dominio corporativo, extensión país (`.co`, `.edu`).
+- **Fechas / Horas:** Día de la semana, hora, si es festivo.
+- **Texto:** Frecuencia de palabras clave o embeddings.
+- **Series Temporales:** Picos, valles y oscilaciones.
+
+## Extracción Morfológica
+
+![Imagen generada con IA](assets/extraccion_morfologica.png){height="380px" fig-align="center"}
+
+Común en motores, sismología y biomedicina (ECG/EEG).
+
+## Reducción como Extracción
+
+:::: {.columns}
+
+::: {.column width="45%"}
+- **Texto:** Contar términos clave es extracción.
+- **PCA:** Extrae componentes no correlacionados.
+- Fusión de reducción y transformación.
+:::
+
+::: {.column width="55%"}
+![Imagen generada con IA](assets/pca_biplot.png){height="320px" fig-align="center"}
+:::
+
+::::
+
+# Transformación Log y Ruido
+
+## Distribuciones con Cola Larga
+
+![Imagen generada con IA](assets/log_transform_before_after.png){height="350px" fig-align="center"}
+
+::: {.callout-note title="Pregunta a la clase"}
+¿Por qué aplicar $\log(\text{precio})$ beneficia a un modelo lineal?
+:::
+
+::: {.fragment .fade-in}
+**Respuesta**: Convierte efectos multiplicativos en aditivos y estabiliza la varianza.
+:::
+
+## Transformación Logarítmica
+
+:::: {.columns}
+
+::: {.column width="45%"}
+- Colas pesadas o crecimiento exponencial.
+- Comprime extremos, preserva orden.
+
+$$x' = \log(x + 1)$$
+
+- Linealiza relaciones no lineales.
+:::
+
+::: {.column width="55%"}
+![Imagen generada con IA](assets/curva_logaritmica.png){height="320px" fig-align="center"}
+:::
+
+::::
+
+## Detección de Ruido en Sensores
+
+![Imagen generada con IA](assets/ruido_sensor.png){height="350px" fig-align="center"}
+
+::: {.callout-note title="Pregunta a la clase"}
+¿Es una alerta real o simple ruido eléctrico?
+:::
+
+::: {.fragment .fade-in}
+**Respuesta**: Comparar con la ventana temporal vecina (**suavizado** o **agregación**).
+:::
+
+## Técnicas de Tratamiento de Ruido
+
+- **Smoothing (Suavizado):** Por ventana móvil o funcional.
+- **Aggregation (Agregación):** Cambio de escala temporal.
+- **Binning:** Agrupamiento de valores continuos.
+- El orden temporal permite separar la señal de fluctuaciones aleatorias.
+
+## Suavizado Funcional vs. Ventana
+
+![Imagen generada con IA](assets/suavizado_comparacion.png){height="380px" fig-align="center"}
+
+- **Funcional (Spline):** Sin desfase, modela toda la serie.
+- **Ventana Móvil:** Desfase temporal, genera `NaN` iniciales.
+
+## Suavizado por Ventana Móvil
+
+```python
+# Media móvil con ventana de tamaño 5
+df['suavizado'] = df['senal'].rolling(window=5).mean()
+
+# Suavizado exponencial ponderado
+df['suavizado_exp'] = df['senal'].ewm(alpha=0.2).mean()
+```
+
+- Las primeras $k-1$ observaciones resultan en `NaN`.
+- Se equilibra reducción de ruido contra pérdida de reactividad.
+
+## Agregación Temporal
+
+![Imagen generada con IA](assets/agregacion_temporal.png){height="350px" fig-align="center"}
+
+```python
+# Agregación semanal de una serie diaria
+df_semanal = df.resample('W', on='fecha').agg({
+    'casos': 'sum',
+    'temperatura': 'mean'
+})
+```
+
+# Balanceo y Privacidad
+
+## La Paradoja del Fraude
+
+![Imagen generada con IA](assets/fraude_desbalance.png){height="350px" fig-align="center"}
+
+::: {.callout-note title="Pregunta a la clase"}
+Si un modelo predice SIEMPRE 'No Fraude', ¿cuál es su Accuracy?
+:::
+
+::: {.fragment .fade-in}
+**Respuesta**: ¡99.95%! Pero completamente inútil para el negocio.
+:::
+
+## Balanceo de Clases (Sampling)
+
+![Imagen generada con IA](assets/balanceo_smote.png){height="350px" fig-align="center"}
+
+- **Undersampling:** Reducir clase mayoritaria.
+- **Oversampling (SMOTE):** Sintetizar instancias minoritarias.
+
+## El Reto de la Privacidad
+
+![Imagen generada con IA](assets/privacidad_reidentificacion.jpg){height="380px" fig-align="center"}
+
+## Anonimización y Privacidad
+
+::: {.callout-important}
+### Cumplimiento Ético y Legal
+- **Enmascaramiento:** Ocultar dígitos (ej. `****-****-1234`).
+- **Pseudonimización:** Sustituir identificadores por hashes.
+- **Generalización:** Convertir fechas exactas a rangos de edad.
+:::
+
+## Checklist: Vista Minable
+ 
+- [ ] ¿Variables en formato adecuado (numéricas o categóricas)?
+- [ ] ¿Escalas corregidas (Normalización o Z-Score)?
+- [ ] ¿Variables con colas pesadas transformadas ($\log$)?
+- [ ] ¿Ruido y desbalance de clases mitigados?
+- [ ] ¿Datos sensibles y cuasi-identificadores protegidos?
+
+## Tarea / Asignación
+
+1. Leer el Capítulo 14 del libro *Hands-On Data Preprocessing in Python* @jafari2022hands.
+2. Explorar el [Cuaderno de Google NotebookLM](https://notebook.google.com/notebook/e2719493-ad99-4abe-8f05-030eca72a7f9):
+   - Revisar la infografía de apoyo.
+   - Completar los quices interactivos.
+   - Escuchar el podcast resumen.
+
+## Agradecimientos
+
+- Material conceptual y visual adaptado de:
+  - [Google ML Crash Course: Numerical Data](https://developers.google.com/machine-learning/crash-course/numerical-data/feature-vectors)
+  - Recursos educativos de *Google Developers*.
+- Agradecimientos especiales a la comunidad docente.
+
+## Referencias
 
 ::: {#refs}
 :::
-
-
-
