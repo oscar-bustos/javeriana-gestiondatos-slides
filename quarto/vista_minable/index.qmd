@@ -243,15 +243,14 @@ $$z = \frac{x - \mu}{\sigma}$$
 ## Escalamiento en Scikit-Learn
 
 ```python
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler
 
-# Normalización Min-Max [0, 1]
-min_max = MinMaxScaler()
-X_norm = min_max.fit_transform(df[['edad', 'ingresos']])
+# Normalización Min-Max [0, 1] y Z-Score (media 0, varianza 1)
+X_norm = MinMaxScaler().fit_transform(df[['edad', 'ingresos']])
+X_std  = StandardScaler().fit_transform(df[['edad', 'ingresos']])
 
-# Estandarización Z-Score (media 0, varianza 1)
-z_scaler = StandardScaler()
-X_std = z_scaler.fit_transform(df[['edad', 'ingresos']])
+# Escalado robusto con Mediana e IQR (resistente a outliers)
+X_rob  = RobustScaler().fit_transform(df[['edad', 'ingresos']])
 ```
 
 # Conversión Categórico-Numérico
@@ -745,10 +744,10 @@ winsor = Winsorizer(
 ## Tarea / Asignación
 
 1. Leer el Capítulo 14 del libro *Hands-On Data Preprocessing in Python* @jafari2022hands.
-2. Explorar el [Cuaderno de Google NotebookLM](https://notebook.google.com/notebook/e2719493-ad99-4abe-8f05-030eca72a7f9):
+2. Consultar la [Guía Oficial de Preprocesamiento de Scikit-Learn](https://scikit-learn.org/stable/modules/preprocessing.html).
+3. Explorar el [Cuaderno de Google NotebookLM](https://notebook.google.com/notebook/e2719493-ad99-4abe-8f05-030eca72a7f9):
    - Revisar la infografía de apoyo.
-   - Completar los quices interactivos.
-   - Escuchar el podcast resumen.
+   - Completar los quices interactivos y podcast resumen.
 
 ## Agradecimientos
 

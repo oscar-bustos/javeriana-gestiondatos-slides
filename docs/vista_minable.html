@@ -1387,15 +1387,14 @@ font-size: 0.75em !important;
 </section>
 <section id="escalamiento-en-scikit-learn" class="slide level2">
 <h2>Escalamiento en Scikit-Learn</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler, StandardScaler</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler, StandardScaler, RobustScaler</span>
 <span id="cb1-2"><a href></a></span>
-<span id="cb1-3"><a href></a><span class="co"># Normalización Min-Max [0, 1]</span></span>
-<span id="cb1-4"><a href></a>min_max <span class="op">=</span> MinMaxScaler()</span>
-<span id="cb1-5"><a href></a>X_norm <span class="op">=</span> min_max.fit_transform(df[[<span class="st">&#39;edad&#39;</span>, <span class="st">&#39;ingresos&#39;</span>]])</span>
+<span id="cb1-3"><a href></a><span class="co"># Normalización Min-Max [0, 1] y Z-Score (media 0, varianza 1)</span></span>
+<span id="cb1-4"><a href></a>X_norm <span class="op">=</span> MinMaxScaler().fit_transform(df[[<span class="st">&#39;edad&#39;</span>, <span class="st">&#39;ingresos&#39;</span>]])</span>
+<span id="cb1-5"><a href></a>X_std  <span class="op">=</span> StandardScaler().fit_transform(df[[<span class="st">&#39;edad&#39;</span>, <span class="st">&#39;ingresos&#39;</span>]])</span>
 <span id="cb1-6"><a href></a></span>
-<span id="cb1-7"><a href></a><span class="co"># Estandarización Z-Score (media 0, varianza 1)</span></span>
-<span id="cb1-8"><a href></a>z_scaler <span class="op">=</span> StandardScaler()</span>
-<span id="cb1-9"><a href></a>X_std <span class="op">=</span> z_scaler.fit_transform(df[[<span class="st">&#39;edad&#39;</span>, <span class="st">&#39;ingresos&#39;</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-7"><a href></a><span class="co"># Escalado robusto con Mediana e IQR (resistente a outliers)</span></span>
+<span id="cb1-8"><a href></a>X_rob  <span class="op">=</span> RobustScaler().fit_transform(df[[<span class="st">&#39;edad&#39;</span>, <span class="st">&#39;ingresos&#39;</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section></section>
 <section>
 <section id="conversión-categórico-numérico" class="title-slide slide level1 center">
@@ -2022,11 +2021,11 @@ font-size: 0.75em !important;
 <h2>Tarea / Asignación</h2>
 <ol type="1">
 <li>Leer el Capítulo 14 del libro <em>Hands-On Data Preprocessing in Python</em> <span class="citation" data-cites="jafari2022hands">Jafari (<a href="#/referencias" role="doc-biblioref" onclick>2022</a>)</span>.</li>
+<li>Consultar la <a href="https://scikit-learn.org/stable/modules/preprocessing.html">Guía Oficial de Preprocesamiento de Scikit-Learn</a>.</li>
 <li>Explorar el <a href="https://notebook.google.com/notebook/e2719493-ad99-4abe-8f05-030eca72a7f9">Cuaderno de Google NotebookLM</a>:
 <ul>
 <li>Revisar la infografía de apoyo.</li>
-<li>Completar los quices interactivos.</li>
-<li>Escuchar el podcast resumen.</li>
+<li>Completar los quices interactivos y podcast resumen.</li>
 </ul></li>
 </ol>
 </section>
