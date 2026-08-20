@@ -268,19 +268,22 @@ X_std = z_scaler.fit_transform(df[['edad', 'ingresos']])
 
 :::: {.columns}
 
-::: {.column width="45%"}
+::: {.column width="48%"}
 - Genera $K$ columnas ($0$ o $1$).
-- Evita distancias falsas.
+- `handle_unknown='ignore'` previene errores en producción.
 
 ```python
-import pandas as pd
-df_enc = pd.get_dummies(
-    df, columns=['ciudad']
+from sklearn.preprocessing import OneHotEncoder
+
+ohe = OneHotEncoder(
+    sparse_output=False,
+    handle_unknown='ignore'
 )
+X_cat = ohe.fit_transform(df[['ciudad']])
 ```
 :::
 
-::: {.column width="55%"}
+::: {.column width="52%"}
 ![Imagen generada con IA](assets/onehot_encoding.png){height="250px" fig-align="center"}
 :::
 
@@ -372,18 +375,24 @@ Evaluamos satisfacción: `['Malo', 'Regular', 'Bueno', 'Excelente']`. Asignamos 
 
 :::: {.columns}
 
-::: {.column width="55%"}
+::: {.column width="52%"}
 ![Imagen generada con IA](assets/tipos_discretizacion.png){height="280px" fig-align="center"}
 :::
 
-::: {.column width="45%"}
-- **Equal Width:** Mismo ancho.
-- **Equal Frequency:** Cuantiles.
-- **Ad-hoc:** Reglas de negocio.
+::: {.column width="48%"}
+- **Uniform:** Equal Width.
+- **Quantile:** Equal Frequency.
+- Ajusta cortes en train, aplica en test.
 
 ```python
-df['edad_w'] = pd.cut(df['edad'], 4)
-df['edad_q'] = pd.qcut(df['edad'], 4)
+from sklearn.preprocessing import KBinsDiscretizer
+
+kbd = KBinsDiscretizer(
+    n_bins=4,
+    encode='ordinal',
+    strategy='quantile'
+)
+X_bin = kbd.fit_transform(df[['edad']])
 ```
 :::
 
@@ -507,17 +516,23 @@ $$IMC = \frac{\text{Peso (kg)}}{(\text{Estatura (m)})^2}$$
 
 :::: {.columns}
 
-::: {.column width="45%"}
-- Colas pesadas o crecimiento exponencial.
-- Comprime extremos, preserva orden.
-
-$$x' = \log(x + 1)$$
-
+::: {.column width="48%"}
+- Comprime extremos en colas pesadas.
 - Linealiza relaciones no lineales.
+
+```python
+from sklearn.preprocessing import FunctionTransformer
+import numpy as np
+
+log_tf = FunctionTransformer(
+    np.log1p, validate=True
+)
+X_log = log_tf.fit_transform(df[['precio']])
+```
 :::
 
-::: {.column width="55%"}
-![Imagen generada con IA](assets/curva_logaritmica.png){height="320px" fig-align="center"}
+::: {.column width="52%"}
+![Imagen generada con IA](assets/curva_logaritmica.png){height="290px" fig-align="center"}
 :::
 
 ::::
@@ -624,13 +639,20 @@ Si un modelo predice SIEMPRE 'No Fraude', ¿cuál es su Accuracy?
 
 :::: {.columns}
 
-::: {.column width="45%"}
-- **Undersampling:** Reducir clase mayoritaria.
-- **Oversampling (SMOTE):** Generar sintéticos minoritarios.
+::: {.column width="48%"}
+- **Undersampling:** Reducir mayoritaria.
+- **Oversampling (SMOTE):** Sintetizar minoritaria.
+
+```python
+from imblearn.over_sampling import SMOTE
+
+sm = SMOTE(random_state=42)
+X_res, y_res = sm.fit_resample(X, y)
+```
 :::
 
-::: {.column width="55%"}
-![Imagen generada con IA](assets/balanceo_smote.png){height="320px" fig-align="center"}
+::: {.column width="52%"}
+![Imagen generada con IA](assets/balanceo_smote.png){height="290px" fig-align="center"}
 :::
 
 ::::
@@ -647,6 +669,70 @@ Si un modelo predice SIEMPRE 'No Fraude', ¿cuál es su Accuracy?
 - **Pseudonimización:** Sustituir identificadores por hashes.
 - **Generalización:** Convertir fechas exactas a rangos de edad.
 :::
+
+# Integración y Pipelines
+
+## Preprocesamiento con Pipelines
+
+:::: {.columns}
+
+::: {.column width="48%"}
+- **Evita *Data Leakage*:** `fit` solo en datos de entrenamiento.
+- **`ColumnTransformer`:** Aplica preprocesamiento por tipo de columna.
+- **Despliegue limpio:** Un solo objeto para entrenamiento e inferencia.
+:::
+
+::: {.column width="52%"}
+```python
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+
+pre = ColumnTransformer([
+    ('num', StandardScaler(), ['edad']),
+    ('cat', OneHotEncoder(), ['ciudad'])
+])
+
+pipe = Pipeline([
+    ('prep', pre),
+    ('model', LogisticRegression())
+])
+pipe.fit(X_train, y_train)
+```
+:::
+
+::::
+
+## Más Allá de Scikit-Learn
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Librerías especializadas:**
+
+- **Feature-engine:** Retorna DataFrames, codifica categorías raras y aplica *Winsorization* (outliers).
+- **Category Encoders:** Target encoding, Weight of Evidence (WoE) y CatBoost.
+- **Imbalanced-learn:** Pipelines con balanceo (`imblearn.pipeline.Pipeline`).
+:::
+
+::: {.column width="50%"}
+```python
+from feature_engine.encoding import RareLabelEncoder
+from feature_engine.outliers import Winsorizer
+
+# Agrupa categorías con < 5% frec.
+rare_enc = RareLabelEncoder(
+    tol=0.05, n_categories=3
+)
+
+# Trunca atípicos automáticamente
+winsor = Winsorizer(
+    capping_method='iqr', tail='both'
+)
+```
+:::
+
+::::
 
 ## Checklist: Vista Minable
  
