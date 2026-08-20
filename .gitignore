@@ -32,3 +32,5 @@
 !/quarto/**/*.jpg
 !/quarto/**/*.svg
 !/quarto/**/*.scss
+
+!/quarto/**/*.py
