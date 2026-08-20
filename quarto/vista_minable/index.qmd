@@ -290,15 +290,25 @@ X_cat = ohe.fit_transform(df[['ciudad']])
 
 ## El Desafío de la Cardinalidad
 
-Tienes la columna `Ciudad de Nacimiento` con los 1,100 municipios de Colombia.
+:::: {.columns}
 
+::: {.column width="50%"}
 ::: {.callout-note title="Pregunta a la clase"}
-¿Qué problema surge si aplicas One-Hot Encoding directamente?
+Columna `Ciudad` con 1,100 municipios. ¿Qué ocurre con One-Hot?
 :::
 
 ::: {.fragment .fade-in}
-**Respuesta**: Creas 1,100 columnas vacías (matriz dispersa), disparando la dimensionalidad y el sobreajuste.
+**Respuesta**: Matriz dispersa de 1,100 columnas y alto sobreajuste.
 :::
+:::
+
+::: {.column width="50%"}
+::: {.callout-tip title="Sklearn: TargetEncoder"}
+`sklearn.preprocessing.TargetEncoder` codifica categorías según la media del target con regularización estadística.
+:::
+:::
+
+::::
 
 ## Ponderación en Modelos de Distancia
 
@@ -322,10 +332,13 @@ Evaluamos satisfacción: `['Malo', 'Regular', 'Bueno', 'Excelente']`. Asignamos 
 
 ## Estrategias en Atributos Ordinales
 
-- **Binary Coding:** No añade supuestos falsos, pero pierde el orden.
-- **Ranking:** Conserva el orden, pero inventa distancias idénticas.
-- **Attribute Construction:** Asigna valores reales con conocimiento experto.
-- La elección depende del modelo y del objetivo analítico.
+- **Binary Coding:** Sin supuestos, pero pierde el orden.
+- **OrdinalEncoder (Sklearn):** Fija orden explícito:
+  ```python
+  from sklearn.preprocessing import OrdinalEncoder
+  oe = OrdinalEncoder(categories=[['Bajo', 'Medio', 'Alto']])
+  ```
+- **TargetEncoder / Dominio:** Asigna magnitudes continuas reales.
 
 ## Codificación con Dominio
 
@@ -444,7 +457,7 @@ Para predecir impago: ¿qué variable sintética combina `Ingreso` y `Cuota`?
 $$IMC = \frac{\text{Peso (kg)}}{(\text{Estatura (m)})^2}$$
 
 - **Ratios Financieros:** Margen de ganancia, liquidez corriente.
-- **Métricas:** Goles por partido, clics por impresión.
+- **Sklearn:** `PolynomialFeatures` y `SplineTransformer` para interacciones automáticas ($N \to M$).
 
 ## Señales en Marcas de Tiempo
 
@@ -677,8 +690,8 @@ X_res, y_res = sm.fit_resample(X, y)
 
 ::: {.column width="48%"}
 - **Evita *Data Leakage*:** `fit` solo en datos de entrenamiento.
-- **`ColumnTransformer`:** Aplica preprocesamiento por tipo de columna.
-- **Despliegue limpio:** Un solo objeto para entrenamiento e inferencia.
+- **`ColumnTransformer`:** Preprocesamiento por tipo de columna.
+- **Salida DataFrame:** `.set_output(transform="pandas")`.
 :::
 
 ::: {.column width="52%"}
@@ -690,7 +703,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 pre = ColumnTransformer([
     ('num', StandardScaler(), ['edad']),
     ('cat', OneHotEncoder(), ['ciudad'])
-])
+]).set_output(transform="pandas")
 
 pipe = Pipeline([
     ('prep', pre),
