@@ -191,8 +191,9 @@ $$x' = \frac{x - x_{min}}{x_{max} - x_{min}}$$
 
 ## El Caso del Atípico Extremo
 
-![Imagen generada con IA](assets/outlier_minmax.png){height="350px" fig-align="center"}
+:::: {.columns}
 
+::: {.column width="48%"}
 ::: {.callout-note title="Pregunta a la clase"}
 Salarios entre \$1M y \$5M. Ingresa un registro con \$50,000M. ¿Qué ocurre con Min-Max?
 :::
@@ -200,6 +201,13 @@ Salarios entre \$1M y \$5M. Ingresa un registro con \$50,000M. ¿Qué ocurre con
 ::: {.fragment .fade-in}
 **Respuesta**: Todos aplastados entre $0.00002$ y $0.0001$.
 :::
+:::
+
+::: {.column width="52%"}
+![Imagen generada con IA](assets/outlier_minmax.png){height="320px" fig-align="center"}
+:::
+
+::::
 
 ## Estandarización (Z-Score)
 
@@ -258,12 +266,25 @@ X_std = z_scaler.fit_transform(df[['edad', 'ingresos']])
 
 ## Binary Coding (One-Hot)
 
-![Imagen generada con IA](assets/onehot_encoding.png){height="240px" fig-align="center"}
+:::: {.columns}
+
+::: {.column width="45%"}
+- Genera $K$ columnas ($0$ o $1$).
+- Evita distancias falsas.
 
 ```python
 import pandas as pd
-df_encoded = pd.get_dummies(df, columns=['continente', 'genero'])
+df_enc = pd.get_dummies(
+    df, columns=['ciudad']
+)
 ```
+:::
+
+::: {.column width="55%"}
+![Imagen generada con IA](assets/onehot_encoding.png){height="250px" fig-align="center"}
+:::
+
+::::
 
 ## El Desafío de la Cardinalidad
 
@@ -313,15 +334,25 @@ Evaluamos satisfacción: `['Malo', 'Regular', 'Bueno', 'Excelente']`. Asignamos 
 
 ## De Numérico a Categórico
 
-![Imagen generada con IA](assets/numerico_a_categorico.png){height="350px" fig-align="center"}
+:::: {.columns}
 
-- Facilita la interpretación humana (ej. Horas $\le 40$ vs $> 40$).
-- Permite reglas de asociación y tablas cruzadas.
+::: {.column width="45%"}
+- Convierte continuas en bins.
+- Facilita interpretación ($>40$h).
+- Permite tablas cruzadas y reglas.
+:::
+
+::: {.column width="55%"}
+![Imagen generada con IA](assets/numerico_a_categorico.png){height="320px" fig-align="center"}
+:::
+
+::::
 
 ## Desafío en Discretización
 
-![Imagen generada con IA](assets/discretizacion_equal_width.png){height="320px" fig-align="center"}
+:::: {.columns}
 
+::: {.column width="48%"}
 ::: {.callout-note title="Pregunta a la clase"}
 ¿Qué ocurre si divides el salario en 4 intervalos de igual ancho (*Equal Width*)?
 :::
@@ -329,16 +360,34 @@ Evaluamos satisfacción: `['Malo', 'Regular', 'Bueno', 'Excelente']`. Asignamos 
 ::: {.fragment .fade-in}
 **Respuesta**: El primer bin acumula casi el 95% de los datos y los demás quedan vacíos.
 :::
+:::
+
+::: {.column width="52%"}
+![Imagen generada con IA](assets/discretizacion_equal_width.png){height="300px" fig-align="center"}
+:::
+
+::::
 
 ## Tipos de Discretización
 
-![Imagen generada con IA](assets/tipos_discretizacion.png){height="300px" fig-align="center"}
+:::: {.columns}
+
+::: {.column width="55%"}
+![Imagen generada con IA](assets/tipos_discretizacion.png){height="280px" fig-align="center"}
+:::
+
+::: {.column width="45%"}
+- **Equal Width:** Mismo ancho.
+- **Equal Frequency:** Cuantiles.
+- **Ad-hoc:** Reglas de negocio.
 
 ```python
-# Equal Width vs Equal Frequency
-df['edad_ancho'] = pd.cut(df['edad'], bins=4)
-df['edad_freq'] = pd.qcut(df['edad'], q=4)
+df['edad_w'] = pd.cut(df['edad'], 4)
+df['edad_q'] = pd.qcut(df['edad'], 4)
 ```
+:::
+
+::::
 
 ## Puntos de Corte en Discretización
 
@@ -353,14 +402,17 @@ df['edad_freq'] = pd.qcut(df['edad'], q=4)
 
 ## Construcción vs. Extracción
 
-![Imagen generada con IA](assets/construccion_extraccion.jpg){height="420px" fig-align="center"}
+![Imagen generada con IA](assets/construccion_extraccion.jpg){height="380px" fig-align="center"}
 
-- Ambas buscan maximizar la **efectividad** (*Data Massaging*).
+::: {.smaller-text style="text-align: center; color: gray;"}
+Ambas técnicas buscan maximizar la **efectividad** (*Data Massaging*).
+:::
 
 ## Variables de Negocio
 
-![Imagen generada con IA](assets/dti_scatter.png){height="350px" fig-align="center"}
+:::: {.columns}
 
+::: {.column width="48%"}
 ::: {.callout-note title="Pregunta a la clase"}
 Para predecir impago: ¿qué variable sintética combina `Ingreso` y `Cuota`?
 :::
@@ -368,6 +420,13 @@ Para predecir impago: ¿qué variable sintética combina `Ingreso` y `Cuota`?
 ::: {.fragment .fade-in}
 **Respuesta**: **Debt-to-Income** = `Cuota / Ingreso`.
 :::
+:::
+
+::: {.column width="52%"}
+![Imagen generada con IA](assets/dti_scatter.png){height="320px" fig-align="center"}
+:::
+
+::::
 
 ## Attribute Construction: Casos
 
@@ -392,9 +451,19 @@ $$IMC = \frac{\text{Peso (kg)}}{(\text{Estatura (m)})^2}$$
 
 ## Extracción Morfológica
 
-![Imagen generada con IA](assets/extraccion_morfologica.png){height="380px" fig-align="center"}
+:::: {.columns}
 
-Común en motores, sismología y biomedicina (ECG/EEG).
+::: {.column width="45%"}
+- Analiza forma de la señal.
+- Métricas: picos, valles, amplitud.
+- Clave en series temporales y ECG/EEG.
+:::
+
+::: {.column width="55%"}
+![Imagen generada con IA](assets/extraccion_morfologica.png){height="320px" fig-align="center"}
+:::
+
+::::
 
 ## Reducción como Extracción
 
@@ -416,8 +485,9 @@ Común en motores, sismología y biomedicina (ECG/EEG).
 
 ## Distribuciones con Cola Larga
 
-![Imagen generada con IA](assets/log_transform_before_after.png){height="350px" fig-align="center"}
+:::: {.columns}
 
+::: {.column width="48%"}
 ::: {.callout-note title="Pregunta a la clase"}
 ¿Por qué aplicar $\log(\text{precio})$ beneficia a un modelo lineal?
 :::
@@ -425,6 +495,13 @@ Común en motores, sismología y biomedicina (ECG/EEG).
 ::: {.fragment .fade-in}
 **Respuesta**: Convierte efectos multiplicativos en aditivos y estabiliza la varianza.
 :::
+:::
+
+::: {.column width="52%"}
+![Imagen generada con IA](assets/log_transform_before_after.png){height="320px" fig-align="center"}
+:::
+
+::::
 
 ## Transformación Logarítmica
 
@@ -447,8 +524,9 @@ $$x' = \log(x + 1)$$
 
 ## Detección de Ruido en Sensores
 
-![Imagen generada con IA](assets/ruido_sensor.png){height="350px" fig-align="center"}
+:::: {.columns}
 
+::: {.column width="48%"}
 ::: {.callout-note title="Pregunta a la clase"}
 ¿Es una alerta real o simple ruido eléctrico?
 :::
@@ -456,6 +534,13 @@ $$x' = \log(x + 1)$$
 ::: {.fragment .fade-in}
 **Respuesta**: Comparar con la ventana temporal vecina (**suavizado** o **agregación**).
 :::
+:::
+
+::: {.column width="52%"}
+![Imagen generada con IA](assets/ruido_sensor.png){height="320px" fig-align="center"}
+:::
+
+::::
 
 ## Técnicas de Tratamiento de Ruido
 
@@ -466,10 +551,18 @@ $$x' = \log(x + 1)$$
 
 ## Suavizado Funcional vs. Ventana
 
-![Imagen generada con IA](assets/suavizado_comparacion.png){height="380px" fig-align="center"}
+:::: {.columns}
 
-- **Funcional (Spline):** Sin desfase, modela toda la serie.
-- **Ventana Móvil:** Desfase temporal, genera `NaN` iniciales.
+::: {.column width="55%"}
+![Imagen generada con IA](assets/suavizado_comparacion.png){height="300px" fig-align="center"}
+:::
+
+::: {.column width="45%"}
+- **Funcional (Spline):** Sin desfase, modela la curva global.
+- **Ventana Móvil:** Promedios locales con desfase y `NaN`.
+:::
+
+::::
 
 ## Suavizado por Ventana Móvil
 
@@ -486,22 +579,32 @@ df['suavizado_exp'] = df['senal'].ewm(alpha=0.2).mean()
 
 ## Agregación Temporal
 
-![Imagen generada con IA](assets/agregacion_temporal.png){height="350px" fig-align="center"}
+:::: {.columns}
+
+::: {.column width="55%"}
+![Imagen generada con IA](assets/agregacion_temporal.png){height="300px" fig-align="center"}
+:::
+
+::: {.column width="45%"}
+- Cambia resolución temporal (días $\to$ semanas).
+- Filtra ruido de alta frecuencia.
 
 ```python
-# Agregación semanal de una serie diaria
-df_semanal = df.resample('W', on='fecha').agg({
-    'casos': 'sum',
-    'temperatura': 'mean'
-})
+df_sem = df.resample(
+    'W', on='fecha'
+).agg({'casos': 'sum'})
 ```
+:::
+
+::::
 
 # Balanceo y Privacidad
 
 ## La Paradoja del Fraude
 
-![Imagen generada con IA](assets/fraude_desbalance.png){height="350px" fig-align="center"}
+:::: {.columns}
 
+::: {.column width="48%"}
 ::: {.callout-note title="Pregunta a la clase"}
 Si un modelo predice SIEMPRE 'No Fraude', ¿cuál es su Accuracy?
 :::
@@ -509,13 +612,28 @@ Si un modelo predice SIEMPRE 'No Fraude', ¿cuál es su Accuracy?
 ::: {.fragment .fade-in}
 **Respuesta**: ¡99.95%! Pero completamente inútil para el negocio.
 :::
+:::
+
+::: {.column width="52%"}
+![Imagen generada con IA](assets/fraude_desbalance.png){height="320px" fig-align="center"}
+:::
+
+::::
 
 ## Balanceo de Clases (Sampling)
 
-![Imagen generada con IA](assets/balanceo_smote.png){height="350px" fig-align="center"}
+:::: {.columns}
 
+::: {.column width="45%"}
 - **Undersampling:** Reducir clase mayoritaria.
-- **Oversampling (SMOTE):** Sintetizar instancias minoritarias.
+- **Oversampling (SMOTE):** Generar sintéticos minoritarios.
+:::
+
+::: {.column width="55%"}
+![Imagen generada con IA](assets/balanceo_smote.png){height="320px" fig-align="center"}
+:::
+
+::::
 
 ## El Reto de la Privacidad
 
