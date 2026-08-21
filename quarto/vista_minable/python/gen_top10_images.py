@@ -52,7 +52,7 @@ def save(fig, name):
     path = os.path.join(OUTPUT_DIR, name)
     fig.savefig(path, dpi=200, bbox_inches='tight', facecolor='white')
     plt.close(fig)
-    print(f"  ✅ Guardado: {name}")
+    print(f"  [OK] Guardado: {name}")
 
 
 # ══════════════════════════════════════════════════════════════
@@ -204,31 +204,35 @@ def gen_fraud_waffle():
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 5), gridspec_kw={'width_ratios': [1.2, 0.8]})
 
-    # Panel izquierdo: Waffle chart (10x10 grid = 10,000 representaciones)
+    # Panel izquierdo: Scatter grid 50x20 = 1,000 representaciones
     ax = axes[0]
-    grid = np.zeros((50, 200))  # 10,000 celdas
-    # Solo 5 celdas son fraude (0.05%)
-    fraud_positions = [(25, 100), (10, 50), (40, 150), (5, 30), (35, 180)]
-    for r, c in fraud_positions:
-        grid[r, c] = 1
+    x = np.tile(np.arange(50), 20)
+    y = np.repeat(np.arange(20), 50)
+    
+    # 2 casos de fraude de 1,000
+    fraud_idx = [215, 783]
+    is_fraud = np.zeros(1000, dtype=bool)
+    is_fraud[fraud_idx] = True
 
-    from matplotlib.colors import ListedColormap
-    cmap = ListedColormap([COLORS['light'], COLORS['danger']])
-    ax.imshow(grid, cmap=cmap, aspect='auto', interpolation='nearest')
+    # Usaremos un gris más oscuro para que se vean bien
+    # 'gray' u 'light' (pero light falló por ser muy blanco, usemos #9CA3AF)
+    ax.scatter(x[~is_fraud], y[~is_fraud], c='#9CA3AF', s=25, marker='s')
+    # Plot fraud
+    ax.scatter(x[is_fraud], y[is_fraud], c=COLORS['danger'], s=50, marker='s', edgecolors='darkred', zorder=5)
+    
+    # Highlight fraud with circles
+    ax.scatter(x[is_fraud], y[is_fraud], facecolors='none', edgecolors='gold', s=250, linewidths=2.5, zorder=4)
 
-    # Marcar los fraudes con círculos
-    for r, c in fraud_positions:
-        ax.plot(c, r, 'o', markersize=8, markerfacecolor='none',
-                markeredgecolor='yellow', markeredgewidth=2.5)
-
-    ax.set_title('10,000 Transacciones', pad=10, fontsize=14)
+    ax.set_title('1,000 Transacciones', pad=10, fontsize=14)
     ax.set_xticks([])
     ax.set_yticks([])
+    ax.set_xlim(-2, 52)
+    ax.set_ylim(-2, 22)
 
     # Leyenda manual
     legend_elements = [
-        mpatches.Patch(facecolor=COLORS['light'], edgecolor='gray', label='No Fraude (9,995)'),
-        mpatches.Patch(facecolor=COLORS['danger'], edgecolor='darkred', label='Fraude (5)'),
+        mpatches.Patch(facecolor='#9CA3AF', edgecolor='gray', label='No Fraude (998)'),
+        mpatches.Patch(facecolor=COLORS['danger'], edgecolor='darkred', label='Fraude (2)'),
     ]
     ax.legend(handles=legend_elements, loc='lower center', fontsize=10,
               ncol=2, bbox_to_anchor=(0.5, -0.12))
@@ -236,10 +240,11 @@ def gen_fraud_waffle():
     # Panel derecho: Barra de accuracy
     ax = axes[1]
     categories = ['Accuracy\n"Siempre No Fraude"', 'Detección\nde Fraude Real']
-    values = [99.95, 0]
+    values = [99.8, 0]
     colors = [COLORS['success'], COLORS['danger']]
     bars = ax.barh(categories, values, color=colors, height=0.5, edgecolor='white', linewidth=2)
     ax.set_xlim(0, 110)
+    ax.set_ylim(-0.5, 1.8)  # Ampliar eje Y para acomodar el texto sin overlap
     ax.set_title('La Paradoja', pad=10, fontsize=14)
     ax.set_xlabel('Porcentaje (%)')
 
@@ -247,7 +252,7 @@ def gen_fraud_waffle():
     ax.text(values[0] + 1, 0, f'{values[0]}%', va='center', fontsize=14, fontweight='bold', color=COLORS['success'])
     ax.text(values[1] + 1, 1, f'{values[1]}%', va='center', fontsize=14, fontweight='bold', color=COLORS['danger'])
 
-    ax.text(55, 1.4, '¡99.95% de precisión\npero completamente inútil!',
+    ax.text(55, 1.5, '¡99.8% de precisión\npero completamente inútil!',
             fontsize=11, color=COLORS['danger'], fontweight='bold', ha='center',
             bbox=dict(boxstyle='round,pad=0.4', facecolor='#FEE2E2', edgecolor=COLORS['danger']))
 
@@ -513,5 +518,5 @@ if __name__ == '__main__':
     gen_smoothing_comparison()   # Top 10
 
     print("\n" + "=" * 60)
-    print("  ✅ ¡Todas las imágenes Top 10 (Python) generadas!")
+    print("  [OK] ¡Todas las imágenes Top 10 (Python) generadas!")
     print("=" * 60)

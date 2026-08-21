@@ -123,7 +123,7 @@ Pautas clave para el desarrollo de las actividades:
 ## Libros de la Clase - Módulo 1
 
 ::: {layout-ncol=3}
-![Python for Data Analysis](assets/PythonDataAnalysis.png){height=300px}
+![Hands-On Data Preprocessing in Python](assets/HandsOnDataProcessing.png){height=300px}
 
 ![Exploratory Data Analysis](assets/ExploratoryDataAnalysis.jpg){height=300px}
 

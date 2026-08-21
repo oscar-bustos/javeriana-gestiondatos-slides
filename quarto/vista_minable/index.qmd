@@ -79,6 +79,26 @@ nocite: |
 - **Efectividad:** Optimizar la capacidad predictiva (*Data Massaging*).
 :::
 
+## Tarea / Asignación
+
+:::: {.columns}
+
+::: {.column width="60%"}
+1. Leer el Capítulo 14 del libro *Hands-On Data Preprocessing in Python* @jafari2022hands.
+2. Consultar la [Guía Oficial de Preprocesamiento de Scikit-Learn](https://scikit-learn.org/stable/modules/preprocessing.html).
+3. Explorar el [Cuaderno de Google NotebookLM](https://notebook.google.com/notebook/e96cb99a-d0af-4e84-bc05-1927af3365d2):
+   - Revisar la infografía de apoyo.
+   - Completar los quices interactivos y podcast resumen.
+:::
+
+::: {.column width="40%"}
+![Hands-On Data Preprocessing in Python](assets/HandsOnDataProcessing.png){height="400px" fig-align="center"}
+:::
+
+::::
+
+
+
 ## ¿Qué es la Vista Minable?
 
 :::: {.columns}
@@ -741,7 +761,7 @@ Si un modelo predice SIEMPRE 'No Fraude', ¿cuál es su Accuracy?
 :::
 
 ::: {.fragment .fade-in}
-**Respuesta**: ¡99.95%! Pero completamente inútil para el negocio.
+**Respuesta**: ¡99.8%! Pero completamente inútil para el negocio.
 :::
 :::
 
@@ -858,13 +878,6 @@ winsor = Winsorizer(
 - [ ] ¿Ruido y desbalance de clases mitigados?
 - [ ] ¿Datos sensibles y cuasi-identificadores protegidos?
 
-## Tarea / Asignación
-
-1. Leer el Capítulo 14 del libro *Hands-On Data Preprocessing in Python* @jafari2022hands.
-2. Consultar la [Guía Oficial de Preprocesamiento de Scikit-Learn](https://scikit-learn.org/stable/modules/preprocessing.html).
-3. Explorar el [Cuaderno de Google NotebookLM](https://notebook.google.com/notebook/e2719493-ad99-4abe-8f05-030eca72a7f9):
-   - Revisar la infografía de apoyo.
-   - Completar los quices interactivos y podcast resumen.
 
 ## Agradecimientos
 
