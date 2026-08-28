@@ -1,6 +1,6 @@
 ---
-title: "Gestión de Datos: Ciclo de Vida, Extracción y Modelado"
-subtitle: "SoundStream: Ingeniería de Datos de un Marketplace de Música"
+title: "Gestión de Datos: Fundamentos de Ingeniería"
+subtitle: "Del Lifecycle al Serving"
 author: "Oscar Leonardo Bustos"
 format:
   revealjs:
@@ -10,8 +10,11 @@ format:
     show-slide-number: all
     transition: slide
     chalkboard: false
-    width: 1050
-    height: 700
+    width: 1280
+    height: 720
+    margin: 0.04
+    center: false
+    auto-stretch: false
     logo: assets/logo_RGB.png
 bibliography: references.bib
 nocite: |
@@ -25,395 +28,471 @@ nocite: |
 .smaller-text {
   font-size: 0.75em !important;
 }
+.tiny-text {
+  font-size: 0.55em !important;
+}
 </style>
 
-# Introducción: El Caso SoundStream
+# 1. El Ciclo de Vida de los Datos
 
-## ¿Qué es SoundStream?
+## El Lifecycle en una Imagen
 
-- **SoundStream** es un marketplace global de música digital (ej. Spotify / Apple Music).
-- El negocio se basa en datos masivos:
-  - Artistas suben canciones y álbumes.
-  - Usuarios escuchan, compran suscripciones y crean playlists.
-  - La aplicación debe recomendar música en tiempo real.
-- **Nuestro Reto:** Diseñar su pipeline de datos de extremo a extremo aplicando Ingeniería de Datos.
+![Fuente: @reis2022fundamentals](assets/fode_0101.png){height="420px" fig-align="center"}
 
-# Parte 1: El Ciclo de Vida (Cap. 2)
+## Las 5 Etapas del Lifecycle
 
-## ¿De dónde vienen los datos de SoundStream?
-
-- Antes de procesar datos, hay que generarlos.
-- **Sistemas Fuente (Source Systems):**
-  - Aplicaciones móviles (eventos de clic, play).
-  - Base de datos transaccional (usuarios, facturación).
-  - IoT (altavoces inteligentes enviando logs).
-  - APIs de proveedores discográficos.
-- La ingeniería de datos empieza donde termina la ingeniería de software.
-
-## ¿Cómo pasamos del dato a la recomendación?
+- **Generación:** El dato nace en sistemas fuente (apps, IoT, APIs).
+- **Almacenamiento:** Persiste en distintas capas según su uso.
+- **Ingesta:** Se mueve hacia el sistema analítico.
+- **Transformación:** Se limpia, modela y enriquece.
+- **Serving:** Se consume: dashboards, ML, Reverse ETL.
 
 ::: {.callout-note}
-### El Ciclo de Vida de la Ingeniería de Datos
-Consta de 5 etapas secuenciales que transforman el dato crudo en valor de negocio.
+Storage es transversal: aparece en todas las etapas del ciclo.
 :::
 
-1. **Generación:** Creación en la fuente.
-2. **Almacenamiento:** Guardar el dato crudo de forma segura.
-3. **Ingesta:** Extraer el dato hacia un sistema analítico.
-4. **Transformación:** Limpiar, modelar y estructurar.
-5. **Serving:** Consumir el dato (Dashboards, Machine Learning).
+## Los Undercurrents
 
-## ¿Qué soporta todo el ciclo de vida?
+Factores que sostienen *todas* las etapas del ciclo de vida.
 
-::: {.callout-important}
-### Undercurrents (Subcorrientes)
-Factores transversales que aplican a todas las etapas del ciclo de vida.
-:::
-
-- **Seguridad y Privacidad:** Encriptación de medios de pago.
-- **Data Management & Governance:** Calidad y catálogos de datos.
+- **Seguridad:** Principio de mínimo privilegio, encriptación.
+- **Data Management:** Gobierno, calidad y metadatos.
 - **DataOps:** Automatización, testing y observabilidad.
-- **Orquestación:** Coordinar cuándo se ejecuta cada proceso.
-- **Arquitectura e Ingeniería de Software:** Diseño de sistemas escalables.
+- **Data Architecture:** Diseño de sistemas escalables.
+- **Orquestación:** Coordina cuándo y cómo se ejecuta cada proceso.
+- **Ingeniería de Software:** Fundamentos para construir pipelines robustos.
 
-## ¿Qué hacemos con el dato una vez servido?
+# 2. Data Management y Metadatos
 
-- El fin último de SoundStream es generar impacto.
-- **Analytics y BI:** Reportes de las canciones más escuchadas de la semana.
-- **Machine Learning:** Algoritmos de recomendación tipo "Descubrimiento Semanal".
-- **Reverse ETL:** Devolver métricas calculadas a la base de datos de producción (ej. mostrarle al artista cuántos "streams" tiene este mes).
+## ¿Qué es Data Management?
 
-# Parte 2: Sistemas Fuente (Cap. 5)
+Según DAMA (DMBOK) [@dama2017dmbok], data management es:
 
-## ¿Cómo genera datos la app de SoundStream?
+> *El desarrollo, ejecución y supervisión de planes y prácticas que controlan, protegen y mejoran el valor de los datos a lo largo de su ciclo de vida.*
 
-- Diferentes interacciones requieren diferentes tipos de fuentes:
-  - **Archivos:** SFTP con catálogos de licencias musicales.
-  - **APIs:** Integración con pasarelas de pago.
-  - **OLTP:** Base de datos de registros de usuarios y contraseñas.
-  - **Mensajes y Streams:** Reproducciones (plays) de cada canción, enviadas cada segundo desde millones de teléfonos.
+- Cubre: gobierno, modelado, linaje, calidad, privacidad.
+- El data engineer opera como un **gestor del ciclo de vida** del dato.
+- Sin un marco de gestión, el dato queda inerte o es indigno de confianza.
 
-## ¿Qué diferencia hay entre OLTP y OLAP?
+## Metadatos: Datos sobre Datos
 
-- **OLTP (Online Transaction Processing):**
-  - Maneja las operaciones de SoundStream (cambios de contraseña, pagos).
-  - Altamente normalizado, transacciones ACID (rápidas, consistentes).
-  - Se optimiza para **escritura** de registros individuales.
-- **OLAP (Online Analytical Processing):**
-  - Analiza tendencias a largo plazo.
-  - Desnormalizado (optimizado para lecturas masivas y sumarizaciones).
-  - Escanea columnas completas.
+Los metadatos proveen **contexto** para descubrir, entender y gobernar datos.
 
-## ¿Qué pasa al cambiar de suscripción?
+DMBOK identifica cuatro categorías principales:
 
-- Un usuario pasa de "Free" a "Premium".
-- **CRUD (Create, Read, Update, Delete):**
-  - Modifica el registro existente sobrescribiendo su estado a "Premium".
-  - Se pierde el historial de cuándo fue "Free".
-- **Insert-Only (Append-Only):**
-  - Inserción de un nuevo evento: `{"user": 1, "status": "Premium", "time": "12:00"}`.
-  - Guarda el historial completo de cambios (ideal para analítica).
+1. **Business Metadata:** Definiciones de negocio (apoyado por el **Catálogo de Datos**).
+2. **Technical Metadata:** Esquemas, pipelines y **Linaje de Datos**.
+3. **Operational Metadata:** Logs de ejecución, job IDs, errores.
+4. **Reference Metadata:** Códigos internos, geográficos, calendarios.
 
-## ¿Cómo capturamos cambios en tiempo real?
+## Business Metadata
 
-- No podemos parar la BD de producción para extraer datos diarios.
-- **CDC (Change Data Capture):** Extrae eventos de cambio de la BD origen.
-- **Database Logs (WAL):**
-  - Bases de datos como PostgreSQL guardan un registro secuencial (Log) de toda operación.
-  - CDC lee este log en tiempo real sin impactar a la base de datos principal.
-  - Envía cada `INSERT`, `UPDATE` o `DELETE` al sistema de analítica.
-
-## ¿Qué BDs usan los sistemas fuente?
-
-- No todas las bases de datos de SoundStream son relacionales.
-- **Sistemas NoSQL:**
-  - *Key-Value:* Redis para caché de sesión (rápidas respuestas).
-  - *Document:* MongoDB para guardar perfiles dinámicos y JSON de usuarios.
-  - *Wide-Column:* Cassandra para almacenar metadatos masivos de canciones.
-  - *Graph:* Neo4j para encontrar conexiones de playlists.
-  - *Search:* Elasticsearch para buscar letras de canciones rápido.
-
-## ¿Cómo se comunican los servicios?
-
-- La app móvil necesita pedir datos al servidor central.
-- **REST APIs:** Estándar HTTP usando GET, POST.
-- **GraphQL:** Permite a la app pedir solo los campos que necesita (ahorra batería/datos).
-- **gRPC:** Llamadas rápidas binarias entre los microservicios internos.
-- **Webhooks:** Proveedores de pago notifican *a* SoundStream (Push) cuando un cobro es exitoso, sin que SoundStream tenga que preguntar.
-
-## ¿Qué son los mensajes y streams?
-
-- Millones de reproducciones simultáneas no pueden ir a una BD tradicional.
-- **Mensaje:** Un paquete de datos sobre un evento.
-- **Event Streaming:** Los mensajes se envían de forma continua (unbounded).
-- **Tiempos diferentes:**
-  1. *Event time:* Cuando el usuario dio "Play" (incluso sin WiFi).
-  2. *Ingestion time:* Cuando SoundStream recibe el evento.
-  3. *Processing time:* Cuando se analiza el evento.
-
-## ¿Cómo protegemos el contrato de datos?
-
-- Los desarrolladores de software pueden romper el pipeline (ej. borrando la columna `precio`).
-- **Data Contracts:**
-  - Acuerdos formales entre generadores (SoftEng) y consumidores (DataEng).
-  - Definen esquemas fijos, SLAs (tiempos máximos de respuesta) y calidad.
-- **Schema Evolution:**
-  - Manejo ordenado de cambios (agregar una columna nueva no debería romper el flujo analítico).
-
-# Parte 3: Almacenamiento (Cap. 6)
-
-## ¿Dónde guardamos reproducciones?
-
-- El almacenamiento tiene costos y velocidades distintas (Jerarquía).
-- **RAM (Memoria):** Extremadamente rápida, pero costosa y volátil. Caché.
-- **SSD (Estado Sólido):** Rápidos, ideales para bases de datos de uso intensivo.
-- **HDD (Disco Duro Magnético):** Lentos pero baratos. Ideales para almacenamiento frío.
-- **Estrategia:** Archivos crudos en HDD de la nube, agregaciones analíticas en SSD.
-
-## ¿Cómo escala el almacenamiento en la nube?
-
-- Un solo servidor no basta para todo el catálogo musical del mundo.
-- Sistemas distribuidos dividen los datos en múltiples nodos.
-- **Cómputo (CPU) vs Red (Network):**
-  - Transferir datos por red suele ser el principal cuello de botella.
-  - Mover el procesamiento hacia donde están los datos es más eficiente que enviar petabytes a procesar.
-
-## ¿Qué formatos serializan los datos?
-
-::: {.callout-note}
-### Serialización
-Convertir objetos en memoria a bytes para almacenarlos o transmitirlos.
+::: {.columns}
+::: {.column width="45%"}
+- Responde a: ¿Qué es un "cliente"? ¿Qué define una "venta"?
+- Incluye: definiciones, reglas, propietarios.
+- Su ausencia causa interpretaciones incorrectas.
+- **Herramientas:** Data dictionaries, data catalogs.
+:::
+::: {.column width="55%"}
+![Fuente: @reis2022fundamentals](assets/pptx/slide_7_img_2.png){height="340px" fig-align="center"}
+:::
 :::
 
-- **Row-Oriented:** CSV, JSON, Avro (Ideales para extraer filas enteras y streaming).
-- **Column-Oriented:** Parquet, ORC (Ideales para agregaciones analíticas, comprimen muy bien por similitud de tipo).
-- **Compresión:** Reduce tamaño (Snappy, GZIP). Fundamental para ahorrar costos de red.
+## Business Metadata: Catálogo de Datos
 
-## ¿Cómo organizamos según la frecuencia?
+- Repositorio centralizado de metadatos de toda la organización.
+- Permite buscar, descubrir y documentar datasets.
+- Integra linaje, descripciones editables y escaneo automático.
 
-- **Temperatura de los datos:**
-  - *Hot:* Perfil actual del usuario. Consulta frecuente en milisegundos (Caché/Memoria).
-  - *Warm:* Reporte del mes pasado (Data Warehouse en SSD).
-  - *Cold:* Logs de actividad de hace 5 años. Se consultan poco, guardados en Archivo (Object Storage, Glacier).
-- **Objetivo:** Optimizar costo vs rendimiento.
+## Technical Metadata
 
-## ¿Qué tipo de almacenamiento elegimos?
-
-- **File Storage:** Sistemas POSIX jerárquicos. Difícil de escalar globalmente.
-- **Block Storage:** Discos crudos atados a servidores (EBS). Alto rendimiento local.
-- **Object Storage:** (ej. Amazon S3, Azure Blob).
-  - Guarda archivos como "objetos" planos con metadatos y IDs.
-  - Escala infinitamente, ideal para Data Lakes. Inmutable.
-
-## ¿Todos los nodos ven lo mismo al tiempo?
-
-::: {.callout-warning}
-### Teorema CAP
-Sistemas distribuidos deben elegir 2 entre: Consistencia, Disponibilidad, Tolerancia a Particiones.
+::: {.columns}
+::: {.column width="45%"}
+- Describe la **estructura y el flujo** del dato en los sistemas.
+- **Esquemas:** tipos de columnas, relaciones (ERD), constraints.
+- **Pipeline:** schedules, dependencias.
+- Generado automáticamente por orquestadores.
+:::
+::: {.column width="55%"}
+![Fuente: @sqlite_erd](assets/pptx/slide_6_img_2.jpg){height="340px" fig-align="center"}
+:::
 :::
 
-- **Strong Consistency:** Todos ven la última canción añadida de inmediato (lento).
-- **Eventual Consistency:** Algunos ven la canción y otros no por unos segundos (rápido, Availability).
-- **ACID vs BASE:** OLTP demanda consistencia estricta, pero sistemas masivos toleran cierta desincronización (BASE).
+## Technical Metadata: Linaje de Datos
 
-## ¿Qué arquitectura contiene los datos?
-
-- **Data Warehouse:** Almacena datos estructurados, modelados y listos para BI. Alto costo y rigidez, pero máxima velocidad analítica.
-- **Data Lake:** Guarda datos crudos en Object Storage. Barato y flexible (ideal ML), pero puede volverse un *pantano* inmanejable.
-- **Data Lakehouse:**
-  - Lo mejor de ambos mundos: tablas ACID estructuradas directamente sobre el Data Lake.
-
-## ¿Cómo se separan cómputo y almacenamiento?
-
-- Arquitecturas modernas escalan ambos por separado.
-- Si SoundStream lanza una campaña, subimos el "Compute" sin tener que copiar discos.
-- **Formatos de Tabla Abiertos (Open Table Formats):**
-  - *Apache Iceberg / Delta Lake / Apache Hudi*
-  - Proveen características de Data Warehouse (Time-travel, ACID) usando archivos Parquet en un Object Storage barato.
-
-## ¿Cómo encontramos y gobernamos datos?
-
-- Si un analista busca "ingresos", ¿cómo sabe qué tabla usar?
-- **Catálogo de Datos:** Un buscador (ej. Datahub, Alation) con los metadatos y descripciones de cada tabla.
-- **Linaje de Datos (Data Lineage):**
-  - Muestra visualmente la dependencia de las tablas.
-  - Si falla la fuente de pagos, el linaje indica qué dashboards estarán caídos.
-
-# Parte 4: Ingesta (Cap. 7)
-
-## ¿Qué es un pipeline y cómo empieza?
-
-::: {.callout-note}
-### Data Pipeline
-Combinación de arquitectura, sistemas y procesos que mueven los datos a lo largo del ciclo de vida.
+::: {.columns}
+::: {.column width="40%"}
+- Audit trail del dato a través del ciclo de vida.
+- Si falla una fuente, revela qué dashboards estarán afectados.
+- Facilita cumplimiento de regulaciones (ej. GDPR).
+:::
+::: {.column width="60%"}
+![Fuente: @dataplex_lineage](assets/lineage_total_end_screen.png){height="340px" fig-align="center"}
+:::
 :::
 
-- La ingesta es el primer paso del pipeline después de los sistemas fuente.
-- **Ingesta:** Mover datos del punto A al punto B.
-- **Integración:** Combinar múltiples fuentes para crear un set nuevo (se hace en la etapa de transformación).
+## Operational Metadata
 
-## ¿Cada cuánto ingresamos datos?
+- **Estadísticas de procesos:** duración, registros procesados, errores.
+- Esencial para observabilidad y prácticas de DataOps.
+- Aún suele estar disperso en múltiples sistemas.
 
-- **Bounded (Con Límite):** Datos en reposo, como el cierre contable del mes pasado. Se ingresan en **Batch** (ej. cada 24 horas).
-- **Unbounded (Sin Límite):** El flujo infinito de reproducciones de música en el mundo real. Se ingresan en **Real-Time** o **Micro-Batch**.
-- **Nota:** Todo dato real es *unbounded* hasta que le ponemos un límite temporal artificial.
+## Reference Metadata
 
-## ¿Los pasos del pipeline van en secuencia?
-
-- **Sincrónico:**
-  - Si el paso B depende de A, y A falla, se detiene todo.
-  - Común en pipelines Batch antiguos.
-- **Asincrónico:**
-  - Eventos procesados independientemente mediante microservicios.
-  - Una cola de Kafka absorbe los picos de reproducciones si el sistema posterior está lento, sin romper la cadena.
-
-## ¿Cómo garantizamos llegada de datos?
-
-- **Throughput:** Capacidad del sistema para absorber el volumen (ej. millones de streams en lanzamiento de un artista).
-- **Reliability & Durability:** Redundancia para no perder eventos pagados de publicidad.
-- **Payload:**
-  - Forma (tabular, JSON, video).
-  - Esquema y metadatos del archivo a procesar.
-
-## ¿Con qué tecnología nos conectamos?
-
-- **Conexiones a BD (JDBC/ODBC):** Tradicionales, efectivas pero pueden ser pesadas para la fuente.
-- **Archivos exportados:** La fuente deposita un CSV diario en SFTP (Push).
-- **Herramientas de ingestión SaaS:**
-  - *Airbyte / Fivetran:* Conectores listos para usar que extraen desde APIs y detectan cambios automáticamente.
-
-## ¿Full Snapshot o Extracción Diferencial?
-
-- **Full Snapshot:**
-  - Trae toda la tabla (ej. todo el catálogo de artistas) cada vez.
-  - Sencillo, pero ineficiente si hay millones de registros.
-- **Incremental (Differential):**
-  - Solo extrae registros nuevos o modificados (ej. usando un campo `updated_at`).
-  - Menos uso de red, pero puede perder borrados o updates múltiples.
-
-## ¿Cómo ingestamos en tiempo real?
-
-- **Message Queues:**
-  - Ej. RabbitMQ. El mensaje desaparece al ser consumido.
-- **Event Streaming:**
-  - Ej. Apache Kafka, Amazon Kinesis.
-  - El mensaje persiste por un tiempo. Varios consumidores (recomendaciones, analítica) leen la misma reproducción.
-  - Soporta **Replay:** volver a procesar días anteriores si hubo error.
-
-## ¿Qué pasa con errores y la latencia?
-
-- **Dead-Letter Queue (DLQ):** Eventos con formato corrupto se desvían aquí para no bloquear la cola principal, permitiendo corrección manual.
-- **Late-Arriving Data:**
-  - Un usuario escucha offline en un avión y se reconecta días después.
-  - El pipeline debe tener límites de tiempo para decidir qué hacer (Watermarks).
-
-## ¿Qué patrón elegimos: ETL o ELT?
-
-- **ETL (Extract, Transform, Load):** Transformamos los datos pesados en un servidor intermedio antes de cargarlos. Tradicional.
-- **ELT (Extract, Load, Transform):**
-  - Ingesta cruda primero (Extract, Load) en el Data Warehouse/Lake.
-  - Luego usamos la potencia masiva de la nube para Transformar allá mismo con SQL.
-  - El estándar actual en Modern Data Stack.
-
-# Parte 5: Queries y Transformación (Cap. 8)
-
-## ¿Cómo le preguntamos a los datos?
-
-- El estándar analítico es SQL (Structured Query Language).
-- **DDL (Definition):** `CREATE`, `DROP` tablas de reproducciones.
-- **DML (Manipulation):** `SELECT`, `INSERT`, `UPDATE` de reportes.
-- **DCL (Control):** `GRANT` (permisos a analistas).
-- **TCL (Transaction):** `COMMIT`, `ROLLBACK` (control ACID).
-
-## ¿Qué hace el motor bajo el capó?
-
-- El ciclo de vida de un query:
-  1. Parsea la sintaxis de SQL.
-  2. Convierte el código a operaciones máquina (bytecode).
-  3. **Query Optimizer:** Evalúa la forma más barata y rápida de buscar (rutas, índices, particiones).
-  4. Ejecución paralela en el clúster.
-
-## ¿Cómo optimizamos las consultas?
-
-::: {.callout-tip}
-### Rendimiento Analítico
-- Nunca uses `SELECT *`. Extrae (Pruning) solo las columnas necesarias.
+::: {.columns}
+::: {.column width="50%"}
+- **Tablas de lookup:** datos para clasificar otros datos.
+- Cambian lentamente en el tiempo.
+- Ejemplos: países, monedas, unidades.
+:::
+::: {.column width="50%"}
+| ISO | País | Moneda |
+|:---|:---|:---|
+| CO | Colombia | COP |
+| MX | México | MXN |
+| AR | Argentina | ARS |
+| ES | España | EUR |
+:::
 :::
 
-- **Evitar Row Explosion:** Controlar JOINs complejos y duplicados.
-- **Caché:** Reutilizar resultados en consultas repetitivas de dashboards.
-- **Clustering / Partitioning:** Agrupar datos por mes ahorra escanear años enteros (Pruning).
+# 3. Arquitectura de Datos
 
-## ¿Consultamos datos en tiempo real?
+## Arquitecturas Analíticas
 
-- Queries continuos sobre Kafka / Flink.
-- Se usan **Ventanas (Windows)** sobre streams:
-  - *Tumbling (Fixed):* Corta cada 60 seg, cuenta streams de una canción.
-  - *Sliding:* Cada 30 seg, mira los últimos 60 seg.
-  - *Session:* Agrupa la actividad de un usuario hasta 5 min de inactividad (fin de la sesión musical).
+- Los sistemas operacionales (OLTP) no están optimizados para analítica.
+- Necesitamos arquitecturas separadas para procesar y servir datos.
+- **Evolución:**
+  - ETL clásico → Data Warehouse centralizado.
+  - ELT moderno → Data Warehouse + staging en la nube.
+  - Data Lakehouse → combina lago y warehouse.
+  - Data Mesh → descentralización por dominios.
 
-## ¿Qué es modelar datos y por qué importa?
+## Data Warehouse: ETL Clásico
 
-- Es traducir la lógica de negocio a tablas.
-- **Granularidad (Grain):** Guardar el dato al nivel más atómico (ej. cada reproducción individual, no el total diario) para permitir cualquier cruce futuro.
-- **Modelos:**
-  - *Conceptual:* (Pizarrón) "Artistas tienen Canciones".
-  - *Lógico:* "Artist_ID es llave foránea".
-  - *Físico:* DDL en el motor Snowflake o BigQuery.
+::: {.columns}
+::: {.column width="45%"}
+- Datos de múltiples fuentes pasan por un **ETL system**.
+- La transformación ocurre *antes* de cargar al warehouse.
+- Genera **Data Marts** especializados por departamento.
+:::
+::: {.column width="55%"}
+![Fuente: @reis2022fundamentals](assets/fode_0310.png){height="340px" fig-align="center"}
+:::
+:::
 
-## ¿Cómo evitamos la redundancia?
+## Data Warehouse: ELT Moderno
 
-- **Normalización (1NF, 2NF, 3NF):**
-  - Evitar repetir el "Nombre del Artista" en las 10 millones de reproducciones.
-  - Separar en Tablas (ej. `Artist`, `Song`, `Play`) unidas por IDs (Foreing Keys).
-  - Elimina duplicidad y problemas de actualización (3NF).
-  - Ideal para la Base de Datos Transaccional (Origen).
+::: {.columns}
+::: {.column width="45%"}
+- Los datos se cargan *primero* en un área de **Staging**.
+- La transformación ocurre *dentro* del warehouse con SQL.
+- Estándar en la nube (BigQuery, Snowflake, Redshift).
+:::
+::: {.column width="55%"}
+![Fuente: @reis2022fundamentals](assets/fode_0311.png){height="340px" fig-align="center"}
+:::
+:::
 
-## ¿Cómo organizamos el Data Warehouse?
+## Data Warehouse + Data Marts
 
-- Modelado Dimensional (Kimball) para OLAP:
-  - Desnormalizar intencionalmente para evitar JOINs pesados en BI.
-- **Star Schema:**
-  - **Fact Table:** Tabla central (Métricas cuantitativas: `Plays`, ingresos).
-  - **Dimension Tables:** Tablas descriptivas alrededor (`Usuario`, `Fecha`, `Canción`).
+::: {.columns}
+::: {.column width="42%"}
+- El warehouse centraliza todos los datos.
+- Los **Data Marts** son subconjuntos para áreas específicas.
+- ETL o ELT alimentan el mismo flujo base.
+- Combina gobierno central con acceso especializado.
+:::
+::: {.column width="58%"}
+![Fuente: @reis2022fundamentals](assets/fode_0312.png){height="340px" fig-align="center"}
+:::
+:::
 
-## ¿Cómo manejamos cambios en el tiempo?
+## Data Mesh
 
-- Si un artista se cambia de país, ¿sobreescribimos?
-- **Slowly Changing Dimensions (SCD):**
-  - *SCD Tipo 1:* Sobrescribir (pierde historia).
-  - *SCD Tipo 2:* Crear nueva fila con fechas de validez (mantiene historial completo, ideal).
-  - *SCD Tipo 3:* Agregar columna nueva "País_Anterior".
+::: {.columns}
+::: {.column width="40%"}
+- Paradigma **sociotécnico descentralizado**.
+- Dominios dueños de sus datos (*Data as a Product*).
+- **Gobierno federado.**
+- Self-serve platform para evitar cuellos de botella.
+:::
+::: {.column width="60%"}
+![Fuente: @reis2022fundamentals](assets/fode_0318.png){height="360px" fig-align="center"}
+:::
+:::
 
-## ¿Existen otras alternativas de modelado?
+# 4. Fundamentos de Storage
 
-- **Inmon (Enterprise DW):** Normalización estricta centralizada.
-- **Data Vault (Hubs, Links, Satellites):** Altamente escalable y ágil, separa llaves, relaciones y atributos.
-- **One Big Table (OBT):**
-  - Juntar absolutamente todo (Dimensiones y Facts) en una tabla súper ancha.
-  - Los motores columnares modernos escanean rápido sin requerir JOINs de estrellas.
+## Atributos No Funcionales: Capacidad
 
-## ¿Cómo ejecutamos las transformaciones?
+::: {.columns}
+::: {.column width="50%"}
+::: {.smaller-text}
+| Unidad | Tamaño | Ejemplo práctico |
+|:---|:---|:---|
+| **Byte** | 1 B | Un caracter |
+| | 10 B | Una palabra |
+| **Kilobyte** | 1 KB | Párrafo corto |
+| | 100 KB | Fotografía de baja resolución |
+| **Megabyte** | 1 MB | Novela corta |
+| | 700 MB | Capacidad de un CD-ROM |
+| **Gigabyte** | 1 GB | 7 minutos de video HD |
+| | 4.7 GB | Capacidad de un DVD-R |
+:::
+:::
+::: {.column width="50%"}
+::: {.smaller-text}
+| Unidad | Tamaño | Ejemplo práctico |
+|:---|:---|:---|
+| **Terabyte** | 1 TB | 50,000 árboles impresos en papel |
+| | 10 TB | Biblioteca del Congreso de EE.UU. |
+| **Petabyte** | 1 PB | 20 millones de archivadores de texto |
+| | 50 PB | Todas las obras escritas de la humanidad |
+:::
+:::
+:::
+## Jerarquía: Velocidad vs Costo
 
-- Traducir los datos crudos a los modelos dimensionales.
-- **dbt (data build tool):**
-  - Transforma usando solo SQL (patrón ELT). Maneja testing y versiones.
-- **Apache Spark:**
-  - Procesamiento distribuido en memoria usando Python/Scala/SQL.
-- **Vistas Materializadas:**
-  - El motor pre-calcula los resultados para que el Dashboard responda rápido.
+| Tipo de Storage | Latencia de acceso | Costo aprox. |
+|---|---|---|
+| CPU Cache | ~1 nanosegundo | N/A |
+| RAM | ~0.1 microsegundos | ~$10/GB |
+| SSD | ~0.1 milisegundos | ~$0.20/GB |
+| HDD | ~4 milisegundos | ~$0.03/GB |
+| Object Storage (S3) | ~100 milisegundos | ~$0.02/GB/mes |
+| Archival (Glacier) | ~12 horas | ~$0.004/GB/mes |
 
-# Recursos y Conclusión
+*Fuente:* @reis2022fundamentals
 
-## Conclusión
+## Temperatura de los Datos
 
-- La ingeniería de datos requiere **pensar sistémicamente**: desde que la app genera el dato hasta que ML lo consume.
-- Hay muchas herramientas, pero los patrones fundamentales son estables.
-- Un mal modelado encarecerá tu infraestructura; un buen diseño asegura escalabilidad.
+- **Hot:** Consultas múltiples por segundo. Perfil de usuario activo, sesiones. → **RAM / Caché (Redis)**
+- **Warm:** Consultas semanales o mensuales. Reportes recientes. → **SSD / Data Warehouse**
+- **Cold:** Acceso esporádico. Logs de auditoría, backups legales. → **Object Storage / Glacier**
 
-## Bibliografía
+*Regla práctica:* Mover datos fríos al tier más barato reduce costos de nube sin sacrificar rendimiento operacional.
 
-- **Reis, J. & Housley, M.** (2022). *Fundamentals of Data Engineering*. O'Reilly Media.
-- **Kimball, R. & Ross, M.** (2013). *The Data Warehouse Toolkit* (3rd ed.). Wiley.
-- **Inmon, W. H.** (2005). *Building the Data Warehouse* (4th ed.). Wiley.
-- **Kleppmann, M.** (2017). *Designing Data-Intensive Applications*. O'Reilly Media.
+# 5. Generación — Sistemas Fuente
+
+## Monolito vs Microservicios
+
+::: {.columns}
+::: {.column width="42%"}
+- **Monolito:** una sola aplicación y una sola BD.
+- **Microservicios:** cada servicio tiene su propia BD.
+- Los microservicios son la fuente típica del data engineer moderno.
+- Generan múltiples fuentes heterogéneas que hay que integrar.
+:::
+::: {.column width="58%"}
+![Fuente: @reis2022fundamentals](assets/fode_0307.png){height="360px" fig-align="center"}
+:::
+:::
+
+## Fuentes IoT: Del Dispositivo al Dato
+
+::: {.columns}
+::: {.column width="42%"}
+- Los dispositivos envían datos al **IoT Gateway**.
+- El gateway alimenta un **Stream Processor**.
+- El stream escribe a **Storage**.
+- Downstream: ML y reportes analíticos.
+:::
+::: {.column width="58%"}
+![Fuente: @reis2022fundamentals](assets/fode_0317.png){height="320px" fig-align="center"}
+:::
+:::
+
+## Transacciones ACID
+
+*ACID garantiza que el dato en la fuente es confiable antes de ingestarlo.* Los sistemas fuente OLTP se basan en transacciones con estas propiedades:
+
+::: {.columns}
+::: {.column width="50%"}
+- **Atomicity:** La transacción es todo-o-nada. No hay estados a medias.
+- **Consistency:** El estado de la BD siempre es válido según sus reglas.
+:::
+::: {.column width="50%"}
+- **Isolation:** Las transacciones concurrentes no se interfieren entre sí.
+- **Durability:** Los datos confirmados no se pierden, ni ante falla de energía.
+:::
+:::
+
+# 6. Ingestión
+
+## Batch y Stream hacia Serving
+
+::: {.columns}
+::: {.column width="40%"}
+- Los sistemas fuente alimentan **dos caminos paralelos**.
+- **Stream processing:** datos continuos, baja latencia.
+- **Batch processing:** grandes volúmenes, menor frecuencia.
+- Convergen en la **Serving layer** para responder queries.
+:::
+::: {.column width="60%"}
+![Fuente: @reis2022fundamentals](assets/fode_0314.png){height="340px" fig-align="center"}
+:::
+:::
+
+## Ingestión Stream Pura
+
+::: {.columns}
+::: {.column width="40%"}
+- El stream source envía eventos de forma continua.
+- Un **Stream Processor** (Kafka, Flink) procesa en vuelo.
+- La **Serving layer** responde queries sobre datos recientes.
+- Ideal para CDC continuo y datos de IoT.
+:::
+::: {.column width="60%"}
+![Fuente: @reis2022fundamentals](assets/fode_0315.png){height="320px" fig-align="center"}
+:::
+:::
+
+## Fuentes de Datos Tabulares
+
+::: {.tiny-text}
+| Formato | Open Source | Tabular o Jerárquico | Binario o Plano | Tipos Complejos | Optimizado para |
+|---|---|---|---|---|---|
+| **EXCEL** | No | Tabular | Binario | Sí | Análisis en hojas de cálculo, informes financieros. (.xlsx es abierto) |
+| **FEATHER** | Sí | Tabular | Binario | No | Rápido intercambio de datos entre Python y R. |
+| **ORC** | Sí | Tabular | Binario | Sí | Análisis de big data con Hadoop. Soporta compresión. |
+| **PARQUET** | Sí | Tabular | Binario | Sí | Almacenamiento eficiente de big data. Soporta compresión. |
+| **SAS** | No | Tabular | Binario | No | Análisis estadístico, grandes datasets en SAS. |
+| **SPSS** | No | Tabular | Binario | No | Investigación social, análisis en SPSS. |
+| **STATA** | No | Tabular | Binario | No | Análisis econométrico en Stata. |
+| **SQL** | Sí | Tabular | Depende | No | Manipulación de BD relacionales. |
+| **CSV** | Sí | Tabular | Plano | No | Intercambio de datos entre sistemas. |
+
+: {tbl-colwidths="[10, 12, 15, 13, 10, 40]"}
+:::
+
+## Fuentes de Datos Jerárquicos
+
+::: {.tiny-text}
+| Formato | Open Source | Tabular o Jerárquico | Binario o Plano | Tipos Complejos | Optimizado para |
+|---|---|---|---|---|---|
+| **HDF** | Sí | Jerárquico | Binario | Sí | Almacenamiento y análisis de grandes volúmenes. |
+| **PICKLE** | Sí | Jerárquico | Binario | Sí | Serialización de objetos Python. |
+| **JSON** | Sí | Jerárquico | Plano | Sí | Intercambio de datos entre APIs. |
+| **XML** | Sí | Jerárquico | Plano | Sí | Manejo de datos jerárquicos en XML. |
+| **HTML** | Sí | Jerárquico | Plano | No | Extracción de tablas desde páginas web. |
+
+: {tbl-colwidths="[10, 12, 15, 13, 10, 40]"}
+:::
+
+# 7. Transformación y SQL
+
+## SQL: Lenguaje de Transformación
+
+SQL es el estándar en el patrón ELT moderno:
+
+- **DDL:** `CREATE TABLE`, `DROP TABLE` — estructura el modelo de datos.
+- **DML:** `SELECT`, `INSERT`, `UPDATE`, `MERGE` — manipula y transforma.
+- **DCL:** `GRANT`, `REVOKE` — gobierna el acceso al dato.
+- **TCL:** `COMMIT`, `ROLLBACK` — asegura consistencia transaccional.
+- **CTEs & Window Functions:** complejidad analítica dentro del warehouse.
+
+## ELT: Transformar donde Viven los Datos
+
+- **ETL clásico:** transformar *antes* de cargar (servidor intermedio).
+- **ELT moderno:** cargar primero, transformar *dentro* del warehouse con SQL.
+- **dbt (data build tool):** orquesta y versiona transformaciones SQL como código.
+- **Materialized Views:** el motor precalcula resultados; los dashboards responden rápido.
+- **Partitioning / Clustering:** reduce el volumen escaneado en cada query (pruning).
+
+## Modelado Dimensional (Kimball)
+
+::: {.columns}
+::: {.column width="45%"}
+- **Granularidad (Grain):** nivel más atómico del hecho.
+- **Fact Table:** métricas cuantitativas en el centro.
+- **Dimension Tables:** contexto descriptivo (Usuario, Fecha).
+- **Star Schema:** dimensiones alrededor de la tabla de hechos.
+- **SCD Tipo 2:** nueva fila para historial de cambios.
+:::
+::: {.column width="55%"}
+![Fuente: @reis2022fundamentals](assets/fode_0814.png){height="360px" fig-align="center"}
+:::
+:::
+
+## Tablas de Hechos (Fact Tables)
+
+- Almacenan métricas y llaves foráneas (conectan con dimensiones).
+- **Append-only:** los registros *solo se agregan*; **nunca** se borran ni actualizan.
+- Optimizadas masivamente para **lectura y agregación rápida**.
+
+::: {.smaller-text}
+| OrderID | CustomerKey | DateKey | GrossSalesAmt |
+|:---|:---|:---|:---|
+| 100 | 5 | 20220301 | 100.00 |
+| 101 | 7 | 20220301 | 75.00 |
+| 102 | 7 | 20220301 | 50.00 |
+
+*Fuente: @reis2022fundamentals*
+:::
+
+## Tablas de Dimensión
+
+- Proveen contexto y atributos a las tablas de hechos.
+- Típicamente **anchas y cortas**, y desnormalizadas.
+- Responden al *qué, dónde y cuándo* de los eventos.
+- **Ejemplo:** Dimensión Fecha (agregación por trimestre o día).
+
+::: {.tiny-text}
+| DateKey | Date-ISO | Year | Quarter | Month | Day-of-week |
+|:---|:---|:---|:---|:---|:---|
+| 20220301 | 2022-03-01 | 2022 | 1 | 3 | Tuesday |
+| 20220302 | 2022-03-02 | 2022 | 1 | 3 | Wednesday |
+
+*Fuente: @reis2022fundamentals*
+:::
+
+## Dimensiones Lentamente Cambiantes (SCD 2)
+
+- Conserva el historial creando **nuevos registros** (sin sobrescribir).
+- Se controla mediante fechas de efectividad (`StartDate` y `EndDate`).
+
+::: {.tiny-text}
+| CustomerKey | FirstName | LastName | ZipCode | EFF_StartDate | EFF_EndDate |
+|:---|:---|:---|:---|:---|:---|
+| 7 | Matt | Housley | 84101 | 2020-05-04 | 2021-09-19 |
+| 7 | Matt | Housley | 84123 | 2021-09-19 | 9999-01-01 |
+
+*Fuente: @reis2022fundamentals*
+:::
+
+# 8. Serving
+
+## Serving: Analytics y BI
+
+- El dato transformado llega a **analistas y decisores de negocio**.
+- **Business Intelligence:** describe el pasado y el presente con reportes y dashboards.
+- **Operational Analytics:** vista en tiempo real de operaciones (inventario, salud de app).
+- **Self-service Analytics:** acceso democrático sin intervención de IT.
+- **Embedded Analytics:** analítica expuesta a clientes dentro de una aplicación SaaS.
+
+## Serving: Machine Learning y Feature Store
+
+![Fuente: [Google Cloud Architecture](https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)](assets/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-3-ml-automation-ct.svg){height="420px" fig-align="center"}
+
+## Serving: Reverse ETL
+
+::: {.columns}
+::: {.column width="45%"}
+- El dato analítico **regresa a los sistemas operacionales**.
+- Activa acciones directamente en el negocio.
+- **Ejemplos:** Puntajes al CRM, pujas a Google Ads.
+- **Herramientas:** Hightouch, Census.
+- Cierra el ciclo: fuente → análisis → fuente.
+:::
+::: {.column width="55%"}
+![Fuente: @reis2022fundamentals](assets/fode_0905.png){height="360px" fig-align="center"}
+:::
+:::
+
+# Recursos
+
+## Referencias
+
+::: {#refs}
+:::
