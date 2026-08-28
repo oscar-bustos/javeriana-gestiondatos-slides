@@ -318,36 +318,6 @@ DMBOK identifica cuatro categorías principales:
 :::
 :::
 
-# 6. Ingestión
-
-## Batch y Stream hacia Serving
-
-::: {.columns}
-::: {.column width="40%"}
-- Los sistemas fuente alimentan **dos caminos paralelos**.
-- **Stream processing:** datos continuos, baja latencia.
-- **Batch processing:** grandes volúmenes, menor frecuencia.
-- Convergen en la **Serving layer** para responder queries.
-:::
-::: {.column width="60%"}
-![Fuente: @reis2022fundamentals](assets/fode_0314.png){height="340px" fig-align="center"}
-:::
-:::
-
-## Ingestión Stream Pura
-
-::: {.columns}
-::: {.column width="40%"}
-- El stream source envía eventos de forma continua.
-- Un **Stream Processor** (Kafka, Flink) procesa en vuelo.
-- La **Serving layer** responde queries sobre datos recientes.
-- Ideal para CDC continuo y datos de IoT.
-:::
-::: {.column width="60%"}
-![Fuente: @reis2022fundamentals](assets/fode_0315.png){height="320px" fig-align="center"}
-:::
-:::
-
 ## Fuentes de Datos Tabulares
 
 ::: {.tiny-text}
@@ -379,6 +349,37 @@ DMBOK identifica cuatro categorías principales:
 
 : {tbl-colwidths="[10, 12, 15, 13, 10, 40]"}
 :::
+
+# 6. Ingestión
+
+## Batch y Stream hacia Serving
+
+::: {.columns}
+::: {.column width="40%"}
+- Los sistemas fuente alimentan **dos caminos paralelos**.
+- **Stream processing:** datos continuos, baja latencia.
+- **Batch processing:** grandes volúmenes, menor frecuencia.
+- Convergen en la **Serving layer** para responder queries.
+:::
+::: {.column width="60%"}
+![Fuente: @reis2022fundamentals](assets/fode_0314.png){height="340px" fig-align="center"}
+:::
+:::
+
+## Ingestión Stream Pura
+
+::: {.columns}
+::: {.column width="40%"}
+- El stream source envía eventos de forma continua.
+- Un **Stream Processor** (Kafka, Flink) procesa en vuelo.
+- La **Serving layer** responde queries sobre datos recientes.
+- Ideal para CDC continuo y datos de IoT.
+:::
+::: {.column width="60%"}
+![Fuente: @reis2022fundamentals](assets/fode_0315.png){height="320px" fig-align="center"}
+:::
+:::
+
 
 # 7. Transformación y SQL
 
