@@ -1,6 +1,6 @@
 ---
 title: "Gestión de Datos: Ciclo de Vida, Extracción y Modelado"
-subtitle: "Fundamentos de Ingeniería de Datos y Extracción Tabular"
+subtitle: "SoundStream: Ingeniería de Datos de un Marketplace de Música"
 author: "Oscar Leonardo Bustos"
 format:
   revealjs:
@@ -27,817 +27,393 @@ nocite: |
 }
 </style>
 
-# Ciclo de Vida de Ingeniería de Datos
+# Introducción: El Caso SoundStream
 
-## ¿Qué es Ingeniería de Datos?
+## ¿Qué es SoundStream?
 
-- **Definición:** Desarrollo e implementación de arquitecturas para transformar datos crudos en activos útiles.
-- **Propósito:** Servir datos confiables para análisis, Machine Learning y toma de decisiones.
-- **Enfoque actual:** Del software monolítico a ecosistemas modulares en la nube.
-- **Principio clave:** La tecnología cambia rápido; los fundamentos del ciclo de vida perduran.
+- **SoundStream** es un marketplace global de música digital (ej. Spotify / Apple Music).
+- El negocio se basa en datos masivos:
+  - Artistas suben canciones y álbumes.
+  - Usuarios escuchan, compran suscripciones y crean playlists.
+  - La aplicación debe recomendar música en tiempo real.
+- **Nuestro Reto:** Diseñar su pipeline de datos de extremo a extremo aplicando Ingeniería de Datos.
 
-## El Ciclo de Vida de los Datos
+# Parte 1: El Ciclo de Vida (Cap. 2)
 
-- Movimiento continuo desde la generación hasta el consumo:
-  1. **Generación:** Creación de datos en sistemas fuente.
-  2. **Ingesta:** Captura y transporte inicial.
-  3. **Almacenamiento:** Persistencia estructurada o cruda.
-  4. **Transformación:** Limpieza, modelado y agregación.
-  5. **Servicio:** Entrega para BI, analítica y ML.
+## ¿De dónde vienen los datos de SoundStream?
 
-## Subcorrientes (Undercurrents)
+- Antes de procesar datos, hay que generarlos.
+- **Sistemas Fuente (Source Systems):**
+  - Aplicaciones móviles (eventos de clic, play).
+  - Base de datos transaccional (usuarios, facturación).
+  - IoT (altavoces inteligentes enviando logs).
+  - APIs de proveedores discográficos.
+- La ingeniería de datos empieza donde termina la ingeniería de software.
 
-- Factores que cruzan transversalmente todas las etapas:
-
-::: {.columns}
-::: {.column width="50%"}
-- **Seguridad y Privacidad**
-- **Data Management**
-- **DataOps**
-:::
-::: {.column width="50%"}
-- **Arquitectura de Datos**
-- **Orquestación (DAGs)**
-- **Ingeniería de Software**
-:::
-:::
-
-# Dominios de Datos
-
-## Dominios en una Organización
-
-- ¿Cuáles son los tipos de datos que habitan en la empresa?
-- **Metadatos:** Contexto que da significado a los datos.
-- **Datos Maestros (MDM):** Entidades clave del negocio.
-- **Datos Operacionales:** Transacciones de soporte al día a día.
-- **Datos No Estructurados:** Contenido enriquecido sin esquema fijo.
-- **Datos Analíticos:** Información procesada para decisiones.
-
-## El Rol de los Metadatos
-
-- **Concepto central:** "Datos acerca de los datos".
-- Permiten transformar datos crudos en información útil.
-- **Oportunidad y actualización:** Deben reflejar la realidad del negocio en todo momento.
-- **Puente Negocio-IT:** Aseguran un vocabulario común entre analistas e ingenieros.
-
-## Clasificación de Metadatos
-
-- **Metadatos Técnicos:**
-  - Esquemas de bases de datos, tipos de datos e índices.
-  - Diagramas Entidad-Relación y linaje de transformaciones.
-- **Metadatos de Negocio:**
-  - Glosario corporativo, definiciones de métricas y SLAs.
-  - Asignación de responsables (*Data Stewards*).
-- **Metadatos Operacionales:**
-  - Logs de ejecución, tiempos de carga y volumen procesado.
-
-## Metadatos Técnicos: Ejemplo
-
-::: {.columns}
-::: {.column width="50%"}
-- Especificaciones de tablas y llaves.
-- Tipos de datos por atributo (`VARCHAR`, `INT`).
-- Restricciones de integridad y relaciones ER.
-- Diccionario de datos del sistema.
-:::
-::: {.column width="50%"}
-![](assets/pptx/slide_6_img_2.jpg){height="320px" fig-align="center"}
-:::
-:::
-
-## Metadatos de Negocio: Ejemplo
-
-::: {.columns}
-::: {.column width="50%"}
-- Mapeo de procesos de negocio.
-- Reglas operativas y validaciones de dominio.
-- Definición formal de métricas (p.ej. *Customer Churn*).
-- Alineación estratégica entre áreas.
-:::
-::: {.column width="50%"}
-![](assets/pptx/slide_7_img_2.png){height="320px" fig-align="center"}
-:::
-:::
-
-## Datos Maestros (MDM)
-
-- **Entidades centrales del negocio:**
-  - Clientes, Productos, Proveedores, Ubicaciones.
-- Representan los sustantivos clave de la organización.
-- **La confianza es crítica:** Son el punto de unión de múltiples aplicaciones.
-- *¿Qué sucede cuando los datos maestros no son confiables?*
-  - Clientes duplicados, reportes inconsistentes y pérdidas financieras.
-
-## Datos Operacionales
-
-- Datos derivados de las transacciones directas del negocio.
-- **Características:**
-  - Estructurados y con alto nivel de granularidad.
-  - Alcance típicamente local (*Line of Business*).
-  - Volatilidad alta (inserciones y actualizaciones constantes).
-- Su calidad determina la viabilidad de los datos analíticos.
-
-## Datos No Estructurados
-
-- Propósito operacional y documental:
-  - Contratos en PDF, notas de CRM, imágenes y correos.
-- Suelen ser "fotos instantáneas" estáticas de un proceso.
-- **Desafío:** Pérdida de contexto o precisión en el tiempo.
-- Requieren almacenamiento y procesamiento especializado.
-
-## Datos Analíticos
-
-- Se derivan de los datos operacionales y maestros.
-- **Procesos clave para producirlos:**
-  - Integración de fuentes heterogéneas.
-  - Limpieza, deduplicación y estandarización.
-  - Enriquecimiento con lógica de negocio.
-- **Criterios de éxito:** Precisión, consistencia y oportunidad.
-
-## Modelo de Referencia de Información
-
-- **1. Metadatos:** Especifican reglas y definiciones.
-- **2. Datos Maestros:** Creados según las reglas de metadatos.
-- **3. Operacionales y No Estructurados:** Referencian a los maestros.
-- **4. Datos Analíticos:** Consolidados a partir de los dominios anteriores.
-
-# Caso de Estudio: Twitter / X
-
-## Twitter: Metadatos y Datos Maestros
-
-::: {.columns}
-::: {.column width="50%"}
-- **Metadatos:**
-  - Estructura del JSON de un tweet.
-  - Tipos de datos de cuenta y timestamp.
-- **Datos Maestros:**
-  - Identificadores de usuario (`user_id`).
-  - Grafos de seguimiento (*followers/following*).
-:::
-::: {.column width="50%"}
-![](assets/pptx/slide_13_img_3.jpg){height="280px" fig-align="center"}
-:::
-:::
-
-## Twitter: Operacionales y No Estructurados
-
-::: {.columns}
-::: {.column width="50%"}
-- **Datos Operacionales:**
-  - Registro de tweets publicados y retweets.
-  - Logs de autenticación y peticiones API.
-- **Datos No Estructurados:**
-  - Texto libre del tweet.
-  - Imágenes adjuntas, memes y videos.
-:::
-::: {.column width="50%"}
-![](assets/pptx/slide_15_img_3.png){height="280px" fig-align="center"}
-:::
-:::
-
-## Twitter: Datos Analíticos
-
-::: {.columns}
-::: {.column width="50%"}
-- **Productos analíticos derivados:**
-  - Detección de *Trending Topics* en tiempo real.
-  - Métricas de engagement y alcance publicitario.
-  - Modelos de recomendación de contenido en el feed.
-:::
-::: {.column width="50%"}
-![](assets/pptx/slide_17_img_4.png){height="280px" fig-align="center"}
-:::
-:::
-
-# Sistemas Fuente y Generación de Datos
-
-## ¿Qué es un Sistema Fuente?
-
-- Origen primario de los datos dentro del ciclo de vida.
-- **Realidad técnica:** Generalmente fuera del control del ingeniero de datos.
-- Aplicaciones web, móviles, ERPs, CRMs, dispositivos IoT y APIs SaaS.
-- Su disponibilidad y estabilidad condicionan todo el pipeline.
-
-## OLTP vs OLAP
-
-::: {.columns}
-::: {.column width="50%"}
-**OLTP (Transaccional)**
-- Consultas puntuales y rápidas.
-- Alto volumen de lecturas y escrituras.
-- Esquemas altamente normalizados.
-- Prioriza baja latencia e integridad ACID.
-:::
-::: {.column width="50%"}
-**OLAP (Analítico)**
-- Consultas agregadas sobre millones de filas.
-- Cargas en lote o micro-lote.
-- Esquemas desnormalizados o dimensionales.
-- Prioriza velocidad de escaneo y cómputo.
-:::
-:::
-
-## CRUD vs Insert-Only
-
-- **CRUD Tradicional:**
-  - Permite modificar o borrar registros en sitio (*in-place update*).
-  - Se pierde el historial de estados previos del registro.
-- **Patrón Insert-Only:**
-  - Cada cambio se almacena como un nuevo registro inmutable.
-  - Facilita auditoría, análisis temporal y replicación confiable.
-
-## Logs de Base de Datos y WAL
-
-- **Write-Ahead Logging (WAL):**
-  - Mecanismo que registra cada cambio antes de aplicarlo al almacenamiento.
-- **Log Binario:**
-  - Secuencia inmutable y ordenada de transacciones completadas.
-- **Ventaja analítica:** Es la fuente más fidedigna para Change Data Capture.
-
-## Change Data Capture (CDC)
-
-- **Propósito:** Capturar cambios (inserciones, actualizaciones, borrados) en la BD fuente.
-- **Batch CDC:** Consulta periódica por columna `updated_at`.
-  - *Limitación:* Pierde estados intermedios entre ejecuciones.
-- **Continuous CDC:** Lectura directa del log de transacciones (p.ej. Debezium + Kafka).
-  - *Ventaja:* Transmisión en tiempo real sin impacto severo en la BD OLTP.
-
-## Tipos de Tiempo en Datos
-
-- Comprender el tiempo es crítico para analítica y streaming:
-  - **Event Time:** Momento exacto en que ocurrió el evento en el mundo real.
-  - **Ingestion Time:** Momento en que el evento entra al sistema de ingesta.
-  - **Processing Time:** Momento en que el motor ejecuta la transformación.
-- *Buenas prácticas:* Siempre basar la analítica en **Event Time**.
-
-## APIs y Conectividad Externa
-
-- **REST APIs:** Estándar HTTP sobre JSON; común en plataformas SaaS.
-- **GraphQL:** Permite al cliente especificar exactamente los campos requeridos.
-- **gRPC / Protobuf:** Alta eficiencia binaria sobre HTTP/2 para microservicios.
-- **Desafíos:** Límites de peticiones (*rate limits*), paginación y esquemas volátiles.
-
-## Webhooks (Reverse APIs)
-
-- **Patrón basado en eventos:**
-  - La fuente realiza una petición HTTP POST hacia nuestro endpoint al ocurrir un evento.
-- **Ventajas:** No requiere sondeo periódico (*polling*); reduce latencia.
-- **Arquitectura típica:**
-  - Endpoint receptor → Buffer en Cola/Stream → Almacenamiento seguro.
-
-## Colas de Mensajes y Event Streams
-
-- **Message Queues (p.ej. RabbitMQ, AWS SQS):**
-  - Paso de mensajes transitorios entre servicios; se eliminan tras consumo.
-- **Event Streaming (p.ej. Apache Kafka, AWS Kinesis):**
-  - Registro inmutable y persistente de eventos ordenados por partición.
-  - Permite reproducción histórica (*replay*) y múltiples consumidores independientes.
-
-## Data Contracts y SLAs Upstream
+## ¿Cómo pasamos del dato a la recomendación?
 
 ::: {.callout-note}
-### Data Contract
-Acuerdo formal entre el equipo dueño del sistema fuente y el equipo de ingeniería de datos sobre esquemas, tipos, frecuencias y calidad.
+### El Ciclo de Vida de la Ingeniería de Datos
+Consta de 5 etapas secuenciales que transforman el dato crudo en valor de negocio.
 :::
 
-- **SLA (Service Level Agreement):** Expectativas de disponibilidad y puntualidad.
-- **SLO (Service Level Objective):** Métricas técnicas concretas (p.ej. 99.9% uptime).
-- Previene roturas silenciosas por cambios de esquema inesperados.
+1. **Generación:** Creación en la fuente.
+2. **Almacenamiento:** Guardar el dato crudo de forma segura.
+3. **Ingesta:** Extraer el dato hacia un sistema analítico.
+4. **Transformación:** Limpiar, modelar y estructurar.
+5. **Serving:** Consumir el dato (Dashboards, Machine Learning).
 
-# Almacenamiento y Plataformas de Datos
+## ¿Qué soporta todo el ciclo de vida?
 
-## El Rol Central del Almacenamiento
-
-- El almacenamiento subyace a todas las fases del ciclo de vida.
-- Los datos se almacenan múltiples veces: crudos, intermedios y servidos.
-- La elección depende de latencia requerida, volumen, tasa de mutación y presupuesto.
-
-## Jerarquía de Medios de Almacenamiento {.smaller}
-
-| Tipo | Latencia Típica | Ancho de Banda | Costo |
-|---|---|---|---|
-| **Memoria RAM** | ~100 ns | ~100 GB/s | Muy Alto |
-| **SSD (NVMe)** | ~0.1 ms | ~4 GB/s | Medio |
-| **Disco Magnético (HDD)** | ~4 ms | ~250 MB/s | Bajo |
-| **Object Storage (S3/GCS)** | ~100 ms | Ilimitado (teórico) | Muy Bajo |
-
-## Temperatura de los Datos
-
-- **Hot Data:**
-  - Acceso continuo y milimétrico; alojado en RAM o SSDs.
-- **Warm Data:**
-  - Acceso periódico (semanal o mensual); alojado en object storage estándar.
-- **Cold Data / Archival:**
-  - Acceso esporádico (auditoría o legal); archivado en Glacier o Deep Archive.
-- **Regla:** Automatizar políticas de ciclo de vida para abaratar costos.
-
-## Block Storage vs Object Storage
-
-- **Block Storage (EBS, discos locales):**
-  - Modificación a nivel de bloques; ideal para bases de datos transaccionales.
-- **Object Storage (AWS S3, Google Cloud Storage):**
-  - Almacena objetos inmutables identificados por clave (*key-value*).
-  - Alta durabilidad (11 nueves), escalabilidad elástica y bajo costo.
-  - Base indiscutible de los Data Lakes modernos.
-
-## Mapa General de Datos Analíticos
-
-::: {.columns}
-::: {.column width="45%"}
-- **Flujo clásico:**
-  - Sistemas fuente (ERP, CRM, archivos).
-  - Bodega de datos centralizada.
-  - Capa de consumo analítico (BI, OLAP, minería).
-:::
-::: {.column width="55%"}
-![](assets/pptx/slide_18_img_19.png){height="320px" fig-align="center"}
-:::
+::: {.callout-important}
+### Undercurrents (Subcorrientes)
+Factores transversales que aplican a todas las etapas del ciclo de vida.
 :::
 
-## Arquitectura de Bodegas de Datos
+- **Seguridad y Privacidad:** Encriptación de medios de pago.
+- **Data Management & Governance:** Calidad y catálogos de datos.
+- **DataOps:** Automatización, testing y observabilidad.
+- **Orquestación:** Coordinar cuándo se ejecuta cada proceso.
+- **Arquitectura e Ingeniería de Software:** Diseño de sistemas escalables.
 
-::: {.columns}
-::: {.column width="40%"}
-- Integración en múltiples capas:
-  - **ODS:** Detalle operacional limpio.
-  - **EDW:** Visión consolidada empresarial.
-  - **Data Marts:** Orientados a áreas funcionales.
+## ¿Qué hacemos con el dato una vez servido?
+
+- El fin último de SoundStream es generar impacto.
+- **Analytics y BI:** Reportes de las canciones más escuchadas de la semana.
+- **Machine Learning:** Algoritmos de recomendación tipo "Descubrimiento Semanal".
+- **Reverse ETL:** Devolver métricas calculadas a la base de datos de producción (ej. mostrarle al artista cuántos "streams" tiene este mes).
+
+# Parte 2: Sistemas Fuente (Cap. 5)
+
+## ¿Cómo genera datos la app de SoundStream?
+
+- Diferentes interacciones requieren diferentes tipos de fuentes:
+  - **Archivos:** SFTP con catálogos de licencias musicales.
+  - **APIs:** Integración con pasarelas de pago.
+  - **OLTP:** Base de datos de registros de usuarios y contraseñas.
+  - **Mensajes y Streams:** Reproducciones (plays) de cada canción, enviadas cada segundo desde millones de teléfonos.
+
+## ¿Qué diferencia hay entre OLTP y OLAP?
+
+- **OLTP (Online Transaction Processing):**
+  - Maneja las operaciones de SoundStream (cambios de contraseña, pagos).
+  - Altamente normalizado, transacciones ACID (rápidas, consistentes).
+  - Se optimiza para **escritura** de registros individuales.
+- **OLAP (Online Analytical Processing):**
+  - Analiza tendencias a largo plazo.
+  - Desnormalizado (optimizado para lecturas masivas y sumarizaciones).
+  - Escanea columnas completas.
+
+## ¿Qué pasa al cambiar de suscripción?
+
+- Un usuario pasa de "Free" a "Premium".
+- **CRUD (Create, Read, Update, Delete):**
+  - Modifica el registro existente sobrescribiendo su estado a "Premium".
+  - Se pierde el historial de cuándo fue "Free".
+- **Insert-Only (Append-Only):**
+  - Inserción de un nuevo evento: `{"user": 1, "status": "Premium", "time": "12:00"}`.
+  - Guarda el historial completo de cambios (ideal para analítica).
+
+## ¿Cómo capturamos cambios en tiempo real?
+
+- No podemos parar la BD de producción para extraer datos diarios.
+- **CDC (Change Data Capture):** Extrae eventos de cambio de la BD origen.
+- **Database Logs (WAL):**
+  - Bases de datos como PostgreSQL guardan un registro secuencial (Log) de toda operación.
+  - CDC lee este log en tiempo real sin impactar a la base de datos principal.
+  - Envía cada `INSERT`, `UPDATE` o `DELETE` al sistema de analítica.
+
+## ¿Qué BDs usan los sistemas fuente?
+
+- No todas las bases de datos de SoundStream son relacionales.
+- **Sistemas NoSQL:**
+  - *Key-Value:* Redis para caché de sesión (rápidas respuestas).
+  - *Document:* MongoDB para guardar perfiles dinámicos y JSON de usuarios.
+  - *Wide-Column:* Cassandra para almacenar metadatos masivos de canciones.
+  - *Graph:* Neo4j para encontrar conexiones de playlists.
+  - *Search:* Elasticsearch para buscar letras de canciones rápido.
+
+## ¿Cómo se comunican los servicios?
+
+- La app móvil necesita pedir datos al servidor central.
+- **REST APIs:** Estándar HTTP usando GET, POST.
+- **GraphQL:** Permite a la app pedir solo los campos que necesita (ahorra batería/datos).
+- **gRPC:** Llamadas rápidas binarias entre los microservicios internos.
+- **Webhooks:** Proveedores de pago notifican *a* SoundStream (Push) cuando un cobro es exitoso, sin que SoundStream tenga que preguntar.
+
+## ¿Qué son los mensajes y streams?
+
+- Millones de reproducciones simultáneas no pueden ir a una BD tradicional.
+- **Mensaje:** Un paquete de datos sobre un evento.
+- **Event Streaming:** Los mensajes se envían de forma continua (unbounded).
+- **Tiempos diferentes:**
+  1. *Event time:* Cuando el usuario dio "Play" (incluso sin WiFi).
+  2. *Ingestion time:* Cuando SoundStream recibe el evento.
+  3. *Processing time:* Cuando se analiza el evento.
+
+## ¿Cómo protegemos el contrato de datos?
+
+- Los desarrolladores de software pueden romper el pipeline (ej. borrando la columna `precio`).
+- **Data Contracts:**
+  - Acuerdos formales entre generadores (SoftEng) y consumidores (DataEng).
+  - Definen esquemas fijos, SLAs (tiempos máximos de respuesta) y calidad.
+- **Schema Evolution:**
+  - Manejo ordenado de cambios (agregar una columna nueva no debería romper el flujo analítico).
+
+# Parte 3: Almacenamiento (Cap. 6)
+
+## ¿Dónde guardamos reproducciones?
+
+- El almacenamiento tiene costos y velocidades distintas (Jerarquía).
+- **RAM (Memoria):** Extremadamente rápida, pero costosa y volátil. Caché.
+- **SSD (Estado Sólido):** Rápidos, ideales para bases de datos de uso intensivo.
+- **HDD (Disco Duro Magnético):** Lentos pero baratos. Ideales para almacenamiento frío.
+- **Estrategia:** Archivos crudos en HDD de la nube, agregaciones analíticas en SSD.
+
+## ¿Cómo escala el almacenamiento en la nube?
+
+- Un solo servidor no basta para todo el catálogo musical del mundo.
+- Sistemas distribuidos dividen los datos en múltiples nodos.
+- **Cómputo (CPU) vs Red (Network):**
+  - Transferir datos por red suele ser el principal cuello de botella.
+  - Mover el procesamiento hacia donde están los datos es más eficiente que enviar petabytes a procesar.
+
+## ¿Qué formatos serializan los datos?
+
+::: {.callout-note}
+### Serialización
+Convertir objetos en memoria a bytes para almacenarlos o transmitirlos.
 :::
-::: {.column width="60%"}
-![](assets/pptx/slide_19_img_36.png){height="320px" fig-align="center"}
-:::
-:::
 
-## ODS, EDW y Data Marts
+- **Row-Oriented:** CSV, JSON, Avro (Ideales para extraer filas enteras y streaming).
+- **Column-Oriented:** Parquet, ORC (Ideales para agregaciones analíticas, comprimen muy bien por similitud de tipo).
+- **Compresión:** Reduce tamaño (Snappy, GZIP). Fundamental para ahorrar costos de red.
 
-- **Operational Data Store (ODS):**
-  - Datos limpios, normalizados (3NF) y con máximo detalle.
-  - Cubre ventanas cortas de tiempo; única fuente de verdad transaccional.
-- **Enterprise Data Warehouse (EDW):**
-  - Multidimensional e histórico; datos consolidados de toda la empresa.
-- **Data Mart (DM):**
-  - Subconjunto departamental (Ventas, Finanzas); optimizado para consultas rápidas.
+## ¿Cómo organizamos según la frecuencia?
 
-## Del Data Warehouse al Data Lake
+- **Temperatura de los datos:**
+  - *Hot:* Perfil actual del usuario. Consulta frecuente en milisegundos (Caché/Memoria).
+  - *Warm:* Reporte del mes pasado (Data Warehouse en SSD).
+  - *Cold:* Logs de actividad de hace 5 años. Se consultan poco, guardados en Archivo (Object Storage, Glacier).
+- **Objetivo:** Optimizar costo vs rendimiento.
 
-- **Data Warehouse Tradicional:**
-  - Excelente para SQL sobre datos estructurados; costoso para escalar.
-- **Data Lake (S3, HDFS):**
-  - Repositorio central para datos estructurados, semi-estructurados y no estructurados.
-  - Almacena datos en formato crudo sin esquema previo.
-- **Riesgo:** Sin gobierno ni metadatos, se convierte en un *Data Swamp*.
+## ¿Qué tipo de almacenamiento elegimos?
 
-## El Data Lakehouse
+- **File Storage:** Sistemas POSIX jerárquicos. Difícil de escalar globalmente.
+- **Block Storage:** Discos crudos atados a servidores (EBS). Alto rendimiento local.
+- **Object Storage:** (ej. Amazon S3, Azure Blob).
+  - Guarda archivos como "objetos" planos con metadatos y IDs.
+  - Escala infinitamente, ideal para Data Lakes. Inmutable.
 
-- Combina la flexibilidad del Data Lake con el gobierno del Data Warehouse.
-- **Características clave:**
-  - Almacenamiento en Object Storage con formatos abiertos (Parquet).
-  - Capa de metadatos transaccional con soporte **ACID**.
-  - Soporte para *time travel*, borrados selectivos y evolución de esquema.
-- **Tecnologías:** Delta Lake, Apache Iceberg, Apache Hudi.
-
-## Separación de Cómputo y Almacenamiento
-
-- **Paradigma anterior:** Nodos con disco y procesador acoplados (Hadoop HDFS).
-- **Paradigma moderno en la nube:**
-  - Almacenamiento persistente y económico en Object Storage.
-  - Cómputo elástico y efímero que se escala o apaga según la demanda.
-- **Beneficio:** Reducción drástica de costos y escalabilidad independiente.
-
-## Catálogo de Datos
-
-- Repositorio centralizado de metadatos corporativos.
-- **Funcionalidades esenciales:**
-  - Búsqueda y descubrimiento de tablas y datasets.
-  - Linaje de datos: rastreo del origen y transformaciones de cada campo.
-  - Clasificación automática de datos sensibles (PII).
-- **Herramientas:** Data Catalog (GCP), AWS Glue Catalog, OpenMetadata.
-
-# Ingesta de Datos
-
-## ¿Qué es la Ingesta de Datos?
-
-- Proceso de mover datos desde los sistemas fuente hacia el almacenamiento.
-- **Ingesta vs Integración:**
-  - *Ingesta:* Transporte de datos de A hacia B.
-  - *Integración:* Combinación y unificación semántica de múltiples fuentes.
-- Es el punto de partida donde el ingeniero diseña los pipelines de datos.
-
-## Datos Acotados vs No Acotados
-
-- **Unbounded Data (No Acotados):**
-  - Datos continuos que fluyen en tiempo real a medida que ocurren eventos.
-- **Bounded Data (Acotados):**
-  - Cortes finitos sobre los datos definidos por límites temporales o de volumen.
-- *Mantra de ingeniería:* **Todo dato es no acotado hasta que decidimos acotarlo.**
-
-## Frecuencia de Ingesta
-
-- **Batch (Lotes):**
-  - Ingesta programada (diaria, horaria) de grandes bloques de datos.
-- **Micro-Batch:**
-  - Ingesta en ventanas breves (cada pocos minutos o segundos).
-- **Real-Time / Streaming:**
-  - Procesamiento evento por evento con latencias sub-segundo.
-
-## Ingesta Sincrónica vs Asincrónica
-
-- **Ingesta Sincrónica:**
-  - Dependencias lineales y acopladas; el paso B no inicia sin el paso A.
-  - Si un lote falla, todo el pipeline se detiene.
-- **Ingesta Asincrónica:**
-  - Desacoplamiento mediante buffers y colas de eventos.
-  - Cada etapa procesa mensajes a su propio ritmo con alta tolerancia a fallos.
-
-## Patrones de Ingesta en Lote
-
-- **Full Snapshot:**
-  - Extrae el estado completo de la tabla en cada ejecución; simple pero costoso.
-- **Extracción Diferencial (Incremental):**
-  - Extrae únicamente los registros modificados o creados desde la última corrida.
-- **Recomendación:** Preferir extracción incremental para tablas de gran volumen.
-
-## Desafíos en Ingesta Streaming
-
-- **Schema Evolution:** Campos nuevos, renombrados o tipos modificados.
-- **Schema Registry:** Servicio central que valida la compatibilidad productor-consumidor.
-- **Datos Tardíos (*Late-Arriving Data*):** Eventos que llegan desordenados por latencia de red.
-- **Time to Live (TTL):** Período de retención de mensajes antes de ser descartados.
-
-## Manejo de Errores: Dead-Letter Queue
+## ¿Todos los nodos ven lo mismo al tiempo?
 
 ::: {.callout-warning}
-### Dead-Letter Queue (DLQ)
-Cola secundaria donde se redirigen los mensajes corruptos o que no cumplen el esquema para evitar bloquear el flujo principal.
+### Teorema CAP
+Sistemas distribuidos deben elegir 2 entre: Consistencia, Disponibilidad, Tolerancia a Particiones.
 :::
 
-- Permite aislar errores sin detener la ingesta de eventos válidos.
-- Facilita la auditoría, análisis de causa raíz y posterior reprocesamiento.
+- **Strong Consistency:** Todos ven la última canción añadida de inmediato (lento).
+- **Eventual Consistency:** Algunos ven la canción y otros no por unos segundos (rápido, Availability).
+- **ACID vs BASE:** OLTP demanda consistencia estricta, pero sistemas masivos toleran cierta desincronización (BASE).
 
-## Mecanismos de Conexión
+## ¿Qué arquitectura contiene los datos?
 
-- **Conexiones directas a BD:** Protocolos JDBC / ODBC para extracción SQL.
-- **Conectores Gestionados (ELT SaaS):** Airbyte, Fivetran, Meltano.
-  - Externalizan el mantenimiento de cientos de APIs y conectores.
-- **Intercambio de archivos:** Carga directa a Object Storage vía SFTP o HTTPS.
+- **Data Warehouse:** Almacena datos estructurados, modelados y listos para BI. Alto costo y rigidez, pero máxima velocidad analítica.
+- **Data Lake:** Guarda datos crudos en Object Storage. Barato y flexible (ideal ML), pero puede volverse un *pantano* inmanejable.
+- **Data Lakehouse:**
+  - Lo mejor de ambos mundos: tablas ACID estructuradas directamente sobre el Data Lake.
 
-# Extracción y Formatos de Archivo
+## ¿Cómo se separan cómputo y almacenamiento?
 
-## Fuentes de Datos Tabulares {.smaller}
+- Arquitecturas modernas escalan ambos por separado.
+- Si SoundStream lanza una campaña, subimos el "Compute" sin tener que copiar discos.
+- **Formatos de Tabla Abiertos (Open Table Formats):**
+  - *Apache Iceberg / Delta Lake / Apache Hudi*
+  - Proveen características de Data Warehouse (Time-travel, ACID) usando archivos Parquet en un Object Storage barato.
 
-| **Formato** | **Open Source** | **Tipos Complejos** | **Optimizado para** |
-| --- | --- | --- | --- |
-| **CSV** | Sí | No | Intercambio general y lectura humana |
-| **EXCEL** | No (xlsx sí) | Sí | Análisis en hojas de cálculo |
-| **PARQUET** | Sí | Sí | Analítica Big Data, compresión columnar |
-| **ORC** | Sí | Sí | Ecosistemas Hadoop / Hive |
-| **FEATHER / ARROW** | Sí | Sí | Cero-copia en memoria, alto rendimiento |
-| **SQL** | Estándar | No | Extracción relacional |
+## ¿Cómo encontramos y gobernamos datos?
 
-## Fuentes de Datos Jerárquicas {.smaller}
+- Si un analista busca "ingresos", ¿cómo sabe qué tabla usar?
+- **Catálogo de Datos:** Un buscador (ej. Datahub, Alation) con los metadatos y descripciones de cada tabla.
+- **Linaje de Datos (Data Lineage):**
+  - Muestra visualmente la dependencia de las tablas.
+  - Si falla la fuente de pagos, el linaje indica qué dashboards estarán caídos.
 
-| **Formato** | **Open Source** | **Tipos Complejos** | **Optimizado para** |
-| --- | --- | --- | --- |
-| **JSON** | Sí | Sí | Intercambio web y APIs REST |
-| **XML** | Sí | Sí | Intercambio corporativo estructurado |
-| **AVRO** | Sí | Sí | Streaming de datos con esquema binario |
-| **HDF5** | Sí | Sí | Datos científicos y matriciales masivos |
-| **PICKLE** | Sí | Sí | Serialización nativa de objetos Python |
+# Parte 4: Ingesta (Cap. 7)
 
-## Formato CSV (Comma-Separated Values)
-
-- Archivo de texto plano organizado en filas y columnas delimitadas.
-- **Estructura básica:**
-  - La primera fila suele contener los encabezados de columna.
-  - Cada línea debe mantener el mismo número de campos.
-- **Herramientas de inspección:** Notepad++, VS Code, LibreOffice.
-- *Nota:* Evitar Excel para validar CSVs en producción por alteración de tipos.
-
-## CSV: Inspección Visual
-
-::: {.columns}
-::: {.column width="50%"}
-**Notepad++ (Texto Plano)**
-![](assets/pptx/slide_27_img_4.png){height="280px" fig-align="center"}
-:::
-::: {.column width="50%"}
-**LibreOffice Calc (Estructura)**
-![](assets/pptx/slide_27_img_5.png){height="280px" fig-align="center"}
-:::
-:::
-
-## Opciones Críticas de Formato CSV
-
-- **Separadores:** Coma (`,`), punto y coma (`;`), tabulador (`\t`).
-- **Encabezados:** Opcionales pero altamente recomendados.
-- **Comillas (*Quoting*):**
-  - Permiten incluir el caracter delimitador dentro de un texto.
-  - Preservan ceros a la izquierda en identificadores (p.ej. `"01800"`).
-  - Evitan conversiones erróneas a valores numéricos.
-
-## CSV: Comparativa de Opciones
-
-::: {.columns}
-::: {.column width="50%"}
-- Delimitador `;` con comillas.
-- Conserva textos limpios y cabecera.
-![](assets/pptx/slide_29_img_3.png){height="220px" fig-align="center"}
-:::
-::: {.column width="50%"}
-- Delimitador `,` sin comillas.
-- Riesgo de fragmentación de columnas.
-![](assets/pptx/slide_29_img_4.png){height="220px" fig-align="center"}
-:::
-:::
-
-## Almacenamiento por Filas vs Columnar
-
-- **Row-Oriented (CSV, PostgreSQL):**
-  - Registros contiguos en disco; óptimo para consultas `SELECT * WHERE id=1`.
-- **Column-Oriented (Parquet, BigQuery, Snowflake):**
-  - Cada columna se almacena en bloques separados.
-  - Lee únicamente las columnas consultadas; altísima compresión.
-  - Ideal para analítica: `SELECT AVG(price), SUM(qty) FROM sales`.
-
-## Formatos Modernos: Parquet, Avro, Arrow
-
-- **Apache Parquet:** Formato columnar binario; estándar para analítica y Data Lakes.
-- **Apache Avro:** Formato por filas basado en esquemas JSON; estándar para Kafka.
-- **Apache Arrow:** Formato columnar en memoria para intercambio ultrarrápido sin serialización.
-
-## Destinos de Carga (L)
-
-- **CSV:**
-  - *Ventajas:* Texto plano universal e interoperable.
-  - *Desventajas:* Sin tipos nativos; pesado y propenso a errores de parseo.
-- **Excel:**
-  - *Ventajas:* Fácil de consumir por usuarios finales.
-  - *Desventajas:* Tamaño grande, límites de filas (1M) y formato cerrado.
-- **Parquet / Cloud Storage:**
-  - *Ventajas:* Tipado estricto, compresión superior y lectura selectiva.
-
-## Schema on Write vs Schema on Read
-
-- **Schema on Write (Data Warehouse):**
-  - El esquema se define antes de cargar los datos; rechaza datos no conformes.
-  - *Ventaja:* Máxima consistencia y calidad garantizada.
-- **Schema on Read (Data Lake):**
-  - Los datos crudos se cargan sin validación; el lector aplica el esquema al consultar.
-  - *Ventaja:* Gran agilidad de ingesta a costa de mayor complejidad de consulta.
-
-# Bases de Datos y Consultas SQL
-
-## ¿Qué es un DBMS?
-
-- **Database Management System:** Software que gestiona el almacenamiento, consulta y seguridad de los datos.
-- Actúa como intermediario estructurado entre usuarios y almacenamiento físico.
-- Garantiza propiedades ACID en entornos transaccionales.
-- **SQL:** Lenguaje declarativo estándar universal para interactuar con motores relacionales.
-
-## Familias de Comandos SQL
-
-- **DDL (Data Definition):** Define estructuras (`CREATE`, `ALTER`, `DROP`).
-- **DML (Data Manipulation):** Opera sobre registros (`SELECT`, `INSERT`, `UPDATE`, `DELETE`).
-- **DCL (Data Control):** Administra permisos (`GRANT`, `REVOKE`).
-- **TCL (Transaction Control):** Gestiona transacciones (`COMMIT`, `ROLLBACK`).
-
-## El Ciclo de Vida de una Consulta
-
-- Cuando enviamos una consulta SQL al motor:
-  1. **Parsing & Validación:** Revisa sintaxis, tablas y permisos.
-  2. **Generación de Bytecode:** Traduce la consulta a un plan lógico.
-  3. **Optimización:** El optimizador reordena filtros y elige índices.
-  4. **Ejecución:** Escanea los datos y devuelve el conjunto de resultados.
-
-## El Optimizador y el Explain Plan
-
-- El optimizador busca el plan de ejecución de menor costo computacional.
-- **Comando `EXPLAIN`:** Muestra la ruta física elegida por el motor.
-- **Métricas clave a monitorear:**
-  - Volumen de datos escaneados vs datos devueltos.
-  - Uso de índices vs escaneos completos de tabla (*Sequential Scan*).
-  - Cantidad de datos transferidos entre nodos (*Shuffle*).
-
-## Operaciones JOIN en SQL
-
-::: {.columns}
-::: {.column width="50%"}
-- **Inner Join:** Coincidencias en ambas tablas.
-- **Left Join:** Toda la izquierda + coincidencias.
-- **Right Join:** Toda la derecha + coincidencias.
-- **Full Join:** Unión total de registros.
-:::
-::: {.column width="50%"}
-![](assets/pptx/slide_34_img_5.png){height="280px" fig-align="center"}
-:::
-:::
-
-## Selección y Filtrado: SELECT / WHERE
-
-- **Sintaxis:** `SELECT <columnas> FROM <tabla> WHERE <condicion>`
-- **Operadores compuestos:** `AND`, `OR`, `IN`, `BETWEEN`
-
-```sql
-SELECT Company, Product
-FROM consumercomplaints
-WHERE `Zip Code` = 19145
-  AND `Submitted via` = 'Phone';
-```
-
-## Agrupaciones: GROUP BY
-
-- Genera una fila por cada combinación única de columnas agrupadas.
-- `SELECT` solo admite columnas del `GROUP BY` y funciones de agregación.
-
-```sql
-SELECT Company, COUNT(*) AS total_quejas
-FROM consumercomplaints
-GROUP BY Company
-ORDER BY total_quejas DESC;
-```
-
-## Optimización: Pruning y Evitar Scans
-
-- **Evitar `SELECT *`:** En motores columnares lee columnas innecesarias y multiplica el costo.
-- **Partition Pruning:** Filtrar por la columna de partición (p.ej. fecha) evita leer particiones ajenas.
-- **Clustering:** Ordena físicamente los datos dentro de cada partición para búsquedas ultra-rápidas.
-- **Uso de Caché:** Reutilizar resultados de consultas frecuentes sin volver al disco.
-
-# Modelado de Datos
-
-## ¿Qué es el Modelado de Datos?
-
-- Estructuración deliberada de los datos para reflejar la lógica del negocio.
-- Asegura definiciones unificadas en toda la organización (p.ej. *¿qué es un cliente activo?*).
-- Reduce inconsistencias y optimiza el rendimiento de las consultas.
-- Es el puente entre los requerimientos analíticos y las bases de datos físicas.
-
-## Niveles de Modelado
-
-- **Conceptual:**
-  - Entidades principales y relaciones de alto nivel (Diagrama ER básico).
-- **Lógico:**
-  - Detalle de atributos, tipos de datos, llaves primarias y foráneas.
-- **Físico:**
-  - Implementación concreta en el motor: tipos nativos, particiones e índices.
-- **Grano:** Nivel de máxima resolución de un registro (p.ej. ítem por orden).
-
-## Normalización y Objetivos de Codd
-
-- Técnica para eliminar redundancias y garantizar integridad referencial.
-- **1NF (Primera Forma Normal):** Atributos atómicos; sin listas ni campos anidados.
-- **2NF (Segunda Forma Normal):** Cumple 1NF y elimina dependencias parciales de llave compuesta.
-- **3NF (Tercera Forma Normal):** Cumple 2NF y elimina dependencias transitivas entre columnas no llave.
-
-## Ejemplo de Normalización (1NF a 3NF)
-
-- **Tabla Desnormalizada:**
-  - `OrderID`, `OrderItems` (JSON anidado), `CustomerName`, `OrderDate`.
-- **Paso a 1NF:** Extraer elementos a filas con llave `(OrderID, LineItem)`.
-- **Paso a 2NF:** Separar en tabla `Orders` y tabla `OrderLineItem`.
-- **Paso a 3NF:** Separar catálogo de productos a tabla `Products` (eliminar dependencia de `ProductName` respecto a `SKU`).
-
-## Enfoque Inmon (Top-Down)
-
-- Creado por Bill Inmon ("Padre del Data Warehouse").
-- **Definición de Data Warehouse:**
-  - *Sujeto-orientado, integrado, no volátil y variante en el tiempo.*
-- **Estructura:**
-  - Almacén central corporativo altamente normalizado en **3NF**.
-  - Distribución downstream hacia **Data Marts** departamentales.
-- Enfoque riguroso que prioriza una única versión de la verdad.
-
-## Enfoque Kimball (Bottom-Up)
-
-- Creado por Ralph Kimball; orientado a la usabilidad del negocio.
-- Modela los datos directamente en esquemas dimensionales:
-  - **Tablas de Hechos (Facts):** Eventos numéricos e inmutables (métricas).
-  - **Tablas de Dimensiones:** Contexto descriptivo (quién, cuándo, dónde).
-- **Star Schema (Esquema Estrella):** Una tabla de hechos central rodeada de dimensiones.
-
-## Hechos y Dimensiones
-
-::: {.columns}
-::: {.column width="50%"}
-**Tabla de Hechos**
-- Claves foráneas + métricas numéricas.
-- Estrecha y muy larga (millones de filas).
-- Granularidad atómica e inmutable.
-:::
-::: {.column width="50%"}
-**Tabla de Dimensiones**
-- Atributos descriptivos y textos.
-- Ancha y relativamente corta.
-- Desnormalizada para evitar joins complejos.
-:::
-:::
-
-## Dimensiones de Cambio Lento (SCD)
-
-- Mecanismos para gestionar la evolución de atributos en el tiempo:
-  - **SCD Tipo 1:** Sobrescribe el valor anterior; no guarda histórico.
-  - **SCD Tipo 2:** Inserta una nueva fila con fechas de validez (`start_date`, `end_date`, `is_current`).
-  - **SCD Tipo 3:** Añade una nueva columna para el valor previo y actual.
-- *Uso común:* **SCD Tipo 2** es el estándar de la industria.
-
-## Enfoque Data Vault
-
-- Diseñado para máxima agilidad, trazabilidad e ingesta distribuida.
-- Modelo 100% **Insert-Only** compuesto por tres entidades:
-  - **Hubs:** Contienen las llaves de negocio únicas y hashes.
-  - **Links:** Mapean las relaciones entre múltiples Hubs.
-  - **Satellites:** Contienen atributos descriptivos y contexto temporal.
-- Permite cambios en fuentes sin reestructurar el modelo global.
-
-## Tablas Anchas y Desnormalizadas
-
-- En almacenes analíticos modernos (BigQuery, Snowflake), el almacenamiento es económico.
-- **Wide Tables (One Big Table - OBT):**
-  - Consolida hechos y dimensiones en una sola tabla ancha con campos anidados.
-- **Ventaja:** Elimina operaciones de JOIN y acelera escaneos masivos.
-- **Desventaja:** Pérdida de modularidad y mayor costo en mutaciones complejas.
-
-# Transformaciones y Procesamiento
-
-## ¿Qué es una Transformación?
-
-- Proceso de convertir datos crudos en conjuntos estructurados y enriquecidos.
-- **Diferencia con una consulta:**
-  - Una *consulta* recupera datos temporalmente.
-  - Una *transformación* **persiste** los resultados para consumo downstream.
-- Implica limpieza, unión, enriquecimiento, agregación y modelado.
-
-## Patrones: ETL vs ELT
-
-- **ETL Tradicional:**
-  - Extrae → Transforma en servidor externo → Carga en el Data Warehouse.
-  - Impuesto históricamente por límites de almacenamiento en la BD destino.
-- **ELT Moderno:**
-  - Extrae → Carga datos crudos al Data Lake/Warehouse → Transforma con SQL en el motor.
-  - Aprovecha el poder de cómputo elástico de la nube.
-
-## Joins Distribuidos: Broadcast Join
-
-- Ocurre cuando una tabla grande se cruza con una **tabla pequeña**.
-- El motor replica (*broadcast*) la tabla pequeña a **todos los nodos**.
-- Cada nodo une localmente su porción de la tabla grande con la copia local.
-- **Resultado:** No se mueven datos masivos por la red; es el join más eficiente.
-- *Estrategia:* Aplicar filtros antes del join para reducir el tamaño de la tabla grande.
-
-## Joins Distribuidos: Shuffle Hash Join
-
-- Se utiliza cuando **ambas tablas son masivas** y no caben en memoria.
-- El motor aplica una función hash sobre la llave de cruce.
-- Redistribuye filas con el mismo hash al mismo nodo a través de la red (*Shuffle*).
-- Es una de las operaciones más costosas en cómputo distribuido (Spark / Trino).
-
-## Consultas Streaming: Ventanas de Tiempo
-
-- En datos continuos, las agregaciones se calculan sobre ventanas:
-  - **Tumbling / Fixed Window:** Ventanas fijas sin solapamiento (p.ej. cada 5 min).
-  - **Sliding Window:** Ventanas de duración fija que avanzan con mayor frecuencia.
-  - **Session Window:** Agrupa eventos por actividad y cierra tras periodos de inactividad.
-
-## Watermarks y Datos Tardíos
+## ¿Qué es un pipeline y cómo empieza?
 
 ::: {.callout-note}
-### Watermark
-Límite temporal que define hasta cuándo el motor esperará eventos rezagados antes de dar por cerrada una ventana de procesamiento.
+### Data Pipeline
+Combinación de arquitectura, sistemas y procesos que mueven los datos a lo largo del ciclo de vida.
 :::
 
-- Permite emitir resultados consistentes frente a latencias de red en IoT y móviles.
-- Los eventos que llegan después del watermark se descartan o desvían a DLQ.
+- La ingesta es el primer paso del pipeline después de los sistemas fuente.
+- **Ingesta:** Mover datos del punto A al punto B.
+- **Integración:** Combinar múltiples fuentes para crear un set nuevo (se hace en la etapa de transformación).
 
-## Vistas Materializadas y Virtualización
+## ¿Cada cuánto ingresamos datos?
 
-- **Vista Estándar:** Consulta guardada que se ejecuta en caliente cada vez.
-- **Vista Materializada:** Precomputa y almacena físicamente el resultado de la consulta.
-  - Se actualiza periódicamente o de forma incremental.
-- **Virtualización de Datos:** Permite consultar múltiples motores federados sin mover los datos.
+- **Bounded (Con Límite):** Datos en reposo, como el cierre contable del mes pasado. Se ingresan en **Batch** (ej. cada 24 horas).
+- **Unbounded (Sin Límite):** El flujo infinito de reproducciones de música en el mundo real. Se ingresan en **Real-Time** o **Micro-Batch**.
+- **Nota:** Todo dato real es *unbounded* hasta que le ponemos un límite temporal artificial.
 
-## Herramientas Modernas de Transformación
+## ¿Los pasos del pipeline van en secuencia?
 
-- **SQL Declarativo:** Estándar universal para expresar transformaciones analíticas.
-- **dbt (data build tool):** Orquestación modular de transformaciones SQL con control de versiones y tests.
-- **Apache Spark / PySpark:** Motor de procesamiento distribuido para grandes volúmenes y lógica procedimental compleja.
+- **Sincrónico:**
+  - Si el paso B depende de A, y A falla, se detiene todo.
+  - Común en pipelines Batch antiguos.
+- **Asincrónico:**
+  - Eventos procesados independientemente mediante microservicios.
+  - Una cola de Kafka absorbe los picos de reproducciones si el sistema posterior está lento, sin romper la cadena.
 
-# Referencias y Recursos
+## ¿Cómo garantizamos llegada de datos?
 
-## Recursos y Datasets Públicos
+- **Throughput:** Capacidad del sistema para absorber el volumen (ej. millones de streams en lanzamiento de un artista).
+- **Reliability & Durability:** Redundancia para no perder eventos pagados de publicidad.
+- **Payload:**
+  - Forma (tabular, JSON, video).
+  - Esquema y metadatos del archivo a procesar.
 
-- **Portales de Datos Abiertos:**
-  - [Datos Abiertos Colombia](https://www.datos.gov.co/)
-  - [Data.gov (Estados Unidos)](https://www.data.gov/)
-  - [Awesome Public Datasets (GitHub)](https://github.com/caesar0301/awesome-public-datasets)
-- **Recursos SQL y Práctica:**
-  - [W3Schools SQL Tutorial](https://www.w3schools.com/sql/default.asp)
-  - [SQL Join Visualizer](https://joins.spathon.com/)
+## ¿Con qué tecnología nos conectamos?
 
-## Bibliografía Principal
+- **Conexiones a BD (JDBC/ODBC):** Tradicionales, efectivas pero pueden ser pesadas para la fuente.
+- **Archivos exportados:** La fuente deposita un CSV diario en SFTP (Push).
+- **Herramientas de ingestión SaaS:**
+  - *Airbyte / Fivetran:* Conectores listos para usar que extraen desde APIs y detectan cambios automáticamente.
+
+## ¿Full Snapshot o Extracción Diferencial?
+
+- **Full Snapshot:**
+  - Trae toda la tabla (ej. todo el catálogo de artistas) cada vez.
+  - Sencillo, pero ineficiente si hay millones de registros.
+- **Incremental (Differential):**
+  - Solo extrae registros nuevos o modificados (ej. usando un campo `updated_at`).
+  - Menos uso de red, pero puede perder borrados o updates múltiples.
+
+## ¿Cómo ingestamos en tiempo real?
+
+- **Message Queues:**
+  - Ej. RabbitMQ. El mensaje desaparece al ser consumido.
+- **Event Streaming:**
+  - Ej. Apache Kafka, Amazon Kinesis.
+  - El mensaje persiste por un tiempo. Varios consumidores (recomendaciones, analítica) leen la misma reproducción.
+  - Soporta **Replay:** volver a procesar días anteriores si hubo error.
+
+## ¿Qué pasa con errores y la latencia?
+
+- **Dead-Letter Queue (DLQ):** Eventos con formato corrupto se desvían aquí para no bloquear la cola principal, permitiendo corrección manual.
+- **Late-Arriving Data:**
+  - Un usuario escucha offline en un avión y se reconecta días después.
+  - El pipeline debe tener límites de tiempo para decidir qué hacer (Watermarks).
+
+## ¿Qué patrón elegimos: ETL o ELT?
+
+- **ETL (Extract, Transform, Load):** Transformamos los datos pesados en un servidor intermedio antes de cargarlos. Tradicional.
+- **ELT (Extract, Load, Transform):**
+  - Ingesta cruda primero (Extract, Load) en el Data Warehouse/Lake.
+  - Luego usamos la potencia masiva de la nube para Transformar allá mismo con SQL.
+  - El estándar actual en Modern Data Stack.
+
+# Parte 5: Queries y Transformación (Cap. 8)
+
+## ¿Cómo le preguntamos a los datos?
+
+- El estándar analítico es SQL (Structured Query Language).
+- **DDL (Definition):** `CREATE`, `DROP` tablas de reproducciones.
+- **DML (Manipulation):** `SELECT`, `INSERT`, `UPDATE` de reportes.
+- **DCL (Control):** `GRANT` (permisos a analistas).
+- **TCL (Transaction):** `COMMIT`, `ROLLBACK` (control ACID).
+
+## ¿Qué hace el motor bajo el capó?
+
+- El ciclo de vida de un query:
+  1. Parsea la sintaxis de SQL.
+  2. Convierte el código a operaciones máquina (bytecode).
+  3. **Query Optimizer:** Evalúa la forma más barata y rápida de buscar (rutas, índices, particiones).
+  4. Ejecución paralela en el clúster.
+
+## ¿Cómo optimizamos las consultas?
+
+::: {.callout-tip}
+### Rendimiento Analítico
+- Nunca uses `SELECT *`. Extrae (Pruning) solo las columnas necesarias.
+:::
+
+- **Evitar Row Explosion:** Controlar JOINs complejos y duplicados.
+- **Caché:** Reutilizar resultados en consultas repetitivas de dashboards.
+- **Clustering / Partitioning:** Agrupar datos por mes ahorra escanear años enteros (Pruning).
+
+## ¿Consultamos datos en tiempo real?
+
+- Queries continuos sobre Kafka / Flink.
+- Se usan **Ventanas (Windows)** sobre streams:
+  - *Tumbling (Fixed):* Corta cada 60 seg, cuenta streams de una canción.
+  - *Sliding:* Cada 30 seg, mira los últimos 60 seg.
+  - *Session:* Agrupa la actividad de un usuario hasta 5 min de inactividad (fin de la sesión musical).
+
+## ¿Qué es modelar datos y por qué importa?
+
+- Es traducir la lógica de negocio a tablas.
+- **Granularidad (Grain):** Guardar el dato al nivel más atómico (ej. cada reproducción individual, no el total diario) para permitir cualquier cruce futuro.
+- **Modelos:**
+  - *Conceptual:* (Pizarrón) "Artistas tienen Canciones".
+  - *Lógico:* "Artist_ID es llave foránea".
+  - *Físico:* DDL en el motor Snowflake o BigQuery.
+
+## ¿Cómo evitamos la redundancia?
+
+- **Normalización (1NF, 2NF, 3NF):**
+  - Evitar repetir el "Nombre del Artista" en las 10 millones de reproducciones.
+  - Separar en Tablas (ej. `Artist`, `Song`, `Play`) unidas por IDs (Foreing Keys).
+  - Elimina duplicidad y problemas de actualización (3NF).
+  - Ideal para la Base de Datos Transaccional (Origen).
+
+## ¿Cómo organizamos el Data Warehouse?
+
+- Modelado Dimensional (Kimball) para OLAP:
+  - Desnormalizar intencionalmente para evitar JOINs pesados en BI.
+- **Star Schema:**
+  - **Fact Table:** Tabla central (Métricas cuantitativas: `Plays`, ingresos).
+  - **Dimension Tables:** Tablas descriptivas alrededor (`Usuario`, `Fecha`, `Canción`).
+
+## ¿Cómo manejamos cambios en el tiempo?
+
+- Si un artista se cambia de país, ¿sobreescribimos?
+- **Slowly Changing Dimensions (SCD):**
+  - *SCD Tipo 1:* Sobrescribir (pierde historia).
+  - *SCD Tipo 2:* Crear nueva fila con fechas de validez (mantiene historial completo, ideal).
+  - *SCD Tipo 3:* Agregar columna nueva "País_Anterior".
+
+## ¿Existen otras alternativas de modelado?
+
+- **Inmon (Enterprise DW):** Normalización estricta centralizada.
+- **Data Vault (Hubs, Links, Satellites):** Altamente escalable y ágil, separa llaves, relaciones y atributos.
+- **One Big Table (OBT):**
+  - Juntar absolutamente todo (Dimensiones y Facts) en una tabla súper ancha.
+  - Los motores columnares modernos escanean rápido sin requerir JOINs de estrellas.
+
+## ¿Cómo ejecutamos las transformaciones?
+
+- Traducir los datos crudos a los modelos dimensionales.
+- **dbt (data build tool):**
+  - Transforma usando solo SQL (patrón ELT). Maneja testing y versiones.
+- **Apache Spark:**
+  - Procesamiento distribuido en memoria usando Python/Scala/SQL.
+- **Vistas Materializadas:**
+  - El motor pre-calcula los resultados para que el Dashboard responda rápido.
+
+# Recursos y Conclusión
+
+## Conclusión
+
+- La ingeniería de datos requiere **pensar sistémicamente**: desde que la app genera el dato hasta que ML lo consume.
+- Hay muchas herramientas, pero los patrones fundamentales son estables.
+- Un mal modelado encarecerá tu infraestructura; un buen diseño asegura escalabilidad.
+
+## Bibliografía
 
 - **Reis, J. & Housley, M.** (2022). *Fundamentals of Data Engineering*. O'Reilly Media.
 - **Kimball, R. & Ross, M.** (2013). *The Data Warehouse Toolkit* (3rd ed.). Wiley.
 - **Inmon, W. H.** (2005). *Building the Data Warehouse* (4th ed.). Wiley.
-- **Beaulieu, A.** (2020). *Learning SQL* (3rd ed.). O'Reilly Media.
 - **Kleppmann, M.** (2017). *Designing Data-Intensive Applications*. O'Reilly Media.
-- **Giordano, A.** (2011). *Data Integration Blueprint and Modeling Techniques*. IBM Press.
