@@ -33,6 +33,64 @@ nocite: |
 }
 </style>
 
+# Repaso y Contexto
+
+## ¿Dónde estamos en el Camino?
+
+:::: {.columns}
+
+::: {.column width="45%"}
+![Fuente: Metodología CRISP-DM](assets/CrispDMActividades.jpg){height="360px" fig-align="center"}
+:::
+
+::: {.column width="55%"}
+- **Sesión 1:** Metodologías y EDA.
+- **Sesión 2:** Limpieza Niveles I, II y III.
+- **Sesión 3:** Preparación de la *Vista Minable*.
+- **Hoy (Sesión 4):** Fundamentos de Ingeniería y Extracción Tabular.
+:::
+
+::::
+
+## De la Vista Minable a la Ingeniería
+
+:::: {.columns}
+
+::: {.column width="55%"}
+**Del consumo a la infraestructura:**
+
+- La **Vista Minable** prepara datos para algoritmos y analítica.
+- En producción: ¿de dónde vienen los datos y cómo se transportan?
+- La **Ingeniería de Datos** diseña el flujo integral del dato.
+:::
+
+::: {.column width="45%"}
+::: {.callout-tip}
+### El Ecosistema
+- **Vista Minable:** Transformación y Serving.
+- **Data Engineering:** Ciclo de vida completo.
+:::
+:::
+
+::::
+
+## Tarea / Asignación
+
+:::: {.columns}
+
+::: {.column width="60%"}
+1. Leer el Capítulo 2 (*The Data Engineering Lifecycle*) del libro *Fundamentals of Data Engineering* @reis2022fundamentals.
+2. Explorar el [Cuaderno de Google NotebookLM](https://notebook.google.com/notebook/e264194c-f040-4edc-a1b7-1872f181a0bf):
+   - Revisar los conceptos y preguntas clave.
+   - Completar los quices interactivos y podcast resumen.
+:::
+
+::: {.column width="40%"}
+![Fundamentals of Data Engineering](assets/DataEngineering.jpg){height="400px" fig-align="center"}
+:::
+
+::::
+
 # 1. El Ciclo de Vida de los Datos
 
 ## El Lifecycle en una Imagen
@@ -230,14 +288,14 @@ Modela el linaje de unificación de ligas con [dbdiagram.io](https://dbdiagram.i
 ## Data Mesh
 
 ::: {.columns}
-::: {.column width="40%"}
+::: {.column width="38%"}
 - Paradigma **sociotécnico descentralizado**.
 - Dominios dueños de sus datos (*Data as a Product*).
 - **Gobierno federado.**
 - Self-serve platform para evitar cuellos de botella.
 :::
-::: {.column width="60%"}
-![Fuente: @reis2022fundamentals](assets/fode_0318.png){height="360px" fig-align="center"}
+::: {.column width="62%"}
+![Fuente: @bytebytego2024](assets/Bytebytego-Datamesh.png){height="360px" fig-align="center"}
 :::
 :::
 
