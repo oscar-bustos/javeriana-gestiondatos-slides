@@ -119,6 +119,16 @@ DMBOK identifica cuatro categorías principales:
 :::
 :::
 
+## Ejercicio: Diagrama ER con IA
+
+Diseña un esquema relacional con [dbdiagram.io](https://dbdiagram.io/home) y un LLM:
+
+1. **Prompt en ChatGPT / Gemini:**
+   > *"Genera el código DBML para dbdiagram.io de un modelo de fútbol simple con tablas: Equipo, Jugador, Partido y Cancha con sus claves primarias y foráneas."*
+2. **Visualización:**
+   - Copia el código DBML generado por la IA.
+   - Pégalo en [dbdiagram.io](https://dbdiagram.io/home) para explorar el diagrama interactivo.
+
 ## Technical Metadata: Linaje de Datos
 
 ::: {.columns}
@@ -131,6 +141,15 @@ DMBOK identifica cuatro categorías principales:
 ![Fuente: @dataplex_lineage](assets/lineage_total_end_screen.png){height="340px" fig-align="center"}
 :::
 :::
+
+## Ejercicio: Linaje de Datos con IA
+
+Modela el linaje de unificación de ligas con [dbdiagram.io](https://dbdiagram.io/home):
+
+1. **Prompt en ChatGPT / Gemini:**
+   > *"Genera código DBML para dbdiagram.io que represente el linaje de 3 ligas de fútbol origen (Premier League en inglés, Serie A en italiano y LaLiga en español con columnas en su idioma) conectadas a una tabla destino unificada (unified_matches). https://docs.dbdiagram.io/release-notes/2026-08-data-lineage/"*
+2. **Visualización:**
+   - Copia el código DBML y pégalo en [dbdiagram.io](https://dbdiagram.io/home) para explorar el linaje.
 
 ## Operational Metadata
 
@@ -352,6 +371,20 @@ DMBOK identifica cuatro categorías principales:
 
 # 6. Ingestión
 
+## Modelos de Extracción: Push vs Pull
+
+- **Pull (Extraer):** El sistema de ingesta consulta a la fuente activa y extrae los datos (ej. consultar una API cada hora).
+- **Push (Empujar):** El sistema fuente envía activamente los datos al destino (ej. sensor IoT emitiendo datos a un endpoint).
+- **Híbridos:** Muchas arquitecturas combinan ambos, extrayendo de APIs (Pull) y recibiendo webhooks (Push).
+
+## Change Data Capture (CDC)
+
+- Convierte el estado estático de una BD relacional en un **flujo continuo de eventos** (inserts, updates, deletes).
+- **Pull-based CDC:** Consulta la BD buscando marcas de tiempo actualizadas (afecta rendimiento).
+- **Log-based CDC (Push):** Lee los logs transaccionales (ej. *binlog* en MySQL) sin impactar el rendimiento de la aplicación.
+- Herramienta clave: **Debezium**.
+
+
 ## Batch y Stream hacia Serving
 
 ::: {.columns}
@@ -382,6 +415,15 @@ DMBOK identifica cuatro categorías principales:
 
 
 # 7. Transformación y SQL
+
+## El Ciclo de Vida de una Query
+
+1. **Parsing:** Verifica que la sintaxis SQL sea correcta y los objetos (tablas/columnas) existan.
+2. **Planning & Optimization:** El motor evalúa múltiples planes de ejecución (usando estadísticas) y elige el más eficiente.
+3. **Execution:** Los nodos del clúster ejecutan el plan, leyendo el *storage* y procesando los datos.
+- **Lección:** El optimizador hace un gran trabajo, pero un mal modelo de datos arruinará el rendimiento.
+
+
 
 ## SQL: Lenguaje de Transformación
 

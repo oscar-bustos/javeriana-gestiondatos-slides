@@ -1155,6 +1155,18 @@ font-size: 0.55em !important;
 </div>
 </div></div>
 </section>
+<section id="ejercicio-diagrama-er-con-ia" class="slide level2">
+<h2>Ejercicio: Diagrama ER con IA</h2>
+<p>Diseña un esquema relacional con <a href="https://dbdiagram.io/home">dbdiagram.io</a> y un LLM:</p>
+<ol type="1">
+<li><strong>Prompt en ChatGPT / Gemini:</strong> &gt; <em>“Genera el código DBML para dbdiagram.io de un modelo de fútbol simple con tablas: Equipo, Jugador, Partido y Cancha con sus claves primarias y foráneas.”</em></li>
+<li><strong>Visualización:</strong>
+<ul>
+<li>Copia el código DBML generado por la IA.</li>
+<li>Pégalo en <a href="https://dbdiagram.io/home">dbdiagram.io</a> para explorar el diagrama interactivo.</li>
+</ul></li>
+</ol>
+</section>
 <section id="technical-metadata-linaje-de-datos" class="slide level2">
 <h2>Technical Metadata: Linaje de Datos</h2>
 <div class="columns">
@@ -1172,6 +1184,17 @@ font-size: 0.55em !important;
 </figure>
 </div>
 </div></div>
+</section>
+<section id="ejercicio-linaje-de-datos-con-ia" class="slide level2">
+<h2>Ejercicio: Linaje de Datos con IA</h2>
+<p>Modela el linaje de unificación de ligas con <a href="https://dbdiagram.io/home">dbdiagram.io</a>:</p>
+<ol type="1">
+<li><strong>Prompt en ChatGPT / Gemini:</strong> &gt; <em>“Genera código DBML para dbdiagram.io que represente el linaje de 3 ligas de fútbol origen (Premier League en inglés, Serie A en italiano y LaLiga en español con columnas en su idioma) conectadas a una tabla destino unificada (unified_matches). https://docs.dbdiagram.io/release-notes/2026-08-data-lineage/”</em></li>
+<li><strong>Visualización:</strong>
+<ul>
+<li>Copia el código DBML y pégalo en <a href="https://dbdiagram.io/home">dbdiagram.io</a> para explorar el linaje.</li>
+</ul></li>
+</ol>
 </section>
 <section id="operational-metadata" class="slide level2">
 <h2>Operational Metadata</h2>
@@ -1699,6 +1722,23 @@ font-size: 0.55em !important;
 <h1>6. Ingestión</h1>
 
 </section>
+<section id="modelos-de-extracción-push-vs-pull" class="slide level2">
+<h2>Modelos de Extracción: Push vs Pull</h2>
+<ul>
+<li><strong>Pull (Extraer):</strong> El sistema de ingesta consulta a la fuente activa y extrae los datos (ej. consultar una API cada hora).</li>
+<li><strong>Push (Empujar):</strong> El sistema fuente envía activamente los datos al destino (ej. sensor IoT emitiendo datos a un endpoint).</li>
+<li><strong>Híbridos:</strong> Muchas arquitecturas combinan ambos, extrayendo de APIs (Pull) y recibiendo webhooks (Push).</li>
+</ul>
+</section>
+<section id="change-data-capture-cdc" class="slide level2">
+<h2>Change Data Capture (CDC)</h2>
+<ul>
+<li>Convierte el estado estático de una BD relacional en un <strong>flujo continuo de eventos</strong> (inserts, updates, deletes).</li>
+<li><strong>Pull-based CDC:</strong> Consulta la BD buscando marcas de tiempo actualizadas (afecta rendimiento).</li>
+<li><strong>Log-based CDC (Push):</strong> Lee los logs transaccionales (ej. <em>binlog</em> en MySQL) sin impactar el rendimiento de la aplicación.</li>
+<li>Herramienta clave: <strong>Debezium</strong>.</li>
+</ul>
+</section>
 <section id="batch-y-stream-hacia-serving" class="slide level2">
 <h2>Batch y Stream hacia Serving</h2>
 <div class="columns">
@@ -1741,6 +1781,17 @@ font-size: 0.55em !important;
 <section id="transformación-y-sql" class="title-slide slide level1 center">
 <h1>7. Transformación y SQL</h1>
 
+</section>
+<section id="el-ciclo-de-vida-de-una-query" class="slide level2">
+<h2>El Ciclo de Vida de una Query</h2>
+<ol type="1">
+<li><strong>Parsing:</strong> Verifica que la sintaxis SQL sea correcta y los objetos (tablas/columnas) existan.</li>
+<li><strong>Planning &amp; Optimization:</strong> El motor evalúa múltiples planes de ejecución (usando estadísticas) y elige el más eficiente.</li>
+<li><strong>Execution:</strong> Los nodos del clúster ejecutan el plan, leyendo el <em>storage</em> y procesando los datos.</li>
+</ol>
+<ul>
+<li><strong>Lección:</strong> El optimizador hace un gran trabajo, pero un mal modelo de datos arruinará el rendimiento.</li>
+</ul>
 </section>
 <section id="sql-lenguaje-de-transformación" class="slide level2">
 <h2>SQL: Lenguaje de Transformación</h2>
