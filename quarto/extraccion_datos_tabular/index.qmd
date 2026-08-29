@@ -493,6 +493,36 @@ SQL es el estándar en el patrón ELT moderno:
 - **TCL:** `COMMIT`, `ROLLBACK` — asegura consistencia transaccional.
 - **CTEs & Window Functions:** complejidad analítica dentro del warehouse.
 
+## Extracción SQL con Python
+
+```python
+import sqlite3, pandas as pd, urllib.request
+
+# 1. Descargar BD (Ej. Chinook)
+url = "https://raw.githubusercontent.com/oscar-bustos/javeriana-gestiondatos/main/taller4/chinook.db"
+urllib.request.urlretrieve(url, "chinook.db")
+
+# 2. Conectar y leer hacia DataFrame
+conn = sqlite3.connect("chinook.db")
+df = pd.read_sql_query("SELECT FirstName, Country FROM customers LIMIT 3", conn)
+conn.close()
+```
+
+## Ejemplos de Queries en Chinook
+
+```python
+# 1. Filtrado básico
+q1 = "SELECT FirstName, LastName FROM customers WHERE Country = 'Canada'"
+df1 = pd.read_sql_query(q1, conn)
+
+# 2. Agregación
+q2 = """
+SELECT BillingCountry, SUM(Total) as Ventas
+FROM invoices GROUP BY BillingCountry
+"""
+df2 = pd.read_sql_query(q2, conn)
+```
+
 ## ELT: Transformar donde Viven los Datos
 
 - **ETL clásico:** transformar *antes* de cargar (servidor intermedio).

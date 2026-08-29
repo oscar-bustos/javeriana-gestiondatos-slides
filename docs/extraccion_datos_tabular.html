@@ -487,6 +487,72 @@ width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 }
 
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ color: #003b4f; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #003b4f; } 
+code span.al { color: #ad0000; } 
+code span.an { color: #5e5e5e; } 
+code span.at { color: #657422; } 
+code span.bn { color: #ad0000; } 
+code span.bu { } 
+code span.cf { color: #003b4f; font-weight: bold; } 
+code span.ch { color: #20794d; } 
+code span.cn { color: #8f5902; } 
+code span.co { color: #5e5e5e; } 
+code span.cv { color: #5e5e5e; font-style: italic; } 
+code span.do { color: #5e5e5e; font-style: italic; } 
+code span.dt { color: #ad0000; } 
+code span.dv { color: #ad0000; } 
+code span.er { color: #ad0000; } 
+code span.ex { } 
+code span.fl { color: #ad0000; } 
+code span.fu { color: #4758ab; } 
+code span.im { color: #00769e; } 
+code span.in { color: #5e5e5e; } 
+code span.kw { color: #003b4f; font-weight: bold; } 
+code span.op { color: #5e5e5e; } 
+code span.ot { color: #003b4f; } 
+code span.pp { color: #ad0000; } 
+code span.sc { color: #5e5e5e; } 
+code span.ss { color: #20794d; } 
+code span.st { color: #20794d; } 
+code span.va { color: #111111; } 
+code span.vs { color: #20794d; } 
+code span.wa { color: #5e5e5e; font-style: italic; } 
+
 div.csl-bib-body { }
 div.csl-entry {
 clear: both;
@@ -1877,6 +1943,32 @@ font-size: 0.55em !important;
 <li><strong>TCL:</strong> <code>COMMIT</code>, <code>ROLLBACK</code> — asegura consistencia transaccional.</li>
 <li><strong>CTEs &amp; Window Functions:</strong> complejidad analítica dentro del warehouse.</li>
 </ul>
+</section>
+<section id="extracción-sql-con-python" class="slide level2">
+<h2>Extracción SQL con Python</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href></a><span class="im">import</span> sqlite3, pandas <span class="im">as</span> pd, urllib.request</span>
+<span id="cb1-2"><a href></a></span>
+<span id="cb1-3"><a href></a><span class="co"># 1. Descargar BD (Ej. Chinook)</span></span>
+<span id="cb1-4"><a href></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/oscar-bustos/javeriana-gestiondatos/main/taller4/chinook.db&quot;</span></span>
+<span id="cb1-5"><a href></a>urllib.request.urlretrieve(url, <span class="st">&quot;chinook.db&quot;</span>)</span>
+<span id="cb1-6"><a href></a></span>
+<span id="cb1-7"><a href></a><span class="co"># 2. Conectar y leer hacia DataFrame</span></span>
+<span id="cb1-8"><a href></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&quot;chinook.db&quot;</span>)</span>
+<span id="cb1-9"><a href></a>df <span class="op">=</span> pd.read_sql_query(<span class="st">&quot;SELECT FirstName, Country FROM customers LIMIT 3&quot;</span>, conn)</span>
+<span id="cb1-10"><a href></a>conn.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="ejemplos-de-queries-en-chinook" class="slide level2">
+<h2>Ejemplos de Queries en Chinook</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href></a><span class="co"># 1. Filtrado básico</span></span>
+<span id="cb2-2"><a href></a>q1 <span class="op">=</span> <span class="st">&quot;SELECT FirstName, LastName FROM customers WHERE Country = &#39;Canada&#39;&quot;</span></span>
+<span id="cb2-3"><a href></a>df1 <span class="op">=</span> pd.read_sql_query(q1, conn)</span>
+<span id="cb2-4"><a href></a></span>
+<span id="cb2-5"><a href></a><span class="co"># 2. Agregación</span></span>
+<span id="cb2-6"><a href></a>q2 <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb2-7"><a href></a><span class="st">SELECT BillingCountry, SUM(Total) as Ventas</span></span>
+<span id="cb2-8"><a href></a><span class="st">FROM invoices GROUP BY BillingCountry</span></span>
+<span id="cb2-9"><a href></a><span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb2-10"><a href></a>df2 <span class="op">=</span> pd.read_sql_query(q2, conn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="elt-transformar-donde-viven-los-datos" class="slide level2">
 <h2>ELT: Transformar donde Viven los Datos</h2>

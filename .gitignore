@@ -34,3 +34,6 @@
 !/quarto/**/*.scss
 
 !/quarto/**/*.py
+
+!/homework/
+!/homework/**
