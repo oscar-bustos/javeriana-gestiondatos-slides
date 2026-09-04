@@ -26,6 +26,35 @@ nocite: |
 .smaller-text { font-size: 0.75em !important; }
 .tiny-text { font-size: 0.58em !important; }
 .source-note { font-size: 0.52em; color: #64748b; }
+.db-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.35em;
+  margin: 0.35em 0;
+}
+.db-card {
+  min-height: 175px;
+  padding: 0.45em 0.25em;
+  border: 2px solid #cbd5e1;
+  border-radius: 14px;
+  background: #f8fafc;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.68em;
+}
+.db-card .glyph { color: #0b4a8b; font-size: 1.65em; font-weight: 700; }
+.db-card strong { color: #003576; }
+.db-card small { color: #64748b; font-size: 0.75em; }
+.db-card.focus { border: 4px solid #f28c28; background: #fff7ed; }
+.question-strip {
+  margin-top: 0.35em;
+  padding: 0.35em 0.55em;
+  border-left: 7px solid #f28c28;
+  background: #fff7ed;
+  font-size: 0.76em;
+}
 </style>
 
 # Continuidad
@@ -50,6 +79,65 @@ nocite: |
 - El árbol debe convertirse en tabla.
 :::
 ::::
+
+## ¿Dónde viven los datos antes del CSV?
+
+::: {.callout-note title="Pregunta a la clase"}
+Una empresa quiere entender a sus clientes. ¿Toda la información que necesita está en una base de datos o en un archivo CSV?
+:::
+
+Piensen en una compra, una llamada, una página web y una aplicación móvil.
+
+## Un día, muchas fuentes
+
+| Situación | Fuente original | Forma recibida |
+|---|---|---|
+| Pago en línea | Pasarela de pagos | JSON por API |
+| Factura electrónica | Proveedor | XML |
+| Catálogo público | Sitio web | HTML |
+| Perfil de producto | MongoDB | Documento BSON |
+| Contrato firmado | Gestor documental | PDF |
+
+**La tabla suele ser el destino analítico, no el origen.**
+
+## Fuente, formato y acceso
+
+| Pregunta | Ejemplo |
+|---|---|
+| ¿Quién produce el dato? | Pasarela, proveedor, portal |
+| ¿Cómo está representado? | JSON, XML, HTML, PDF |
+| ¿Cómo lo obtenemos? | API, consulta, descarga, scraping |
+
+Confundir estas capas lleva a elegir la herramienta equivocada.
+
+## Caso conductor: preparar un viaje
+
+Necesitamos recomendar un destino y estimar su presupuesto:
+
+- La agencia envía reservas en **XML**.
+- Una **API** entrega países, idiomas y monedas.
+- **MongoDB** conserva alojamientos y ubicaciones.
+- Dos páginas **HTML** publican tasas de cambio.
+
+La pregunta común será: **¿cómo convertir cada fuente en observaciones analizables?**
+
+## ¿Por qué no convertir todo a CSV primero?
+
+::: {.callout-note title="Pregunta a la clase"}
+Si Excel y Pandas leen tablas, ¿por qué no pedir que todos los sistemas exporten un CSV y terminar el problema?
+:::
+
+¿Qué información podría perderse en esa conversión?
+
+## El CSV no conserva todas las relaciones
+
+- Una reserva puede contener varios pasajeros.
+- Un país puede tener varias monedas o capitales.
+- Una página contiene tablas, enlaces y contexto.
+- Un documento puede incluir campos opcionales.
+- Aplanar exige decidir la **granularidad**.
+
+El problema no es abrir el archivo: es preservar su significado.
 
 ## Un mismo pedido, dos formas
 
@@ -78,6 +166,14 @@ nocite: |
 :::
 ::::
 
+## ¿Cuál representación elegirían?
+
+::: {.callout-note title="Pregunta a la clase"}
+El cliente cambia de dirección con frecuencia y participa en cientos de pedidos. ¿Conviene repetir toda su información dentro de cada pedido?
+:::
+
+¿Qué optimizarían: una lectura completa o una actualización consistente?
+
 ## Resultados de aprendizaje
 
 Al terminar la sesión, el estudiante podrá:
@@ -99,6 +195,52 @@ Al terminar la sesión, el estudiante podrá:
 | 105–135 min | MongoDB | Consultas y GeoJSON |
 | 135–165 min | HTML y scraping | Tabla consolidada |
 | 165–180 min | Taller 5 | Preflight aprobado |
+
+## Tarea / Asignación
+
+1. Leer las secciones sobre **JSON**, **XML/HTML** y **Web APIs** del capítulo 6 de McKinney.
+2. Leer el capítulo 1 de *Designing Data-Intensive Applications* (2026).
+3. Dibujar el árbol de una factura XML recibida, sin compartir datos sensibles.
+4. Identificar una página con datos útiles y sin una API pública evidente.
+
+## Evidencia de preparación
+
+Para la factura y la página elegida, registre:
+
+1. Quién produce el dato.
+2. Qué formato utiliza.
+3. Cómo puede accederse.
+4. Qué representaría una fila.
+5. Qué podría perderse al tabular.
+
+## Lectura base
+
+- **Obligatoria:** [McKinney, capítulo 6](https://wesmckinney.com/book/accessing-data).
+  - *JSON Data*.
+  - *XML and HTML: Web Scraping*.
+  - *Interacting with Web APIs*.
+- **Obligatoria:** Kleppmann y Riccomini, capítulo 1.
+- **Aplicada:** [modelo de operación DIAN](https://factura-electronica.dian.gov.co/modelo-operacion-19.html).
+
+Pregunta guía: ¿qué ocurre antes de producir un `DataFrame`?
+
+## Referencias de consulta
+
+- [`pandas.read_html`](https://pandas.pydata.org/docs/reference/api/pandas.read_html.html): tablas HTML.
+- [REST Countries v5](https://restcountries.com/docs/countries): contrato de API.
+- [MongoDB Atlas](https://www.mongodb.com/docs/atlas/): documentos y entorno.
+- Anexo técnico DIAN: estructura UBL y reglas de validación.
+
+Consúltelas durante el taller; no es necesario leerlas completas antes de clase.
+
+## Preguntas antes de la clase
+
+::: {.callout-note title="Llegue con una respuesta provisional"}
+1. ¿Por qué el PDF de una factura no sustituye su XML?
+2. ¿Qué información anidada se perdería al guardar todo como CSV?
+3. ¿Cuándo usar scraping y cuándo no usarlo?
+4. ¿Cómo demostraría que una extracción está completa?
+:::
 
 # Estructuras en árbol
 
@@ -125,6 +267,33 @@ orden
 ```
 :::
 ::::
+
+## ¿Cuántas filas representa este árbol?
+
+```json
+{
+  "orden": "A-101",
+  "cliente": "Ana",
+  "productos": [
+    {"sku": "P-10", "cantidad": 2},
+    {"sku": "P-20", "cantidad": 1}
+  ]
+}
+```
+
+::: {.callout-note title="Pregunta a la clase"}
+¿Una fila por orden, por cliente o por producto?
+:::
+
+## La fila depende de la pregunta
+
+| Pregunta analítica | Granularidad |
+|---|---|
+| ¿Cuánto vale cada orden? | Una fila por orden |
+| ¿Qué compra cada cliente? | Una fila por cliente–producto |
+| ¿Cuántas unidades se vendieron? | Una fila por línea de producto |
+
+Normalizar no es solo aplanar: primero se define **qué representa una fila**.
 
 ## Rutas equivalentes
 
@@ -172,6 +341,20 @@ La sintaxis cambia; la operación conceptual es la misma: **navegar el árbol**.
 
 <p class="source-note">Fuente: @kleppmann2026designing, cap. 3.</p>
 
+## Cinco modelos, cinco accesos
+
+<div class="db-grid">
+  <div class="db-card"><span class="glyph">▦</span><strong>Relacional</strong><span>Relacionar filas</span><small>PostgreSQL</small></div>
+  <div class="db-card focus"><span class="glyph">{…}</span><strong>Documental</strong><span>Leer un agregado</span><small>MongoDB · hoy</small></div>
+  <div class="db-card"><span class="glyph">K→V</span><strong>Clave–valor</strong><span>Buscar por clave</span><small>Redis</small></div>
+  <div class="db-card"><span class="glyph">▥</span><strong>Columna ancha</strong><span>Recorrer partición</span><small>Bigtable</small></div>
+  <div class="db-card"><span class="glyph">●—●</span><strong>Grafo</strong><span>Seguir relaciones</span><small>Neo4j</small></div>
+</div>
+
+<div class="question-strip"><strong>Pregunta:</strong> ¿cómo recuperará la aplicación el dato con mayor frecuencia?</div>
+
+<p class="source-note">Síntesis: @kleppmann2026designing, cap. 3; @mckinneyAccessingData, cap. 6.</p>
+
 ## Localidad y relaciones
 
 :::: {.columns}
@@ -206,6 +389,114 @@ Evita duplicar entidades compartidas.
 <p class="source-note">Fuente: @kleppmann2026designing, cap. 3.</p>
 
 # XML
+
+## El correo trae un PDF y un XML
+
+::: {.callout-note title="Pregunta a la clase"}
+Si queremos sumar automáticamente compras, impuestos y proveedores, ¿cuál archivo usarían como fuente: el PDF que vemos o el XML adjunto?
+:::
+
+::: {.fragment .fade-in}
+El PDF comunica a una persona; el XML conserva campos, tipos y relaciones para una máquina.
+:::
+
+## ¿Por qué Colombia factura en XML?
+
+- Emisor y receptor usan sistemas distintos.
+- La DIAN debe validar cada documento con reglas comunes.
+- UBL 2.1 define una estructura interoperable.
+- La firma ayuda a verificar autenticidad e integridad.
+- El PDF es una representación; el XML es el dato estructurado.
+
+<p class="source-note">Fuente: @dianModeloFactura.</p>
+
+## Si JSON es más corto, ¿por qué existe XML?
+
+::: {.callout-note title="Pregunta a la clase"}
+¿En qué situación preferirían etiquetas más verbosas, namespaces y validación estricta?
+:::
+
+Piensen en facturación, banca, salud e intercambio entre organizaciones.
+
+## XML prioriza contratos duraderos
+
+- XSD puede validar estructura y tipos antes de procesar.
+- Namespaces combinan vocabularios sin colisiones.
+- Atributos y texto permiten documentos mixtos.
+- Firmas digitales y estándares empresariales lo mantienen vigente.
+
+**¿Para qué sirve?** Para intercambios donde fallar silenciosamente es costoso.
+
+## Anatomía del XML compartido
+
+```text
+AttachedDocument
+├── UBLExtensions → firma del contenedor
+├── SenderParty / ReceiverParty
+├── Attachment
+│   └── Description → Invoice XML
+└── ParentDocumentLineReference
+    └── Description → ApplicationResponse XML
+```
+
+El archivo reúne **contenedor, factura y respuesta de validación**.
+
+<p class="source-note">Estructura observada localmente; valores identificables omitidos.</p>
+
+## Un XML puede contener otro XML
+
+En el ejemplo compartido:
+
+- El documento exterior es `AttachedDocument`.
+- Una descripción contiene la `Invoice` codificada como texto.
+- Otra contiene la `ApplicationResponse`.
+- La factura interna tiene **2 líneas** y **3 subtotales tributarios**.
+- Cada nivel posee su propia firma y namespaces.
+
+## ¿Dónde están las líneas de factura?
+
+::: {.callout-note title="Pregunta a la clase"}
+El archivo contiene una factura con dos productos. ¿Por qué una búsqueda de `InvoiceLine` en el árbol exterior devuelve cero resultados?
+:::
+
+::: {.fragment .fade-in}
+La factura todavía es texto dentro de `Description`: primero hay que extraerla y volverla a analizar como XML.
+:::
+
+## Extraer la factura interna
+
+```python
+from lxml import etree
+
+outer = etree.parse("factura.xml")
+xml_invoice = outer.xpath(
+  "string(//cac:Attachment/cac:ExternalReference/cbc:Description)",
+  namespaces=NS_OUTER
+)
+invoice = etree.fromstring(xml_invoice.encode())
+```
+
+Primero navegamos el contenedor; después analizamos el XML recuperado.
+
+## ¿Qué representa una fila de factura?
+
+::: {.callout-note title="Pregunta a la clase"}
+El encabezado aparece una vez, pero `InvoiceLine` se repite. ¿Cómo construirían una tabla para analizar productos vendidos?
+:::
+
+Una fila por línea, repitiendo número, fecha y proveedor como contexto.
+
+## De UBL a una tabla analítica
+
+| Nivel XML | Campo tabular |
+|---|---|
+| `Invoice/cbc:ID` | `factura_id` |
+| `Invoice/cbc:IssueDate` | `fecha` |
+| `InvoiceLine/cac:Item` | `producto` |
+| `InvoiceLine/cbc:InvoicedQuantity` | `cantidad` |
+| `InvoiceLine/cbc:LineExtensionAmount` | `subtotal` |
+
+**La granularidad elegida es una fila por `InvoiceLine`.**
 
 ## XML: datos etiquetados
 
@@ -247,6 +538,18 @@ Si el valor puede repetirse o crecer, normalmente conviene un elemento.
 - El prefijo evita colisiones entre etiquetas iguales.
 - Las consultas XPath deben declarar el mismo namespace.
 
+## ¿Por qué mi XPath devuelve cero filas?
+
+::: {.callout-note title="Pregunta a la clase"}
+El XML muestra diez etiquetas `<producto>`, pero `//producto` no encuentra ninguna. ¿El archivo está vacío?
+:::
+
+```xml
+<inv:producto xmlns:inv="https://ejemplo.edu/inventario">
+```
+
+La etiqueta pertenece a un namespace: su nombre completo no es solo `producto`.
+
 ## XPath: seleccionar por ruta
 
 | Expresión | Resultado |
@@ -273,6 +576,16 @@ df = pd.read_xml(
 `read_xml` funciona mejor cuando los nodos seleccionados representan registros repetibles.
 
 # JSON y APIs
+
+## ¿Cuál es el registro en una respuesta JSON?
+
+::: {.callout-note title="Pregunta a la clase"}
+Una API devuelve 25 países; cada país tiene varios idiomas. ¿Cuántos registros debería tener el dataset final?
+:::
+
+::: {.fragment .fade-in}
+La respuesta cambia si analizamos países, idiomas o la relación país–idioma.
+:::
 
 ## JSON: objetos y arreglos
 
@@ -311,6 +624,16 @@ df = pd.read_xml(
 :::
 ::::
 
+## Tres salidas válidas del mismo JSON
+
+| Objetivo | Salida |
+|---|---|
+| Perfil del país | Una fila por país |
+| Catálogo de idiomas | Una fila por idioma |
+| Cobertura lingüística | Una fila por país–idioma |
+
+No existe una normalización universal: existe una tabla adecuada para una pregunta.
+
 ## Acceso seguro a campos
 
 ```python
@@ -346,6 +669,30 @@ Cliente ── HTTP GET ──► API
 - **Headers:** autenticación y negociación.
 - **Respuesta:** estado, metadatos y cuerpo.
 
+## ¿Una API es una base de datos?
+
+::: {.callout-note title="Pregunta a la clase"}
+Si una API permite buscar países y devuelve JSON, ¿estamos consultando directamente su base de datos?
+:::
+
+::: {.fragment .fade-in}
+No necesariamente. La API es una **interfaz controlada**: decide qué exponer, bajo qué reglas y con qué límites.
+:::
+
+## ¿Qué puede fallar?
+
+**Aunque el código esté bien:**
+
+| Señal | Posible causa |
+|---|---|
+| `401` / `403` | Credencial o permiso |
+| `429` | Límite de solicitudes |
+| `500` / `503` | Falla temporal del servidor |
+| JSON inesperado | Cambio de contrato |
+| Respuesta incompleta | Paginación ignorada |
+
+**Reproducibilidad = transporte + contenido.**
+
 ## Consumir una API
 
 ```python
@@ -373,6 +720,16 @@ while True:
 
 Una respuesta exitosa puede contener solo la primera página.
 
+## La trampa de la primera página
+
+::: {.callout-note title="Pregunta a la clase"}
+La petición respondió `200 OK` y produjo 25 países. ¿Podemos afirmar que la extracción fue exitosa?
+:::
+
+::: {.fragment .fade-in}
+REST Countries contiene más registros. El código funcionó, pero el dataset quedó incompleto.
+:::
+
 ## Secretos y contingencia
 
 - La clave se guarda en **Colab Secrets**, nunca en el código.
@@ -383,6 +740,24 @@ Una respuesta exitosa puede contener solo la primera página.
 <p class="source-note">Fuente: @restcountries2026.</p>
 
 # MongoDB
+
+## ¿Archivo JSON o base documental?
+
+::: {.callout-note title="Pregunta a la clase"}
+Ambos usan objetos anidados. ¿Qué ofrece MongoDB que no ofrece una carpeta llena de archivos JSON?
+:::
+
+Piensen en búsqueda, concurrencia, índices, permisos y actualización.
+
+## El documento también necesita un motor
+
+- Índices evitan revisar todos los documentos.
+- Consultas filtran y ordenan cerca de los datos.
+- Escrituras concurrentes conservan consistencia operativa.
+- Permisos controlan quién puede leer o modificar.
+- Replicación y respaldo protegen disponibilidad.
+
+MongoDB no es “JSON guardado”: es un sistema de gestión documental.
 
 ## De JSON a BSON
 
@@ -417,6 +792,16 @@ cursor = collection.find({}, campos)
 - La proyección limita campos.
 - Reducir datos en la fuente evita transferencias innecesarias.
 
+## ¿Descargar todo o preguntar en la fuente?
+
+::: {.callout-note title="Pregunta a la clase"}
+La colección tiene cinco millones de alojamientos y solo necesitamos los diez más costosos. ¿Qué ocurre si primero los cargamos en Pandas?
+:::
+
+::: {.fragment .fade-in}
+Filtrar, proyectar, ordenar y limitar en MongoDB reduce red, memoria y tiempo.
+:::
+
 ## Ordenar en la fuente
 
 ```python
@@ -440,6 +825,19 @@ filtro = {
 ```
 
 La notación por puntos navega objetos anidados sin descargar el documento completo.
+
+## ¿Embebido o referenciado?
+
+| Situación | Decisión probable |
+|---|---|
+| Dirección propia de una reserva | Embeber |
+| Cliente compartido por miles de pedidos | Referenciar |
+| Elementos leídos siempre juntos | Embeber |
+| Entidad que cambia por separado | Referenciar |
+
+::: {.callout-note title="Pregunta a la clase"}
+¿Qué costo aparece si una dirección embebida cambia después?
+:::
 
 ## GeoJSON: el orden importa
 
@@ -485,6 +883,56 @@ consulta = {
 
 # HTML y web scraping
 
+## ¿Por qué existe el web scraping?
+
+::: {.callout-note title="Pregunta a la clase"}
+Dos casas de cambio publican sus tasas para personas, pero no ofrecen una API pública. ¿Copiarían los precios manualmente todos los días?
+:::
+
+::: {.fragment .fade-in}
+El scraping convierte información web pública en datos reproducibles cuando no existe un canal estructurado adecuado.
+:::
+
+## Antes de hacer scraping
+
+1. API pública documentada.
+2. Descarga oficial en CSV, JSON o XML.
+3. Tabla o contenido HTML estable.
+4. Automatización de navegador como último recurso.
+
+**Advertencia:** el scraping depende de una página diseñada para personas y puede romperse sin aviso.
+
+## Cuando la API no resuelve el problema
+
+- No existe una API pública.
+- La API omite el dato visible en el portal.
+- Exige un plan, permiso o cuota incompatible.
+- Está desactualizada o tiene disponibilidad irregular.
+- Su contrato cambia sin suficiente aviso.
+
+**¿Para qué sirve el scraping?** Para recuperar la evidencia pública disponible, registrando sus límites.
+
+## Caso: comparar tasas de cambio
+
+Necesitamos responder cada día:
+
+- ¿Qué monedas publica cada casa?
+- ¿Cuál ofrece mejor precio de compra y venta?
+- ¿Qué spread cobra cada una?
+- ¿Cuándo se observó el dato?
+
+La página es la fuente operacional; la tabla consolidada será el insumo analítico.
+
+## ¿Lo visible está en el HTML?
+
+::: {.callout-note title="Pregunta a la clase"}
+Vemos una tabla de tasas en el navegador. ¿Eso garantiza que `requests.get()` descargará sus filas?
+:::
+
+::: {.fragment .fade-in}
+No siempre: JavaScript puede construir la tabla después de cargar el documento inicial.
+:::
+
 ## HTML también es un árbol
 
 ```html
@@ -507,6 +955,21 @@ consulta = {
 | `.precio` | Elementos de clase `precio` |
 | `table tbody tr` | Filas del cuerpo de una tabla |
 | `td:nth-child(2)` | Segunda celda de cada fila |
+
+## ¿Cuál de todas las tablas necesitamos?
+
+```python
+tablas = pd.read_html(html)
+[(i, tabla.shape) for i, tabla in enumerate(tablas)]
+```
+
+::: {.callout-note title="Pregunta a la clase"}
+Si la página devuelve cinco tablas, ¿es seguro usar siempre `tablas[0]`?
+:::
+
+::: {.fragment .fade-in}
+La posición puede cambiar; conviene seleccionar por encabezados, texto o atributos.
+:::
 
 ## Tres operaciones distintas
 
@@ -556,6 +1019,20 @@ r.raise_for_status()
 - No eluda autenticación ni controles de acceso.
 - Registre URL y fecha de extracción.
 
+## ¿Cómo sabemos que no se rompió?
+
+::: {.callout-note title="Pregunta a la clase"}
+El script terminó sin errores, pero hoy produjo cero filas. ¿La extracción fue exitosa?
+:::
+
+::: {.fragment .fade-in}
+- Verificar columnas mínimas esperadas.
+- Exigir al menos una fila por fuente.
+- Validar precios numéricos y spreads no negativos.
+- Guardar fecha, URL y modo de carga.
+- Alertar ante cambios; no publicar silenciosamente un vacío.
+:::
+
 ## Del HTML al dataset
 
 | Etapa | Control |
@@ -565,6 +1042,43 @@ r.raise_for_status()
 | Homologación | Mismos nombres y tipos |
 | Cálculo | `spread = venta - compra` |
 | Trazabilidad | Fuente, fecha y modo de carga |
+
+# Integración
+
+## Una pregunta, cuatro rutas
+
+| Necesidad | Fuente | Operación clave |
+|---|---|---|
+| Reservas | XML | XPath |
+| Países | API JSON | Paginación y normalización |
+| Alojamientos | MongoDB | Filtro y proyección |
+| Tasas | HTML | Selector y homologación |
+
+Todas terminan en tablas, pero **no comienzan como tablas**.
+
+## Flujo mental para cualquier fuente
+
+1. ¿Quién produce el dato y con qué propósito?
+2. ¿Qué estructura tiene realmente?
+3. ¿Cómo se accede de forma permitida y reproducible?
+4. ¿Qué representa una observación?
+5. ¿Qué se pierde al aplanar?
+6. ¿Cómo sabremos que la extracción está completa?
+
+## Ticket de salida
+
+::: {.callout-note title="Preguntas a la clase"}
+1. ¿Por qué una API no es sinónimo de JSON ni de base de datos?
+2. ¿Cuándo una lista anidada debe convertirse en varias filas?
+3. ¿Por qué una tabla visible podría no estar en el HTML descargado?
+4. ¿Qué operación conviene ejecutar en la fuente y no en Pandas?
+:::
+
+## Idea para llevar
+
+> El análisis quiere filas y columnas; el mundo produce eventos, documentos, mensajes, páginas y relaciones.
+
+El trabajo de extracción consiste en **preservar el significado** mientras transformamos esas fuentes en evidencia analizable.
 
 # Taller 5
 

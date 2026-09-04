@@ -1091,6 +1091,35 @@ Oscar Leonardo Bustos
 .smaller-text { font-size: 0.75em !important; }
 .tiny-text { font-size: 0.58em !important; }
 .source-note { font-size: 0.52em; color: #64748b; }
+.db-grid {
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+gap: 0.35em;
+margin: 0.35em 0;
+}
+.db-card {
+min-height: 175px;
+padding: 0.45em 0.25em;
+border: 2px solid #cbd5e1;
+border-radius: 14px;
+background: #f8fafc;
+text-align: center;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+font-size: 0.68em;
+}
+.db-card .glyph { color: #0b4a8b; font-size: 1.65em; font-weight: 700; }
+.db-card strong { color: #003576; }
+.db-card small { color: #64748b; font-size: 0.75em; }
+.db-card.focus { border: 4px solid #f28c28; background: #fff7ed; }
+.question-strip {
+margin-top: 0.35em;
+padding: 0.35em 0.55em;
+border-left: 7px solid #f28c28;
+background: #fff7ed;
+font-size: 0.76em;
+}
 </style>
 </section>
 <section>
@@ -1118,6 +1147,132 @@ Oscar Leonardo Bustos
 <li>El árbol debe convertirse en tabla.</li>
 </ul>
 </div></div>
+</section>
+<section id="dónde-viven-los-datos-antes-del-csv" class="slide level2">
+<h2>¿Dónde viven los datos antes del CSV?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>Una empresa quiere entender a sus clientes. ¿Toda la información que necesita está en una base de datos o en un archivo CSV?</p>
+</div>
+</div>
+</div>
+</div>
+<p>Piensen en una compra, una llamada, una página web y una aplicación móvil.</p>
+</section>
+<section id="un-día-muchas-fuentes" class="slide level2">
+<h2>Un día, muchas fuentes</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Situación</th>
+<th>Fuente original</th>
+<th>Forma recibida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pago en línea</td>
+<td>Pasarela de pagos</td>
+<td>JSON por API</td>
+</tr>
+<tr class="even">
+<td>Factura electrónica</td>
+<td>Proveedor</td>
+<td>XML</td>
+</tr>
+<tr class="odd">
+<td>Catálogo público</td>
+<td>Sitio web</td>
+<td>HTML</td>
+</tr>
+<tr class="even">
+<td>Perfil de producto</td>
+<td>MongoDB</td>
+<td>Documento BSON</td>
+</tr>
+<tr class="odd">
+<td>Contrato firmado</td>
+<td>Gestor documental</td>
+<td>PDF</td>
+</tr>
+</tbody>
+</table>
+<p><strong>La tabla suele ser el destino analítico, no el origen.</strong></p>
+</section>
+<section id="fuente-formato-y-acceso" class="slide level2">
+<h2>Fuente, formato y acceso</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Pregunta</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>¿Quién produce el dato?</td>
+<td>Pasarela, proveedor, portal</td>
+</tr>
+<tr class="even">
+<td>¿Cómo está representado?</td>
+<td>JSON, XML, HTML, PDF</td>
+</tr>
+<tr class="odd">
+<td>¿Cómo lo obtenemos?</td>
+<td>API, consulta, descarga, scraping</td>
+</tr>
+</tbody>
+</table>
+<p>Confundir estas capas lleva a elegir la herramienta equivocada.</p>
+</section>
+<section id="caso-conductor-preparar-un-viaje" class="slide level2">
+<h2>Caso conductor: preparar un viaje</h2>
+<p>Necesitamos recomendar un destino y estimar su presupuesto:</p>
+<ul>
+<li>La agencia envía reservas en <strong>XML</strong>.</li>
+<li>Una <strong>API</strong> entrega países, idiomas y monedas.</li>
+<li><strong>MongoDB</strong> conserva alojamientos y ubicaciones.</li>
+<li>Dos páginas <strong>HTML</strong> publican tasas de cambio.</li>
+</ul>
+<p>La pregunta común será: <strong>¿cómo convertir cada fuente en observaciones analizables?</strong></p>
+</section>
+<section id="por-qué-no-convertir-todo-a-csv-primero" class="slide level2">
+<h2>¿Por qué no convertir todo a CSV primero?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>Si Excel y Pandas leen tablas, ¿por qué no pedir que todos los sistemas exporten un CSV y terminar el problema?</p>
+</div>
+</div>
+</div>
+</div>
+<p>¿Qué información podría perderse en esa conversión?</p>
+</section>
+<section id="el-csv-no-conserva-todas-las-relaciones" class="slide level2">
+<h2>El CSV no conserva todas las relaciones</h2>
+<ul>
+<li>Una reserva puede contener varios pasajeros.</li>
+<li>Un país puede tener varias monedas o capitales.</li>
+<li>Una página contiene tablas, enlaces y contexto.</li>
+<li>Un documento puede incluir campos opcionales.</li>
+<li>Aplanar exige decidir la <strong>granularidad</strong>.</li>
+</ul>
+<p>El problema no es abrir el archivo: es preservar su significado.</p>
 </section>
 <section id="un-mismo-pedido-dos-formas" class="slide level2">
 <h2>Un mismo pedido, dos formas</h2>
@@ -1162,6 +1317,25 @@ Oscar Leonardo Bustos
 <span id="cb1-4"><a href></a>  <span class="dt">&quot;total&quot;</span><span class="fu">:</span> <span class="dv">185000</span></span>
 <span id="cb1-5"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
+</section>
+<section id="cuál-representación-elegirían" class="slide level2">
+<h2>¿Cuál representación elegirían?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>El cliente cambia de dirección con frecuencia y participa en cientos de pedidos. ¿Conviene repetir toda su información dentro de cada pedido?</p>
+</div>
+</div>
+</div>
+</div>
+<p>¿Qué optimizarían: una lectura completa o una actualización consistente?</p>
 </section>
 <section id="resultados-de-aprendizaje" class="slide level2">
 <h2>Resultados de aprendizaje</h2>
@@ -1222,6 +1396,73 @@ Oscar Leonardo Bustos
 </tr>
 </tbody>
 </table>
+</section>
+<section id="tarea-asignación" class="slide level2">
+<h2>Tarea / Asignación</h2>
+<ol type="1">
+<li>Leer las secciones sobre <strong>JSON</strong>, <strong>XML/HTML</strong> y <strong>Web APIs</strong> del capítulo 6 de McKinney.</li>
+<li>Leer el capítulo 1 de <em>Designing Data-Intensive Applications</em> (2026).</li>
+<li>Dibujar el árbol de una factura XML recibida, sin compartir datos sensibles.</li>
+<li>Identificar una página con datos útiles y sin una API pública evidente.</li>
+</ol>
+</section>
+<section id="evidencia-de-preparación" class="slide level2">
+<h2>Evidencia de preparación</h2>
+<p>Para la factura y la página elegida, registre:</p>
+<ol type="1">
+<li>Quién produce el dato.</li>
+<li>Qué formato utiliza.</li>
+<li>Cómo puede accederse.</li>
+<li>Qué representaría una fila.</li>
+<li>Qué podría perderse al tabular.</li>
+</ol>
+</section>
+<section id="lectura-base" class="slide level2">
+<h2>Lectura base</h2>
+<ul>
+<li><strong>Obligatoria:</strong> <a href="https://wesmckinney.com/book/accessing-data">McKinney, capítulo 6</a>.
+<ul>
+<li><em>JSON Data</em>.</li>
+<li><em>XML and HTML: Web Scraping</em>.</li>
+<li><em>Interacting with Web APIs</em>.</li>
+</ul></li>
+<li><strong>Obligatoria:</strong> Kleppmann y Riccomini, capítulo 1.</li>
+<li><strong>Aplicada:</strong> <a href="https://factura-electronica.dian.gov.co/modelo-operacion-19.html">modelo de operación DIAN</a>.</li>
+</ul>
+<p>Pregunta guía: ¿qué ocurre antes de producir un <code>DataFrame</code>?</p>
+</section>
+<section id="referencias-de-consulta" class="slide level2">
+<h2>Referencias de consulta</h2>
+<ul>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.read_html.html"><code>pandas.read_html</code></a>: tablas HTML.</li>
+<li><a href="https://restcountries.com/docs/countries">REST Countries v5</a>: contrato de API.</li>
+<li><a href="https://www.mongodb.com/docs/atlas/">MongoDB Atlas</a>: documentos y entorno.</li>
+<li>Anexo técnico DIAN: estructura UBL y reglas de validación.</li>
+</ul>
+<p>Consúltelas durante el taller; no es necesario leerlas completas antes de clase.</p>
+</section>
+<section id="preguntas-antes-de-la-clase" class="slide level2">
+<h2>Preguntas antes de la clase</h2>
+<div title="Llegue con una respuesta provisional">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Llegue con una respuesta provisional</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li>¿Por qué el PDF de una factura no sustituye su XML?</li>
+<li>¿Qué información anidada se perdería al guardar todo como CSV?</li>
+<li>¿Cuándo usar scraping y cuándo no usarlo?</li>
+<li>¿Cómo demostraría que una extracción está completa?</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="estructuras-en-árbol" class="title-slide slide level1 center">
@@ -1249,6 +1490,58 @@ Oscar Leonardo Bustos
 <span id="cb2-7"><a href></a>    ├── producto[0]</span>
 <span id="cb2-8"><a href></a>    └── producto[1]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
+</section>
+<section id="cuántas-filas-representa-este-árbol" class="slide level2">
+<h2>¿Cuántas filas representa este árbol?</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href></a>  <span class="dt">&quot;orden&quot;</span><span class="fu">:</span> <span class="st">&quot;A-101&quot;</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href></a>  <span class="dt">&quot;cliente&quot;</span><span class="fu">:</span> <span class="st">&quot;Ana&quot;</span><span class="fu">,</span></span>
+<span id="cb3-4"><a href></a>  <span class="dt">&quot;productos&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb3-5"><a href></a>    <span class="fu">{</span><span class="dt">&quot;sku&quot;</span><span class="fu">:</span> <span class="st">&quot;P-10&quot;</span><span class="fu">,</span> <span class="dt">&quot;cantidad&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb3-6"><a href></a>    <span class="fu">{</span><span class="dt">&quot;sku&quot;</span><span class="fu">:</span> <span class="st">&quot;P-20&quot;</span><span class="fu">,</span> <span class="dt">&quot;cantidad&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">}</span></span>
+<span id="cb3-7"><a href></a>  <span class="ot">]</span></span>
+<span id="cb3-8"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>¿Una fila por orden, por cliente o por producto?</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="la-fila-depende-de-la-pregunta" class="slide level2">
+<h2>La fila depende de la pregunta</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Pregunta analítica</th>
+<th>Granularidad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>¿Cuánto vale cada orden?</td>
+<td>Una fila por orden</td>
+</tr>
+<tr class="even">
+<td>¿Qué compra cada cliente?</td>
+<td>Una fila por cliente–producto</td>
+</tr>
+<tr class="odd">
+<td>¿Cuántas unidades se vendieron?</td>
+<td>Una fila por línea de producto</td>
+</tr>
+</tbody>
+</table>
+<p>Normalizar no es solo aplanar: primero se define <strong>qué representa una fila</strong>.</p>
 </section>
 <section id="rutas-equivalentes" class="slide level2">
 <h2>Rutas equivalentes</h2>
@@ -1343,16 +1636,42 @@ Fuente: <span class="citation" data-cites="kleppmann2026designing">Kleppmann and
 Fuente: <span class="citation" data-cites="kleppmann2026designing">Kleppmann and Riccomini (<a href="#/referencias" role="doc-biblioref" onclick>2026</a>)</span>, cap. 3.
 </p>
 </section>
+<section id="cinco-modelos-cinco-accesos" class="slide level2">
+<h2>Cinco modelos, cinco accesos</h2>
+<div class="db-grid">
+<div class="db-card">
+<span class="glyph">▦</span><strong>Relacional</strong><span>Relacionar filas</span><small>PostgreSQL</small>
+</div>
+<div class="db-card focus">
+<span class="glyph">{…}</span><strong>Documental</strong><span>Leer un agregado</span><small>MongoDB · hoy</small>
+</div>
+<div class="db-card">
+<span class="glyph">K→V</span><strong>Clave–valor</strong><span>Buscar por clave</span><small>Redis</small>
+</div>
+<div class="db-card">
+<span class="glyph">▥</span><strong>Columna ancha</strong><span>Recorrer partición</span><small>Bigtable</small>
+</div>
+<div class="db-card">
+<span class="glyph">●—●</span><strong>Grafo</strong><span>Seguir relaciones</span><small>Neo4j</small>
+</div>
+</div>
+<div class="question-strip">
+<strong>Pregunta:</strong> ¿cómo recuperará la aplicación el dato con mayor frecuencia?
+</div>
+<p class="source-note">
+Síntesis: <span class="citation" data-cites="kleppmann2026designing">Kleppmann and Riccomini (<a href="#/referencias" role="doc-biblioref" onclick>2026</a>)</span>, cap. 3; <span class="citation" data-cites="mckinneyAccessingData">McKinney (<a href="#/referencias" role="doc-biblioref" onclick>2022a</a>)</span>, cap. 6.
+</p>
+</section>
 <section id="localidad-y-relaciones" class="slide level2">
 <h2>Localidad y relaciones</h2>
 <div class="columns">
 <div class="column" style="width:49%;">
 <p><strong>Embebido</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href></a><span class="fu">{</span><span class="dt">&quot;cliente&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">&quot;nombre&quot;</span><span class="fu">:</span> <span class="st">&quot;Ana&quot;</span><span class="fu">,</span> <span class="dt">&quot;ciudad&quot;</span><span class="fu">:</span> <span class="st">&quot;Bogotá&quot;</span><span class="fu">}}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href></a><span class="fu">{</span><span class="dt">&quot;cliente&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">&quot;nombre&quot;</span><span class="fu">:</span> <span class="st">&quot;Ana&quot;</span><span class="fu">,</span> <span class="dt">&quot;ciudad&quot;</span><span class="fu">:</span> <span class="st">&quot;Bogotá&quot;</span><span class="fu">}}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Una lectura recupera el conjunto.</p>
 </div><div class="column" style="width:49%;">
 <p><strong>Referenciado</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href></a><span class="fu">{</span><span class="dt">&quot;cliente_id&quot;</span><span class="fu">:</span> <span class="dv">7</span><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href></a><span class="fu">{</span><span class="dt">&quot;cliente_id&quot;</span><span class="fu">:</span> <span class="dv">7</span><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Evita duplicar entidades compartidas.</p>
 </div></div>
 </section>
@@ -1374,15 +1693,189 @@ Fuente: <span class="citation" data-cites="kleppmann2026designing">Kleppmann and
 <h1>XML</h1>
 
 </section>
+<section id="el-correo-trae-un-pdf-y-un-xml" class="slide level2">
+<h2>El correo trae un PDF y un XML</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>Si queremos sumar automáticamente compras, impuestos y proveedores, ¿cuál archivo usarían como fuente: el PDF que vemos o el XML adjunto?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<p>El PDF comunica a una persona; el XML conserva campos, tipos y relaciones para una máquina.</p>
+</div>
+</section>
+<section id="por-qué-colombia-factura-en-xml" class="slide level2">
+<h2>¿Por qué Colombia factura en XML?</h2>
+<ul>
+<li>Emisor y receptor usan sistemas distintos.</li>
+<li>La DIAN debe validar cada documento con reglas comunes.</li>
+<li>UBL 2.1 define una estructura interoperable.</li>
+<li>La firma ayuda a verificar autenticidad e integridad.</li>
+<li>El PDF es una representación; el XML es el dato estructurado.</li>
+</ul>
+<p class="source-note">
+Fuente: <span class="citation" data-cites="dianModeloFactura">Dirección de Impuestos y Aduanas Nacionales (<a href="#/referencias" role="doc-biblioref" onclick>n.d.</a>)</span>.
+</p>
+</section>
+<section id="si-json-es-más-corto-por-qué-existe-xml" class="slide level2">
+<h2>Si JSON es más corto, ¿por qué existe XML?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>¿En qué situación preferirían etiquetas más verbosas, namespaces y validación estricta?</p>
+</div>
+</div>
+</div>
+</div>
+<p>Piensen en facturación, banca, salud e intercambio entre organizaciones.</p>
+</section>
+<section id="xml-prioriza-contratos-duraderos" class="slide level2">
+<h2>XML prioriza contratos duraderos</h2>
+<ul>
+<li>XSD puede validar estructura y tipos antes de procesar.</li>
+<li>Namespaces combinan vocabularios sin colisiones.</li>
+<li>Atributos y texto permiten documentos mixtos.</li>
+<li>Firmas digitales y estándares empresariales lo mantienen vigente.</li>
+</ul>
+<p><strong>¿Para qué sirve?</strong> Para intercambios donde fallar silenciosamente es costoso.</p>
+</section>
+<section id="anatomía-del-xml-compartido" class="slide level2">
+<h2>Anatomía del XML compartido</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href></a>AttachedDocument</span>
+<span id="cb6-2"><a href></a>├── UBLExtensions → firma del contenedor</span>
+<span id="cb6-3"><a href></a>├── SenderParty / ReceiverParty</span>
+<span id="cb6-4"><a href></a>├── Attachment</span>
+<span id="cb6-5"><a href></a>│   └── Description → Invoice XML</span>
+<span id="cb6-6"><a href></a>└── ParentDocumentLineReference</span>
+<span id="cb6-7"><a href></a>    └── Description → ApplicationResponse XML</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El archivo reúne <strong>contenedor, factura y respuesta de validación</strong>.</p>
+<p class="source-note">
+Estructura observada localmente; valores identificables omitidos.
+</p>
+</section>
+<section id="un-xml-puede-contener-otro-xml" class="slide level2">
+<h2>Un XML puede contener otro XML</h2>
+<p>En el ejemplo compartido:</p>
+<ul>
+<li>El documento exterior es <code>AttachedDocument</code>.</li>
+<li>Una descripción contiene la <code>Invoice</code> codificada como texto.</li>
+<li>Otra contiene la <code>ApplicationResponse</code>.</li>
+<li>La factura interna tiene <strong>2 líneas</strong> y <strong>3 subtotales tributarios</strong>.</li>
+<li>Cada nivel posee su propia firma y namespaces.</li>
+</ul>
+</section>
+<section id="dónde-están-las-líneas-de-factura" class="slide level2">
+<h2>¿Dónde están las líneas de factura?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>El archivo contiene una factura con dos productos. ¿Por qué una búsqueda de <code>InvoiceLine</code> en el árbol exterior devuelve cero resultados?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<p>La factura todavía es texto dentro de <code>Description</code>: primero hay que extraerla y volverla a analizar como XML.</p>
+</div>
+</section>
+<section id="extraer-la-factura-interna" class="slide level2">
+<h2>Extraer la factura interna</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href></a><span class="im">from</span> lxml <span class="im">import</span> etree</span>
+<span id="cb7-2"><a href></a></span>
+<span id="cb7-3"><a href></a>outer <span class="op">=</span> etree.parse(<span class="st">&quot;factura.xml&quot;</span>)</span>
+<span id="cb7-4"><a href></a>xml_invoice <span class="op">=</span> outer.xpath(</span>
+<span id="cb7-5"><a href></a>  <span class="st">&quot;string(//cac:Attachment/cac:ExternalReference/cbc:Description)&quot;</span>,</span>
+<span id="cb7-6"><a href></a>  namespaces<span class="op">=</span>NS_OUTER</span>
+<span id="cb7-7"><a href></a>)</span>
+<span id="cb7-8"><a href></a>invoice <span class="op">=</span> etree.fromstring(xml_invoice.encode())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Primero navegamos el contenedor; después analizamos el XML recuperado.</p>
+</section>
+<section id="qué-representa-una-fila-de-factura" class="slide level2">
+<h2>¿Qué representa una fila de factura?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>El encabezado aparece una vez, pero <code>InvoiceLine</code> se repite. ¿Cómo construirían una tabla para analizar productos vendidos?</p>
+</div>
+</div>
+</div>
+</div>
+<p>Una fila por línea, repitiendo número, fecha y proveedor como contexto.</p>
+</section>
+<section id="de-ubl-a-una-tabla-analítica" class="slide level2">
+<h2>De UBL a una tabla analítica</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Nivel XML</th>
+<th>Campo tabular</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Invoice/cbc:ID</code></td>
+<td><code>factura_id</code></td>
+</tr>
+<tr class="even">
+<td><code>Invoice/cbc:IssueDate</code></td>
+<td><code>fecha</code></td>
+</tr>
+<tr class="odd">
+<td><code>InvoiceLine/cac:Item</code></td>
+<td><code>producto</code></td>
+</tr>
+<tr class="even">
+<td><code>InvoiceLine/cbc:InvoicedQuantity</code></td>
+<td><code>cantidad</code></td>
+</tr>
+<tr class="odd">
+<td><code>InvoiceLine/cbc:LineExtensionAmount</code></td>
+<td><code>subtotal</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>La granularidad elegida es una fila por <code>InvoiceLine</code>.</strong></p>
+</section>
 <section id="xml-datos-etiquetados" class="slide level2">
 <h2>XML: datos etiquetados</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource xml number-lines code-with-copy"><code class="sourceCode xml"><span id="cb5-1"><a href></a>&lt;<span class="kw">orden</span> <span class="ot">id=</span><span class="st">&quot;A-101&quot;</span>&gt;</span>
-<span id="cb5-2"><a href></a>  &lt;<span class="kw">cliente</span>&gt;</span>
-<span id="cb5-3"><a href></a>    &lt;<span class="kw">nombre</span>&gt;Ana&lt;/<span class="kw">nombre</span>&gt;</span>
-<span id="cb5-4"><a href></a>    &lt;<span class="kw">ciudad</span>&gt;Bogotá&lt;/<span class="kw">ciudad</span>&gt;</span>
-<span id="cb5-5"><a href></a>  &lt;/<span class="kw">cliente</span>&gt;</span>
-<span id="cb5-6"><a href></a>  &lt;<span class="kw">total</span> <span class="ot">moneda=</span><span class="st">&quot;COP&quot;</span>&gt;185000&lt;/<span class="kw">total</span>&gt;</span>
-<span id="cb5-7"><a href></a>&lt;/<span class="kw">orden</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource xml number-lines code-with-copy"><code class="sourceCode xml"><span id="cb8-1"><a href></a>&lt;<span class="kw">orden</span> <span class="ot">id=</span><span class="st">&quot;A-101&quot;</span>&gt;</span>
+<span id="cb8-2"><a href></a>  &lt;<span class="kw">cliente</span>&gt;</span>
+<span id="cb8-3"><a href></a>    &lt;<span class="kw">nombre</span>&gt;Ana&lt;/<span class="kw">nombre</span>&gt;</span>
+<span id="cb8-4"><a href></a>    &lt;<span class="kw">ciudad</span>&gt;Bogotá&lt;/<span class="kw">ciudad</span>&gt;</span>
+<span id="cb8-5"><a href></a>  &lt;/<span class="kw">cliente</span>&gt;</span>
+<span id="cb8-6"><a href></a>  &lt;<span class="kw">total</span> <span class="ot">moneda=</span><span class="st">&quot;COP&quot;</span>&gt;185000&lt;/<span class="kw">total</span>&gt;</span>
+<span id="cb8-7"><a href></a>&lt;/<span class="kw">orden</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Un elemento puede contener texto, atributos y otros elementos.</li>
 <li>El documento debe tener una única raíz y etiquetas balanceadas.</li>
@@ -1437,14 +1930,34 @@ Fuente: <span class="citation" data-cites="kleppmann2026designing">Kleppmann and
 </section>
 <section id="namespaces" class="slide level2">
 <h2>Namespaces</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource xml number-lines code-with-copy"><code class="sourceCode xml"><span id="cb6-1"><a href></a>&lt;<span class="kw">inv:orden</span> <span class="ot">xmlns:inv=</span><span class="st">&quot;https://ejemplo.edu/inventario&quot;</span>&gt;</span>
-<span id="cb6-2"><a href></a>  &lt;<span class="kw">inv:producto</span> <span class="ot">inv:id=</span><span class="st">&quot;P-10&quot;</span>&gt;Cuaderno&lt;/<span class="kw">inv:producto</span>&gt;</span>
-<span id="cb6-3"><a href></a>&lt;/<span class="kw">inv:orden</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource xml number-lines code-with-copy"><code class="sourceCode xml"><span id="cb9-1"><a href></a>&lt;<span class="kw">inv:orden</span> <span class="ot">xmlns:inv=</span><span class="st">&quot;https://ejemplo.edu/inventario&quot;</span>&gt;</span>
+<span id="cb9-2"><a href></a>  &lt;<span class="kw">inv:producto</span> <span class="ot">inv:id=</span><span class="st">&quot;P-10&quot;</span>&gt;Cuaderno&lt;/<span class="kw">inv:producto</span>&gt;</span>
+<span id="cb9-3"><a href></a>&lt;/<span class="kw">inv:orden</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>El URI identifica un vocabulario; no necesita abrir una página.</li>
 <li>El prefijo evita colisiones entre etiquetas iguales.</li>
 <li>Las consultas XPath deben declarar el mismo namespace.</li>
 </ul>
+</section>
+<section id="por-qué-mi-xpath-devuelve-cero-filas" class="slide level2">
+<h2>¿Por qué mi XPath devuelve cero filas?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>El XML muestra diez etiquetas <code>&lt;producto&gt;</code>, pero <code>//producto</code> no encuentra ninguna. ¿El archivo está vacío?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource xml number-lines code-with-copy"><code class="sourceCode xml"><span id="cb10-1"><a href></a>&lt;<span class="kw">inv:producto</span> <span class="ot">xmlns:inv=</span><span class="st">&quot;https://ejemplo.edu/inventario&quot;</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La etiqueta pertenece a un namespace: su nombre completo no es solo <code>producto</code>.</p>
 </section>
 <section id="xpath-seleccionar-por-ruta" class="slide level2">
 <h2>XPath: seleccionar por ruta</h2>
@@ -1478,13 +1991,13 @@ Fuente: <span class="citation" data-cites="kleppmann2026designing">Kleppmann and
 </section>
 <section id="xml-con-pandas" class="slide level2">
 <h2>XML con Pandas</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb7-2"><a href></a></span>
-<span id="cb7-3"><a href></a>df <span class="op">=</span> pd.read_xml(</span>
-<span id="cb7-4"><a href></a>    <span class="st">&quot;ordenes.xml&quot;</span>,</span>
-<span id="cb7-5"><a href></a>    xpath<span class="op">=</span><span class="st">&quot;.//orden&quot;</span>,</span>
-<span id="cb7-6"><a href></a>    parser<span class="op">=</span><span class="st">&quot;lxml&quot;</span></span>
-<span id="cb7-7"><a href></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-2"><a href></a></span>
+<span id="cb11-3"><a href></a>df <span class="op">=</span> pd.read_xml(</span>
+<span id="cb11-4"><a href></a>    <span class="st">&quot;ordenes.xml&quot;</span>,</span>
+<span id="cb11-5"><a href></a>    xpath<span class="op">=</span><span class="st">&quot;.//orden&quot;</span>,</span>
+<span id="cb11-6"><a href></a>    parser<span class="op">=</span><span class="st">&quot;lxml&quot;</span></span>
+<span id="cb11-7"><a href></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>read_xml</code> funciona mejor cuando los nodos seleccionados representan registros repetibles.</p>
 </section></section>
 <section>
@@ -1492,16 +2005,37 @@ Fuente: <span class="citation" data-cites="kleppmann2026designing">Kleppmann and
 <h1>JSON y APIs</h1>
 
 </section>
+<section id="cuál-es-el-registro-en-una-respuesta-json" class="slide level2">
+<h2>¿Cuál es el registro en una respuesta JSON?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>Una API devuelve 25 países; cada país tiene varios idiomas. ¿Cuántos registros debería tener el dataset final?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<p>La respuesta cambia si analizamos países, idiomas o la relación país–idioma.</p>
+</div>
+</section>
 <section id="json-objetos-y-arreglos" class="slide level2">
 <h2>JSON: objetos y arreglos</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb8-1"><a href></a><span class="fu">{</span></span>
-<span id="cb8-2"><a href></a>  <span class="dt">&quot;orden_id&quot;</span><span class="fu">:</span> <span class="st">&quot;A-101&quot;</span><span class="fu">,</span></span>
-<span id="cb8-3"><a href></a>  <span class="dt">&quot;pagada&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb8-4"><a href></a>  <span class="dt">&quot;cliente&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">&quot;nombre&quot;</span><span class="fu">:</span> <span class="st">&quot;Ana&quot;</span><span class="fu">},</span></span>
-<span id="cb8-5"><a href></a>  <span class="dt">&quot;productos&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb8-6"><a href></a>    <span class="fu">{</span><span class="dt">&quot;sku&quot;</span><span class="fu">:</span> <span class="st">&quot;P-10&quot;</span><span class="fu">,</span> <span class="dt">&quot;cantidad&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">}</span></span>
-<span id="cb8-7"><a href></a>  <span class="ot">]</span></span>
-<span id="cb8-8"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb12-1"><a href></a><span class="fu">{</span></span>
+<span id="cb12-2"><a href></a>  <span class="dt">&quot;orden_id&quot;</span><span class="fu">:</span> <span class="st">&quot;A-101&quot;</span><span class="fu">,</span></span>
+<span id="cb12-3"><a href></a>  <span class="dt">&quot;pagada&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb12-4"><a href></a>  <span class="dt">&quot;cliente&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">&quot;nombre&quot;</span><span class="fu">:</span> <span class="st">&quot;Ana&quot;</span><span class="fu">},</span></span>
+<span id="cb12-5"><a href></a>  <span class="dt">&quot;productos&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb12-6"><a href></a>    <span class="fu">{</span><span class="dt">&quot;sku&quot;</span><span class="fu">:</span> <span class="st">&quot;P-10&quot;</span><span class="fu">,</span> <span class="dt">&quot;cantidad&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">}</span></span>
+<span id="cb12-7"><a href></a>  <span class="ot">]</span></span>
+<span id="cb12-8"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Objeto: pares clave–valor <code>{}</code>.</li>
 <li>Arreglo: colección ordenada <code>[]</code>.</li>
@@ -1528,12 +2062,38 @@ Fuente: <span class="citation" data-cites="kleppmann2026designing">Kleppmann and
 </ul>
 </div></div>
 </section>
+<section id="tres-salidas-válidas-del-mismo-json" class="slide level2">
+<h2>Tres salidas válidas del mismo JSON</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Objetivo</th>
+<th>Salida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Perfil del país</td>
+<td>Una fila por país</td>
+</tr>
+<tr class="even">
+<td>Catálogo de idiomas</td>
+<td>Una fila por idioma</td>
+</tr>
+<tr class="odd">
+<td>Cobertura lingüística</td>
+<td>Una fila por país–idioma</td>
+</tr>
+</tbody>
+</table>
+<p>No existe una normalización universal: existe una tabla adecuada para una pregunta.</p>
+</section>
 <section id="acceso-seguro-a-campos" class="slide level2">
 <h2>Acceso seguro a campos</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href></a>capitales <span class="op">=</span> pais.get(<span class="st">&quot;capitals&quot;</span>, [])</span>
-<span id="cb9-2"><a href></a>capital <span class="op">=</span> capitales[<span class="dv">0</span>].get(<span class="st">&quot;name&quot;</span>) <span class="cf">if</span> capitales <span class="cf">else</span> <span class="va">None</span></span>
-<span id="cb9-3"><a href></a></span>
-<span id="cb9-4"><a href></a>gini <span class="op">=</span> pais.get(<span class="st">&quot;gini&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href></a>capitales <span class="op">=</span> pais.get(<span class="st">&quot;capitals&quot;</span>, [])</span>
+<span id="cb13-2"><a href></a>capital <span class="op">=</span> capitales[<span class="dv">0</span>].get(<span class="st">&quot;name&quot;</span>) <span class="cf">if</span> capitales <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb13-3"><a href></a></span>
+<span id="cb13-4"><a href></a>gini <span class="op">=</span> pais.get(<span class="st">&quot;gini&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>dict.get()</code> tolera campos ausentes.</li>
 <li>Una lista vacía no tiene posición <code>[0]</code>.</li>
@@ -1542,15 +2102,15 @@ Fuente: <span class="citation" data-cites="kleppmann2026designing">Kleppmann and
 </section>
 <section id="normalizar-json" class="slide level2">
 <h2>Normalizar JSON</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb10-2"><a href></a></span>
-<span id="cb10-3"><a href></a>df <span class="op">=</span> pd.json_normalize(objetos, sep<span class="op">=</span><span class="st">&quot;.&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb14-2"><a href></a></span>
+<span id="cb14-3"><a href></a>df <span class="op">=</span> pd.json_normalize(objetos, sep<span class="op">=</span><span class="st">&quot;.&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>El resultado aplana objetos, pero los arreglos requieren decidir si se explotan con <code>explode()</code>.</p>
 </section>
 <section id="una-api-es-un-contrato" class="slide level2">
 <h2>Una API es un contrato</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href></a>Cliente ── HTTP GET ──► API</span>
-<span id="cb11-2"><a href></a>        ◄── estado + headers + JSON</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb15-1"><a href></a>Cliente ── HTTP GET ──► API</span>
+<span id="cb15-2"><a href></a>        ◄── estado + headers + JSON</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><strong>Endpoint:</strong> recurso solicitado.</li>
 <li><strong>Parámetros:</strong> filtros, campos y paginación.</li>
@@ -1558,26 +2118,103 @@ Fuente: <span class="citation" data-cites="kleppmann2026designing">Kleppmann and
 <li><strong>Respuesta:</strong> estado, metadatos y cuerpo.</li>
 </ul>
 </section>
+<section id="una-api-es-una-base-de-datos" class="slide level2">
+<h2>¿Una API es una base de datos?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>Si una API permite buscar países y devuelve JSON, ¿estamos consultando directamente su base de datos?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<p>No necesariamente. La API es una <strong>interfaz controlada</strong>: decide qué exponer, bajo qué reglas y con qué límites.</p>
+</div>
+</section>
+<section id="qué-puede-fallar" class="slide level2">
+<h2>¿Qué puede fallar?</h2>
+<p><strong>Aunque el código esté bien:</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Señal</th>
+<th>Posible causa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>401</code> / <code>403</code></td>
+<td>Credencial o permiso</td>
+</tr>
+<tr class="even">
+<td><code>429</code></td>
+<td>Límite de solicitudes</td>
+</tr>
+<tr class="odd">
+<td><code>500</code> / <code>503</code></td>
+<td>Falla temporal del servidor</td>
+</tr>
+<tr class="even">
+<td>JSON inesperado</td>
+<td>Cambio de contrato</td>
+</tr>
+<tr class="odd">
+<td>Respuesta incompleta</td>
+<td>Paginación ignorada</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reproducibilidad = transporte + contenido.</strong></p>
+</section>
 <section id="consumir-una-api" class="slide level2">
 <h2>Consumir una API</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href></a><span class="im">import</span> requests</span>
-<span id="cb12-2"><a href></a></span>
-<span id="cb12-3"><a href></a>r <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers, timeout<span class="op">=</span><span class="dv">30</span>)</span>
-<span id="cb12-4"><a href></a>r.raise_for_status()</span>
-<span id="cb12-5"><a href></a>payload <span class="op">=</span> r.json()</span>
-<span id="cb12-6"><a href></a>objetos <span class="op">=</span> payload[<span class="st">&quot;data&quot;</span>][<span class="st">&quot;objects&quot;</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href></a><span class="im">import</span> requests</span>
+<span id="cb16-2"><a href></a></span>
+<span id="cb16-3"><a href></a>r <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers, timeout<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb16-4"><a href></a>r.raise_for_status()</span>
+<span id="cb16-5"><a href></a>payload <span class="op">=</span> r.json()</span>
+<span id="cb16-6"><a href></a>objetos <span class="op">=</span> payload[<span class="st">&quot;data&quot;</span>][<span class="st">&quot;objects&quot;</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Siempre defina <code>timeout</code>, valide el estado y confirme la forma del JSON.</p>
 </section>
 <section id="paginación" class="slide level2">
 <h2>Paginación</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href></a>objetos, offset <span class="op">=</span> [], <span class="dv">0</span></span>
-<span id="cb13-2"><a href></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb13-3"><a href></a>    data <span class="op">=</span> consultar(limit<span class="op">=</span><span class="dv">100</span>, offset<span class="op">=</span>offset)[<span class="st">&quot;data&quot;</span>]</span>
-<span id="cb13-4"><a href></a>    objetos.extend(data[<span class="st">&quot;objects&quot;</span>])</span>
-<span id="cb13-5"><a href></a>    <span class="cf">if</span> <span class="kw">not</span> data[<span class="st">&quot;meta&quot;</span>][<span class="st">&quot;more&quot;</span>]:</span>
-<span id="cb13-6"><a href></a>        <span class="cf">break</span></span>
-<span id="cb13-7"><a href></a>    offset <span class="op">+=</span> data[<span class="st">&quot;meta&quot;</span>][<span class="st">&quot;count&quot;</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href></a>objetos, offset <span class="op">=</span> [], <span class="dv">0</span></span>
+<span id="cb17-2"><a href></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb17-3"><a href></a>    data <span class="op">=</span> consultar(limit<span class="op">=</span><span class="dv">100</span>, offset<span class="op">=</span>offset)[<span class="st">&quot;data&quot;</span>]</span>
+<span id="cb17-4"><a href></a>    objetos.extend(data[<span class="st">&quot;objects&quot;</span>])</span>
+<span id="cb17-5"><a href></a>    <span class="cf">if</span> <span class="kw">not</span> data[<span class="st">&quot;meta&quot;</span>][<span class="st">&quot;more&quot;</span>]:</span>
+<span id="cb17-6"><a href></a>        <span class="cf">break</span></span>
+<span id="cb17-7"><a href></a>    offset <span class="op">+=</span> data[<span class="st">&quot;meta&quot;</span>][<span class="st">&quot;count&quot;</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Una respuesta exitosa puede contener solo la primera página.</p>
+</section>
+<section id="la-trampa-de-la-primera-página" class="slide level2">
+<h2>La trampa de la primera página</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>La petición respondió <code>200 OK</code> y produjo 25 países. ¿Podemos afirmar que la extracción fue exitosa?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<p>REST Countries contiene más registros. El código funcionó, pero el dataset quedó incompleto.</p>
+</div>
 </section>
 <section id="secretos-y-contingencia" class="slide level2">
 <h2>Secretos y contingencia</h2>
@@ -1596,6 +2233,36 @@ Fuente: <span class="citation" data-cites="restcountries2026">REST Countries (<a
 <h1>MongoDB</h1>
 
 </section>
+<section id="archivo-json-o-base-documental" class="slide level2">
+<h2>¿Archivo JSON o base documental?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>Ambos usan objetos anidados. ¿Qué ofrece MongoDB que no ofrece una carpeta llena de archivos JSON?</p>
+</div>
+</div>
+</div>
+</div>
+<p>Piensen en búsqueda, concurrencia, índices, permisos y actualización.</p>
+</section>
+<section id="el-documento-también-necesita-un-motor" class="slide level2">
+<h2>El documento también necesita un motor</h2>
+<ul>
+<li>Índices evitan revisar todos los documentos.</li>
+<li>Consultas filtran y ordenan cerca de los datos.</li>
+<li>Escrituras concurrentes conservan consistencia operativa.</li>
+<li>Permisos controlan quién puede leer o modificar.</li>
+<li>Replicación y respaldo protegen disponibilidad.</li>
+</ul>
+<p>MongoDB no es “JSON guardado”: es un sistema de gestión documental.</p>
+</section>
 <section id="de-json-a-bson" class="slide level2">
 <h2>De JSON a BSON</h2>
 <ul>
@@ -1608,49 +2275,114 @@ Fuente: <span class="citation" data-cites="restcountries2026">REST Countries (<a
 </section>
 <section id="conexión-segura" class="slide level2">
 <h2>Conexión segura</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href></a><span class="im">from</span> google.colab <span class="im">import</span> userdata</span>
-<span id="cb14-2"><a href></a><span class="im">from</span> pymongo <span class="im">import</span> MongoClient</span>
-<span id="cb14-3"><a href></a><span class="im">from</span> pymongo.server_api <span class="im">import</span> ServerApi</span>
-<span id="cb14-4"><a href></a></span>
-<span id="cb14-5"><a href></a>uri <span class="op">=</span> userdata.get(<span class="st">&quot;MONGODB_URI&quot;</span>)</span>
-<span id="cb14-6"><a href></a>client <span class="op">=</span> MongoClient(uri, server_api<span class="op">=</span>ServerApi(<span class="st">&quot;1&quot;</span>))</span>
-<span id="cb14-7"><a href></a>client.admin.command(<span class="st">&quot;ping&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href></a><span class="im">from</span> google.colab <span class="im">import</span> userdata</span>
+<span id="cb18-2"><a href></a><span class="im">from</span> pymongo <span class="im">import</span> MongoClient</span>
+<span id="cb18-3"><a href></a><span class="im">from</span> pymongo.server_api <span class="im">import</span> ServerApi</span>
+<span id="cb18-4"><a href></a></span>
+<span id="cb18-5"><a href></a>uri <span class="op">=</span> userdata.get(<span class="st">&quot;MONGODB_URI&quot;</span>)</span>
+<span id="cb18-6"><a href></a>client <span class="op">=</span> MongoClient(uri, server_api<span class="op">=</span>ServerApi(<span class="st">&quot;1&quot;</span>))</span>
+<span id="cb18-7"><a href></a>client.admin.command(<span class="st">&quot;ping&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>El <code>ping</code> separa un problema de acceso de un error en la consulta.</p>
 </section>
 <section id="filtro-y-proyección" class="slide level2">
 <h2>Filtro y proyección</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href></a>campos <span class="op">=</span> {<span class="st">&quot;_id&quot;</span>: <span class="dv">0</span>, <span class="st">&quot;name&quot;</span>: <span class="dv">1</span>, <span class="st">&quot;summary&quot;</span>: <span class="dv">1</span>, <span class="st">&quot;room_type&quot;</span>: <span class="dv">1</span>}</span>
-<span id="cb15-2"><a href></a>cursor <span class="op">=</span> collection.find({}, campos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href></a>campos <span class="op">=</span> {<span class="st">&quot;_id&quot;</span>: <span class="dv">0</span>, <span class="st">&quot;name&quot;</span>: <span class="dv">1</span>, <span class="st">&quot;summary&quot;</span>: <span class="dv">1</span>, <span class="st">&quot;room_type&quot;</span>: <span class="dv">1</span>}</span>
+<span id="cb19-2"><a href></a>cursor <span class="op">=</span> collection.find({}, campos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>El filtro limita documentos.</li>
 <li>La proyección limita campos.</li>
 <li>Reducir datos en la fuente evita transferencias innecesarias.</li>
 </ul>
 </section>
+<section id="descargar-todo-o-preguntar-en-la-fuente" class="slide level2">
+<h2>¿Descargar todo o preguntar en la fuente?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>La colección tiene cinco millones de alojamientos y solo necesitamos los diez más costosos. ¿Qué ocurre si primero los cargamos en Pandas?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<p>Filtrar, proyectar, ordenar y limitar en MongoDB reduce red, memoria y tiempo.</p>
+</div>
+</section>
 <section id="ordenar-en-la-fuente" class="slide level2">
 <h2>Ordenar en la fuente</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href></a>cursor <span class="op">=</span> (</span>
-<span id="cb16-2"><a href></a>    collection</span>
-<span id="cb16-3"><a href></a>    .find({<span class="st">&quot;weekly_price&quot;</span>: {<span class="st">&quot;$ne&quot;</span>: <span class="va">None</span>}}, campos)</span>
-<span id="cb16-4"><a href></a>    .sort(<span class="st">&quot;weekly_price&quot;</span>, <span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb16-5"><a href></a>    .limit(<span class="dv">10</span>)</span>
-<span id="cb16-6"><a href></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href></a>cursor <span class="op">=</span> (</span>
+<span id="cb20-2"><a href></a>    collection</span>
+<span id="cb20-3"><a href></a>    .find({<span class="st">&quot;weekly_price&quot;</span>: {<span class="st">&quot;$ne&quot;</span>: <span class="va">None</span>}}, campos)</span>
+<span id="cb20-4"><a href></a>    .sort(<span class="st">&quot;weekly_price&quot;</span>, <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb20-5"><a href></a>    .limit(<span class="dv">10</span>)</span>
+<span id="cb20-6"><a href></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>Decimal128</code> debe convertirse antes de operar con Pandas.</p>
 </section>
 <section id="campos-anidados" class="slide level2">
 <h2>Campos anidados</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href></a>filtro <span class="op">=</span> {</span>
-<span id="cb17-2"><a href></a>    <span class="st">&quot;address.country_code&quot;</span>: <span class="st">&quot;PT&quot;</span>,</span>
-<span id="cb17-3"><a href></a>    <span class="st">&quot;review_scores.review_scores_rating&quot;</span>: {<span class="st">&quot;$gte&quot;</span>: <span class="dv">90</span>}</span>
-<span id="cb17-4"><a href></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href></a>filtro <span class="op">=</span> {</span>
+<span id="cb21-2"><a href></a>    <span class="st">&quot;address.country_code&quot;</span>: <span class="st">&quot;PT&quot;</span>,</span>
+<span id="cb21-3"><a href></a>    <span class="st">&quot;review_scores.review_scores_rating&quot;</span>: {<span class="st">&quot;$gte&quot;</span>: <span class="dv">90</span>}</span>
+<span id="cb21-4"><a href></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>La notación por puntos navega objetos anidados sin descargar el documento completo.</p>
+</section>
+<section id="embebido-o-referenciado" class="slide level2">
+<h2>¿Embebido o referenciado?</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Situación</th>
+<th>Decisión probable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dirección propia de una reserva</td>
+<td>Embeber</td>
+</tr>
+<tr class="even">
+<td>Cliente compartido por miles de pedidos</td>
+<td>Referenciar</td>
+</tr>
+<tr class="odd">
+<td>Elementos leídos siempre juntos</td>
+<td>Embeber</td>
+</tr>
+<tr class="even">
+<td>Entidad que cambia por separado</td>
+<td>Referenciar</td>
+</tr>
+</tbody>
+</table>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>¿Qué costo aparece si una dirección embebida cambia después?</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="geojson-el-orden-importa" class="slide level2">
 <h2>GeoJSON: el orden importa</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb18-1"><a href></a><span class="fu">{</span></span>
-<span id="cb18-2"><a href></a>  <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;Point&quot;</span><span class="fu">,</span></span>
-<span id="cb18-3"><a href></a>  <span class="dt">&quot;coordinates&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="fl">-79.90</span><span class="ot">,</span> <span class="fl">9.30</span><span class="ot">]</span></span>
-<span id="cb18-4"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb22-1"><a href></a><span class="fu">{</span></span>
+<span id="cb22-2"><a href></a>  <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;Point&quot;</span><span class="fu">,</span></span>
+<span id="cb22-3"><a href></a>  <span class="dt">&quot;coordinates&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="fl">-79.90</span><span class="ot">,</span> <span class="fl">9.30</span><span class="ot">]</span></span>
+<span id="cb22-4"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
 <li>Longitud: eje este–oeste.</li>
 <li>Latitud: eje norte–sur.</li>
@@ -1659,23 +2391,23 @@ Fuente: <span class="citation" data-cites="restcountries2026">REST Countries (<a
 </section>
 <section id="consulta-por-proximidad" class="slide level2">
 <h2>Consulta por proximidad</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href></a>consulta <span class="op">=</span> {</span>
-<span id="cb19-2"><a href></a>  <span class="st">&quot;coordinates&quot;</span>: {</span>
-<span id="cb19-3"><a href></a>    <span class="st">&quot;$near&quot;</span>: {</span>
-<span id="cb19-4"><a href></a>      <span class="st">&quot;$geometry&quot;</span>: {<span class="st">&quot;type&quot;</span>: <span class="st">&quot;Point&quot;</span>, <span class="st">&quot;coordinates&quot;</span>: [<span class="op">-</span><span class="fl">79.90</span>, <span class="fl">9.30</span>]},</span>
-<span id="cb19-5"><a href></a>      <span class="st">&quot;$maxDistance&quot;</span>: <span class="dv">100_000</span></span>
-<span id="cb19-6"><a href></a>    }</span>
-<span id="cb19-7"><a href></a>  }</span>
-<span id="cb19-8"><a href></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href></a>consulta <span class="op">=</span> {</span>
+<span id="cb23-2"><a href></a>  <span class="st">&quot;coordinates&quot;</span>: {</span>
+<span id="cb23-3"><a href></a>    <span class="st">&quot;$near&quot;</span>: {</span>
+<span id="cb23-4"><a href></a>      <span class="st">&quot;$geometry&quot;</span>: {<span class="st">&quot;type&quot;</span>: <span class="st">&quot;Point&quot;</span>, <span class="st">&quot;coordinates&quot;</span>: [<span class="op">-</span><span class="fl">79.90</span>, <span class="fl">9.30</span>]},</span>
+<span id="cb23-5"><a href></a>      <span class="st">&quot;$maxDistance&quot;</span>: <span class="dv">100_000</span></span>
+<span id="cb23-6"><a href></a>    }</span>
+<span id="cb23-7"><a href></a>  }</span>
+<span id="cb23-8"><a href></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>El Taller 5 conservará los primeros 20 resultados.</p>
 </section>
 <section id="consulta-por-área" class="slide level2">
 <h2>Consulta por área</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href></a>consulta <span class="op">=</span> {</span>
-<span id="cb20-2"><a href></a>  <span class="st">&quot;coordinates&quot;</span>: {</span>
-<span id="cb20-3"><a href></a>    <span class="st">&quot;$geoWithin&quot;</span>: {<span class="st">&quot;$geometry&quot;</span>: poligono_costa_este}</span>
-<span id="cb20-4"><a href></a>  }</span>
-<span id="cb20-5"><a href></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href></a>consulta <span class="op">=</span> {</span>
+<span id="cb24-2"><a href></a>  <span class="st">&quot;coordinates&quot;</span>: {</span>
+<span id="cb24-3"><a href></a>    <span class="st">&quot;$geoWithin&quot;</span>: {<span class="st">&quot;$geometry&quot;</span>: poligono_costa_este}</span>
+<span id="cb24-4"><a href></a>  }</span>
+<span id="cb24-5"><a href></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>El polígono debe cerrarse: primer punto = último punto.</li>
 <li>Es un área de estudio reproducible, no una frontera política.</li>
@@ -1686,12 +2418,86 @@ Fuente: <span class="citation" data-cites="restcountries2026">REST Countries (<a
 <h1>HTML y web scraping</h1>
 
 </section>
+<section id="por-qué-existe-el-web-scraping" class="slide level2">
+<h2>¿Por qué existe el web scraping?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>Dos casas de cambio publican sus tasas para personas, pero no ofrecen una API pública. ¿Copiarían los precios manualmente todos los días?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<p>El scraping convierte información web pública en datos reproducibles cuando no existe un canal estructurado adecuado.</p>
+</div>
+</section>
+<section id="antes-de-hacer-scraping" class="slide level2">
+<h2>Antes de hacer scraping</h2>
+<ol type="1">
+<li>API pública documentada.</li>
+<li>Descarga oficial en CSV, JSON o XML.</li>
+<li>Tabla o contenido HTML estable.</li>
+<li>Automatización de navegador como último recurso.</li>
+</ol>
+<p><strong>Advertencia:</strong> el scraping depende de una página diseñada para personas y puede romperse sin aviso.</p>
+</section>
+<section id="cuando-la-api-no-resuelve-el-problema" class="slide level2">
+<h2>Cuando la API no resuelve el problema</h2>
+<ul>
+<li>No existe una API pública.</li>
+<li>La API omite el dato visible en el portal.</li>
+<li>Exige un plan, permiso o cuota incompatible.</li>
+<li>Está desactualizada o tiene disponibilidad irregular.</li>
+<li>Su contrato cambia sin suficiente aviso.</li>
+</ul>
+<p><strong>¿Para qué sirve el scraping?</strong> Para recuperar la evidencia pública disponible, registrando sus límites.</p>
+</section>
+<section id="caso-comparar-tasas-de-cambio" class="slide level2">
+<h2>Caso: comparar tasas de cambio</h2>
+<p>Necesitamos responder cada día:</p>
+<ul>
+<li>¿Qué monedas publica cada casa?</li>
+<li>¿Cuál ofrece mejor precio de compra y venta?</li>
+<li>¿Qué spread cobra cada una?</li>
+<li>¿Cuándo se observó el dato?</li>
+</ul>
+<p>La página es la fuente operacional; la tabla consolidada será el insumo analítico.</p>
+</section>
+<section id="lo-visible-está-en-el-html" class="slide level2">
+<h2>¿Lo visible está en el HTML?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>Vemos una tabla de tasas en el navegador. ¿Eso garantiza que <code>requests.get()</code> descargará sus filas?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<p>No siempre: JavaScript puede construir la tabla después de cargar el documento inicial.</p>
+</div>
+</section>
 <section id="html-también-es-un-árbol" class="slide level2">
 <h2>HTML también es un árbol</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb21-1"><a href></a><span class="dt">&lt;</span><span class="kw">table</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;tasas&quot;</span><span class="dt">&gt;</span></span>
-<span id="cb21-2"><a href></a>  <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Moneda<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Compra<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb21-3"><a href></a>  <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>USD<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>3650<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb21-4"><a href></a><span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb25-1"><a href></a><span class="dt">&lt;</span><span class="kw">table</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;tasas&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb25-2"><a href></a>  <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Moneda<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Compra<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb25-3"><a href></a>  <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>USD<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>3650<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb25-4"><a href></a><span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>El DOM representa etiquetas como nodos.</li>
 <li><code>id</code> y <code>class</code> ayudan a localizar elementos.</li>
@@ -1731,6 +2537,29 @@ Fuente: <span class="citation" data-cites="restcountries2026">REST Countries (<a
 </tbody>
 </table>
 </section>
+<section id="cuál-de-todas-las-tablas-necesitamos" class="slide level2">
+<h2>¿Cuál de todas las tablas necesitamos?</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href></a>tablas <span class="op">=</span> pd.read_html(html)</span>
+<span id="cb26-2"><a href></a>[(i, tabla.shape) <span class="cf">for</span> i, tabla <span class="kw">in</span> <span class="bu">enumerate</span>(tablas)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>Si la página devuelve cinco tablas, ¿es seguro usar siempre <code>tablas[0]</code>?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<p>La posición puede cambiar; conviene seleccionar por encabezados, texto o atributos.</p>
+</div>
+</section>
 <section id="tres-operaciones-distintas" class="slide level2">
 <h2>Tres operaciones distintas</h2>
 <ol type="1">
@@ -1754,8 +2583,8 @@ Fuente: <span class="citation" data-cites="restcountries2026">REST Countries (<a
 </section>
 <section id="tablas-con-pandas" class="slide level2">
 <h2>Tablas con Pandas</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href></a>tablas <span class="op">=</span> pd.read_html(html)</span>
-<span id="cb22-2"><a href></a>df <span class="op">=</span> tablas[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href></a>tablas <span class="op">=</span> pd.read_html(html)</span>
+<span id="cb27-2"><a href></a>df <span class="op">=</span> tablas[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Devuelve una <strong>lista</strong> de DataFrames.</li>
 <li>Busca elementos <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;th&gt;</code> y <code>&lt;td&gt;</code>.</li>
@@ -1767,24 +2596,51 @@ Fuente: <span class="citation" data-cites="pandasReadHtml2026">The pandas develo
 </section>
 <section id="nodos-con-beautifulsoup" class="slide level2">
 <h2>Nodos con BeautifulSoup</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
-<span id="cb23-2"><a href></a></span>
-<span id="cb23-3"><a href></a>soup <span class="op">=</span> BeautifulSoup(html, <span class="st">&quot;html.parser&quot;</span>)</span>
-<span id="cb23-4"><a href></a>filas <span class="op">=</span> soup.select(<span class="st">&quot;table#tasas tbody tr&quot;</span>)</span>
-<span id="cb23-5"><a href></a>valores <span class="op">=</span> [fila.get_text(<span class="st">&quot; &quot;</span>, strip<span class="op">=</span><span class="va">True</span>) <span class="cf">for</span> fila <span class="kw">in</span> filas]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb28-2"><a href></a></span>
+<span id="cb28-3"><a href></a>soup <span class="op">=</span> BeautifulSoup(html, <span class="st">&quot;html.parser&quot;</span>)</span>
+<span id="cb28-4"><a href></a>filas <span class="op">=</span> soup.select(<span class="st">&quot;table#tasas tbody tr&quot;</span>)</span>
+<span id="cb28-5"><a href></a>valores <span class="op">=</span> [fila.get_text(<span class="st">&quot; &quot;</span>, strip<span class="op">=</span><span class="va">True</span>) <span class="cf">for</span> fila <span class="kw">in</span> filas]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>BeautifulSoup permite extraer contenido que no está organizado como tabla.</p>
 </section>
 <section id="descarga-responsable" class="slide level2">
 <h2>Descarga responsable</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href></a>headers <span class="op">=</span> {<span class="st">&quot;User-Agent&quot;</span>: <span class="st">&quot;CursoGestionDatos/1.0 contacto@ejemplo.edu&quot;</span>}</span>
-<span id="cb24-2"><a href></a>r <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers, timeout<span class="op">=</span><span class="dv">30</span>)</span>
-<span id="cb24-3"><a href></a>r.raise_for_status()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href></a>headers <span class="op">=</span> {<span class="st">&quot;User-Agent&quot;</span>: <span class="st">&quot;CursoGestionDatos/1.0 contacto@ejemplo.edu&quot;</span>}</span>
+<span id="cb29-2"><a href></a>r <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers, timeout<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb29-3"><a href></a>r.raise_for_status()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Revise términos de uso y <code>robots.txt</code>.</li>
 <li>Limite frecuencia y volumen.</li>
 <li>No eluda autenticación ni controles de acceso.</li>
 <li>Registre URL y fecha de extracción.</li>
 </ul>
+</section>
+<section id="cómo-sabemos-que-no-se-rompió" class="slide level2">
+<h2>¿Cómo sabemos que no se rompió?</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>El script terminó sin errores, pero hoy produjo cero filas. ¿La extracción fue exitosa?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<ul>
+<li>Verificar columnas mínimas esperadas.</li>
+<li>Exigir al menos una fila por fuente.</li>
+<li>Validar precios numéricos y spreads no negativos.</li>
+<li>Guardar fecha, URL y modo de carga.</li>
+<li>Alertar ante cambios; no publicar silenciosamente un vacío.</li>
+</ul>
+</div>
 </section>
 <section id="del-html-al-dataset" class="slide level2">
 <h2>Del HTML al dataset</h2>
@@ -1818,6 +2674,87 @@ Fuente: <span class="citation" data-cites="pandasReadHtml2026">The pandas develo
 </tr>
 </tbody>
 </table>
+</section></section>
+<section>
+<section id="integración" class="title-slide slide level1 center">
+<h1>Integración</h1>
+
+</section>
+<section id="una-pregunta-cuatro-rutas" class="slide level2">
+<h2>Una pregunta, cuatro rutas</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Necesidad</th>
+<th>Fuente</th>
+<th>Operación clave</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Reservas</td>
+<td>XML</td>
+<td>XPath</td>
+</tr>
+<tr class="even">
+<td>Países</td>
+<td>API JSON</td>
+<td>Paginación y normalización</td>
+</tr>
+<tr class="odd">
+<td>Alojamientos</td>
+<td>MongoDB</td>
+<td>Filtro y proyección</td>
+</tr>
+<tr class="even">
+<td>Tasas</td>
+<td>HTML</td>
+<td>Selector y homologación</td>
+</tr>
+</tbody>
+</table>
+<p>Todas terminan en tablas, pero <strong>no comienzan como tablas</strong>.</p>
+</section>
+<section id="flujo-mental-para-cualquier-fuente" class="slide level2">
+<h2>Flujo mental para cualquier fuente</h2>
+<ol type="1">
+<li>¿Quién produce el dato y con qué propósito?</li>
+<li>¿Qué estructura tiene realmente?</li>
+<li>¿Cómo se accede de forma permitida y reproducible?</li>
+<li>¿Qué representa una observación?</li>
+<li>¿Qué se pierde al aplanar?</li>
+<li>¿Cómo sabremos que la extracción está completa?</li>
+</ol>
+</section>
+<section id="ticket-de-salida" class="slide level2">
+<h2>Ticket de salida</h2>
+<div title="Preguntas a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Preguntas a la clase</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li>¿Por qué una API no es sinónimo de JSON ni de base de datos?</li>
+<li>¿Cuándo una lista anidada debe convertirse en varias filas?</li>
+<li>¿Por qué una tabla visible podría no estar en el HTML descargado?</li>
+<li>¿Qué operación conviene ejecutar en la fuente y no en Pandas?</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="idea-para-llevar" class="slide level2">
+<h2>Idea para llevar</h2>
+<blockquote>
+<p>El análisis quiere filas y columnas; el mundo produce eventos, documentos, mensajes, páginas y relaciones.</p>
+</blockquote>
+<p>El trabajo de extracción consiste en <strong>preservar el significado</strong> mientras transformamos esas fuentes en evidencia analizable.</p>
 </section></section>
 <section>
 <section id="taller-5" class="title-slide slide level1 center">
@@ -1890,6 +2827,9 @@ Fuente: <span class="citation" data-cites="pandasReadHtml2026">The pandas develo
 <section id="referencias" class="slide level2 smaller scrollable">
 <h2>Referencias</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-dianModeloFactura" class="csl-entry" role="listitem">
+Dirección de Impuestos y Aduanas Nacionales. n.d. <span>“Modelo de Operación Detrás de La Expedición de La Factura Electrónica.”</span> DIAN. Accessed September 4, 2026. <a href="https://factura-electronica.dian.gov.co/modelo-operacion-19.html">https://factura-electronica.dian.gov.co/modelo-operacion-19.html</a>.
+</div>
 <div id="ref-erl2016big" class="csl-entry" role="listitem">
 Erl, Thomas, Wajid Khattak, and Paul Buhler. 2016. <em>Big Data Fundamentals: Concepts, Drivers &amp; Techniques</em>. Prentice Hall Press.
 </div>
@@ -1905,8 +2845,11 @@ Kleppmann, Martin, and Chris Riccomini. 2026. <em>Designing Data-Intensive Appli
 <div id="ref-kreibich2010using" class="csl-entry" role="listitem">
 Kreibich, Jay. 2010. <em>Using SQLite</em>. &quot; O’Reilly Media, Inc.&quot;.
 </div>
+<div id="ref-mckinneyAccessingData" class="csl-entry" role="listitem">
+McKinney, Wes. 2022a. <span>“Data Loading, Storage, and File Formats.”</span> O’Reilly Media. <a href="https://wesmckinney.com/book/accessing-data">https://wesmckinney.com/book/accessing-data</a>.
+</div>
 <div id="ref-mckinney2022python" class="csl-entry" role="listitem">
-McKinney, Wes. 2022. <em>Python for Data Analysis</em>. &quot; O’Reilly Media, Inc.&quot;.
+McKinney, Wes. 2022b. <em>Python for Data Analysis</em>. &quot; O’Reilly Media, Inc.&quot;.
 </div>
 <div id="ref-mongodbAtlas2026" class="csl-entry" role="listitem">
 MongoDB. 2026. <em>Deploy a Free Cluster and Load Sample Data</em>. <a href="https://www.mongodb.com/docs/atlas/tutorial/deploy-free-tier-cluster/">https://www.mongodb.com/docs/atlas/tutorial/deploy-free-tier-cluster/</a>.
