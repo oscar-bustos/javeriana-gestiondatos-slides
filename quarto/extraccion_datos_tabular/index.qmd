@@ -621,6 +621,31 @@ df2 = pd.read_sql_query(q2, conn)
 :::
 :::
 
+## Próxima sesión: fuentes jerárquicas
+
+:::: {.columns}
+::: {.column width="48%"}
+**Hoy: estructura tabular**
+
+- Filas y columnas.
+- Esquema explícito.
+- SQL consulta relaciones.
+- Pandas recibe un `DataFrame`.
+:::
+::: {.column width="48%"}
+**Sesión 5: estructuras en árbol**
+
+- XML, JSON y HTML.
+- Documentos y campos anidados.
+- APIs y MongoDB.
+- Del DOM al *web scraping*.
+:::
+::::
+
+::: {.callout-tip}
+El siguiente reto será convertir estructuras jerárquicas en datos tabulares analizables.
+:::
+
 # Recursos
 
 ## Referencias

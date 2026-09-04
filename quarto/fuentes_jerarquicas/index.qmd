@@ -1,6 +1,7 @@
 ---
-title: "Fuentes Jerarquicas"
-author: "Oscar Bustos"
+title: "Gestión de Datos: Fuentes Jerárquicas"
+subtitle: "De documentos y APIs al web scraping"
+author: "Oscar Leonardo Bustos"
 format:
   revealjs:
     embed-resources: true
@@ -9,8 +10,11 @@ format:
     show-slide-number: all
     transition: slide
     chalkboard: false
-    width: 1050
-    height: 700
+    width: 1280
+    height: 720
+    margin: 0.04
+    center: false
+    auto-stretch: false
     logo: assets/logo_RGB.png
 bibliography: references.bib
 nocite: |
@@ -18,663 +22,586 @@ nocite: |
 ---
 
 <style>
-.reveal figcaption {
-  text-align: center !important;
-}
-.smaller-text {
-  font-size: 0.75em !important;
-}
+.reveal figcaption { text-align: center !important; }
+.smaller-text { font-size: 0.75em !important; }
+.tiny-text { font-size: 0.58em !important; }
+.source-note { font-size: 0.52em; color: #64748b; }
 </style>
 
+# Continuidad
 
-
-
-
-
-# Repaso
-
-
-
-
-## Repaso
-
+## Del dato tabular al jerárquico
 
 :::: {.columns}
+::: {.column width="48%"}
+### Sesión 4
 
-
-::: {.column width="50%"}
-Bases de datos relacionales
-- Codd - 1970
-- Basado en el álgebra relacional
-- Datos lógicamente organizados en tablas
-- Compuestas por filas y columnas
+- Filas y columnas.
+- Esquema explícito.
+- SQL selecciona y relaciona.
+- Pandas recibe un `DataFrame`.
 :::
+::: {.column width="48%"}
+### Sesión 5
 
-
-::: {.column width="40%"}
-![](assets/Tupla.png){width="100%"}
+- Nodos y relaciones padre–hijo.
+- Estructuras anidadas.
+- Rutas seleccionan elementos.
+- El árbol debe convertirse en tabla.
 :::
-
 ::::
 
-
-
-
-
-## Tablas en modelo relacional
-
-
+## Un mismo pedido, dos formas
 
 :::: {.columns}
+::: {.column width="49%"}
+**Tablas relacionadas**
 
+| orden_id | cliente_id | total |
+|---|---:|---:|
+| A-101 | 7 | 185000 |
 
-::: {.column width="52%"}
-
-::: {.callout-note}
-## Entidad de CLIENTE
-
-
-| cliente\_id | nombre\_cliente | direccion |
-| --- | --- | --- |
-| 1 | Pablo | cra 1 \# 2 -3 |
-| 2 | María | calle 2 \# 1 -3 |
-| 3 | Camila | cra 3 \# 4 -6 |
-
+| cliente_id | nombre |
+|---:|---|
+| 7 | Ana |
 :::
-
-:::
-
-
-
-::: {.column width="45%"}
-
-::: {.callout-note}
-## Entidad de PRODUCTO
-
-
-| producto\_id | nombre\_producto |
-| --- | --- |
-| 10 | Escoba |
-| 11 | Lápiz |
-| 12 | Borrador |
-
-:::
-
-:::
-
-::::
-
-
-
-
-
-
-::: {.callout-note}
-## Tabla de ORDEN
-
-
-| orden\_id | cliente\_id | producto\_id | fecha\_orden |
-| --- | --- | --- | --- |
-| AA01 | 2 | 10 | 10/10/2020 |
-| AA02 | 3 | 11 | 11/10/2020 |
-| AA03 | 1 | 12 | 12/10/2020 |
-
-:::
-
-
-
-
-
-
-## Modelo Entidad Relación
-
-![](assets/EntidadRelacion.png){width="60%"}
-
-
-
-
-
-
-## Ventajas del Modelo Relacional
-
-- **Integración perfecta:** Se conectan de forma nativa con casi cualquier herramienta de BI (Tableau, PowerBI) y librerías de ciencia de datos (Pandas, dplyr).
-- **Datos limpios desde el origen:** Su estructura estricta evita duplicados y errores lógicos, lo que nos ahorra muchísimo tiempo en la fase de limpieza de datos.
-- **Extracción rápida y universal:** SQL es el estándar de la industria. Permite filtrar, agrupar y preparar *datasets* rápidamente antes de pasarlos al modelo.
-- **Alta concurrencia:** Soportan a múltiples analistas, científicos de datos y sistemas que consultan la información al mismo tiempo de forma segura.
-
-
-
-
-## Desventajas del Modelo Relacional
-
-- **Poca flexibilidad para experimentar:** Si durante un proyecto descubres que necesitas añadir nuevas variables o atributos constantemente, alterar el esquema es lento y doloroso.
-- **Cuello de botella con Big Data:** Cuando el volumen de datos crece drásticamente (millones de registros históricos), las consultas complejas y los cruces masivos (*JOINs*) se vuelven muy lentos.
-- **Mala gestión de datos no estructurados:** No son la herramienta adecuada si tu modelo necesita procesar grandes volúmenes de texto libre para NLP, imágenes, audio o archivos JSON anidados.
-- **Ineficiencia con estructuras complejas:** Forzar relaciones jerárquicas, grafos o matrices muy dispersas (*sparse data*) en tablas planas complica el análisis y hace mucho más pesado el *feature engineering*.
-
-
-
-
-
-
-# No SQL
-
-
-
-## Tipos de Base de datos
-
-![](assets/types-of-nosql-datastores.png){width="65%"}
-
-
-Tomado de: [https://learn.microsoft.com/es-es/dotnet/architecture/cloud-native/relational-vs-nosql-data](https://learn.microsoft.com/es-es/dotnet/architecture/cloud-native/relational-vs-nosql-data)
-
-
-
-
-## Tipos de Base de datos {.smaller}
-
-\begin{table}[]
- % Reducimos un poco el tamaño de fuente para que encaje mejor
-
-| **Modelo** | **Características** | **Ejemplo** |
-| --- | --- | --- |
-| Almacén de documentos | Los datos y los metadatos se almacenan jerárquicamente en documentos basados en JSON dentro de la base de datos. | MongoDB |
-| Almacén de clave-valor | La más sencilla de las bases de datos NoSQL, los datos se representan como una colección de pares clave-valor. | AWS DynamoDB,   Redis |
-| Almacén de columna ancha | Los datos relacionados se almacenan como un conjunto de pares clave-valor anidados dentro de una sola columna. | Google BigTable |
-| Almacén de grafos | Los datos se almacenan en una estructura de grafo como propiedades de nodo, borde y datos. | AWS Neptune, Neo4j |
-
-\end{table}
-
-
-
-
-# Formatos Jerárquicos
-
-
-
-## Características del Formato XML
-
-- **Legible para humanos y máquinas:** Su formato basado en texto puro facilita la comprensión tanto para desarrolladores como para sistemas automatizados.
-- **Extensible:** No tiene un vocabulario predefinido; permite definir etiquetas propias según las necesidades del dominio.
-- **Estructura jerárquica:** Organiza los datos en forma de árbol, partiendo de un elemento raíz y llegando a múltiples nodos hijos.
-- **Independiente del lenguaje/plataforma:** Puede ser procesado por cualquier sistema operativo y lenguaje de programación.
-
-
-
-
-
-
-## Características del Formato XML
-
-- **Autocontenido:** Los datos llevan consigo su propia descripción y contexto semántico mediante las etiquetas que los envuelven.
-- **Lenguaje de consulta (XPath):** Permite navegar y extraer fragmentos específicos de información dentro del documento de manera eficiente.
-- **Validación estructural (Extra):** Permite una validación estricta mediante esquemas (como XSD o DTD) para garantizar que los datos cumplen un formato acordado.
-- **Uso en estándares (Extra):** Es la tecnología base para servicios web tradicionales (SOAP) y para formatos como SVG o RSS.
-
-
-
-
-## Ejemplo de Documento XML
-
-
-\begin{verbatim}
-<root xmlns:foo="http://www.foo.org/"
-xmlns:bar="http://www.bar.org/">
-<actors>
-<actor id="1">Christian Bale</actor>
-<actor id="2">Liam Neeson</actor>
-<actor id="3">Michael Caine</actor>
-</actors>
-<foo:singers>
-<foo:singer id="4">Tom Waits</foo:singer>
-<foo:singer id="5">B.B. King</foo:singer>
-<foo:singer id="6">Ray Charles</foo:singer>
-</foo:singers>
-</root>
-\end{verbatim}
-
-
-
-
-## Modelo Jerárquico
-
-![](assets/Root.png){width="80%"}
-
-Tomado de [https://todiagram.com/editor](https://todiagram.com/editor)
-
-
-
-
-## Lenguaje de Consulta XPath {.smaller}
-
-:::: {.columns}
-
-::: {.column width="55%"}
-::: {.callout-note}
-## Expresiones XPath
-\resizebox{\textwidth}{!}{
-| **Expresión** | **Descripción** |
-| --- | --- |
-| `/` | Nodo raíz del documento. |
-| `/root/actors/actor` | Hijos directos de 'actors'. |
-| `//foo:singer` | Elementos 'singer' en cualquier parte. |
-| `//actor[1]` | Selecciona el primer 'actor'. |
-| `//actor[@id='3']` | Actor con id igual a '3'. |
+::: {.column width="49%"}
+**Documento autocontenido**
+
+```json
+{
+  "orden_id": "A-101",
+  "cliente": {"id": 7, "nombre": "Ana"},
+  "total": 185000
 }
+```
 :::
-:::
-
-::: {.column width="45%"}
-XML de Ejemplo:
-\begin{verbatim}
-<root>
-  <actors>
-    <actor id="1">Christian Bale</actor>
-    <actor id="3">Michael Caine</actor>
-  </actors>
-  <foo:singers>
-    <foo:singer id="4">Tom Waits</foo:singer>
-  </foo:singers>
-</root>
-\end{verbatim}
-:::
-
 ::::
 
+## Resultados de aprendizaje
 
+Al terminar la sesión, el estudiante podrá:
 
+1. Reconocer árboles en XML, JSON y HTML.
+2. Navegar rutas y campos anidados.
+3. Consumir JSON desde una API HTTP.
+4. Consultar documentos y coordenadas en MongoDB.
+5. Extraer y normalizar tablas desde HTML.
 
-## Ejemplo de Código: Procesamiento de XML con Pandas
+## Ruta de la sesión
+
+| Tiempo | Bloque | Evidencia |
+|---:|---|---|
+| 0–40 min | Continuidad y modelos | Comparación tabular–documental |
+| 40–60 min | XML | Lectura de un árbol |
+| 60–95 min | JSON y APIs | Respuesta normalizada |
+| 95–105 min | Pausa | — |
+| 105–135 min | MongoDB | Consultas y GeoJSON |
+| 135–165 min | HTML y scraping | Tabla consolidada |
+| 165–180 min | Taller 5 | Preflight aprobado |
+
+# Estructuras en árbol
+
+## ¿Qué hace jerárquico a un dato?
+
+:::: {.columns}
+::: {.column width="52%"}
+- Existe un único nodo raíz.
+- Un nodo puede contener hijos.
+- La profundidad no es fija.
+- El orden puede tener significado.
+- Una ruta identifica un valor.
+:::
+::: {.column width="44%"}
+```text
+orden
+├── id
+├── cliente
+│   ├── nombre
+│   └── ciudad
+└── productos
+    ├── producto[0]
+    └── producto[1]
+```
+:::
+::::
+
+## Rutas equivalentes
+
+| Formato | Ruta hacia la ciudad |
+|---|---|
+| XML / XPath | `/orden/cliente/ciudad/text()` |
+| JSON / ruta lógica | `orden.cliente.ciudad` |
+| HTML / CSS | `article .cliente .ciudad` |
+
+::: {.callout-note}
+La sintaxis cambia; la operación conceptual es la misma: **navegar el árbol**.
+:::
+
+## Operacional y analítico
+
+:::: {.columns}
+::: {.column width="49%"}
+**Sistema operacional**
+
+- Atiende aplicaciones y usuarios.
+- Lee y modifica pocos registros.
+- Conserva el estado más reciente.
+:::
+::: {.column width="49%"}
+**Sistema analítico**
+
+- Atiende analistas y modelos.
+- Agrega muchos registros.
+- Conserva historia para análisis.
+:::
+::::
+
+<p class="source-note">Fuente: @kleppmann2026designing, cap. 1.</p>
+
+## Relacional o documental
+
+| Relacional | Documental |
+|---|---|
+| Relaciones y *joins* | Datos relacionados juntos |
+| Esquema explícito | Estructura flexible |
+| Bueno para muchos-a-muchos | Natural para uno-a-muchos |
+| Actualización localizada | Lectura autocontenida |
+
+**No hay un ganador universal:** el patrón de acceso determina el compromiso.
+
+<p class="source-note">Fuente: @kleppmann2026designing, cap. 3.</p>
+
+## Localidad y relaciones
+
+:::: {.columns}
+::: {.column width="49%"}
+**Embebido**
+
+```json
+{"cliente": {"nombre": "Ana", "ciudad": "Bogotá"}}
+```
+
+Una lectura recupera el conjunto.
+:::
+::: {.column width="49%"}
+**Referenciado**
+
+```json
+{"cliente_id": 7}
+```
+
+Evita duplicar entidades compartidas.
+:::
+::::
+
+## ¿Sin esquema?
+
+- Un documento flexible no carece de estructura.
+- El código lector todavía espera campos y tipos.
+- **Schema-on-write:** validar antes de almacenar.
+- **Schema-on-read:** interpretar cuando se consulta.
+- La flexibilidad desplaza la responsabilidad al consumidor.
+
+<p class="source-note">Fuente: @kleppmann2026designing, cap. 3.</p>
+
+# XML
+
+## XML: datos etiquetados
+
+```xml
+<orden id="A-101">
+  <cliente>
+    <nombre>Ana</nombre>
+    <ciudad>Bogotá</ciudad>
+  </cliente>
+  <total moneda="COP">185000</total>
+</orden>
+```
+
+- Un elemento puede contener texto, atributos y otros elementos.
+- El documento debe tener una única raíz y etiquetas balanceadas.
+
+## Elementos y atributos
+
+| Construcción | Ejemplo | Uso |
+|---|---|---|
+| Elemento | `<nombre>Ana</nombre>` | Contenido del dominio |
+| Atributo | `<orden id="A-101">` | Metadato breve |
+| Anidación | `<cliente>...</cliente>` | Relación padre–hijo |
+| Texto | `185000` | Valor del nodo |
+
+::: {.callout-tip}
+Si el valor puede repetirse o crecer, normalmente conviene un elemento.
+:::
+
+## Namespaces
+
+```xml
+<inv:orden xmlns:inv="https://ejemplo.edu/inventario">
+  <inv:producto inv:id="P-10">Cuaderno</inv:producto>
+</inv:orden>
+```
+
+- El URI identifica un vocabulario; no necesita abrir una página.
+- El prefijo evita colisiones entre etiquetas iguales.
+- Las consultas XPath deben declarar el mismo namespace.
+
+## XPath: seleccionar por ruta
+
+| Expresión | Resultado |
+|---|---|
+| `/orden/cliente/nombre` | Hijo en una ruta absoluta |
+| `//producto` | Productos en cualquier profundidad |
+| `//producto[@id='P-10']` | Producto filtrado por atributo |
+| `//total/text()` | Texto dentro de `total` |
+
+XPath cumple para XML un papel comparable a una ruta de selección.
+
+## XML con Pandas
 
 ```python
 import pandas as pd
 
-xml_data = """
-<empleados>
-<empleado id="101"><nombre>Ana</nombre><area>Ventas</area></empleado>
-<empleado id="102"><nombre>Luis</nombre><area>IT</area></empleado>
-<empleado id="103"><nombre>Marta</nombre><area>Legal</area></empleado>
-</empleados>
-"""
-
-df = pd.read_xml(xml_data)
-
-print(df)
+df = pd.read_xml(
+    "ordenes.xml",
+    xpath=".//orden",
+    parser="lxml"
+)
 ```
 
-
-
-
-## Motivación
-
-
-
-![](assets/DatasetMalo.png){width="60%"}
-
-¿Qué problemas pueden encontrar en este DataSet?
-
-
-
-
-
-## Motivación
-
-
-:::: {.columns}
-
-
-::: {.column width="50%"}
-Objetivos de la Preparación de datos
-
-- Obtención de la mayor cantidad de **datos útiles** para el proyecto de analítica (1)
-- Corregir el mayor número de **datos erróneos** o inconsistentes e irrelevantes (2,3)
-- **Presentación de los datos** de una manera apropiada para los modelos. (4)
-
-:::
-
-
-::: {.column width="40%"}
-![](assets/PreparacionDatos.png){width="100%"}
-:::
-
-::::
-
-
-
-
-
-# Actividades limpieza de datos
-
-
-
-## Actividades limpieza de datos
-
-**Atributos (Columnas)**
-- Detección y tratamiento de atributos con valores únicos.
-- Detección y tratamiento de atributos discretos con valores diferentes para cada registro.
-- Detección de atributos sinónimos con la variable objetivo.
-- Detección y tratamiento de atributos redundantes.
-
-**Datos (Filas)**
-- Detección y tratamiento de datos perdidos.
-- Detección y tratamiento de datos con valores inconsistentes o atípicos.
-- Detección y tratamiento de datos redundantes.
-
-
-
-
-## Atributos con valores únicos
-
-
-:::: {.columns}
-
-
-::: {.column width="40%"}
-
-- **Caso**: Todos los datos tienen el mismo valor
-  - Ejemplo: Nacionalidad (todos son colombianos)<br>
-- **Caso**: Casi todos los valores son nulos
-  - Ejemplo: Cabina (77.1 \%)<br>
-- **Acción**: Eliminar la columna
-
-:::
-
-
-::: {.column width="60%"}
-![](assets/TitanicDataset.png){width="100%"}
-:::
-
-::::
-
-
-
-
-
-
-## Atributos discretos con valores diferentes 
-
-
-:::: {.columns}
-
-
-::: {.column width="40%"}
-- **Caso**: Datos con valores diferentes para cada registro (Alta Cardinalidad)
-  - Ejemplo: Dirección proveedor, número de teléfono
-  - Ejemplo: Id del Pasajero, Nombre del Pasajero
-- **Acción**: Eliminar la columna
-- **Acción**: Hacer Ingeniería de Características
-  - Ejemplo: Barrio, Localidad, Ciudad a partir de la Dirección
-:::
-
-
-::: {.column width="60%"}
-![](assets/TitanicDataset.png){width="100%"}
-:::
-
-::::
-
-
-
-
-
-
-## Atributos sinónimos con variable objetivo 
-
-- **Caso**: Datos sinónimos con la variable objetivo (técnicas supervisadas) o atributos no observables al momento de la predicción
-  - Ejemplo:   Fecha de reparación cuando se desea predecir si requiere reparación.
-  - Ejemplo: Promedio de la deserción para predecir deserción.
-  - Ejemplo: Número de asesinatos para predecir si habrá fallecidos
-  - Ejemplo: TieneDiabetes, Edad en la que contrajo Diabetes
-- **Acción**: Eliminar la columna
-
-
-
-
-
-
-
-
-
-## Atributos Redundantes: Concepto
-
-**Colinealidad:** Ocurre cuando dos o más variables independientes están altamente correlacionadas.
-
-**Método: Coeficiente de Correlación de Pearson**
-- Fórmula:
-  \[
-  r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}
-  \]
-
----
-
-## Atributos Redundantes: Coeficiente de Pearson
-
-- El coeficiente \( r \) toma valores entre -1 y 1:
-  - \( r \approx 1 \): Alta correlación positiva.
-  - \( r \approx -1 \): Alta correlación negativa.
-  - \( r \approx 0 \): Sin correlación.
-
-- **Criterio de Colinealidad:**
-  \[
-  |r| > 0.5 \quad \text{indica alta colinealidad.}
-  \]
-
-
-
-
-
-## Atributos Redundantes
-
-
-- **Caso**: Atributos colineales entre sí.
-- **Forma de detección:** Coeficiente de correlación.
-- **Acción:** Eliminar uno de los dos atributos.
-
-![](assets/Correlation.png){width="60%"}
-
-
-
-
-
-
-
-## Datos perdidos
-
-:::: {.columns}
-
-::: {.column width="45%"}
-- **Caso**: Datos perdidos (Missing Values): Ocurren cuando no se almacena ningún valor para una variable en una observación.
-  - Ejemplo: Representados como “?”, “NA”, 0 o celdas vacías.
-:::
-
-::: {.column width="50%"}
-![](assets/TitanicDataset.png){width="100%"}
-:::
-
-::::
-
-
-
-
-
-
-
-## Datos perdidos: Eliminación e Imputación Simple
-
-- **Diagnóstico:** Evaluar cada caso con expertos del negocio.
-- **Eliminación:**
-  - Borrar registros con campos perdidos.
-  - Eliminar columna si la proporción de nulos es extrema.
-- **Reemplazo Simple:**
-  - Sustituir por una constante global.
-  - Reemplazar por la media (simétrica) o mediana (asimétrica).
-  - Reemplazar por la moda en datos categóricos.
-
----
-
-## Datos perdidos: Imputación Avanzada
-
-- **Reemplazo por Clase:** Usar media o mediana del campo por grupo/clase.
-- **Deducción:** Inferir el valor a partir de otros atributos relacionados.
-- **Imputación Predictiva:** Estimar el valor faltante mediante modelos.
-- **Sin Alteración:** Dejarlo como valor faltante (si el modelo lo soporta).
-
-
-
-
-## Datos Atípicos
-
-
-**Concepto:** Los datos atípicos son observaciones que se desvían significativamente del comportamiento general de los datos.
-
-- **Detección**
-  - A través de herramientas Visuales
-
-![](assets/DatasetConAtipicos.png){width="50%"}
-
-
-
-
-## Datos Atípicos: Rango Intercuartílico (IQR)
-
-- **Cálculo del IQR:** \( \text{IQR} = Q_3 - Q_1 \)
-- **Límites de aceptación:**
-  - Límite inferior: \( Q_1 - 1.5 \times \text{IQR} \)
-  - Límite superior: \( Q_3 + 1.5 \times \text{IQR} \)
-
-**Condición de outliers:**
-\[
-x < Q_1 - 1.5 \times \text{IQR} \quad \text{o} \quad x > Q_3 + 1.5 \times \text{IQR}
-\]
-
-
-
-
-
-
-## Datos Atípicos
-
-
-:::: {.columns}
-
-
-::: {.column width="30%"}
-Reglas sugeridas por [@jafari2022hands]
-![](assets/HandsOnDataPreprocessingPortada.jpg){width="60%"}
-:::
-
-
-::: {.column width="60%"}
-![](assets/HandsOnDataPreprocessing.jpg){width="100%"}
-:::
-
-::::
-
-
-
-
-
-
-## Datos Atípicos
-
-- **Soluciones:**
-  - Ignorarlos (si la técnica es robusta).
-  - Filtrarlos (eliminar fila o columna).
-  - Reemplazarlos (por nulo, límites, media o predicción).
-  - Discretizar la columna.
-
-![](assets/DatasetMalo.png){width="50%"}
-
-
-
-
-
-# Librerías en Python
-
-
-
-## Métodos para manejo de datos faltantes {.smaller}
-
-\begin{table}[htbp]
-
-
-| **Método** | **Descripción** |
-| --- | --- |
-| `dropna` | Filtra las etiquetas de los ejes en función de si los valores correspondientes tienen datos faltantes. |
-| `fillna` | Rellena los datos faltantes con algún valor o utilizando un método de interpolación, como "ffill" o "bfill". |
-| `isna` | Devuelve valores booleanos que indican cuáles valores están faltantes/NA. |
-| `notna` | Negación de `isna`, devuelve `True` para valores no NA y `False` para valores NA. |
-
-\end{table}
-
-
-
-
-
-## Métodos para manejo de datos duplicados {.smaller}
-
-\begin{table}[htbp]
-| **Método** | **Descripción** |
-| --- | --- |
-| `drop_duplicates()` | Elimina filas duplicadas (conserva primera/última). |
-| `replace()` | Reemplaza valores específicos o basados en patrones. |
-| `quantile()` | Devuelve el cuantil dado (ej. Q1 al 0.25, Q3 al 0.75). |
-| `corr()` | Calcula correlaciones (Pearson, Spearman, etc.). |
-\end{table}
-
-
-
-
-
-
-# Herramientas de industria
-
-
-
-## Arquitectura de Data Observability
-
-
-**Concepto:** Permiten monitorear, analizar y comprender la calidad y el rendimiento de los datos, ayudando a diagnosticar y resolver incidentes de manera rápida y eficiente.
-
-
-![](assets/montecarlo.png){width="70%"}
-
-
-
-
-## Dashboards de Data Observability
-
-
-![](assets/healthDashboardMontecarlo.png){width="90%"}
-
-
-
-
-
-## Comparación de Herramientas {.smaller}
-
-\begin{table}[h!]
-\resizebox{\textwidth}{!}{
-| **Herramienta** | **Ventajas** | **Desventajas** | **Precio** |
-| --- | --- | --- | --- |
-| [Monte Carlo](https://www.montecarlodata.com/) | Integración fácil, alertas en tiempo real, observabilidad completa. | Costosa, configuración inicial compleja. | Alto |
-| [Great Expectations](https://greatexpectations.io/) | Open-source, personalizable, validaciones robustas. | Curva de aprendizaje alta, sin alertas nativas. | Gratis |
-| [Databand](https://www.ibm.com/es-es/products/databand) | Buen monitoreo/alertas, se integra con Airflow. | Menos funciones que Monte Carlo, comunidad menor. | Moderado |
-| [Bigeye](https://www.bigeye.com/) | Configuración rápida, métricas de calidad simples. | Poca personalización, limitada a ciertos datos. | Alto |
+`read_xml` funciona mejor cuando los nodos seleccionados representan registros repetibles.
+
+# JSON y APIs
+
+## JSON: objetos y arreglos
+
+```json
+{
+  "orden_id": "A-101",
+  "pagada": true,
+  "cliente": {"nombre": "Ana"},
+  "productos": [
+    {"sku": "P-10", "cantidad": 2}
+  ]
 }
-\caption{Comparación de herramientas de Data Observability}
-\end{table}
+```
 
+- Objeto: pares clave–valor `{}`.
+- Arreglo: colección ordenada `[]`.
 
+## JSON no es una tabla
 
+:::: {.columns}
+::: {.column width="49%"}
+**Problemas al tabular**
 
+- Objetos dentro de objetos.
+- Arreglos con longitud variable.
+- Campos opcionales.
+- Tipos mezclados.
+:::
+::: {.column width="49%"}
+**Decisiones necesarias**
 
+- Elegir el nivel de observación.
+- Aplanar nombres de campos.
+- Expandir o conservar arreglos.
+- Definir nulos y tipos.
+:::
+::::
 
+## Acceso seguro a campos
 
-## References
+```python
+capitales = pais.get("capitals", [])
+capital = capitales[0].get("name") if capitales else None
+
+gini = pais.get("gini")
+```
+
+- `dict.get()` tolera campos ausentes.
+- Una lista vacía no tiene posición `[0]`.
+- `None` conserva la ausencia como dato, no como error.
+
+## Normalizar JSON
+
+```python
+import pandas as pd
+
+df = pd.json_normalize(objetos, sep=".")
+```
+
+El resultado aplana objetos, pero los arreglos requieren decidir si se explotan con `explode()`.
+
+## Una API es un contrato
+
+```text
+Cliente ── HTTP GET ──► API
+        ◄── estado + headers + JSON
+```
+
+- **Endpoint:** recurso solicitado.
+- **Parámetros:** filtros, campos y paginación.
+- **Headers:** autenticación y negociación.
+- **Respuesta:** estado, metadatos y cuerpo.
+
+## Consumir una API
+
+```python
+import requests
+
+r = requests.get(url, headers=headers, timeout=30)
+r.raise_for_status()
+payload = r.json()
+objetos = payload["data"]["objects"]
+```
+
+Siempre defina `timeout`, valide el estado y confirme la forma del JSON.
+
+## Paginación
+
+```python
+objetos, offset = [], 0
+while True:
+    data = consultar(limit=100, offset=offset)["data"]
+    objetos.extend(data["objects"])
+    if not data["meta"]["more"]:
+        break
+    offset += data["meta"]["count"]
+```
+
+Una respuesta exitosa puede contener solo la primera página.
+
+## Secretos y contingencia
+
+- La clave se guarda en **Colab Secrets**, nunca en el código.
+- REST Countries v5 recibe `Authorization: Bearer ...`.
+- Si la fuente falla, el taller carga un snapshot compatible.
+- La salida registra si se usó modo `live` o `snapshot`.
+
+<p class="source-note">Fuente: @restcountries2026.</p>
+
+# MongoDB
+
+## De JSON a BSON
+
+- MongoDB organiza **documentos** dentro de **colecciones**.
+- BSON amplía JSON con tipos como fecha, binario y `Decimal128`.
+- Los campos pueden contener objetos y arreglos anidados.
+- El identificador primario es `_id`.
+- La estructura sigue existiendo aunque la base no imponga todas sus reglas.
+
+## Conexión segura
+
+```python
+from google.colab import userdata
+from pymongo import MongoClient
+from pymongo.server_api import ServerApi
+
+uri = userdata.get("MONGODB_URI")
+client = MongoClient(uri, server_api=ServerApi("1"))
+client.admin.command("ping")
+```
+
+El `ping` separa un problema de acceso de un error en la consulta.
+
+## Filtro y proyección
+
+```python
+campos = {"_id": 0, "name": 1, "summary": 1, "room_type": 1}
+cursor = collection.find({}, campos)
+```
+
+- El filtro limita documentos.
+- La proyección limita campos.
+- Reducir datos en la fuente evita transferencias innecesarias.
+
+## Ordenar en la fuente
+
+```python
+cursor = (
+    collection
+    .find({"weekly_price": {"$ne": None}}, campos)
+    .sort("weekly_price", -1)
+    .limit(10)
+)
+```
+
+`Decimal128` debe convertirse antes de operar con Pandas.
+
+## Campos anidados
+
+```python
+filtro = {
+    "address.country_code": "PT",
+    "review_scores.review_scores_rating": {"$gte": 90}
+}
+```
+
+La notación por puntos navega objetos anidados sin descargar el documento completo.
+
+## GeoJSON: el orden importa
+
+```json
+{
+  "type": "Point",
+  "coordinates": [-79.90, 9.30]
+}
+```
+
+1. Longitud: eje este–oeste.
+2. Latitud: eje norte–sur.
+
+Confundir el orden produce ubicaciones válidas, pero incorrectas.
+
+## Consulta por proximidad
+
+```python
+consulta = {
+  "coordinates": {
+    "$near": {
+      "$geometry": {"type": "Point", "coordinates": [-79.90, 9.30]},
+      "$maxDistance": 100_000
+    }
+  }
+}
+```
+
+El Taller 5 conservará los primeros 20 resultados.
+
+## Consulta por área
+
+```python
+consulta = {
+  "coordinates": {
+    "$geoWithin": {"$geometry": poligono_costa_este}
+  }
+}
+```
+
+- El polígono debe cerrarse: primer punto = último punto.
+- Es un área de estudio reproducible, no una frontera política.
+
+# HTML y web scraping
+
+## HTML también es un árbol
+
+```html
+<table id="tasas">
+  <tr><th>Moneda</th><th>Compra</th></tr>
+  <tr><td>USD</td><td>3650</td></tr>
+</table>
+```
+
+- El DOM representa etiquetas como nodos.
+- `id` y `class` ayudan a localizar elementos.
+- El texto visible puede diferir del HTML descargado.
+
+## Selectores CSS
+
+| Selector | Significado |
+|---|---|
+| `table` | Todas las tablas |
+| `#tasas` | Elemento con `id="tasas"` |
+| `.precio` | Elementos de clase `precio` |
+| `table tbody tr` | Filas del cuerpo de una tabla |
+| `td:nth-child(2)` | Segunda celda de cada fila |
+
+## Tres operaciones distintas
+
+1. **Descargar:** obtener HTML con `requests`.
+2. **Analizar:** localizar nodos con Pandas o BeautifulSoup.
+3. **Transformar:** limpiar tipos y homologar columnas.
+
+::: {.callout-note}
+Si el navegador ejecuta JavaScript para crear el contenido, el HTML descargado puede no contenerlo.
+:::
+
+## Tablas con Pandas
+
+```python
+tablas = pd.read_html(html)
+df = tablas[0]
+```
+
+- Devuelve una **lista** de DataFrames.
+- Busca elementos `<table>`, `<tr>`, `<th>` y `<td>`.
+- Puede requerir `match`, `attrs` y limpieza posterior.
+
+<p class="source-note">Fuente: @pandasReadHtml2026.</p>
+
+## Nodos con BeautifulSoup
+
+```python
+from bs4 import BeautifulSoup
+
+soup = BeautifulSoup(html, "html.parser")
+filas = soup.select("table#tasas tbody tr")
+valores = [fila.get_text(" ", strip=True) for fila in filas]
+```
+
+BeautifulSoup permite extraer contenido que no está organizado como tabla.
+
+## Descarga responsable
+
+```python
+headers = {"User-Agent": "CursoGestionDatos/1.0 contacto@ejemplo.edu"}
+r = requests.get(url, headers=headers, timeout=30)
+r.raise_for_status()
+```
+
+- Revise términos de uso y `robots.txt`.
+- Limite frecuencia y volumen.
+- No eluda autenticación ni controles de acceso.
+- Registre URL y fecha de extracción.
+
+## Del HTML al dataset
+
+| Etapa | Control |
+|---|---|
+| Selección | Tabla y columnas correctas |
+| Limpieza | Símbolos, miles y decimales |
+| Homologación | Mismos nombres y tipos |
+| Cálculo | `spread = venta - compra` |
+| Trazabilidad | Fuente, fecha y modo de carga |
+
+# Taller 5
+
+## Cuatro bloques, 50 puntos
+
+| Bloque | Evidencia | Puntos |
+|---|---|---:|
+| MongoDB documental | 2 CSV | 10 |
+| MongoDB geográfico | 2 CSV + mapa | 10 |
+| API y JSON | 2 CSV | 15 |
+| HTML y scraping | 1 CSV consolidado | 15 |
+
+XML se trabaja conceptualmente y no forma parte de la evaluación.
+
+## Preflight del estudiante
+
+- [ ] Colab abre y ejecuta la instalación.
+- [ ] `MONGODB_URI` está en Secrets.
+- [ ] `RESTCOUNTRIES_API_KEY` está en Secrets.
+- [ ] `ping` confirma la conexión a Atlas.
+- [ ] Están cargados los datasets de muestra.
+- [ ] La prueba de API devuelve `data.objects`.
+- [ ] Los snapshots están disponibles como contingencia.
+
+## Criterio de finalización
+
+Antes de entregar:
+
+1. Reiniciar el entorno de ejecución.
+2. Ejecutar todas las celdas en orden.
+3. Confirmar los ocho archivos solicitados.
+4. Verificar que los CSV tengan filas y columnas esperadas.
+5. Compartir el Colab como lector, sin revelar secretos.
+
+# Recursos
+
+## Referencias
 
 ::: {#refs}
 :::
-
-
-
