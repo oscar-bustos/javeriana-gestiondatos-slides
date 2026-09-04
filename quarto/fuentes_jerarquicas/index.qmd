@@ -110,16 +110,18 @@ Piensen en una compra, una llamada, una página web y una aplicación móvil.
 
 Confundir estas capas lleva a elegir la herramienta equivocada.
 
-## Caso conductor: preparar un viaje
+## Dos casos conductores
 
-Necesitamos recomendar un destino y estimar su presupuesto:
+| Caso | Pregunta | Recorrido |
+|---|---|---|
+| Perfil de John Smith | ¿Cómo representar dirección y teléfonos? | XML → JSON → CSV |
+| Preparar un viaje | ¿Qué destino conviene y cuánto cuesta? | API → MongoDB → HTML |
 
-- La agencia envía reservas en **XML**.
-- Una **API** entrega países, idiomas y monedas.
-- **MongoDB** conserva alojamientos y ubicaciones.
-- Dos páginas **HTML** publican tasas de cambio.
+En ambos casos repetiremos tres decisiones:
 
-La pregunta común será: **¿cómo convertir cada fuente en observaciones analizables?**
+1. ¿Cuál es la ruta hasta el dato?
+2. ¿Qué representa una fila?
+3. ¿Qué relación se pierde al aplanar?
 
 ## ¿Por qué no convertir todo a CSV primero?
 
@@ -129,89 +131,64 @@ Si Excel y Pandas leen tablas, ¿por qué no pedir que todos los sistemas export
 
 ¿Qué información podría perderse en esa conversión?
 
-## El CSV no conserva todas las relaciones
+## El CSV no conserva la jerarquía
 
-- Una reserva puede contener varios pasajeros.
-- Un país puede tener varias monedas o capitales.
+- John tiene una dirección con varios atributos.
+- John también tiene varios teléfonos.
+- Un país puede tener varios idiomas o capitales.
 - Una página contiene tablas, enlaces y contexto.
-- Un documento puede incluir campos opcionales.
 - Aplanar exige decidir la **granularidad**.
 
 El problema no es abrir el archivo: es preservar su significado.
 
-## Un mismo pedido, dos formas
+## Perfil en tablas relacionadas
 
-:::: {.columns}
-::: {.column width="49%"}
-**Tablas relacionadas**
+| persona_id | nombre | ciudad |
+|---:|---|---|
+| 1 | John Smith | New York |
 
-| orden_id | cliente_id | total |
-|---|---:|---:|
-| A-101 | 7 | 185000 |
+| persona_id | tipo | número |
+|---:|---|---|
+| 1 | home | 212 555-1234 |
+| 1 | fax | 646 555-4567 |
 
-| cliente_id | nombre |
-|---:|---|
-| 7 | Ana |
-:::
-::: {.column width="49%"}
-**Documento autocontenido**
+La relación se conserva mediante `persona_id`; leer el perfil completo exige un `JOIN`.
 
+## Perfil como documento autocontenido
+
+::: {.tiny-text}
 ```json
 {
-  "orden_id": "A-101",
-  "cliente": {"id": 7, "nombre": "Ana"},
-  "total": 185000
+  "firstName": "John",
+  "lastName": "Smith",
+  "address": {
+    "city": "New York"
+  },
+  "phoneNumber": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "fax",
+      "number": "646 555-4567"
+    }
+  ]
 }
 ```
 :::
-::::
+
+La anidación conserva juntos los datos que suelen leerse juntos.
 
 ## ¿Cuál representación elegirían?
 
 ::: {.callout-note title="Pregunta a la clase"}
-El cliente cambia de dirección con frecuencia y participa en cientos de pedidos. ¿Conviene repetir toda su información dentro de cada pedido?
+John cambia de dirección y sus teléfonos tienen ciclos de vida distintos. ¿Conviene guardar todo junto o en tablas relacionadas?
 :::
 
-¿Qué optimizarían: una lectura completa o una actualización consistente?
+¿Qué optimizarían: una lectura completa o actualizaciones sin duplicación?
 
-## Resultados de aprendizaje
 
-Al terminar la sesión, el estudiante podrá:
-
-1. Reconocer árboles en XML, JSON y HTML.
-2. Navegar rutas y campos anidados.
-3. Consumir JSON desde una API HTTP.
-4. Consultar documentos y coordenadas en MongoDB.
-5. Extraer y normalizar tablas desde HTML.
-
-## Ruta de la sesión
-
-| Tiempo | Bloque | Evidencia |
-|---:|---|---|
-| 0–40 min | Continuidad y modelos | Comparación tabular–documental |
-| 40–60 min | XML | Lectura de un árbol |
-| 60–95 min | JSON y APIs | Respuesta normalizada |
-| 95–105 min | Pausa | — |
-| 105–135 min | MongoDB | Consultas y GeoJSON |
-| 135–165 min | HTML y scraping | Tabla consolidada |
-| 165–180 min | Taller 5 | Preflight aprobado |
-
-## Tarea / Asignación
-
-1. Leer las secciones sobre **JSON**, **XML/HTML** y **Web APIs** del capítulo 6 de McKinney.
-2. Leer el capítulo 1 de *Designing Data-Intensive Applications* (2026).
-3. Dibujar el árbol de una factura XML recibida, sin compartir datos sensibles.
-4. Identificar una página con datos útiles y sin una API pública evidente.
-
-## Evidencia de preparación
-
-Para la factura y la página elegida, registre:
-
-1. Quién produce el dato.
-2. Qué formato utiliza.
-3. Cómo puede accederse.
-4. Qué representaría una fila.
-5. Qué podría perderse al tabular.
 
 ## Lectura base
 
@@ -219,10 +196,9 @@ Para la factura y la página elegida, registre:
   - *JSON Data*.
   - *XML and HTML: Web Scraping*.
   - *Interacting with Web APIs*.
-- **Obligatoria:** Kleppmann y Riccomini, capítulo 1.
-- **Aplicada:** [modelo de operación DIAN](https://factura-electronica.dian.gov.co/modelo-operacion-19.html).
-
-Pregunta guía: ¿qué ocurre antes de producir un `DataFrame`?
+- **Sugerida:** Kleppmann y Riccomini, capítulos 1 y 3
+- **Sugerida:** [Google Notebook](https://notebook.google.com/notebook/1498e13b-b716-411e-b0d1-8e31c07f5a3d).
+- **Sugerida:** [modelo de operación DIAN](https://factura-electronica.dian.gov.co/modelo-operacion-19.html).
 
 ## Referencias de consulta
 
@@ -233,13 +209,15 @@ Pregunta guía: ¿qué ocurre antes de producir un `DataFrame`?
 
 Consúltelas durante el taller; no es necesario leerlas completas antes de clase.
 
-## Preguntas antes de la clase
+## La tarea complementa la clase
 
-::: {.callout-note title="Llegue con una respuesta provisional"}
-1. ¿Por qué el PDF de una factura no sustituye su XML?
-2. ¿Qué información anidada se perdería al guardar todo como CSV?
-3. ¿Cuándo usar scraping y cuándo no usarlo?
-4. ¿Cómo demostraría que una extracción está completa?
+::: {.callout-note title="Después de la sesión"}
+La Tarea 5 retoma lo visto hoy para aplicarlo con nuevas fuentes.
+
+1. Elegir la granularidad de cada salida.
+2. Consultar campos anidados sin descargar datos innecesarios.
+3. Extraer información web de forma reproducible.
+4. Validar que los resultados estén completos.
 :::
 
 # Estructuras en árbol
@@ -256,14 +234,14 @@ Consúltelas durante el taller; no es necesario leerlas completas antes de clase
 :::
 ::: {.column width="44%"}
 ```text
-orden
-├── id
-├── cliente
-│   ├── nombre
-│   └── ciudad
-└── productos
-    ├── producto[0]
-    └── producto[1]
+person
+├── firstName
+├── address
+│   ├── city
+│   └── postalCode
+└── phoneNumber
+    ├── phone[0]
+    └── phone[1]
 ```
 :::
 ::::
@@ -272,26 +250,31 @@ orden
 
 ```json
 {
-  "orden": "A-101",
-  "cliente": "Ana",
-  "productos": [
-    {"sku": "P-10", "cantidad": 2},
-    {"sku": "P-20", "cantidad": 1}
+  "firstName": "John",
+  "phoneNumber": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "fax",
+      "number": "646 555-4567"
+    }
   ]
 }
 ```
 
 ::: {.callout-note title="Pregunta a la clase"}
-¿Una fila por orden, por cliente o por producto?
+¿Una fila por persona o por teléfono?
 :::
 
 ## La fila depende de la pregunta
 
 | Pregunta analítica | Granularidad |
 |---|---|
-| ¿Cuánto vale cada orden? | Una fila por orden |
-| ¿Qué compra cada cliente? | Una fila por cliente–producto |
-| ¿Cuántas unidades se vendieron? | Una fila por línea de producto |
+| ¿Cuántas personas existen? | Una fila por persona |
+| ¿Qué teléfonos tiene cada persona? | Una fila por persona–teléfono |
+| ¿Cuántos teléfonos hay por tipo? | Una fila por teléfono |
 
 Normalizar no es solo aplanar: primero se define **qué representa una fila**.
 
@@ -299,9 +282,9 @@ Normalizar no es solo aplanar: primero se define **qué representa una fila**.
 
 | Formato | Ruta hacia la ciudad |
 |---|---|
-| XML / XPath | `/orden/cliente/ciudad/text()` |
-| JSON / ruta lógica | `orden.cliente.ciudad` |
-| HTML / CSS | `article .cliente .ciudad` |
+| XML / XPath | `/person/address/city/text()` |
+| JSON / JSONPath | `$.address.city` |
+| HTML / CSS | `.person .address .city` |
 
 ::: {.callout-note}
 La sintaxis cambia; la operación conceptual es la misma: **navegar el árbol**.
@@ -341,6 +324,30 @@ La sintaxis cambia; la operación conceptual es la misma: **navegar el árbol**.
 
 <p class="source-note">Fuente: @kleppmann2026designing, cap. 3.</p>
 
+## Un `JOIN` no es gratis
+
+Para reconstruir el perfil de John, el motor debe:
+
+1. Leer las filas candidatas de `personas` y `telefonos`.
+2. Comparar sus claves `persona_id`.
+3. Mover, ordenar o construir una tabla *hash* si el volumen crece.
+4. Multiplicar filas cuando la relación es uno-a-muchos.
+
+**Más datos o más nodos ⇒ más CPU, memoria, disco y red.**
+
+Un índice ayuda, pero no elimina el trabajo de relacionar.
+
+## ¿Evitar siempre los `JOIN`?
+
+| Prioridad | Decisión probable |
+|---|---|
+| Leer perfil + teléfonos juntos | Embeber teléfonos |
+| Actualizar teléfonos por separado | Referenciar |
+| Evitar duplicar datos compartidos | Normalizar |
+| Analizar millones de perfiles | Preparar una vista tabular |
+
+El costo del `JOIN` se compara con el costo de **duplicar y sincronizar** datos.
+
 ## Cinco modelos, cinco accesos
 
 <div class="db-grid">
@@ -362,7 +369,12 @@ La sintaxis cambia; la operación conceptual es la misma: **navegar el árbol**.
 **Embebido**
 
 ```json
-{"cliente": {"nombre": "Ana", "ciudad": "Bogotá"}}
+{
+  "persona": {
+    "nombre": "John",
+    "ciudad": "New York"
+  }
+}
 ```
 
 Una lectura recupera el conjunto.
@@ -371,7 +383,9 @@ Una lectura recupera el conjunto.
 **Referenciado**
 
 ```json
-{"cliente_id": 7}
+{
+  "persona_id": 1
+}
 ```
 
 Evita duplicar entidades compartidas.
@@ -501,26 +515,29 @@ Una fila por línea, repitiendo número, fecha y proveedor como contexto.
 ## XML: datos etiquetados
 
 ```xml
-<orden id="A-101">
-  <cliente>
-    <nombre>Ana</nombre>
-    <ciudad>Bogotá</ciudad>
-  </cliente>
-  <total moneda="COP">185000</total>
-</orden>
+<person age="25">
+  <firstName>John</firstName>
+  <lastName>Smith</lastName>
+  <address>
+    <streetAddress>21 2nd Street</streetAddress>
+    <city>New York</city><state>NY</state>
+    <postalCode>10021</postalCode>
+  </address>
+  <phones><phone type="home">212 555-1234</phone>
+    <phone type="fax">646 555-4567</phone></phones>
+</person>
 ```
 
-- Un elemento puede contener texto, atributos y otros elementos.
-- El documento debe tener una única raíz y etiquetas balanceadas.
+El atributo `age`, los elementos de `address` y la lista `phones` forman un árbol.
 
 ## Elementos y atributos
 
 | Construcción | Ejemplo | Uso |
 |---|---|---|
-| Elemento | `<nombre>Ana</nombre>` | Contenido del dominio |
-| Atributo | `<orden id="A-101">` | Metadato breve |
-| Anidación | `<cliente>...</cliente>` | Relación padre–hijo |
-| Texto | `185000` | Valor del nodo |
+| Elemento | `<city>New York</city>` | Contenido del dominio |
+| Atributo | `<person age="25">` | Metadato breve |
+| Anidación | `<address>...</address>` | Relación padre–hijo |
+| Repetición | `<phone>...</phone>` | Relación uno-a-muchos |
 
 ::: {.callout-tip}
 Si el valor puede repetirse o crecer, normalmente conviene un elemento.
@@ -554,12 +571,23 @@ La etiqueta pertenece a un namespace: su nombre completo no es solo `producto`.
 
 | Expresión | Resultado |
 |---|---|
-| `/orden/cliente/nombre` | Hijo en una ruta absoluta |
-| `//producto` | Productos en cualquier profundidad |
-| `//producto[@id='P-10']` | Producto filtrado por atributo |
-| `//total/text()` | Texto dentro de `total` |
+| `/person/address/city/text()` | `New York` |
+| `/person/@age` | `25` |
+| `//phone/text()` | Los dos números |
+| `//phone[@type='fax']/text()` | `646 555-4567` |
 
 XPath cumple para XML un papel comparable a una ruta de selección.
+
+## Práctica guiada: XPath
+
+Abra [xpather.com](https://xpather.com/) y pegue el XML de John.
+
+1. Recupere el apellido.
+2. Recupere todos los teléfonos.
+3. Seleccione solo el teléfono `home`.
+4. Obtenga el atributo `age`.
+
+**Reto:** ¿qué expresión produce un nodo y cuál produce texto?
 
 ## XML con Pandas
 
@@ -577,31 +605,35 @@ df = pd.read_xml(
 
 # JSON y APIs
 
-## ¿Cuál es el registro en una respuesta JSON?
-
-::: {.callout-note title="Pregunta a la clase"}
-Una API devuelve 25 países; cada país tiene varios idiomas. ¿Cuántos registros debería tener el dataset final?
-:::
-
-::: {.fragment .fade-in}
-La respuesta cambia si analizamos países, idiomas o la relación país–idioma.
-:::
-
 ## JSON: objetos y arreglos
 
+::: {.tiny-text}
 ```json
 {
-  "orden_id": "A-101",
-  "pagada": true,
-  "cliente": {"nombre": "Ana"},
-  "productos": [
-    {"sku": "P-10", "cantidad": 2}
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25,
+  "address": {
+    "streetAddress": "21 2nd Street",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10021"
+  },
+  "phoneNumber": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "fax",
+      "number": "646 555-4567"
+    }
   ]
 }
 ```
+:::
 
-- Objeto: pares clave–valor `{}`.
-- Arreglo: colección ordenada `[]`.
+`address` es un objeto anidado; `phoneNumber` es un arreglo de objetos.
 
 ## JSON no es una tabla
 
@@ -624,15 +656,76 @@ La respuesta cambia si analizamos países, idiomas o la relación país–idioma
 :::
 ::::
 
-## Tres salidas válidas del mismo JSON
+## Tres salidas válidas del perfil
 
 | Objetivo | Salida |
 |---|---|
-| Perfil del país | Una fila por país |
-| Catálogo de idiomas | Una fila por idioma |
-| Cobertura lingüística | Una fila por país–idioma |
+| Consultar un perfil | Una fila; teléfonos como JSON |
+| Contactar personas | Una fila por persona–teléfono |
+| Modelo relacional | Tablas `personas` y `telefonos` |
 
 No existe una normalización universal: existe una tabla adecuada para una pregunta.
+
+## Opción 1: CSV ancho
+
+| firstName | address.city | phoneNumber.0.type | phoneNumber.1.type |
+|---|---|---|---|
+| John | New York | home | fax |
+
+- Los nombres de columna conservan la **ruta**.
+- Cada posición del arreglo crea nuevas columnas.
+- Un tercer teléfono obliga a cambiar el esquema.
+- Buscar “todos los teléfonos” exige recorrer varias columnas.
+
+El CSV almacena celdas; la jerarquía queda codificada en los encabezados.
+
+## Opción 2: CSV por teléfono
+
+| firstName | address.city | phone.type | phone.number |
+|---|---|---|---|
+| John | New York | home | 212 555-1234 |
+| John | New York | fax | 646 555-4567 |
+
+- El arreglo se **explota**: un teléfono por fila.
+- Los datos de persona y dirección se repiten.
+- Agregar teléfonos no cambia las columnas.
+
+La granularidad ahora es **persona–teléfono**, no persona.
+
+## Opción 3: dos CSV relacionados
+
+**personas.csv**
+
+| persona_id | firstName | address.city | address.postalCode |
+|---:|---|---|---|
+| 1 | John | New York | 10021 |
+
+**telefonos.csv:** `persona_id, type, number` — dos filas.
+
+Se evita repetir la dirección, pero reconstruir el perfil requiere un **`JOIN`**.
+
+## Práctica guiada: JSONPath
+
+Abra [jsonpath.com](https://jsonpath.com/) y pegue el JSON de John.
+
+1. Obtenga la ciudad con `$.address.city`.
+2. Recupere todos los números con `$.phoneNumber[*].number`.
+3. Seleccione el primer teléfono.
+4. Filtre el teléfono cuyo tipo es `fax`.
+
+**Reto:** compare el resultado con las rutas XPath del mismo perfil.
+
+## Caso 2: del JSON al viaje
+
+::: {.callout-note title="Pregunta a la clase"}
+Una API devuelve 25 países; cada país tiene varios idiomas. ¿Cuántas filas debería tener el dataset final?
+:::
+
+La respuesta cambia según la pregunta:
+
+- Una fila por país para comparar destinos.
+- Una fila por idioma para crear un catálogo.
+- Una fila por país–idioma para medir cobertura.
 
 ## Acceso seguro a campos
 
@@ -844,7 +937,10 @@ La notación por puntos navega objetos anidados sin descargar el documento compl
 ```json
 {
   "type": "Point",
-  "coordinates": [-79.90, 9.30]
+  "coordinates": [
+    -79.90,
+    9.30
+  ]
 }
 ```
 

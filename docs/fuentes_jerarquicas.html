@@ -1233,16 +1233,40 @@ font-size: 0.76em;
 </table>
 <p>Confundir estas capas lleva a elegir la herramienta equivocada.</p>
 </section>
-<section id="caso-conductor-preparar-un-viaje" class="slide level2">
-<h2>Caso conductor: preparar un viaje</h2>
-<p>Necesitamos recomendar un destino y estimar su presupuesto:</p>
-<ul>
-<li>La agencia envía reservas en <strong>XML</strong>.</li>
-<li>Una <strong>API</strong> entrega países, idiomas y monedas.</li>
-<li><strong>MongoDB</strong> conserva alojamientos y ubicaciones.</li>
-<li>Dos páginas <strong>HTML</strong> publican tasas de cambio.</li>
-</ul>
-<p>La pregunta común será: <strong>¿cómo convertir cada fuente en observaciones analizables?</strong></p>
+<section id="dos-casos-conductores" class="slide level2">
+<h2>Dos casos conductores</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Caso</th>
+<th>Pregunta</th>
+<th>Recorrido</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Perfil de John Smith</td>
+<td>¿Cómo representar dirección y teléfonos?</td>
+<td>XML → JSON → CSV</td>
+</tr>
+<tr class="even">
+<td>Preparar un viaje</td>
+<td>¿Qué destino conviene y cuánto cuesta?</td>
+<td>API → MongoDB → HTML</td>
+</tr>
+</tbody>
+</table>
+<p>En ambos casos repetiremos tres decisiones:</p>
+<ol type="1">
+<li>¿Cuál es la ruta hasta el dato?</li>
+<li>¿Qué representa una fila?</li>
+<li>¿Qué relación se pierde al aplanar?</li>
+</ol>
 </section>
 <section id="por-qué-no-convertir-todo-a-csv-primero" class="slide level2">
 <h2>¿Por qué no convertir todo a CSV primero?</h2>
@@ -1263,60 +1287,80 @@ font-size: 0.76em;
 </div>
 <p>¿Qué información podría perderse en esa conversión?</p>
 </section>
-<section id="el-csv-no-conserva-todas-las-relaciones" class="slide level2">
-<h2>El CSV no conserva todas las relaciones</h2>
+<section id="el-csv-no-conserva-la-jerarquía" class="slide level2">
+<h2>El CSV no conserva la jerarquía</h2>
 <ul>
-<li>Una reserva puede contener varios pasajeros.</li>
-<li>Un país puede tener varias monedas o capitales.</li>
+<li>John tiene una dirección con varios atributos.</li>
+<li>John también tiene varios teléfonos.</li>
+<li>Un país puede tener varios idiomas o capitales.</li>
 <li>Una página contiene tablas, enlaces y contexto.</li>
-<li>Un documento puede incluir campos opcionales.</li>
 <li>Aplanar exige decidir la <strong>granularidad</strong>.</li>
 </ul>
 <p>El problema no es abrir el archivo: es preservar su significado.</p>
 </section>
-<section id="un-mismo-pedido-dos-formas" class="slide level2">
-<h2>Un mismo pedido, dos formas</h2>
-<div class="columns">
-<div class="column" style="width:49%;">
-<p><strong>Tablas relacionadas</strong></p>
+<section id="perfil-en-tablas-relacionadas" class="slide level2">
+<h2>Perfil en tablas relacionadas</h2>
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>orden_id</th>
-<th style="text-align: right;">cliente_id</th>
-<th style="text-align: right;">total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>A-101</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">185000</td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: right;">cliente_id</th>
+<th style="text-align: right;">persona_id</th>
 <th>nombre</th>
+<th>ciudad</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">7</td>
-<td>Ana</td>
+<td style="text-align: right;">1</td>
+<td>John Smith</td>
+<td>New York</td>
 </tr>
 </tbody>
 </table>
-</div><div class="column" style="width:49%;">
-<p><strong>Documento autocontenido</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">persona_id</th>
+<th>tipo</th>
+<th>número</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td>home</td>
+<td>212 555-1234</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td>fax</td>
+<td>646 555-4567</td>
+</tr>
+</tbody>
+</table>
+<p>La relación se conserva mediante <code>persona_id</code>; leer el perfil completo exige un <code>JOIN</code>.</p>
+</section>
+<section id="perfil-como-documento-autocontenido" class="slide level2">
+<h2>Perfil como documento autocontenido</h2>
+<div class="tiny-text">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href></a><span class="fu">{</span></span>
-<span id="cb1-2"><a href></a>  <span class="dt">&quot;orden_id&quot;</span><span class="fu">:</span> <span class="st">&quot;A-101&quot;</span><span class="fu">,</span></span>
-<span id="cb1-3"><a href></a>  <span class="dt">&quot;cliente&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">7</span><span class="fu">,</span> <span class="dt">&quot;nombre&quot;</span><span class="fu">:</span> <span class="st">&quot;Ana&quot;</span><span class="fu">},</span></span>
-<span id="cb1-4"><a href></a>  <span class="dt">&quot;total&quot;</span><span class="fu">:</span> <span class="dv">185000</span></span>
-<span id="cb1-5"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div></div>
+<span id="cb1-2"><a href></a>  <span class="dt">&quot;firstName&quot;</span><span class="fu">:</span> <span class="st">&quot;John&quot;</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href></a>  <span class="dt">&quot;lastName&quot;</span><span class="fu">:</span> <span class="st">&quot;Smith&quot;</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href></a>  <span class="dt">&quot;address&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-5"><a href></a>    <span class="dt">&quot;city&quot;</span><span class="fu">:</span> <span class="st">&quot;New York&quot;</span></span>
+<span id="cb1-6"><a href></a>  <span class="fu">},</span></span>
+<span id="cb1-7"><a href></a>  <span class="dt">&quot;phoneNumber&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-8"><a href></a>    <span class="fu">{</span></span>
+<span id="cb1-9"><a href></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;home&quot;</span><span class="fu">,</span></span>
+<span id="cb1-10"><a href></a>      <span class="dt">&quot;number&quot;</span><span class="fu">:</span> <span class="st">&quot;212 555-1234&quot;</span></span>
+<span id="cb1-11"><a href></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb1-12"><a href></a>    <span class="fu">{</span></span>
+<span id="cb1-13"><a href></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;fax&quot;</span><span class="fu">,</span></span>
+<span id="cb1-14"><a href></a>      <span class="dt">&quot;number&quot;</span><span class="fu">:</span> <span class="st">&quot;646 555-4567&quot;</span></span>
+<span id="cb1-15"><a href></a>    <span class="fu">}</span></span>
+<span id="cb1-16"><a href></a>  <span class="ot">]</span></span>
+<span id="cb1-17"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>La anidación conserva juntos los datos que suelen leerse juntos.</p>
 </section>
 <section id="cuál-representación-elegirían" class="slide level2">
 <h2>¿Cuál representación elegirían?</h2>
@@ -1330,92 +1374,12 @@ font-size: 0.76em;
 <p><strong>Pregunta a la clase</strong></p>
 </div>
 <div class="callout-content">
-<p>El cliente cambia de dirección con frecuencia y participa en cientos de pedidos. ¿Conviene repetir toda su información dentro de cada pedido?</p>
+<p>John cambia de dirección y sus teléfonos tienen ciclos de vida distintos. ¿Conviene guardar todo junto o en tablas relacionadas?</p>
 </div>
 </div>
 </div>
 </div>
-<p>¿Qué optimizarían: una lectura completa o una actualización consistente?</p>
-</section>
-<section id="resultados-de-aprendizaje" class="slide level2">
-<h2>Resultados de aprendizaje</h2>
-<p>Al terminar la sesión, el estudiante podrá:</p>
-<ol type="1">
-<li>Reconocer árboles en XML, JSON y HTML.</li>
-<li>Navegar rutas y campos anidados.</li>
-<li>Consumir JSON desde una API HTTP.</li>
-<li>Consultar documentos y coordenadas en MongoDB.</li>
-<li>Extraer y normalizar tablas desde HTML.</li>
-</ol>
-</section>
-<section id="ruta-de-la-sesión" class="slide level2">
-<h2>Ruta de la sesión</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: right;">Tiempo</th>
-<th>Bloque</th>
-<th>Evidencia</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">0–40 min</td>
-<td>Continuidad y modelos</td>
-<td>Comparación tabular–documental</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">40–60 min</td>
-<td>XML</td>
-<td>Lectura de un árbol</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">60–95 min</td>
-<td>JSON y APIs</td>
-<td>Respuesta normalizada</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">95–105 min</td>
-<td>Pausa</td>
-<td>—</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">105–135 min</td>
-<td>MongoDB</td>
-<td>Consultas y GeoJSON</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">135–165 min</td>
-<td>HTML y scraping</td>
-<td>Tabla consolidada</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">165–180 min</td>
-<td>Taller 5</td>
-<td>Preflight aprobado</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="tarea-asignación" class="slide level2">
-<h2>Tarea / Asignación</h2>
-<ol type="1">
-<li>Leer las secciones sobre <strong>JSON</strong>, <strong>XML/HTML</strong> y <strong>Web APIs</strong> del capítulo 6 de McKinney.</li>
-<li>Leer el capítulo 1 de <em>Designing Data-Intensive Applications</em> (2026).</li>
-<li>Dibujar el árbol de una factura XML recibida, sin compartir datos sensibles.</li>
-<li>Identificar una página con datos útiles y sin una API pública evidente.</li>
-</ol>
-</section>
-<section id="evidencia-de-preparación" class="slide level2">
-<h2>Evidencia de preparación</h2>
-<p>Para la factura y la página elegida, registre:</p>
-<ol type="1">
-<li>Quién produce el dato.</li>
-<li>Qué formato utiliza.</li>
-<li>Cómo puede accederse.</li>
-<li>Qué representaría una fila.</li>
-<li>Qué podría perderse al tabular.</li>
-</ol>
+<p>¿Qué optimizarían: una lectura completa o actualizaciones sin duplicación?</p>
 </section>
 <section id="lectura-base" class="slide level2">
 <h2>Lectura base</h2>
@@ -1426,10 +1390,10 @@ font-size: 0.76em;
 <li><em>XML and HTML: Web Scraping</em>.</li>
 <li><em>Interacting with Web APIs</em>.</li>
 </ul></li>
-<li><strong>Obligatoria:</strong> Kleppmann y Riccomini, capítulo 1.</li>
-<li><strong>Aplicada:</strong> <a href="https://factura-electronica.dian.gov.co/modelo-operacion-19.html">modelo de operación DIAN</a>.</li>
+<li><strong>Sugerida:</strong> Kleppmann y Riccomini, capítulos 1 y 3</li>
+<li><strong>Sugerida:</strong> <a href="https://notebook.google.com/notebook/1498e13b-b716-411e-b0d1-8e31c07f5a3d">Google Notebook</a>.</li>
+<li><strong>Sugerida:</strong> <a href="https://factura-electronica.dian.gov.co/modelo-operacion-19.html">modelo de operación DIAN</a>.</li>
 </ul>
-<p>Pregunta guía: ¿qué ocurre antes de producir un <code>DataFrame</code>?</p>
 </section>
 <section id="referencias-de-consulta" class="slide level2">
 <h2>Referencias de consulta</h2>
@@ -1441,23 +1405,24 @@ font-size: 0.76em;
 </ul>
 <p>Consúltelas durante el taller; no es necesario leerlas completas antes de clase.</p>
 </section>
-<section id="preguntas-antes-de-la-clase" class="slide level2">
-<h2>Preguntas antes de la clase</h2>
-<div title="Llegue con una respuesta provisional">
+<section id="la-tarea-complementa-la-clase" class="slide level2">
+<h2>La tarea complementa la clase</h2>
+<div title="Después de la sesión">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Llegue con una respuesta provisional</strong></p>
+<p><strong>Después de la sesión</strong></p>
 </div>
 <div class="callout-content">
+<p>La Tarea 5 retoma lo visto hoy para aplicarlo con nuevas fuentes.</p>
 <ol type="1">
-<li>¿Por qué el PDF de una factura no sustituye su XML?</li>
-<li>¿Qué información anidada se perdería al guardar todo como CSV?</li>
-<li>¿Cuándo usar scraping y cuándo no usarlo?</li>
-<li>¿Cómo demostraría que una extracción está completa?</li>
+<li>Elegir la granularidad de cada salida.</li>
+<li>Consultar campos anidados sin descargar datos innecesarios.</li>
+<li>Extraer información web de forma reproducible.</li>
+<li>Validar que los resultados estén completos.</li>
 </ol>
 </div>
 </div>
@@ -1481,26 +1446,31 @@ font-size: 0.76em;
 <li>Una ruta identifica un valor.</li>
 </ul>
 </div><div class="column" style="width:44%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href></a>orden</span>
-<span id="cb2-2"><a href></a>├── id</span>
-<span id="cb2-3"><a href></a>├── cliente</span>
-<span id="cb2-4"><a href></a>│   ├── nombre</span>
-<span id="cb2-5"><a href></a>│   └── ciudad</span>
-<span id="cb2-6"><a href></a>└── productos</span>
-<span id="cb2-7"><a href></a>    ├── producto[0]</span>
-<span id="cb2-8"><a href></a>    └── producto[1]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href></a>person</span>
+<span id="cb2-2"><a href></a>├── firstName</span>
+<span id="cb2-3"><a href></a>├── address</span>
+<span id="cb2-4"><a href></a>│   ├── city</span>
+<span id="cb2-5"><a href></a>│   └── postalCode</span>
+<span id="cb2-6"><a href></a>└── phoneNumber</span>
+<span id="cb2-7"><a href></a>    ├── phone[0]</span>
+<span id="cb2-8"><a href></a>    └── phone[1]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="cuántas-filas-representa-este-árbol" class="slide level2">
 <h2>¿Cuántas filas representa este árbol?</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href></a><span class="fu">{</span></span>
-<span id="cb3-2"><a href></a>  <span class="dt">&quot;orden&quot;</span><span class="fu">:</span> <span class="st">&quot;A-101&quot;</span><span class="fu">,</span></span>
-<span id="cb3-3"><a href></a>  <span class="dt">&quot;cliente&quot;</span><span class="fu">:</span> <span class="st">&quot;Ana&quot;</span><span class="fu">,</span></span>
-<span id="cb3-4"><a href></a>  <span class="dt">&quot;productos&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb3-5"><a href></a>    <span class="fu">{</span><span class="dt">&quot;sku&quot;</span><span class="fu">:</span> <span class="st">&quot;P-10&quot;</span><span class="fu">,</span> <span class="dt">&quot;cantidad&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb3-6"><a href></a>    <span class="fu">{</span><span class="dt">&quot;sku&quot;</span><span class="fu">:</span> <span class="st">&quot;P-20&quot;</span><span class="fu">,</span> <span class="dt">&quot;cantidad&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">}</span></span>
-<span id="cb3-7"><a href></a>  <span class="ot">]</span></span>
-<span id="cb3-8"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-2"><a href></a>  <span class="dt">&quot;firstName&quot;</span><span class="fu">:</span> <span class="st">&quot;John&quot;</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href></a>  <span class="dt">&quot;phoneNumber&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb3-4"><a href></a>    <span class="fu">{</span></span>
+<span id="cb3-5"><a href></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;home&quot;</span><span class="fu">,</span></span>
+<span id="cb3-6"><a href></a>      <span class="dt">&quot;number&quot;</span><span class="fu">:</span> <span class="st">&quot;212 555-1234&quot;</span></span>
+<span id="cb3-7"><a href></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb3-8"><a href></a>    <span class="fu">{</span></span>
+<span id="cb3-9"><a href></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;fax&quot;</span><span class="fu">,</span></span>
+<span id="cb3-10"><a href></a>      <span class="dt">&quot;number&quot;</span><span class="fu">:</span> <span class="st">&quot;646 555-4567&quot;</span></span>
+<span id="cb3-11"><a href></a>    <span class="fu">}</span></span>
+<span id="cb3-12"><a href></a>  <span class="ot">]</span></span>
+<span id="cb3-13"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div title="Pregunta a la clase">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -1511,7 +1481,7 @@ font-size: 0.76em;
 <p><strong>Pregunta a la clase</strong></p>
 </div>
 <div class="callout-content">
-<p>¿Una fila por orden, por cliente o por producto?</p>
+<p>¿Una fila por persona o por teléfono?</p>
 </div>
 </div>
 </div>
@@ -1528,16 +1498,16 @@ font-size: 0.76em;
 </thead>
 <tbody>
 <tr class="odd">
-<td>¿Cuánto vale cada orden?</td>
-<td>Una fila por orden</td>
+<td>¿Cuántas personas existen?</td>
+<td>Una fila por persona</td>
 </tr>
 <tr class="even">
-<td>¿Qué compra cada cliente?</td>
-<td>Una fila por cliente–producto</td>
+<td>¿Qué teléfonos tiene cada persona?</td>
+<td>Una fila por persona–teléfono</td>
 </tr>
 <tr class="odd">
-<td>¿Cuántas unidades se vendieron?</td>
-<td>Una fila por línea de producto</td>
+<td>¿Cuántos teléfonos hay por tipo?</td>
+<td>Una fila por teléfono</td>
 </tr>
 </tbody>
 </table>
@@ -1555,15 +1525,15 @@ font-size: 0.76em;
 <tbody>
 <tr class="odd">
 <td>XML / XPath</td>
-<td><code>/orden/cliente/ciudad/text()</code></td>
+<td><code>/person/address/city/text()</code></td>
 </tr>
 <tr class="even">
-<td>JSON / ruta lógica</td>
-<td><code>orden.cliente.ciudad</code></td>
+<td>JSON / JSONPath</td>
+<td><code>$.address.city</code></td>
 </tr>
 <tr class="odd">
 <td>HTML / CSS</td>
-<td><code>article .cliente .ciudad</code></td>
+<td><code>.person .address .city</code></td>
 </tr>
 </tbody>
 </table>
@@ -1636,6 +1606,48 @@ Fuente: <span class="citation" data-cites="kleppmann2026designing">Kleppmann and
 Fuente: <span class="citation" data-cites="kleppmann2026designing">Kleppmann and Riccomini (<a href="#/referencias" role="doc-biblioref" onclick>2026</a>)</span>, cap. 3.
 </p>
 </section>
+<section id="un-join-no-es-gratis" class="slide level2">
+<h2>Un <code>JOIN</code> no es gratis</h2>
+<p>Para reconstruir el perfil de John, el motor debe:</p>
+<ol type="1">
+<li>Leer las filas candidatas de <code>personas</code> y <code>telefonos</code>.</li>
+<li>Comparar sus claves <code>persona_id</code>.</li>
+<li>Mover, ordenar o construir una tabla <em>hash</em> si el volumen crece.</li>
+<li>Multiplicar filas cuando la relación es uno-a-muchos.</li>
+</ol>
+<p><strong>Más datos o más nodos ⇒ más CPU, memoria, disco y red.</strong></p>
+<p>Un índice ayuda, pero no elimina el trabajo de relacionar.</p>
+</section>
+<section id="evitar-siempre-los-join" class="slide level2">
+<h2>¿Evitar siempre los <code>JOIN</code>?</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Prioridad</th>
+<th>Decisión probable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Leer perfil + teléfonos juntos</td>
+<td>Embeber teléfonos</td>
+</tr>
+<tr class="even">
+<td>Actualizar teléfonos por separado</td>
+<td>Referenciar</td>
+</tr>
+<tr class="odd">
+<td>Evitar duplicar datos compartidos</td>
+<td>Normalizar</td>
+</tr>
+<tr class="even">
+<td>Analizar millones de perfiles</td>
+<td>Preparar una vista tabular</td>
+</tr>
+</tbody>
+</table>
+<p>El costo del <code>JOIN</code> se compara con el costo de <strong>duplicar y sincronizar</strong> datos.</p>
+</section>
 <section id="cinco-modelos-cinco-accesos" class="slide level2">
 <h2>Cinco modelos, cinco accesos</h2>
 <div class="db-grid">
@@ -1667,11 +1679,18 @@ Síntesis: <span class="citation" data-cites="kleppmann2026designing">Kleppmann 
 <div class="columns">
 <div class="column" style="width:49%;">
 <p><strong>Embebido</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href></a><span class="fu">{</span><span class="dt">&quot;cliente&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">&quot;nombre&quot;</span><span class="fu">:</span> <span class="st">&quot;Ana&quot;</span><span class="fu">,</span> <span class="dt">&quot;ciudad&quot;</span><span class="fu">:</span> <span class="st">&quot;Bogotá&quot;</span><span class="fu">}}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href></a>  <span class="dt">&quot;persona&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-3"><a href></a>    <span class="dt">&quot;nombre&quot;</span><span class="fu">:</span> <span class="st">&quot;John&quot;</span><span class="fu">,</span></span>
+<span id="cb4-4"><a href></a>    <span class="dt">&quot;ciudad&quot;</span><span class="fu">:</span> <span class="st">&quot;New York&quot;</span></span>
+<span id="cb4-5"><a href></a>  <span class="fu">}</span></span>
+<span id="cb4-6"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Una lectura recupera el conjunto.</p>
 </div><div class="column" style="width:49%;">
 <p><strong>Referenciado</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href></a><span class="fu">{</span><span class="dt">&quot;cliente_id&quot;</span><span class="fu">:</span> <span class="dv">7</span><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href></a><span class="fu">{</span></span>
+<span id="cb5-2"><a href></a>  <span class="dt">&quot;persona_id&quot;</span><span class="fu">:</span> <span class="dv">1</span></span>
+<span id="cb5-3"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Evita duplicar entidades compartidas.</p>
 </div></div>
 </section>
@@ -1869,17 +1888,18 @@ Estructura observada localmente; valores identificables omitidos.
 </section>
 <section id="xml-datos-etiquetados" class="slide level2">
 <h2>XML: datos etiquetados</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource xml number-lines code-with-copy"><code class="sourceCode xml"><span id="cb8-1"><a href></a>&lt;<span class="kw">orden</span> <span class="ot">id=</span><span class="st">&quot;A-101&quot;</span>&gt;</span>
-<span id="cb8-2"><a href></a>  &lt;<span class="kw">cliente</span>&gt;</span>
-<span id="cb8-3"><a href></a>    &lt;<span class="kw">nombre</span>&gt;Ana&lt;/<span class="kw">nombre</span>&gt;</span>
-<span id="cb8-4"><a href></a>    &lt;<span class="kw">ciudad</span>&gt;Bogotá&lt;/<span class="kw">ciudad</span>&gt;</span>
-<span id="cb8-5"><a href></a>  &lt;/<span class="kw">cliente</span>&gt;</span>
-<span id="cb8-6"><a href></a>  &lt;<span class="kw">total</span> <span class="ot">moneda=</span><span class="st">&quot;COP&quot;</span>&gt;185000&lt;/<span class="kw">total</span>&gt;</span>
-<span id="cb8-7"><a href></a>&lt;/<span class="kw">orden</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Un elemento puede contener texto, atributos y otros elementos.</li>
-<li>El documento debe tener una única raíz y etiquetas balanceadas.</li>
-</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource xml number-lines code-with-copy"><code class="sourceCode xml"><span id="cb8-1"><a href></a>&lt;<span class="kw">person</span> <span class="ot">age=</span><span class="st">&quot;25&quot;</span>&gt;</span>
+<span id="cb8-2"><a href></a>  &lt;<span class="kw">firstName</span>&gt;John&lt;/<span class="kw">firstName</span>&gt;</span>
+<span id="cb8-3"><a href></a>  &lt;<span class="kw">lastName</span>&gt;Smith&lt;/<span class="kw">lastName</span>&gt;</span>
+<span id="cb8-4"><a href></a>  &lt;<span class="kw">address</span>&gt;</span>
+<span id="cb8-5"><a href></a>    &lt;<span class="kw">streetAddress</span>&gt;21 2nd Street&lt;/<span class="kw">streetAddress</span>&gt;</span>
+<span id="cb8-6"><a href></a>    &lt;<span class="kw">city</span>&gt;New York&lt;/<span class="kw">city</span>&gt;&lt;<span class="kw">state</span>&gt;NY&lt;/<span class="kw">state</span>&gt;</span>
+<span id="cb8-7"><a href></a>    &lt;<span class="kw">postalCode</span>&gt;10021&lt;/<span class="kw">postalCode</span>&gt;</span>
+<span id="cb8-8"><a href></a>  &lt;/<span class="kw">address</span>&gt;</span>
+<span id="cb8-9"><a href></a>  &lt;<span class="kw">phones</span>&gt;&lt;<span class="kw">phone</span> <span class="ot">type=</span><span class="st">&quot;home&quot;</span>&gt;212 555-1234&lt;/<span class="kw">phone</span>&gt;</span>
+<span id="cb8-10"><a href></a>    &lt;<span class="kw">phone</span> <span class="ot">type=</span><span class="st">&quot;fax&quot;</span>&gt;646 555-4567&lt;/<span class="kw">phone</span>&gt;&lt;/<span class="kw">phones</span>&gt;</span>
+<span id="cb8-11"><a href></a>&lt;/<span class="kw">person</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El atributo <code>age</code>, los elementos de <code>address</code> y la lista <code>phones</code> forman un árbol.</p>
 </section>
 <section id="elementos-y-atributos" class="slide level2">
 <h2>Elementos y atributos</h2>
@@ -1894,23 +1914,23 @@ Estructura observada localmente; valores identificables omitidos.
 <tbody>
 <tr class="odd">
 <td>Elemento</td>
-<td><code>&lt;nombre&gt;Ana&lt;/nombre&gt;</code></td>
+<td><code>&lt;city&gt;New York&lt;/city&gt;</code></td>
 <td>Contenido del dominio</td>
 </tr>
 <tr class="even">
 <td>Atributo</td>
-<td><code>&lt;orden id=&quot;A-101&quot;&gt;</code></td>
+<td><code>&lt;person age=&quot;25&quot;&gt;</code></td>
 <td>Metadato breve</td>
 </tr>
 <tr class="odd">
 <td>Anidación</td>
-<td><code>&lt;cliente&gt;...&lt;/cliente&gt;</code></td>
+<td><code>&lt;address&gt;...&lt;/address&gt;</code></td>
 <td>Relación padre–hijo</td>
 </tr>
 <tr class="even">
-<td>Texto</td>
-<td><code>185000</code></td>
-<td>Valor del nodo</td>
+<td>Repetición</td>
+<td><code>&lt;phone&gt;...&lt;/phone&gt;</code></td>
+<td>Relación uno-a-muchos</td>
 </tr>
 </tbody>
 </table>
@@ -1970,24 +1990,35 @@ Estructura observada localmente; valores identificables omitidos.
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>/orden/cliente/nombre</code></td>
-<td>Hijo en una ruta absoluta</td>
+<td><code>/person/address/city/text()</code></td>
+<td><code>New York</code></td>
 </tr>
 <tr class="even">
-<td><code>//producto</code></td>
-<td>Productos en cualquier profundidad</td>
+<td><code>/person/@age</code></td>
+<td><code>25</code></td>
 </tr>
 <tr class="odd">
-<td><code>//producto[@id=&#39;P-10&#39;]</code></td>
-<td>Producto filtrado por atributo</td>
+<td><code>//phone/text()</code></td>
+<td>Los dos números</td>
 </tr>
 <tr class="even">
-<td><code>//total/text()</code></td>
-<td>Texto dentro de <code>total</code></td>
+<td><code>//phone[@type=&#39;fax&#39;]/text()</code></td>
+<td><code>646 555-4567</code></td>
 </tr>
 </tbody>
 </table>
 <p>XPath cumple para XML un papel comparable a una ruta de selección.</p>
+</section>
+<section id="práctica-guiada-xpath" class="slide level2">
+<h2>Práctica guiada: XPath</h2>
+<p>Abra <a href="https://xpather.com/">xpather.com</a> y pegue el XML de John.</p>
+<ol type="1">
+<li>Recupere el apellido.</li>
+<li>Recupere todos los teléfonos.</li>
+<li>Seleccione solo el teléfono <code>home</code>.</li>
+<li>Obtenga el atributo <code>age</code>.</li>
+</ol>
+<p><strong>Reto:</strong> ¿qué expresión produce un nodo y cuál produce texto?</p>
 </section>
 <section id="xml-con-pandas" class="slide level2">
 <h2>XML con Pandas</h2>
@@ -2005,41 +2036,32 @@ Estructura observada localmente; valores identificables omitidos.
 <h1>JSON y APIs</h1>
 
 </section>
-<section id="cuál-es-el-registro-en-una-respuesta-json" class="slide level2">
-<h2>¿Cuál es el registro en una respuesta JSON?</h2>
-<div title="Pregunta a la clase">
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Pregunta a la clase</strong></p>
-</div>
-<div class="callout-content">
-<p>Una API devuelve 25 países; cada país tiene varios idiomas. ¿Cuántos registros debería tener el dataset final?</p>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment fade-in">
-<p>La respuesta cambia si analizamos países, idiomas o la relación país–idioma.</p>
-</div>
-</section>
 <section id="json-objetos-y-arreglos" class="slide level2">
 <h2>JSON: objetos y arreglos</h2>
+<div class="tiny-text">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb12-1"><a href></a><span class="fu">{</span></span>
-<span id="cb12-2"><a href></a>  <span class="dt">&quot;orden_id&quot;</span><span class="fu">:</span> <span class="st">&quot;A-101&quot;</span><span class="fu">,</span></span>
-<span id="cb12-3"><a href></a>  <span class="dt">&quot;pagada&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb12-4"><a href></a>  <span class="dt">&quot;cliente&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">&quot;nombre&quot;</span><span class="fu">:</span> <span class="st">&quot;Ana&quot;</span><span class="fu">},</span></span>
-<span id="cb12-5"><a href></a>  <span class="dt">&quot;productos&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb12-6"><a href></a>    <span class="fu">{</span><span class="dt">&quot;sku&quot;</span><span class="fu">:</span> <span class="st">&quot;P-10&quot;</span><span class="fu">,</span> <span class="dt">&quot;cantidad&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">}</span></span>
-<span id="cb12-7"><a href></a>  <span class="ot">]</span></span>
-<span id="cb12-8"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Objeto: pares clave–valor <code>{}</code>.</li>
-<li>Arreglo: colección ordenada <code>[]</code>.</li>
-</ul>
+<span id="cb12-2"><a href></a>  <span class="dt">&quot;firstName&quot;</span><span class="fu">:</span> <span class="st">&quot;John&quot;</span><span class="fu">,</span></span>
+<span id="cb12-3"><a href></a>  <span class="dt">&quot;lastName&quot;</span><span class="fu">:</span> <span class="st">&quot;Smith&quot;</span><span class="fu">,</span></span>
+<span id="cb12-4"><a href></a>  <span class="dt">&quot;age&quot;</span><span class="fu">:</span> <span class="dv">25</span><span class="fu">,</span></span>
+<span id="cb12-5"><a href></a>  <span class="dt">&quot;address&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb12-6"><a href></a>    <span class="dt">&quot;streetAddress&quot;</span><span class="fu">:</span> <span class="st">&quot;21 2nd Street&quot;</span><span class="fu">,</span></span>
+<span id="cb12-7"><a href></a>    <span class="dt">&quot;city&quot;</span><span class="fu">:</span> <span class="st">&quot;New York&quot;</span><span class="fu">,</span></span>
+<span id="cb12-8"><a href></a>    <span class="dt">&quot;state&quot;</span><span class="fu">:</span> <span class="st">&quot;NY&quot;</span><span class="fu">,</span></span>
+<span id="cb12-9"><a href></a>    <span class="dt">&quot;postalCode&quot;</span><span class="fu">:</span> <span class="st">&quot;10021&quot;</span></span>
+<span id="cb12-10"><a href></a>  <span class="fu">},</span></span>
+<span id="cb12-11"><a href></a>  <span class="dt">&quot;phoneNumber&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb12-12"><a href></a>    <span class="fu">{</span></span>
+<span id="cb12-13"><a href></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;home&quot;</span><span class="fu">,</span></span>
+<span id="cb12-14"><a href></a>      <span class="dt">&quot;number&quot;</span><span class="fu">:</span> <span class="st">&quot;212 555-1234&quot;</span></span>
+<span id="cb12-15"><a href></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb12-16"><a href></a>    <span class="fu">{</span></span>
+<span id="cb12-17"><a href></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;fax&quot;</span><span class="fu">,</span></span>
+<span id="cb12-18"><a href></a>      <span class="dt">&quot;number&quot;</span><span class="fu">:</span> <span class="st">&quot;646 555-4567&quot;</span></span>
+<span id="cb12-19"><a href></a>    <span class="fu">}</span></span>
+<span id="cb12-20"><a href></a>  <span class="ot">]</span></span>
+<span id="cb12-21"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>address</code> es un objeto anidado; <code>phoneNumber</code> es un arreglo de objetos.</p>
 </section>
 <section id="json-no-es-una-tabla" class="slide level2">
 <h2>JSON no es una tabla</h2>
@@ -2062,8 +2084,8 @@ Estructura observada localmente; valores identificables omitidos.
 </ul>
 </div></div>
 </section>
-<section id="tres-salidas-válidas-del-mismo-json" class="slide level2">
-<h2>Tres salidas válidas del mismo JSON</h2>
+<section id="tres-salidas-válidas-del-perfil" class="slide level2">
+<h2>Tres salidas válidas del perfil</h2>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -2073,20 +2095,140 @@ Estructura observada localmente; valores identificables omitidos.
 </thead>
 <tbody>
 <tr class="odd">
-<td>Perfil del país</td>
-<td>Una fila por país</td>
+<td>Consultar un perfil</td>
+<td>Una fila; teléfonos como JSON</td>
 </tr>
 <tr class="even">
-<td>Catálogo de idiomas</td>
-<td>Una fila por idioma</td>
+<td>Contactar personas</td>
+<td>Una fila por persona–teléfono</td>
 </tr>
 <tr class="odd">
-<td>Cobertura lingüística</td>
-<td>Una fila por país–idioma</td>
+<td>Modelo relacional</td>
+<td>Tablas <code>personas</code> y <code>telefonos</code></td>
 </tr>
 </tbody>
 </table>
 <p>No existe una normalización universal: existe una tabla adecuada para una pregunta.</p>
+</section>
+<section id="opción-1-csv-ancho" class="slide level2">
+<h2>Opción 1: CSV ancho</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>firstName</th>
+<th>address.city</th>
+<th>phoneNumber.0.type</th>
+<th>phoneNumber.1.type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>John</td>
+<td>New York</td>
+<td>home</td>
+<td>fax</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Los nombres de columna conservan la <strong>ruta</strong>.</li>
+<li>Cada posición del arreglo crea nuevas columnas.</li>
+<li>Un tercer teléfono obliga a cambiar el esquema.</li>
+<li>Buscar “todos los teléfonos” exige recorrer varias columnas.</li>
+</ul>
+<p>El CSV almacena celdas; la jerarquía queda codificada en los encabezados.</p>
+</section>
+<section id="opción-2-csv-por-teléfono" class="slide level2">
+<h2>Opción 2: CSV por teléfono</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>firstName</th>
+<th>address.city</th>
+<th>phone.type</th>
+<th>phone.number</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>John</td>
+<td>New York</td>
+<td>home</td>
+<td>212 555-1234</td>
+</tr>
+<tr class="even">
+<td>John</td>
+<td>New York</td>
+<td>fax</td>
+<td>646 555-4567</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>El arreglo se <strong>explota</strong>: un teléfono por fila.</li>
+<li>Los datos de persona y dirección se repiten.</li>
+<li>Agregar teléfonos no cambia las columnas.</li>
+</ul>
+<p>La granularidad ahora es <strong>persona–teléfono</strong>, no persona.</p>
+</section>
+<section id="opción-3-dos-csv-relacionados" class="slide level2">
+<h2>Opción 3: dos CSV relacionados</h2>
+<p><strong>personas.csv</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">persona_id</th>
+<th>firstName</th>
+<th>address.city</th>
+<th>address.postalCode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td>John</td>
+<td>New York</td>
+<td>10021</td>
+</tr>
+</tbody>
+</table>
+<p><strong>telefonos.csv:</strong> <code>persona_id, type, number</code> — dos filas.</p>
+<p>Se evita repetir la dirección, pero reconstruir el perfil requiere un <strong><code>JOIN</code></strong>.</p>
+</section>
+<section id="práctica-guiada-jsonpath" class="slide level2">
+<h2>Práctica guiada: JSONPath</h2>
+<p>Abra <a href="https://jsonpath.com/">jsonpath.com</a> y pegue el JSON de John.</p>
+<ol type="1">
+<li>Obtenga la ciudad con <code>$.address.city</code>.</li>
+<li>Recupere todos los números con <code>$.phoneNumber[*].number</code>.</li>
+<li>Seleccione el primer teléfono.</li>
+<li>Filtre el teléfono cuyo tipo es <code>fax</code>.</li>
+</ol>
+<p><strong>Reto:</strong> compare el resultado con las rutas XPath del mismo perfil.</p>
+</section>
+<section id="caso-2-del-json-al-viaje" class="slide level2">
+<h2>Caso 2: del JSON al viaje</h2>
+<div title="Pregunta a la clase">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pregunta a la clase</strong></p>
+</div>
+<div class="callout-content">
+<p>Una API devuelve 25 países; cada país tiene varios idiomas. ¿Cuántas filas debería tener el dataset final?</p>
+</div>
+</div>
+</div>
+</div>
+<p>La respuesta cambia según la pregunta:</p>
+<ul>
+<li>Una fila por país para comparar destinos.</li>
+<li>Una fila por idioma para crear un catálogo.</li>
+<li>Una fila por país–idioma para medir cobertura.</li>
+</ul>
 </section>
 <section id="acceso-seguro-a-campos" class="slide level2">
 <h2>Acceso seguro a campos</h2>
@@ -2381,8 +2523,11 @@ Fuente: <span class="citation" data-cites="restcountries2026">REST Countries (<a
 <h2>GeoJSON: el orden importa</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb22-1"><a href></a><span class="fu">{</span></span>
 <span id="cb22-2"><a href></a>  <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;Point&quot;</span><span class="fu">,</span></span>
-<span id="cb22-3"><a href></a>  <span class="dt">&quot;coordinates&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="fl">-79.90</span><span class="ot">,</span> <span class="fl">9.30</span><span class="ot">]</span></span>
-<span id="cb22-4"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-3"><a href></a>  <span class="dt">&quot;coordinates&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb22-4"><a href></a>    <span class="fl">-79.90</span><span class="ot">,</span></span>
+<span id="cb22-5"><a href></a>    <span class="fl">9.30</span></span>
+<span id="cb22-6"><a href></a>  <span class="ot">]</span></span>
+<span id="cb22-7"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
 <li>Longitud: eje este–oeste.</li>
 <li>Latitud: eje norte–sur.</li>
