@@ -9,7 +9,7 @@
 ## 🎯 Objetivo
 
 Experimentar de forma ágil y práctica los dos pilares de Big Data:
-1. **Variedad (Datos No Estructurados):** Extraer texto de un documento PDF propio, generar *embeddings* vectoriales y realizar búsqueda semántica con **ChromaDB**.
+1. **Variedad (Datos No Estructurados):** Extraer texto de un documento PDF propio, generar *embeddings* vectoriales comparando dos modelos locales de Hugging Face y realizar búsqueda semántica con **ChromaDB**.
 2. **Volumen (Analítica Cloud):** Ejecutar una consulta SQL sobre millones de registros en **Google Cloud BigQuery**.
 
 ---
@@ -43,7 +43,7 @@ Experimentar de forma ágil y práctica los dos pilares de Big Data:
 2. **Suba su archivo al cuaderno:**
    - Suba su archivo PDF directamente en la carpeta `input` de Google Colab (o use el panel lateral izquierdo de archivos).
 3. **Ejecute el cuaderno completo:**
-   - Ejecute secuencialmente las celdas restantes: extracción de texto con `pypdf`, fragmentación (*chunking*), generación de *embeddings* con el modelo gratuito de Hugging Face e indexación en ChromaDB.
+   - Ejecute secuencialmente las celdas restantes: extracción de texto con `pypdf`, fragmentación (*chunking*), generación de *embeddings* comparando dos modelos locales de Hugging Face e indexación en ChromaDB.
 4. **Formule y observe sus consultas:**
    - En la celda de consultas (`CONSULTAS = [...]`), cambie las preguntas por 2 o 3 preguntas relacionadas con el contenido de **su propio PDF**.
    - Ejecute la búsqueda semántica y verifique que los fragmentos recuperados en el Top 3 correspondan al tema consultado.
