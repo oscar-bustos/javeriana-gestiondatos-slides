@@ -3,7 +3,7 @@
 **Asignatura:** Gestión de Datos  
 **Institución:** Pontificia Universidad Javeriana  
 **Departamento:** Departamento de Ingeniería de Sistemas  
-**Duración:** 4 horas  
+**Ventana de realización y entrega:** Desde el viernes 18 de septiembre de 2026 a las 00:00 hasta el domingo 20 de septiembre de 2026 a las 23:59, hora de Colombia<br>
 **Puntaje:** 50 puntos  
 **Modalidad:** Individual  
 
@@ -67,6 +67,7 @@ No incluya los archivos de entrada dentro del ZIP. Los cuatro insumos están alm
 
 ```text
 # PARTE_I_CONSOLIDACION_COP
+## 0_REGISTRO_DE_ASISTENCIA_LLM
 ## 1_INSUMOS_PARTE_I
 ## 2_SQL_Y_GRANULARIDAD
 ## 3_FUENTES_JERARQUICAS_E_INTEGRACION
@@ -121,6 +122,29 @@ La sede financiera de la empresa está en Colombia y su cierre corporativo se re
 El ejercicio consiste en crear la base de consolidación: identificar cada factura sin duplicarla, reconocer la moneda del país facturado, normalizar las tasas expresadas frente a COP y dejar visible la tasa usada para cada conversión. El archivo final conserva el valor local original, la tasa local-COP y el valor consolidado en COP para que el equipo contable pueda auditar cada registro.
 
 > **Alcance:** este parcial consolida cada factura a COP. Las columnas y la fórmula de `04_facturacion_cop.csv` son exactamente las definidas más adelante; no agregue una columna de salida adicional.
+
+## 0. Registro de asistencia LLM
+
+Se permite usar un asistente basado en un modelo de lenguaje grande (LLM) como apoyo durante el parcial. La responsabilidad sobre el código, las decisiones y la respuesta entregada sigue siendo del estudiante.
+
+La celda Markdown ubicada inmediatamente bajo `## 0_REGISTRO_DE_ASISTENCIA_LLM` debe declarar el uso de LLM con uno de los siguientes formatos exactos.
+
+Si no usó un LLM, escriba únicamente:
+
+```text
+LLM_USADO=NO
+```
+
+Si usó un LLM, escriba primero `LLM_USADO=SI` y luego un bloque de tres líneas por cada uso que haya influido en la entrega:
+
+```text
+LLM_USADO=SI
+USO_1_DONDE=<sección, archivo, celda o producto en el que se usó>
+USO_1_MOTIVO=<finalidad concreta de la asistencia>
+USO_1_PROMPT=<prompt exacto enviado; reemplace cada salto de línea original por \n>
+```
+
+Numere los usos consecutivamente como `USO_1`, `USO_2`, `USO_3`, etc. `USO_n_PROMPT` debe contener el prompt completo, no un resumen; no incluya la respuesta generada por el LLM en esta celda. La declaración se exige para garantizar trazabilidad y no asigna puntos adicionales.
 
 ## 1. Insumos de la Parte I
 
@@ -900,6 +924,7 @@ Un archivo ausente no puede recibir puntos por su contenido. Un archivo con nomb
 - [ ] Las dimensiones coinciden con las publicadas.
 - [ ] Todas las líneas `P2_` a `P5_` aparecen con el formato exacto.
 - [ ] Los dos gráficos son visibles.
+- [ ] El registro de asistencia LLM usa exactamente `LLM_USADO=NO` o el formato completo `LLM_USADO=SI` con `DONDE`, `MOTIVO` y `PROMPT` por cada uso.
 - [ ] La respuesta de la Parte I contiene únicamente `R1=` y `R2=`.
 - [ ] La respuesta de la Parte II contiene únicamente `R3=` a `R6=`.
 - [ ] Ningún cálculo ni cruce combina insumos de la Parte I con la Parte II.
