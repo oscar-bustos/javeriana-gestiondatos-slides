@@ -17,7 +17,7 @@ Experimentar de forma ágil y práctica los dos pilares de Big Data:
 ## 📋 Instrucciones Generales
 
 1. **Un Único Cuaderno de Google Colab:**
-   - Abra el cuaderno provisto: [`colab/Taller6_BigData_Busqueda_Semantica.ipynb`](https://colab.research.google.com/github/oscar-bustos/javeriana-gestiondatos-slides/blob/main/colab/Taller6_BigData_Busqueda_Semantica.ipynb).
+   - Abra el cuaderno provisto: [`colab/Taller6_BigData_Busqueda_Semantica.ipynb`](https://colab.research.google.com/drive/1PL9Y6x_yqt9yfo6AxQiUEb7lof7i16me).
    - Guarde una copia en su Google Drive (`Archivo -> Guardar una copia en Drive`).
    - Todo el trabajo (código, resultados y la evidencia de BigQuery) se consolidará en este **único cuaderno**.
 
@@ -50,42 +50,25 @@ Experimentar de forma ágil y práctica los dos pilares de Big Data:
 
 ---
 
-## ☁️ Ejercicio 2 - Consulta Analítica en Google BigQuery (25 pts)
+## ☁️ Ejercicio 2 - Laboratorio de Google BigQuery (25 pts)
 
-**Plataforma:** [Google Cloud Skills Boost](https://www.cloudskillsboost.google/) (acceso gratuito con entorno temporal de laboratorio).
+**Plataforma:** [Google Skills](https://www.skills.google/). Antes de iniciar, regístrese en el plan [Starter](https://www.skills.google/subscriptions), que no tiene costo y ofrece créditos mensuales para laboratorios seleccionados.
 
 ### Pasos a ejecutar:
 
-1. **Iniciar el laboratorio:**
+1. **Registrarse e iniciar el laboratorio:**
+   - Regístrese o inicie sesión en Google Skills y seleccione el plan **Starter**.
    - Abra una **ventana de incógnito** en su navegador web.
-   - Ingrese al laboratorio: 👉 [A Tour of BigQuery and Cloud Dataprep](https://www.cloudskillsboost.google/focuses/1145?parent=catalog)
-   - Haga clic en **Start Lab** y acceda a la consola de Google Cloud con el usuario y contraseña temporales generados.
-2. **Abrir BigQuery Studio:**
-   - En la consola de Google Cloud, busque y abra **BigQuery Studio**.
-3. **Ejecutar la consulta:**
-   - Pegue y ejecute la siguiente consulta SQL sobre el dataset público de nombres de Estados Unidos para obtener los 5 nombres masculinos más frecuentes del año 2014:
-
-```sql
-SELECT
-  name,
-  gender,
-  SUM(number) AS total
-FROM
-  `bigquery-public-data.usa_names.usa_1910_current`
-WHERE
-  year = 2014
-  AND gender = 'M'
-GROUP BY
-  name,
-  gender
-ORDER BY
-  total DESC
-LIMIT 5;
-```
-
-4. **Evidencias a registrar en su cuaderno de Colab:**
-   - Pegue la **captura de pantalla** de la consulta ejecutada en BigQuery donde se aprecie la tabla de resultados.
-   - Responda brevemente: **¿Cuáles son los 5 nombres de niños más comunes en 2014 según el resultado y cuál fue el total del nombre más popular?**
+   - Ingrese al laboratorio: 👉 [Exploring a BigQuery Public Dataset](https://www.skills.google/focuses/19078?parent=catalog).
+   - Haga clic en **Start lab** y acceda a la consola de Google Cloud con el usuario y la contraseña temporales generados.
+2. **Completar el laboratorio:**
+   - Siga todas las instrucciones del laboratorio en BigQuery.
+   - Consulte el dataset público de nombres de Estados Unidos.
+   - Cree el dataset y la tabla solicitados, cargue el archivo de datos y ejecute la consulta final sobre la tabla creada.
+3. **Evidencias a registrar en su cuaderno de Colab:**
+   - Pegue una **captura de pantalla** del laboratorio completado.
+   - Pegue una **captura de pantalla** de la consulta final ejecutada en BigQuery donde se aprecie la tabla de resultados.
+   - Responda brevemente: **¿Cuáles son los 5 nombres de niños más comunes de 2014 según la consulta final y cuál fue el total del nombre más popular?**
 
 ---
 
