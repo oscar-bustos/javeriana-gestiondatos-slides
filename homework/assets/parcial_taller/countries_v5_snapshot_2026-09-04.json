@@ -1,0 +1,7264 @@
+{
+  "data": {
+    "objects": [
+      {
+        "names": {
+          "common": "Aruba",
+          "official": "Aruba"
+        },
+        "codes": {
+          "alpha_2": "AW",
+          "alpha_3": "ABW"
+        },
+        "capitals": [
+          {
+            "name": "Oranjestad",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "AWG": {
+            "name": "Aruban florin",
+            "symbol": "ƒ"
+          }
+        },
+        "languages": {
+          "nld": "Dutch",
+          "pap": "Papiamento"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Afghanistan",
+          "official": "Islamic Republic of Afghanistan"
+        },
+        "codes": {
+          "alpha_2": "AF",
+          "alpha_3": "AFG"
+        },
+        "capitals": [
+          {
+            "name": "Kabul",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "AFN": {
+            "name": "Afghan afghani",
+            "symbol": "؋"
+          }
+        },
+        "languages": {
+          "prs": "Dari",
+          "pus": "Pashto",
+          "tuk": "Turkmen"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Angola",
+          "official": "Republic of Angola"
+        },
+        "codes": {
+          "alpha_2": "AO",
+          "alpha_3": "AGO"
+        },
+        "capitals": [
+          {
+            "name": "Luanda",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "AOA": {
+            "name": "Angolan kwanza",
+            "symbol": "Kz"
+          }
+        },
+        "languages": {
+          "por": "Portuguese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Anguilla",
+          "official": "Anguilla"
+        },
+        "codes": {
+          "alpha_2": "AI",
+          "alpha_3": "AIA"
+        },
+        "capitals": [
+          {
+            "name": "The Valley",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XCD": {
+            "name": "Eastern Caribbean dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Åland Islands",
+          "official": "Åland Islands"
+        },
+        "codes": {
+          "alpha_2": "AX",
+          "alpha_3": "ALA"
+        },
+        "capitals": [
+          {
+            "name": "Mariehamn",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "swe": "Swedish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Albania",
+          "official": "Republic of Albania"
+        },
+        "codes": {
+          "alpha_2": "AL",
+          "alpha_3": "ALB"
+        },
+        "capitals": [
+          {
+            "name": "Tirana",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "ALL": {
+            "name": "Albanian lek",
+            "symbol": "L"
+          }
+        },
+        "languages": {
+          "sqi": "Albanian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Andorra",
+          "official": "Principality of Andorra"
+        },
+        "codes": {
+          "alpha_2": "AD",
+          "alpha_3": "AND"
+        },
+        "capitals": [
+          {
+            "name": "Andorra la Vella",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "cat": "Catalan"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "United Arab Emirates",
+          "official": "United Arab Emirates"
+        },
+        "codes": {
+          "alpha_2": "AE",
+          "alpha_3": "ARE"
+        },
+        "capitals": [
+          {
+            "name": "Abu Dhabi",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "AED": {
+            "name": "United Arab Emirates dirham",
+            "symbol": "د.إ"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Argentina",
+          "official": "Argentine Republic"
+        },
+        "codes": {
+          "alpha_2": "AR",
+          "alpha_3": "ARG"
+        },
+        "capitals": [
+          {
+            "name": "Buenos Aires",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "ARS": {
+            "name": "Argentine peso",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "grn": "Guaraní",
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Armenia",
+          "official": "Republic of Armenia"
+        },
+        "codes": {
+          "alpha_2": "AM",
+          "alpha_3": "ARM"
+        },
+        "capitals": [
+          {
+            "name": "Yerevan",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "AMD": {
+            "name": "Armenian dram",
+            "symbol": "֏"
+          }
+        },
+        "languages": {
+          "hye": "Armenian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "American Samoa",
+          "official": "American Samoa"
+        },
+        "codes": {
+          "alpha_2": "AS",
+          "alpha_3": "ASM"
+        },
+        "capitals": [
+          {
+            "name": "Pago Pago",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "smo": "Samoan"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Antarctica",
+          "official": "Antarctica"
+        },
+        "codes": {
+          "alpha_2": "AQ",
+          "alpha_3": "ATA"
+        },
+        "capitals": [],
+        "currencies": {},
+        "languages": {},
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "French Southern and Antarctic Lands",
+          "official": "Territory of the French Southern and Antarctic Lands"
+        },
+        "codes": {
+          "alpha_2": "TF",
+          "alpha_3": "ATF"
+        },
+        "capitals": [
+          {
+            "name": "Port-aux-Français",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Antigua and Barbuda",
+          "official": "Antigua and Barbuda"
+        },
+        "codes": {
+          "alpha_2": "AG",
+          "alpha_3": "ATG"
+        },
+        "capitals": [
+          {
+            "name": "Saint John's",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XCD": {
+            "name": "Eastern Caribbean dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Australia",
+          "official": "Commonwealth of Australia"
+        },
+        "codes": {
+          "alpha_2": "AU",
+          "alpha_3": "AUS"
+        },
+        "capitals": [
+          {
+            "name": "Canberra",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "AUD": {
+            "name": "Australian dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Austria",
+          "official": "Republic of Austria"
+        },
+        "codes": {
+          "alpha_2": "AT",
+          "alpha_3": "AUT"
+        },
+        "capitals": [
+          {
+            "name": "Vienna",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "bar": "Austro-Bavarian German"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Azerbaijan",
+          "official": "Republic of Azerbaijan"
+        },
+        "codes": {
+          "alpha_2": "AZ",
+          "alpha_3": "AZE"
+        },
+        "capitals": [
+          {
+            "name": "Baku",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "AZN": {
+            "name": "Azerbaijani manat",
+            "symbol": "₼"
+          }
+        },
+        "languages": {
+          "aze": "Azerbaijani",
+          "rus": "Russian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Burundi",
+          "official": "Republic of Burundi"
+        },
+        "codes": {
+          "alpha_2": "BI",
+          "alpha_3": "BDI"
+        },
+        "capitals": [
+          {
+            "name": "Gitega",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BIF": {
+            "name": "Burundian franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "fra": "French",
+          "run": "Kirundi"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Belgium",
+          "official": "Kingdom of Belgium"
+        },
+        "codes": {
+          "alpha_2": "BE",
+          "alpha_3": "BEL"
+        },
+        "capitals": [
+          {
+            "name": "Brussels",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "deu": "German",
+          "fra": "French",
+          "nld": "Dutch"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Benin",
+          "official": "Republic of Benin"
+        },
+        "codes": {
+          "alpha_2": "BJ",
+          "alpha_3": "BEN"
+        },
+        "capitals": [
+          {
+            "name": "Porto-Novo",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XOF": {
+            "name": "West African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Burkina Faso",
+          "official": "Burkina Faso"
+        },
+        "codes": {
+          "alpha_2": "BF",
+          "alpha_3": "BFA"
+        },
+        "capitals": [
+          {
+            "name": "Ouagadougou",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XOF": {
+            "name": "West African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Bangladesh",
+          "official": "People's Republic of Bangladesh"
+        },
+        "codes": {
+          "alpha_2": "BD",
+          "alpha_3": "BGD"
+        },
+        "capitals": [
+          {
+            "name": "Dhaka",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BDT": {
+            "name": "Bangladeshi taka",
+            "symbol": "৳"
+          }
+        },
+        "languages": {
+          "ben": "Bengali"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Bulgaria",
+          "official": "Republic of Bulgaria"
+        },
+        "codes": {
+          "alpha_2": "BG",
+          "alpha_3": "BGR"
+        },
+        "capitals": [
+          {
+            "name": "Sofia",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "bul": "Bulgarian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Bahrain",
+          "official": "Kingdom of Bahrain"
+        },
+        "codes": {
+          "alpha_2": "BH",
+          "alpha_3": "BHR"
+        },
+        "capitals": [
+          {
+            "name": "Manama",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BHD": {
+            "name": "Bahraini dinar",
+            "symbol": ".د.ب"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Bahamas",
+          "official": "Commonwealth of the Bahamas"
+        },
+        "codes": {
+          "alpha_2": "BS",
+          "alpha_3": "BHS"
+        },
+        "capitals": [
+          {
+            "name": "Nassau",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BSD": {
+            "name": "Bahamian dollar",
+            "symbol": "$"
+          },
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Bosnia and Herzegovina",
+          "official": "Bosnia and Herzegovina"
+        },
+        "codes": {
+          "alpha_2": "BA",
+          "alpha_3": "BIH"
+        },
+        "capitals": [
+          {
+            "name": "Sarajevo",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BAM": {
+            "name": "Bosnia and Herzegovina convertible mark",
+            "symbol": "KM"
+          }
+        },
+        "languages": {
+          "bos": "Bosnian",
+          "hrv": "Croatian",
+          "srp": "Serbian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Saint Barthélemy",
+          "official": "Collectivity of Saint Barthélemy"
+        },
+        "codes": {
+          "alpha_2": "BL",
+          "alpha_3": "BLM"
+        },
+        "capitals": [
+          {
+            "name": "Gustavia",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Saint Helena, Ascension and Tristan da Cunha",
+          "official": "Saint Helena, Ascension and Tristan da Cunha"
+        },
+        "codes": {
+          "alpha_2": "SH",
+          "alpha_3": "SHN"
+        },
+        "capitals": [
+          {
+            "name": "Jamestown",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "GBP": {
+            "name": "Pound sterling",
+            "symbol": "£"
+          },
+          "SHP": {
+            "name": "Saint Helena pound",
+            "symbol": "£"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Belarus",
+          "official": "Republic of Belarus"
+        },
+        "codes": {
+          "alpha_2": "BY",
+          "alpha_3": "BLR"
+        },
+        "capitals": [
+          {
+            "name": "Minsk",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BYN": {
+            "name": "Belarusian ruble",
+            "symbol": "Br"
+          }
+        },
+        "languages": {
+          "bel": "Belarusian",
+          "rus": "Russian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Belize",
+          "official": "Belize"
+        },
+        "codes": {
+          "alpha_2": "BZ",
+          "alpha_3": "BLZ"
+        },
+        "capitals": [
+          {
+            "name": "Belmopan",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BZD": {
+            "name": "Belize dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "bjz": "Belizean Creole",
+          "eng": "English",
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Bermuda",
+          "official": "Bermuda"
+        },
+        "codes": {
+          "alpha_2": "BM",
+          "alpha_3": "BMU"
+        },
+        "capitals": [
+          {
+            "name": "Hamilton",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BMD": {
+            "name": "Bermudian dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Bolivia",
+          "official": "Plurinational State of Bolivia"
+        },
+        "codes": {
+          "alpha_2": "BO",
+          "alpha_3": "BOL"
+        },
+        "capitals": [
+          {
+            "name": "Sucre",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BOB": {
+            "name": "Bolivian boliviano",
+            "symbol": "Bs."
+          }
+        },
+        "languages": {
+          "aym": "Aymara",
+          "grn": "Guaraní",
+          "que": "Quechua",
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Caribbean Netherlands",
+          "official": "Bonaire, Sint Eustatius and Saba"
+        },
+        "codes": {
+          "alpha_2": "BQ",
+          "alpha_3": "BES"
+        },
+        "capitals": [
+          {
+            "name": "Kralendijk",
+            "primary": true
+          },
+          {
+            "name": "Oranjestad",
+            "primary": false
+          },
+          {
+            "name": "The Bottom",
+            "primary": false
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "nld": "Dutch",
+          "pap": "Papiamento"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Brazil",
+          "official": "Federative Republic of Brazil"
+        },
+        "codes": {
+          "alpha_2": "BR",
+          "alpha_3": "BRA"
+        },
+        "capitals": [
+          {
+            "name": "Brasília",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BRL": {
+            "name": "Brazilian real",
+            "symbol": "R$"
+          }
+        },
+        "languages": {
+          "por": "Portuguese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Barbados",
+          "official": "Barbados"
+        },
+        "codes": {
+          "alpha_2": "BB",
+          "alpha_3": "BRB"
+        },
+        "capitals": [
+          {
+            "name": "Bridgetown",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BBD": {
+            "name": "Barbadian dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Brunei",
+          "official": "Nation of Brunei, Abode of Peace"
+        },
+        "codes": {
+          "alpha_2": "BN",
+          "alpha_3": "BRN"
+        },
+        "capitals": [
+          {
+            "name": "Bandar Seri Begawan",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BND": {
+            "name": "Brunei dollar",
+            "symbol": "$"
+          },
+          "SGD": {
+            "name": "Singapore dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "msa": "Malay"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Bhutan",
+          "official": "Kingdom of Bhutan"
+        },
+        "codes": {
+          "alpha_2": "BT",
+          "alpha_3": "BTN"
+        },
+        "capitals": [
+          {
+            "name": "Thimphu",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BTN": {
+            "name": "Bhutanese ngultrum",
+            "symbol": "Nu."
+          },
+          "INR": {
+            "name": "Indian rupee",
+            "symbol": "₹"
+          }
+        },
+        "languages": {
+          "dzo": "Dzongkha"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Bouvet Island",
+          "official": "Bouvet Island"
+        },
+        "codes": {
+          "alpha_2": "BV",
+          "alpha_3": "BVT"
+        },
+        "capitals": [],
+        "currencies": {},
+        "languages": {
+          "nor": "Norwegian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Botswana",
+          "official": "Republic of Botswana"
+        },
+        "codes": {
+          "alpha_2": "BW",
+          "alpha_3": "BWA"
+        },
+        "capitals": [
+          {
+            "name": "Gaborone",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BWP": {
+            "name": "Botswana pula",
+            "symbol": "P"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "tsn": "Tswana"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Central African Republic",
+          "official": "Central African Republic"
+        },
+        "codes": {
+          "alpha_2": "CF",
+          "alpha_3": "CAF"
+        },
+        "capitals": [
+          {
+            "name": "Bangui",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XAF": {
+            "name": "Central African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "fra": "French",
+          "sag": "Sango"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Canada",
+          "official": "Canada"
+        },
+        "codes": {
+          "alpha_2": "CA",
+          "alpha_3": "CAN"
+        },
+        "capitals": [
+          {
+            "name": "Ottawa",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "CAD": {
+            "name": "Canadian dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Cocos (Keeling) Islands",
+          "official": "Territory of the Cocos (Keeling) Islands"
+        },
+        "codes": {
+          "alpha_2": "CC",
+          "alpha_3": "CCK"
+        },
+        "capitals": [
+          {
+            "name": "West Island",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "AUD": {
+            "name": "Australian dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Switzerland",
+          "official": "Swiss Confederation"
+        },
+        "codes": {
+          "alpha_2": "CH",
+          "alpha_3": "CHE"
+        },
+        "capitals": [
+          {
+            "name": "Bern",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "CHF": {
+            "name": "Swiss franc",
+            "symbol": "Fr."
+          }
+        },
+        "languages": {
+          "fra": "French",
+          "gsw": "Swiss German",
+          "ita": "Italian",
+          "roh": "Romansh"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Chile",
+          "official": "Republic of Chile"
+        },
+        "codes": {
+          "alpha_2": "CL",
+          "alpha_3": "CHL"
+        },
+        "capitals": [
+          {
+            "name": "Santiago",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "CLP": {
+            "name": "Chilean peso",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "China",
+          "official": "People's Republic of China"
+        },
+        "codes": {
+          "alpha_2": "CN",
+          "alpha_3": "CHN"
+        },
+        "capitals": [
+          {
+            "name": "Beijing",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "CNY": {
+            "name": "Chinese yuan",
+            "symbol": "¥"
+          }
+        },
+        "languages": {
+          "zho": "Chinese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Ivory Coast",
+          "official": "Republic of Côte d'Ivoire"
+        },
+        "codes": {
+          "alpha_2": "CI",
+          "alpha_3": "CIV"
+        },
+        "capitals": [
+          {
+            "name": "Yamoussoukro",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XOF": {
+            "name": "West African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Cameroon",
+          "official": "Republic of Cameroon"
+        },
+        "codes": {
+          "alpha_2": "CM",
+          "alpha_3": "CMR"
+        },
+        "capitals": [
+          {
+            "name": "Yaoundé",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XAF": {
+            "name": "Central African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "DR Congo",
+          "official": "Democratic Republic of the Congo"
+        },
+        "codes": {
+          "alpha_2": "CD",
+          "alpha_3": "COD"
+        },
+        "capitals": [
+          {
+            "name": "Kinshasa",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "CDF": {
+            "name": "Congolese franc",
+            "symbol": "FC"
+          }
+        },
+        "languages": {
+          "fra": "French",
+          "kon": "Kikongo",
+          "lin": "Lingala",
+          "lua": "Tshiluba",
+          "swa": "Swahili"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Congo",
+          "official": "Republic of the Congo"
+        },
+        "codes": {
+          "alpha_2": "CG",
+          "alpha_3": "COG"
+        },
+        "capitals": [
+          {
+            "name": "Brazzaville",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XAF": {
+            "name": "Central African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "fra": "French",
+          "kon": "Kikongo",
+          "lin": "Lingala"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Cook Islands",
+          "official": "Cook Islands"
+        },
+        "codes": {
+          "alpha_2": "CK",
+          "alpha_3": "COK"
+        },
+        "capitals": [
+          {
+            "name": "Avarua",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "CKD": {
+            "name": "Cook Islands dollar",
+            "symbol": "$"
+          },
+          "NZD": {
+            "name": "New Zealand dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "rar": "Cook Islands Māori"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Colombia",
+          "official": "Republic of Colombia"
+        },
+        "codes": {
+          "alpha_2": "CO",
+          "alpha_3": "COL"
+        },
+        "capitals": [
+          {
+            "name": "Bogotá",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "COP": {
+            "name": "Colombian peso",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Comoros",
+          "official": "Union of the Comoros"
+        },
+        "codes": {
+          "alpha_2": "KM",
+          "alpha_3": "COM"
+        },
+        "capitals": [
+          {
+            "name": "Moroni",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "KMF": {
+            "name": "Comorian franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "ara": "Arabic",
+          "fra": "French",
+          "zdj": "Comorian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Cape Verde",
+          "official": "Republic of Cabo Verde"
+        },
+        "codes": {
+          "alpha_2": "CV",
+          "alpha_3": "CPV"
+        },
+        "capitals": [
+          {
+            "name": "Praia",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "CVE": {
+            "name": "Cape Verdean escudo",
+            "symbol": "Esc"
+          }
+        },
+        "languages": {
+          "por": "Portuguese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Costa Rica",
+          "official": "Republic of Costa Rica"
+        },
+        "codes": {
+          "alpha_2": "CR",
+          "alpha_3": "CRI"
+        },
+        "capitals": [
+          {
+            "name": "San José",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "CRC": {
+            "name": "Costa Rican colón",
+            "symbol": "₡"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Cuba",
+          "official": "Republic of Cuba"
+        },
+        "codes": {
+          "alpha_2": "CU",
+          "alpha_3": "CUB"
+        },
+        "capitals": [
+          {
+            "name": "Havana",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "CUC": {
+            "name": "Cuban convertible peso",
+            "symbol": "$"
+          },
+          "CUP": {
+            "name": "Cuban peso",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Curaçao",
+          "official": "Country of Curaçao"
+        },
+        "codes": {
+          "alpha_2": "CW",
+          "alpha_3": "CUW"
+        },
+        "capitals": [
+          {
+            "name": "Willemstad",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "ANG": {
+            "name": "Netherlands Antillean guilder",
+            "symbol": "ƒ"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "nld": "Dutch",
+          "pap": "Papiamento"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Christmas Island",
+          "official": "Territory of Christmas Island"
+        },
+        "codes": {
+          "alpha_2": "CX",
+          "alpha_3": "CXR"
+        },
+        "capitals": [
+          {
+            "name": "Flying Fish Cove",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "AUD": {
+            "name": "Australian dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Cayman Islands",
+          "official": "Cayman Islands"
+        },
+        "codes": {
+          "alpha_2": "KY",
+          "alpha_3": "CYM"
+        },
+        "capitals": [
+          {
+            "name": "George Town",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "KYD": {
+            "name": "Cayman Islands dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Cyprus",
+          "official": "Republic of Cyprus"
+        },
+        "codes": {
+          "alpha_2": "CY",
+          "alpha_3": "CYP"
+        },
+        "capitals": [
+          {
+            "name": "Nicosia",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "ell": "Greek",
+          "tur": "Turkish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Czechia",
+          "official": "Czech Republic"
+        },
+        "codes": {
+          "alpha_2": "CZ",
+          "alpha_3": "CZE"
+        },
+        "capitals": [
+          {
+            "name": "Prague",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "CZK": {
+            "name": "Czech koruna",
+            "symbol": "Kč"
+          }
+        },
+        "languages": {
+          "ces": "Czech",
+          "slk": "Slovak"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Germany",
+          "official": "Federal Republic of Germany"
+        },
+        "codes": {
+          "alpha_2": "DE",
+          "alpha_3": "DEU"
+        },
+        "capitals": [
+          {
+            "name": "Berlin",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "deu": "German"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Djibouti",
+          "official": "Republic of Djibouti"
+        },
+        "codes": {
+          "alpha_2": "DJ",
+          "alpha_3": "DJI"
+        },
+        "capitals": [
+          {
+            "name": "Djibouti",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "DJF": {
+            "name": "Djiboutian franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "ara": "Arabic",
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Dominica",
+          "official": "Commonwealth of Dominica"
+        },
+        "codes": {
+          "alpha_2": "DM",
+          "alpha_3": "DMA"
+        },
+        "capitals": [
+          {
+            "name": "Roseau",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XCD": {
+            "name": "Eastern Caribbean dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Denmark",
+          "official": "Kingdom of Denmark"
+        },
+        "codes": {
+          "alpha_2": "DK",
+          "alpha_3": "DNK"
+        },
+        "capitals": [
+          {
+            "name": "Copenhagen",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "DKK": {
+            "name": "Danish krone",
+            "symbol": "kr"
+          }
+        },
+        "languages": {
+          "dan": "Danish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Dominican Republic",
+          "official": "Dominican Republic"
+        },
+        "codes": {
+          "alpha_2": "DO",
+          "alpha_3": "DOM"
+        },
+        "capitals": [
+          {
+            "name": "Santo Domingo",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "DOP": {
+            "name": "Dominican peso",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Algeria",
+          "official": "People's Democratic Republic of Algeria"
+        },
+        "codes": {
+          "alpha_2": "DZ",
+          "alpha_3": "DZA"
+        },
+        "capitals": [
+          {
+            "name": "Algiers",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "DZD": {
+            "name": "Algerian dinar",
+            "symbol": "د.ج"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Ecuador",
+          "official": "Republic of Ecuador"
+        },
+        "codes": {
+          "alpha_2": "EC",
+          "alpha_3": "ECU"
+        },
+        "capitals": [
+          {
+            "name": "Quito",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Egypt",
+          "official": "Arab Republic of Egypt"
+        },
+        "codes": {
+          "alpha_2": "EG",
+          "alpha_3": "EGY"
+        },
+        "capitals": [
+          {
+            "name": "Cairo",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EGP": {
+            "name": "Egyptian pound",
+            "symbol": "£"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Eritrea",
+          "official": "State of Eritrea"
+        },
+        "codes": {
+          "alpha_2": "ER",
+          "alpha_3": "ERI"
+        },
+        "capitals": [
+          {
+            "name": "Asmara",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "ERN": {
+            "name": "Eritrean nakfa",
+            "symbol": "Nfk"
+          }
+        },
+        "languages": {
+          "ara": "Arabic",
+          "eng": "English",
+          "tir": "Tigrinya"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Western Sahara",
+          "official": "Sahrawi Arab Democratic Republic"
+        },
+        "codes": {
+          "alpha_2": "EH",
+          "alpha_3": "ESH"
+        },
+        "capitals": [
+          {
+            "name": "El Aaiún",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "DZD": {
+            "name": "Algerian dinar",
+            "symbol": "دج"
+          },
+          "MAD": {
+            "name": "Moroccan dirham",
+            "symbol": "DH"
+          },
+          "MRU": {
+            "name": "Mauritanian ouguiya",
+            "symbol": "UM"
+          }
+        },
+        "languages": {
+          "ber": "Berber",
+          "mey": "Hassaniya",
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Spain",
+          "official": "Kingdom of Spain"
+        },
+        "codes": {
+          "alpha_2": "ES",
+          "alpha_3": "ESP"
+        },
+        "capitals": [
+          {
+            "name": "Madrid",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Estonia",
+          "official": "Republic of Estonia"
+        },
+        "codes": {
+          "alpha_2": "EE",
+          "alpha_3": "EST"
+        },
+        "capitals": [
+          {
+            "name": "Tallinn",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "est": "Estonian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Ethiopia",
+          "official": "Federal Democratic Republic of Ethiopia"
+        },
+        "codes": {
+          "alpha_2": "ET",
+          "alpha_3": "ETH"
+        },
+        "capitals": [
+          {
+            "name": "Addis Ababa",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "ETB": {
+            "name": "Ethiopian birr",
+            "symbol": "Br"
+          }
+        },
+        "languages": {
+          "amh": "Amharic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Finland",
+          "official": "Republic of Finland"
+        },
+        "codes": {
+          "alpha_2": "FI",
+          "alpha_3": "FIN"
+        },
+        "capitals": [
+          {
+            "name": "Helsinki",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "fin": "Finnish",
+          "swe": "Swedish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Fiji",
+          "official": "Republic of Fiji"
+        },
+        "codes": {
+          "alpha_2": "FJ",
+          "alpha_3": "FJI"
+        },
+        "capitals": [
+          {
+            "name": "Suva",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "FJD": {
+            "name": "Fijian dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "fij": "Fijian",
+          "hif": "Fiji Hindi"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Falkland Islands",
+          "official": "Falkland Islands"
+        },
+        "codes": {
+          "alpha_2": "FK",
+          "alpha_3": "FLK"
+        },
+        "capitals": [
+          {
+            "name": "Stanley",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "FKP": {
+            "name": "Falkland Islands pound",
+            "symbol": "£"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "France",
+          "official": "French Republic"
+        },
+        "codes": {
+          "alpha_2": "FR",
+          "alpha_3": "FRA"
+        },
+        "capitals": [
+          {
+            "name": "Paris",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Faroe Islands",
+          "official": "Faroe Islands"
+        },
+        "codes": {
+          "alpha_2": "FO",
+          "alpha_3": "FRO"
+        },
+        "capitals": [
+          {
+            "name": "Tórshavn",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "DKK": {
+            "name": "Danish krone",
+            "symbol": "kr"
+          },
+          "FOK": {
+            "name": "Faroese króna",
+            "symbol": "kr"
+          }
+        },
+        "languages": {
+          "dan": "Danish",
+          "fao": "Faroese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Micronesia",
+          "official": "Federated States of Micronesia"
+        },
+        "codes": {
+          "alpha_2": "FM",
+          "alpha_3": "FSM"
+        },
+        "capitals": [
+          {
+            "name": "Palikir",
+            "primary": true
+          }
+        ],
+        "currencies": {},
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Gabon",
+          "official": "Gabonese Republic"
+        },
+        "codes": {
+          "alpha_2": "GA",
+          "alpha_3": "GAB"
+        },
+        "capitals": [
+          {
+            "name": "Libreville",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XAF": {
+            "name": "Central African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "United Kingdom",
+          "official": "United Kingdom of Great Britain and Northern Ireland"
+        },
+        "codes": {
+          "alpha_2": "GB",
+          "alpha_3": "GBR"
+        },
+        "capitals": [
+          {
+            "name": "London",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "GBP": {
+            "name": "British pound",
+            "symbol": "£"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Georgia",
+          "official": "Georgia"
+        },
+        "codes": {
+          "alpha_2": "GE",
+          "alpha_3": "GEO"
+        },
+        "capitals": [
+          {
+            "name": "Tbilisi",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "GEL": {
+            "name": "lari",
+            "symbol": "₾"
+          }
+        },
+        "languages": {
+          "kat": "Georgian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Guernsey",
+          "official": "Bailiwick of Guernsey"
+        },
+        "codes": {
+          "alpha_2": "GG",
+          "alpha_3": "GGY"
+        },
+        "capitals": [
+          {
+            "name": "St. Peter Port",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "GBP": {
+            "name": "British pound",
+            "symbol": "£"
+          },
+          "GGP": {
+            "name": "Guernsey pound",
+            "symbol": "£"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "fra": "French",
+          "nfr": "Guernésiais"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Ghana",
+          "official": "Republic of Ghana"
+        },
+        "codes": {
+          "alpha_2": "GH",
+          "alpha_3": "GHA"
+        },
+        "capitals": [
+          {
+            "name": "Accra",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "GHS": {
+            "name": "Ghanaian cedi",
+            "symbol": "₵"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Gibraltar",
+          "official": "Gibraltar"
+        },
+        "codes": {
+          "alpha_2": "GI",
+          "alpha_3": "GIB"
+        },
+        "capitals": [
+          {
+            "name": "Gibraltar",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "GIP": {
+            "name": "Gibraltar pound",
+            "symbol": "£"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Guinea",
+          "official": "Republic of Guinea"
+        },
+        "codes": {
+          "alpha_2": "GN",
+          "alpha_3": "GIN"
+        },
+        "capitals": [
+          {
+            "name": "Conakry",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "GNF": {
+            "name": "Guinean franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Guadeloupe",
+          "official": "Guadeloupe"
+        },
+        "codes": {
+          "alpha_2": "GP",
+          "alpha_3": "GLP"
+        },
+        "capitals": [
+          {
+            "name": "Basse-Terre",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Gambia",
+          "official": "Republic of the Gambia"
+        },
+        "codes": {
+          "alpha_2": "GM",
+          "alpha_3": "GMB"
+        },
+        "capitals": [
+          {
+            "name": "Banjul",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "GMD": {
+            "name": "dalasi",
+            "symbol": "D"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Guinea-Bissau",
+          "official": "Republic of Guinea-Bissau"
+        },
+        "codes": {
+          "alpha_2": "GW",
+          "alpha_3": "GNB"
+        },
+        "capitals": [
+          {
+            "name": "Bissau",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XOF": {
+            "name": "West African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "por": "Portuguese",
+          "pov": "Upper Guinea Creole"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Equatorial Guinea",
+          "official": "Republic of Equatorial Guinea"
+        },
+        "codes": {
+          "alpha_2": "GQ",
+          "alpha_3": "GNQ"
+        },
+        "capitals": [
+          {
+            "name": "Malabo",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XAF": {
+            "name": "Central African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "fra": "French",
+          "por": "Portuguese",
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Greece",
+          "official": "Hellenic Republic"
+        },
+        "codes": {
+          "alpha_2": "GR",
+          "alpha_3": "GRC"
+        },
+        "capitals": [
+          {
+            "name": "Athens",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "ell": "Greek"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Grenada",
+          "official": "Grenada"
+        },
+        "codes": {
+          "alpha_2": "GD",
+          "alpha_3": "GRD"
+        },
+        "capitals": [
+          {
+            "name": "St. George's",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XCD": {
+            "name": "Eastern Caribbean dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Greenland",
+          "official": "Greenland"
+        },
+        "codes": {
+          "alpha_2": "GL",
+          "alpha_3": "GRL"
+        },
+        "capitals": [
+          {
+            "name": "Nuuk",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "DKK": {
+            "name": "krone",
+            "symbol": "kr."
+          }
+        },
+        "languages": {
+          "kal": "Greenlandic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Guatemala",
+          "official": "Republic of Guatemala"
+        },
+        "codes": {
+          "alpha_2": "GT",
+          "alpha_3": "GTM"
+        },
+        "capitals": [
+          {
+            "name": "Guatemala City",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "GTQ": {
+            "name": "Guatemalan quetzal",
+            "symbol": "Q"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "French Guiana",
+          "official": "Guiana"
+        },
+        "codes": {
+          "alpha_2": "GF",
+          "alpha_3": "GUF"
+        },
+        "capitals": [
+          {
+            "name": "Cayenne",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Guam",
+          "official": "Guam"
+        },
+        "codes": {
+          "alpha_2": "GU",
+          "alpha_3": "GUM"
+        },
+        "capitals": [
+          {
+            "name": "Hagåtña",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "cha": "Chamorro",
+          "eng": "English",
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Guyana",
+          "official": "Co-operative Republic of Guyana"
+        },
+        "codes": {
+          "alpha_2": "GY",
+          "alpha_3": "GUY"
+        },
+        "capitals": [
+          {
+            "name": "Georgetown",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "GYD": {
+            "name": "Guyanese dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Hong Kong",
+          "official": "Hong Kong Special Administrative Region of the People's Republic of China"
+        },
+        "codes": {
+          "alpha_2": "HK",
+          "alpha_3": "HKG"
+        },
+        "capitals": [
+          {
+            "name": "City of Victoria",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "HKD": {
+            "name": "Hong Kong dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "zho": "Chinese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Heard Island and McDonald Islands",
+          "official": "Heard Island and McDonald Islands"
+        },
+        "codes": {
+          "alpha_2": "HM",
+          "alpha_3": "HMD"
+        },
+        "capitals": [],
+        "currencies": {},
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Honduras",
+          "official": "Republic of Honduras"
+        },
+        "codes": {
+          "alpha_2": "HN",
+          "alpha_3": "HND"
+        },
+        "capitals": [
+          {
+            "name": "Tegucigalpa",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "HNL": {
+            "name": "Honduran lempira",
+            "symbol": "L"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Croatia",
+          "official": "Republic of Croatia"
+        },
+        "codes": {
+          "alpha_2": "HR",
+          "alpha_3": "HRV"
+        },
+        "capitals": [
+          {
+            "name": "Zagreb",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "hrv": "Croatian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Haiti",
+          "official": "Republic of Haiti"
+        },
+        "codes": {
+          "alpha_2": "HT",
+          "alpha_3": "HTI"
+        },
+        "capitals": [
+          {
+            "name": "Port-au-Prince",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "HTG": {
+            "name": "Haitian gourde",
+            "symbol": "G"
+          }
+        },
+        "languages": {
+          "fra": "French",
+          "hat": "Haitian Creole"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Hungary",
+          "official": "Hungary"
+        },
+        "codes": {
+          "alpha_2": "HU",
+          "alpha_3": "HUN"
+        },
+        "capitals": [
+          {
+            "name": "Budapest",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "HUF": {
+            "name": "Hungarian forint",
+            "symbol": "Ft"
+          }
+        },
+        "languages": {
+          "hun": "Hungarian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Indonesia",
+          "official": "Republic of Indonesia"
+        },
+        "codes": {
+          "alpha_2": "ID",
+          "alpha_3": "IDN"
+        },
+        "capitals": [
+          {
+            "name": "Jakarta",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "IDR": {
+            "name": "Indonesian rupiah",
+            "symbol": "Rp"
+          }
+        },
+        "languages": {
+          "ind": "Indonesian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Isle of Man",
+          "official": "Isle of Man"
+        },
+        "codes": {
+          "alpha_2": "IM",
+          "alpha_3": "IMN"
+        },
+        "capitals": [
+          {
+            "name": "Douglas",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "GBP": {
+            "name": "British pound",
+            "symbol": "£"
+          },
+          "IMP": {
+            "name": "Manx pound",
+            "symbol": "£"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "glv": "Manx"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "India",
+          "official": "Republic of India"
+        },
+        "codes": {
+          "alpha_2": "IN",
+          "alpha_3": "IND"
+        },
+        "capitals": [
+          {
+            "name": "New Delhi",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "INR": {
+            "name": "Indian rupee",
+            "symbol": "₹"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "hin": "Hindi",
+          "tam": "Tamil"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "British Indian Ocean Territory",
+          "official": "British Indian Ocean Territory"
+        },
+        "codes": {
+          "alpha_2": "IO",
+          "alpha_3": "IOT"
+        },
+        "capitals": [
+          {
+            "name": "Diego Garcia",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Ireland",
+          "official": "Republic of Ireland"
+        },
+        "codes": {
+          "alpha_2": "IE",
+          "alpha_3": "IRL"
+        },
+        "capitals": [
+          {
+            "name": "Dublin",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "gle": "Irish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Iran",
+          "official": "Islamic Republic of Iran"
+        },
+        "codes": {
+          "alpha_2": "IR",
+          "alpha_3": "IRN"
+        },
+        "capitals": [
+          {
+            "name": "Tehran",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "IRR": {
+            "name": "Iranian rial",
+            "symbol": "﷼"
+          }
+        },
+        "languages": {
+          "fas": "Persian (Farsi)"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Iraq",
+          "official": "Republic of Iraq"
+        },
+        "codes": {
+          "alpha_2": "IQ",
+          "alpha_3": "IRQ"
+        },
+        "capitals": [
+          {
+            "name": "Baghdad",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "IQD": {
+            "name": "Iraqi dinar",
+            "symbol": "ع.د"
+          }
+        },
+        "languages": {
+          "ara": "Arabic",
+          "arc": "Aramaic",
+          "ckb": "Sorani"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Iceland",
+          "official": "Iceland"
+        },
+        "codes": {
+          "alpha_2": "IS",
+          "alpha_3": "ISL"
+        },
+        "capitals": [
+          {
+            "name": "Reykjavik",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "ISK": {
+            "name": "Icelandic króna",
+            "symbol": "kr"
+          }
+        },
+        "languages": {
+          "isl": "Icelandic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Israel",
+          "official": "State of Israel"
+        },
+        "codes": {
+          "alpha_2": "IL",
+          "alpha_3": "ISR"
+        },
+        "capitals": [
+          {
+            "name": "Jerusalem",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "ILS": {
+            "name": "Israeli new shekel",
+            "symbol": "₪"
+          }
+        },
+        "languages": {
+          "ara": "Arabic",
+          "heb": "Hebrew"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Italy",
+          "official": "Italian Republic"
+        },
+        "codes": {
+          "alpha_2": "IT",
+          "alpha_3": "ITA"
+        },
+        "capitals": [
+          {
+            "name": "Rome",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "ita": "Italian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Jamaica",
+          "official": "Jamaica"
+        },
+        "codes": {
+          "alpha_2": "JM",
+          "alpha_3": "JAM"
+        },
+        "capitals": [
+          {
+            "name": "Kingston",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "JMD": {
+            "name": "Jamaican dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "jam": "Jamaican Patois"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Jersey",
+          "official": "Bailiwick of Jersey"
+        },
+        "codes": {
+          "alpha_2": "JE",
+          "alpha_3": "JEY"
+        },
+        "capitals": [
+          {
+            "name": "Saint Helier",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "GBP": {
+            "name": "British pound",
+            "symbol": "£"
+          },
+          "JEP": {
+            "name": "Jersey pound",
+            "symbol": "£"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "fra": "French",
+          "nrf": "Jèrriais"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Jordan",
+          "official": "Hashemite Kingdom of Jordan"
+        },
+        "codes": {
+          "alpha_2": "JO",
+          "alpha_3": "JOR"
+        },
+        "capitals": [
+          {
+            "name": "Amman",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "JOD": {
+            "name": "Jordanian dinar",
+            "symbol": "د.ا"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Japan",
+          "official": "Japan"
+        },
+        "codes": {
+          "alpha_2": "JP",
+          "alpha_3": "JPN"
+        },
+        "capitals": [
+          {
+            "name": "Tokyo",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "JPY": {
+            "name": "Japanese yen",
+            "symbol": "¥"
+          }
+        },
+        "languages": {
+          "jpn": "Japanese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Kazakhstan",
+          "official": "Republic of Kazakhstan"
+        },
+        "codes": {
+          "alpha_2": "KZ",
+          "alpha_3": "KAZ"
+        },
+        "capitals": [
+          {
+            "name": "Astana",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "KZT": {
+            "name": "Kazakhstani tenge",
+            "symbol": "₸"
+          }
+        },
+        "languages": {
+          "kaz": "Kazakh",
+          "rus": "Russian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Kenya",
+          "official": "Republic of Kenya"
+        },
+        "codes": {
+          "alpha_2": "KE",
+          "alpha_3": "KEN"
+        },
+        "capitals": [
+          {
+            "name": "Nairobi",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "KES": {
+            "name": "Kenyan shilling",
+            "symbol": "Sh"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "swa": "Swahili"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Kyrgyzstan",
+          "official": "Kyrgyz Republic"
+        },
+        "codes": {
+          "alpha_2": "KG",
+          "alpha_3": "KGZ"
+        },
+        "capitals": [
+          {
+            "name": "Bishkek",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "KGS": {
+            "name": "Kyrgyzstani som",
+            "symbol": "с"
+          }
+        },
+        "languages": {
+          "kir": "Kyrgyz",
+          "rus": "Russian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Cambodia",
+          "official": "Kingdom of Cambodia"
+        },
+        "codes": {
+          "alpha_2": "KH",
+          "alpha_3": "KHM"
+        },
+        "capitals": [
+          {
+            "name": "Phnom Penh",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "KHR": {
+            "name": "Cambodian riel",
+            "symbol": "៛"
+          },
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "khm": "Khmer"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Kiribati",
+          "official": "Independent and Sovereign Republic of Kiribati"
+        },
+        "codes": {
+          "alpha_2": "KI",
+          "alpha_3": "KIR"
+        },
+        "capitals": [
+          {
+            "name": "South Tarawa",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "AUD": {
+            "name": "Australian dollar",
+            "symbol": "$"
+          },
+          "KID": {
+            "name": "Kiribati dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "gil": "Gilbertese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Saint Kitts and Nevis",
+          "official": "Federation of Saint Christopher and Nevis"
+        },
+        "codes": {
+          "alpha_2": "KN",
+          "alpha_3": "KNA"
+        },
+        "capitals": [
+          {
+            "name": "Basseterre",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XCD": {
+            "name": "Eastern Caribbean dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "South Korea",
+          "official": "Republic of Korea"
+        },
+        "codes": {
+          "alpha_2": "KR",
+          "alpha_3": "KOR"
+        },
+        "capitals": [
+          {
+            "name": "Seoul",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "KRW": {
+            "name": "South Korean won",
+            "symbol": "₩"
+          }
+        },
+        "languages": {
+          "kor": "Korean"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Kosovo",
+          "official": "Republic of Kosovo"
+        },
+        "codes": {
+          "alpha_2": "XK",
+          "alpha_3": "UNK"
+        },
+        "capitals": [
+          {
+            "name": "Pristina",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "sqi": "Albanian",
+          "srp": "Serbian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Kuwait",
+          "official": "State of Kuwait"
+        },
+        "codes": {
+          "alpha_2": "KW",
+          "alpha_3": "KWT"
+        },
+        "capitals": [
+          {
+            "name": "Kuwait City",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "KWD": {
+            "name": "Kuwaiti dinar",
+            "symbol": "د.ك"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Laos",
+          "official": "Lao People's Democratic Republic"
+        },
+        "codes": {
+          "alpha_2": "LA",
+          "alpha_3": "LAO"
+        },
+        "capitals": [
+          {
+            "name": "Vientiane",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "LAK": {
+            "name": "Lao kip",
+            "symbol": "₭"
+          }
+        },
+        "languages": {
+          "lao": "Lao"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Lebanon",
+          "official": "Lebanese Republic"
+        },
+        "codes": {
+          "alpha_2": "LB",
+          "alpha_3": "LBN"
+        },
+        "capitals": [
+          {
+            "name": "Beirut",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "LBP": {
+            "name": "Lebanese pound",
+            "symbol": "ل.ل"
+          }
+        },
+        "languages": {
+          "ara": "Arabic",
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Liberia",
+          "official": "Republic of Liberia"
+        },
+        "codes": {
+          "alpha_2": "LR",
+          "alpha_3": "LBR"
+        },
+        "capitals": [
+          {
+            "name": "Monrovia",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "LRD": {
+            "name": "Liberian dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Libya",
+          "official": "State of Libya"
+        },
+        "codes": {
+          "alpha_2": "LY",
+          "alpha_3": "LBY"
+        },
+        "capitals": [
+          {
+            "name": "Tripoli",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "LYD": {
+            "name": "Libyan dinar",
+            "symbol": "ل.د"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Saint Lucia",
+          "official": "Saint Lucia"
+        },
+        "codes": {
+          "alpha_2": "LC",
+          "alpha_3": "LCA"
+        },
+        "capitals": [
+          {
+            "name": "Castries",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XCD": {
+            "name": "Eastern Caribbean dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Liechtenstein",
+          "official": "Principality of Liechtenstein"
+        },
+        "codes": {
+          "alpha_2": "LI",
+          "alpha_3": "LIE"
+        },
+        "capitals": [
+          {
+            "name": "Vaduz",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "CHF": {
+            "name": "Swiss franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "deu": "German"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Sri Lanka",
+          "official": "Democratic Socialist Republic of Sri Lanka"
+        },
+        "codes": {
+          "alpha_2": "LK",
+          "alpha_3": "LKA"
+        },
+        "capitals": [
+          {
+            "name": "Colombo",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "LKR": {
+            "name": "Sri Lankan rupee",
+            "symbol": "Rs රු"
+          }
+        },
+        "languages": {
+          "sin": "Sinhala",
+          "tam": "Tamil"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Lesotho",
+          "official": "Kingdom of Lesotho"
+        },
+        "codes": {
+          "alpha_2": "LS",
+          "alpha_3": "LSO"
+        },
+        "capitals": [
+          {
+            "name": "Maseru",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "LSL": {
+            "name": "Lesotho loti",
+            "symbol": "L"
+          },
+          "ZAR": {
+            "name": "South African rand",
+            "symbol": "R"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "sot": "Sotho"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Lithuania",
+          "official": "Republic of Lithuania"
+        },
+        "codes": {
+          "alpha_2": "LT",
+          "alpha_3": "LTU"
+        },
+        "capitals": [
+          {
+            "name": "Vilnius",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "lit": "Lithuanian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Luxembourg",
+          "official": "Grand Duchy of Luxembourg"
+        },
+        "codes": {
+          "alpha_2": "LU",
+          "alpha_3": "LUX"
+        },
+        "capitals": [
+          {
+            "name": "Luxembourg",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "deu": "German",
+          "fra": "French",
+          "ltz": "Luxembourgish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Latvia",
+          "official": "Republic of Latvia"
+        },
+        "codes": {
+          "alpha_2": "LV",
+          "alpha_3": "LVA"
+        },
+        "capitals": [
+          {
+            "name": "Riga",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "lav": "Latvian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Macau",
+          "official": "Macao Special Administrative Region of the People's Republic of China"
+        },
+        "codes": {
+          "alpha_2": "MO",
+          "alpha_3": "MAC"
+        },
+        "capitals": [],
+        "currencies": {
+          "MOP": {
+            "name": "Macanese pataca",
+            "symbol": "P"
+          }
+        },
+        "languages": {
+          "por": "Portuguese",
+          "zho": "Chinese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Saint Martin",
+          "official": "Saint Martin"
+        },
+        "codes": {
+          "alpha_2": "MF",
+          "alpha_3": "MAF"
+        },
+        "capitals": [
+          {
+            "name": "Marigot",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Morocco",
+          "official": "Kingdom of Morocco"
+        },
+        "codes": {
+          "alpha_2": "MA",
+          "alpha_3": "MAR"
+        },
+        "capitals": [
+          {
+            "name": "Rabat",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "MAD": {
+            "name": "Moroccan dirham",
+            "symbol": "د.م."
+          }
+        },
+        "languages": {
+          "ara": "Arabic",
+          "ber": "Berber"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Monaco",
+          "official": "Principality of Monaco"
+        },
+        "codes": {
+          "alpha_2": "MC",
+          "alpha_3": "MCO"
+        },
+        "capitals": [
+          {
+            "name": "Monaco",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Moldova",
+          "official": "Republic of Moldova"
+        },
+        "codes": {
+          "alpha_2": "MD",
+          "alpha_3": "MDA"
+        },
+        "capitals": [
+          {
+            "name": "Chișinău",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "MDL": {
+            "name": "Moldovan leu",
+            "symbol": "L"
+          }
+        },
+        "languages": {
+          "ron": "Moldavian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Madagascar",
+          "official": "Republic of Madagascar"
+        },
+        "codes": {
+          "alpha_2": "MG",
+          "alpha_3": "MDG"
+        },
+        "capitals": [
+          {
+            "name": "Antananarivo",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "MGA": {
+            "name": "Malagasy ariary",
+            "symbol": "Ar"
+          }
+        },
+        "languages": {
+          "fra": "French",
+          "mlg": "Malagasy"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Maldives",
+          "official": "Republic of the Maldives"
+        },
+        "codes": {
+          "alpha_2": "MV",
+          "alpha_3": "MDV"
+        },
+        "capitals": [
+          {
+            "name": "Malé",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "MVR": {
+            "name": "Maldivian rufiyaa",
+            "symbol": ".ރ"
+          }
+        },
+        "languages": {
+          "div": "Maldivian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Mexico",
+          "official": "United Mexican States"
+        },
+        "codes": {
+          "alpha_2": "MX",
+          "alpha_3": "MEX"
+        },
+        "capitals": [
+          {
+            "name": "Mexico City",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "MXN": {
+            "name": "Mexican peso",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Marshall Islands",
+          "official": "Republic of the Marshall Islands"
+        },
+        "codes": {
+          "alpha_2": "MH",
+          "alpha_3": "MHL"
+        },
+        "capitals": [
+          {
+            "name": "Majuro",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "mah": "Marshallese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "North Macedonia",
+          "official": "Republic of North Macedonia"
+        },
+        "codes": {
+          "alpha_2": "MK",
+          "alpha_3": "MKD"
+        },
+        "capitals": [
+          {
+            "name": "Skopje",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "MKD": {
+            "name": "denar",
+            "symbol": "den"
+          }
+        },
+        "languages": {
+          "mkd": "Macedonian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Mali",
+          "official": "Republic of Mali"
+        },
+        "codes": {
+          "alpha_2": "ML",
+          "alpha_3": "MLI"
+        },
+        "capitals": [
+          {
+            "name": "Bamako",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XOF": {
+            "name": "West African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Malta",
+          "official": "Republic of Malta"
+        },
+        "codes": {
+          "alpha_2": "MT",
+          "alpha_3": "MLT"
+        },
+        "capitals": [
+          {
+            "name": "Valletta",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "mlt": "Maltese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Myanmar",
+          "official": "Republic of the Union of Myanmar"
+        },
+        "codes": {
+          "alpha_2": "MM",
+          "alpha_3": "MMR"
+        },
+        "capitals": [
+          {
+            "name": "Naypyidaw",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "MMK": {
+            "name": "Burmese kyat",
+            "symbol": "Ks"
+          }
+        },
+        "languages": {
+          "mya": "Burmese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Montenegro",
+          "official": "Montenegro"
+        },
+        "codes": {
+          "alpha_2": "ME",
+          "alpha_3": "MNE"
+        },
+        "capitals": [
+          {
+            "name": "Podgorica",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "cnr": "Montenegrin"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Mongolia",
+          "official": "Mongolia"
+        },
+        "codes": {
+          "alpha_2": "MN",
+          "alpha_3": "MNG"
+        },
+        "capitals": [
+          {
+            "name": "Ulan Bator",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "MNT": {
+            "name": "Mongolian tögrög",
+            "symbol": "₮"
+          }
+        },
+        "languages": {
+          "mon": "Mongolian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Northern Mariana Islands",
+          "official": "Commonwealth of the Northern Mariana Islands"
+        },
+        "codes": {
+          "alpha_2": "MP",
+          "alpha_3": "MNP"
+        },
+        "capitals": [
+          {
+            "name": "Saipan",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "cal": "Carolinian",
+          "cha": "Chamorro",
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Mozambique",
+          "official": "Republic of Mozambique"
+        },
+        "codes": {
+          "alpha_2": "MZ",
+          "alpha_3": "MOZ"
+        },
+        "capitals": [
+          {
+            "name": "Maputo",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "MZN": {
+            "name": "Mozambican metical",
+            "symbol": "MT"
+          }
+        },
+        "languages": {
+          "por": "Portuguese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Mauritania",
+          "official": "Islamic Republic of Mauritania"
+        },
+        "codes": {
+          "alpha_2": "MR",
+          "alpha_3": "MRT"
+        },
+        "capitals": [
+          {
+            "name": "Nouakchott",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "MRU": {
+            "name": "Mauritanian ouguiya",
+            "symbol": "UM"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Montserrat",
+          "official": "Montserrat"
+        },
+        "codes": {
+          "alpha_2": "MS",
+          "alpha_3": "MSR"
+        },
+        "capitals": [
+          {
+            "name": "Plymouth",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XCD": {
+            "name": "Eastern Caribbean dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Martinique",
+          "official": "Martinique"
+        },
+        "codes": {
+          "alpha_2": "MQ",
+          "alpha_3": "MTQ"
+        },
+        "capitals": [
+          {
+            "name": "Fort-de-France",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Mauritius",
+          "official": "Republic of Mauritius"
+        },
+        "codes": {
+          "alpha_2": "MU",
+          "alpha_3": "MUS"
+        },
+        "capitals": [
+          {
+            "name": "Port Louis",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "MUR": {
+            "name": "Mauritian rupee",
+            "symbol": "₨"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "fra": "French",
+          "mfe": "Mauritian Creole"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Malawi",
+          "official": "Republic of Malawi"
+        },
+        "codes": {
+          "alpha_2": "MW",
+          "alpha_3": "MWI"
+        },
+        "capitals": [
+          {
+            "name": "Lilongwe",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "MWK": {
+            "name": "Malawian kwacha",
+            "symbol": "MK"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "nya": "Chewa"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Malaysia",
+          "official": "Malaysia"
+        },
+        "codes": {
+          "alpha_2": "MY",
+          "alpha_3": "MYS"
+        },
+        "capitals": [
+          {
+            "name": "Kuala Lumpur",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "MYR": {
+            "name": "Malaysian ringgit",
+            "symbol": "RM"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "msa": "Malay"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Mayotte",
+          "official": "Department of Mayotte"
+        },
+        "codes": {
+          "alpha_2": "YT",
+          "alpha_3": "MYT"
+        },
+        "capitals": [
+          {
+            "name": "Mamoudzou",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Namibia",
+          "official": "Republic of Namibia"
+        },
+        "codes": {
+          "alpha_2": "NA",
+          "alpha_3": "NAM"
+        },
+        "capitals": [
+          {
+            "name": "Windhoek",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "NAD": {
+            "name": "Namibian dollar",
+            "symbol": "$"
+          },
+          "ZAR": {
+            "name": "South African rand",
+            "symbol": "R"
+          }
+        },
+        "languages": {
+          "afr": "Afrikaans",
+          "deu": "German",
+          "eng": "English",
+          "her": "Herero",
+          "hgm": "Khoekhoe",
+          "kwn": "Kwangali",
+          "loz": "Lozi",
+          "ndo": "Ndonga",
+          "tsn": "Tswana"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "New Caledonia",
+          "official": "New Caledonia"
+        },
+        "codes": {
+          "alpha_2": "NC",
+          "alpha_3": "NCL"
+        },
+        "capitals": [
+          {
+            "name": "Nouméa",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XPF": {
+            "name": "CFP franc",
+            "symbol": "₣"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Niger",
+          "official": "Republic of Niger"
+        },
+        "codes": {
+          "alpha_2": "NE",
+          "alpha_3": "NER"
+        },
+        "capitals": [
+          {
+            "name": "Niamey",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XOF": {
+            "name": "West African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Norfolk Island",
+          "official": "Territory of Norfolk Island"
+        },
+        "codes": {
+          "alpha_2": "NF",
+          "alpha_3": "NFK"
+        },
+        "capitals": [
+          {
+            "name": "Kingston",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "AUD": {
+            "name": "Australian dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "pih": "Norfuk"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Nigeria",
+          "official": "Federal Republic of Nigeria"
+        },
+        "codes": {
+          "alpha_2": "NG",
+          "alpha_3": "NGA"
+        },
+        "capitals": [
+          {
+            "name": "Abuja",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "NGN": {
+            "name": "Nigerian naira",
+            "symbol": "₦"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Nicaragua",
+          "official": "Republic of Nicaragua"
+        },
+        "codes": {
+          "alpha_2": "NI",
+          "alpha_3": "NIC"
+        },
+        "capitals": [
+          {
+            "name": "Managua",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "NIO": {
+            "name": "Nicaraguan córdoba",
+            "symbol": "C$"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Niue",
+          "official": "Niue"
+        },
+        "codes": {
+          "alpha_2": "NU",
+          "alpha_3": "NIU"
+        },
+        "capitals": [
+          {
+            "name": "Alofi",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "NZD": {
+            "name": "New Zealand dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "niu": "Niuean"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Netherlands",
+          "official": "Kingdom of the Netherlands"
+        },
+        "codes": {
+          "alpha_2": "NL",
+          "alpha_3": "NLD"
+        },
+        "capitals": [
+          {
+            "name": "Amsterdam",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "nld": "Dutch"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Norway",
+          "official": "Kingdom of Norway"
+        },
+        "codes": {
+          "alpha_2": "NO",
+          "alpha_3": "NOR"
+        },
+        "capitals": [
+          {
+            "name": "Oslo",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "NOK": {
+            "name": "Norwegian krone",
+            "symbol": "kr"
+          }
+        },
+        "languages": {
+          "nno": "Norwegian Nynorsk",
+          "nob": "Norwegian Bokmål",
+          "smi": "Sami"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Nepal",
+          "official": "Federal Democratic Republic of Nepal"
+        },
+        "codes": {
+          "alpha_2": "NP",
+          "alpha_3": "NPL"
+        },
+        "capitals": [
+          {
+            "name": "Kathmandu",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "NPR": {
+            "name": "Nepalese rupee",
+            "symbol": "₨"
+          }
+        },
+        "languages": {
+          "nep": "Nepali"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Nauru",
+          "official": "Republic of Nauru"
+        },
+        "codes": {
+          "alpha_2": "NR",
+          "alpha_3": "NRU"
+        },
+        "capitals": [
+          {
+            "name": "Yaren",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "AUD": {
+            "name": "Australian dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "nau": "Nauru"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "New Zealand",
+          "official": "New Zealand"
+        },
+        "codes": {
+          "alpha_2": "NZ",
+          "alpha_3": "NZL"
+        },
+        "capitals": [
+          {
+            "name": "Wellington",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "NZD": {
+            "name": "New Zealand dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "mri": "Māori",
+          "nzs": "New Zealand Sign Language"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Oman",
+          "official": "Sultanate of Oman"
+        },
+        "codes": {
+          "alpha_2": "OM",
+          "alpha_3": "OMN"
+        },
+        "capitals": [
+          {
+            "name": "Muscat",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "OMR": {
+            "name": "Omani rial",
+            "symbol": "ر.ع."
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Pakistan",
+          "official": "Islamic Republic of Pakistan"
+        },
+        "codes": {
+          "alpha_2": "PK",
+          "alpha_3": "PAK"
+        },
+        "capitals": [
+          {
+            "name": "Islamabad",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "PKR": {
+            "name": "Pakistani rupee",
+            "symbol": "₨"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "urd": "Urdu"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Panama",
+          "official": "Republic of Panama"
+        },
+        "codes": {
+          "alpha_2": "PA",
+          "alpha_3": "PAN"
+        },
+        "capitals": [
+          {
+            "name": "Panama City",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "PAB": {
+            "name": "Panamanian balboa",
+            "symbol": "B/."
+          },
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Pitcairn Islands",
+          "official": "Pitcairn Group of Islands"
+        },
+        "codes": {
+          "alpha_2": "PN",
+          "alpha_3": "PCN"
+        },
+        "capitals": [
+          {
+            "name": "Adamstown",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "NZD": {
+            "name": "New Zealand dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Peru",
+          "official": "Republic of Peru"
+        },
+        "codes": {
+          "alpha_2": "PE",
+          "alpha_3": "PER"
+        },
+        "capitals": [
+          {
+            "name": "Lima",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "PEN": {
+            "name": "Peruvian sol",
+            "symbol": "S/."
+          }
+        },
+        "languages": {
+          "aym": "Aymara",
+          "que": "Quechua",
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Philippines",
+          "official": "Republic of the Philippines"
+        },
+        "codes": {
+          "alpha_2": "PH",
+          "alpha_3": "PHL"
+        },
+        "capitals": [
+          {
+            "name": "Manila",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "PHP": {
+            "name": "Philippine peso",
+            "symbol": "₱"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "fil": "Filipino"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Palau",
+          "official": "Republic of Palau"
+        },
+        "codes": {
+          "alpha_2": "PW",
+          "alpha_3": "PLW"
+        },
+        "capitals": [
+          {
+            "name": "Ngerulmud",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "pau": "Palauan"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Papua New Guinea",
+          "official": "Independent State of Papua New Guinea"
+        },
+        "codes": {
+          "alpha_2": "PG",
+          "alpha_3": "PNG"
+        },
+        "capitals": [
+          {
+            "name": "Port Moresby",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "PGK": {
+            "name": "Papua New Guinean kina",
+            "symbol": "K"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "hmo": "Hiri Motu",
+          "tpi": "Tok Pisin"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Poland",
+          "official": "Republic of Poland"
+        },
+        "codes": {
+          "alpha_2": "PL",
+          "alpha_3": "POL"
+        },
+        "capitals": [
+          {
+            "name": "Warsaw",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "PLN": {
+            "name": "Polish złoty",
+            "symbol": "zł"
+          }
+        },
+        "languages": {
+          "pol": "Polish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Puerto Rico",
+          "official": "Commonwealth of Puerto Rico"
+        },
+        "codes": {
+          "alpha_2": "PR",
+          "alpha_3": "PRI"
+        },
+        "capitals": [
+          {
+            "name": "San Juan",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "North Korea",
+          "official": "Democratic People's Republic of Korea"
+        },
+        "codes": {
+          "alpha_2": "KP",
+          "alpha_3": "PRK"
+        },
+        "capitals": [
+          {
+            "name": "Pyongyang",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "KPW": {
+            "name": "North Korean won",
+            "symbol": "₩"
+          }
+        },
+        "languages": {
+          "kor": "Korean"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Portugal",
+          "official": "Portuguese Republic"
+        },
+        "codes": {
+          "alpha_2": "PT",
+          "alpha_3": "PRT"
+        },
+        "capitals": [
+          {
+            "name": "Lisbon",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "por": "Portuguese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Paraguay",
+          "official": "Republic of Paraguay"
+        },
+        "codes": {
+          "alpha_2": "PY",
+          "alpha_3": "PRY"
+        },
+        "capitals": [
+          {
+            "name": "Asunción",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "PYG": {
+            "name": "Paraguayan guaraní",
+            "symbol": "₲"
+          }
+        },
+        "languages": {
+          "grn": "Guaraní",
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Palestine",
+          "official": "State of Palestine"
+        },
+        "codes": {
+          "alpha_2": "PS",
+          "alpha_3": "PSE"
+        },
+        "capitals": [
+          {
+            "name": "Ramallah",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EGP": {
+            "name": "Egyptian pound",
+            "symbol": "E£"
+          },
+          "ILS": {
+            "name": "Israeli new shekel",
+            "symbol": "₪"
+          },
+          "JOD": {
+            "name": "Jordanian dinar",
+            "symbol": "JD"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "French Polynesia",
+          "official": "French Polynesia"
+        },
+        "codes": {
+          "alpha_2": "PF",
+          "alpha_3": "PYF"
+        },
+        "capitals": [
+          {
+            "name": "Papeetē",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XPF": {
+            "name": "CFP franc",
+            "symbol": "₣"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Qatar",
+          "official": "State of Qatar"
+        },
+        "codes": {
+          "alpha_2": "QA",
+          "alpha_3": "QAT"
+        },
+        "capitals": [
+          {
+            "name": "Doha",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "QAR": {
+            "name": "Qatari riyal",
+            "symbol": "ر.ق"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Réunion",
+          "official": "Réunion Island"
+        },
+        "codes": {
+          "alpha_2": "RE",
+          "alpha_3": "REU"
+        },
+        "capitals": [
+          {
+            "name": "Saint-Denis",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Romania",
+          "official": "Romania"
+        },
+        "codes": {
+          "alpha_2": "RO",
+          "alpha_3": "ROU"
+        },
+        "capitals": [
+          {
+            "name": "Bucharest",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "RON": {
+            "name": "Romanian leu",
+            "symbol": "lei"
+          }
+        },
+        "languages": {
+          "ron": "Romanian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Russia",
+          "official": "Russian Federation"
+        },
+        "codes": {
+          "alpha_2": "RU",
+          "alpha_3": "RUS"
+        },
+        "capitals": [
+          {
+            "name": "Moscow",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "RUB": {
+            "name": "Russian ruble",
+            "symbol": "₽"
+          }
+        },
+        "languages": {
+          "rus": "Russian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Rwanda",
+          "official": "Republic of Rwanda"
+        },
+        "codes": {
+          "alpha_2": "RW",
+          "alpha_3": "RWA"
+        },
+        "capitals": [
+          {
+            "name": "Kigali",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "RWF": {
+            "name": "Rwandan franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "fra": "French",
+          "kin": "Kinyarwanda"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Saudi Arabia",
+          "official": "Kingdom of Saudi Arabia"
+        },
+        "codes": {
+          "alpha_2": "SA",
+          "alpha_3": "SAU"
+        },
+        "capitals": [
+          {
+            "name": "Riyadh",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "SAR": {
+            "name": "Saudi riyal",
+            "symbol": "ر.س"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Sudan",
+          "official": "Republic of the Sudan"
+        },
+        "codes": {
+          "alpha_2": "SD",
+          "alpha_3": "SDN"
+        },
+        "capitals": [
+          {
+            "name": "Khartoum",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "SDG": {
+            "name": "Sudanese pound",
+            "symbol": "PT"
+          }
+        },
+        "languages": {
+          "ara": "Arabic",
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Senegal",
+          "official": "Republic of Senegal"
+        },
+        "codes": {
+          "alpha_2": "SN",
+          "alpha_3": "SEN"
+        },
+        "capitals": [
+          {
+            "name": "Dakar",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XOF": {
+            "name": "West African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Singapore",
+          "official": "Republic of Singapore"
+        },
+        "codes": {
+          "alpha_2": "SG",
+          "alpha_3": "SGP"
+        },
+        "capitals": [
+          {
+            "name": "Singapore",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "SGD": {
+            "name": "Singapore dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "msa": "Malay",
+          "tam": "Tamil",
+          "zho": "Chinese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "South Georgia",
+          "official": "South Georgia and the South Sandwich Islands"
+        },
+        "codes": {
+          "alpha_2": "GS",
+          "alpha_3": "SGS"
+        },
+        "capitals": [
+          {
+            "name": "King Edward Point",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "SHP": {
+            "name": "Saint Helena pound",
+            "symbol": "£"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Svalbard and Jan Mayen",
+          "official": "Svalbard og Jan Mayen"
+        },
+        "codes": {
+          "alpha_2": "SJ",
+          "alpha_3": "SJM"
+        },
+        "capitals": [
+          {
+            "name": "Longyearbyen",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "NOK": {
+            "name": "krone",
+            "symbol": "kr"
+          }
+        },
+        "languages": {
+          "nor": "Norwegian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Solomon Islands",
+          "official": "Solomon Islands"
+        },
+        "codes": {
+          "alpha_2": "SB",
+          "alpha_3": "SLB"
+        },
+        "capitals": [
+          {
+            "name": "Honiara",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "SBD": {
+            "name": "Solomon Islands dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Sierra Leone",
+          "official": "Republic of Sierra Leone"
+        },
+        "codes": {
+          "alpha_2": "SL",
+          "alpha_3": "SLE"
+        },
+        "capitals": [
+          {
+            "name": "Freetown",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "SLE": {
+            "name": "Sierra Leonean leone",
+            "symbol": "Le"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "El Salvador",
+          "official": "Republic of El Salvador"
+        },
+        "codes": {
+          "alpha_2": "SV",
+          "alpha_3": "SLV"
+        },
+        "capitals": [
+          {
+            "name": "San Salvador",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "San Marino",
+          "official": "Most Serene Republic of San Marino"
+        },
+        "codes": {
+          "alpha_2": "SM",
+          "alpha_3": "SMR"
+        },
+        "capitals": [
+          {
+            "name": "City of San Marino",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "ita": "Italian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Somalia",
+          "official": "Federal Republic of Somalia"
+        },
+        "codes": {
+          "alpha_2": "SO",
+          "alpha_3": "SOM"
+        },
+        "capitals": [
+          {
+            "name": "Mogadishu",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "SOS": {
+            "name": "Somali shilling",
+            "symbol": "Sh"
+          }
+        },
+        "languages": {
+          "ara": "Arabic",
+          "som": "Somali"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Saint Pierre and Miquelon",
+          "official": "Saint Pierre and Miquelon"
+        },
+        "codes": {
+          "alpha_2": "PM",
+          "alpha_3": "SPM"
+        },
+        "capitals": [
+          {
+            "name": "Saint-Pierre",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Serbia",
+          "official": "Republic of Serbia"
+        },
+        "codes": {
+          "alpha_2": "RS",
+          "alpha_3": "SRB"
+        },
+        "capitals": [
+          {
+            "name": "Belgrade",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "RSD": {
+            "name": "Serbian dinar",
+            "symbol": "дин."
+          }
+        },
+        "languages": {
+          "srp": "Serbian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "South Sudan",
+          "official": "Republic of South Sudan"
+        },
+        "codes": {
+          "alpha_2": "SS",
+          "alpha_3": "SSD"
+        },
+        "capitals": [
+          {
+            "name": "Juba",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "SSP": {
+            "name": "South Sudanese pound",
+            "symbol": "£"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "São Tomé and Príncipe",
+          "official": "Democratic Republic of São Tomé and Príncipe"
+        },
+        "codes": {
+          "alpha_2": "ST",
+          "alpha_3": "STP"
+        },
+        "capitals": [
+          {
+            "name": "São Tomé",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "STN": {
+            "name": "São Tomé and Príncipe dobra",
+            "symbol": "Db"
+          }
+        },
+        "languages": {
+          "por": "Portuguese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Suriname",
+          "official": "Republic of Suriname"
+        },
+        "codes": {
+          "alpha_2": "SR",
+          "alpha_3": "SUR"
+        },
+        "capitals": [
+          {
+            "name": "Paramaribo",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "SRD": {
+            "name": "Surinamese dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "nld": "Dutch"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Slovakia",
+          "official": "Slovak Republic"
+        },
+        "codes": {
+          "alpha_2": "SK",
+          "alpha_3": "SVK"
+        },
+        "capitals": [
+          {
+            "name": "Bratislava",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "slk": "Slovak"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Slovenia",
+          "official": "Republic of Slovenia"
+        },
+        "codes": {
+          "alpha_2": "SI",
+          "alpha_3": "SVN"
+        },
+        "capitals": [
+          {
+            "name": "Ljubljana",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "slv": "Slovene"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Sweden",
+          "official": "Kingdom of Sweden"
+        },
+        "codes": {
+          "alpha_2": "SE",
+          "alpha_3": "SWE"
+        },
+        "capitals": [
+          {
+            "name": "Stockholm",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "SEK": {
+            "name": "Swedish krona",
+            "symbol": "kr"
+          }
+        },
+        "languages": {
+          "swe": "Swedish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Eswatini",
+          "official": "Kingdom of Eswatini"
+        },
+        "codes": {
+          "alpha_2": "SZ",
+          "alpha_3": "SWZ"
+        },
+        "capitals": [
+          {
+            "name": "Lobamba",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "SZL": {
+            "name": "Swazi lilangeni",
+            "symbol": "L"
+          },
+          "ZAR": {
+            "name": "South African rand",
+            "symbol": "R"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "ssw": "Swazi"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Sint Maarten",
+          "official": "Sint Maarten"
+        },
+        "codes": {
+          "alpha_2": "SX",
+          "alpha_3": "SXM"
+        },
+        "capitals": [
+          {
+            "name": "Philipsburg",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "ANG": {
+            "name": "Netherlands Antillean guilder",
+            "symbol": "ƒ"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "fra": "French",
+          "nld": "Dutch"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Seychelles",
+          "official": "Republic of Seychelles"
+        },
+        "codes": {
+          "alpha_2": "SC",
+          "alpha_3": "SYC"
+        },
+        "capitals": [
+          {
+            "name": "Victoria",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "SCR": {
+            "name": "Seychellois rupee",
+            "symbol": "₨"
+          }
+        },
+        "languages": {
+          "crs": "Seychellois Creole",
+          "eng": "English",
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Syria",
+          "official": "Syrian Arab Republic"
+        },
+        "codes": {
+          "alpha_2": "SY",
+          "alpha_3": "SYR"
+        },
+        "capitals": [
+          {
+            "name": "Damascus",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "SYP": {
+            "name": "Syrian pound",
+            "symbol": "£"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Turks and Caicos Islands",
+          "official": "Turks and Caicos Islands"
+        },
+        "codes": {
+          "alpha_2": "TC",
+          "alpha_3": "TCA"
+        },
+        "capitals": [
+          {
+            "name": "Cockburn Town",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Chad",
+          "official": "Republic of Chad"
+        },
+        "codes": {
+          "alpha_2": "TD",
+          "alpha_3": "TCD"
+        },
+        "capitals": [
+          {
+            "name": "N'Djamena",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XAF": {
+            "name": "Central African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "ara": "Arabic",
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Togo",
+          "official": "Togolese Republic"
+        },
+        "codes": {
+          "alpha_2": "TG",
+          "alpha_3": "TGO"
+        },
+        "capitals": [
+          {
+            "name": "Lomé",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XOF": {
+            "name": "West African CFA franc",
+            "symbol": "Fr"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Thailand",
+          "official": "Kingdom of Thailand"
+        },
+        "codes": {
+          "alpha_2": "TH",
+          "alpha_3": "THA"
+        },
+        "capitals": [
+          {
+            "name": "Bangkok",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "THB": {
+            "name": "Thai baht",
+            "symbol": "฿"
+          }
+        },
+        "languages": {
+          "tha": "Thai"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Tajikistan",
+          "official": "Republic of Tajikistan"
+        },
+        "codes": {
+          "alpha_2": "TJ",
+          "alpha_3": "TJK"
+        },
+        "capitals": [
+          {
+            "name": "Dushanbe",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "TJS": {
+            "name": "Tajikistani somoni",
+            "symbol": "ЅМ"
+          }
+        },
+        "languages": {
+          "rus": "Russian",
+          "tgk": "Tajik"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Tokelau",
+          "official": "Tokelau"
+        },
+        "codes": {
+          "alpha_2": "TK",
+          "alpha_3": "TKL"
+        },
+        "capitals": [
+          {
+            "name": "Fakaofo",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "NZD": {
+            "name": "New Zealand dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "smo": "Samoan",
+          "tkl": "Tokelauan"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Turkmenistan",
+          "official": "Turkmenistan"
+        },
+        "codes": {
+          "alpha_2": "TM",
+          "alpha_3": "TKM"
+        },
+        "capitals": [
+          {
+            "name": "Ashgabat",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "TMT": {
+            "name": "Turkmenistan manat",
+            "symbol": "m"
+          }
+        },
+        "languages": {
+          "rus": "Russian",
+          "tuk": "Turkmen"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Timor-Leste",
+          "official": "Democratic Republic of Timor-Leste"
+        },
+        "codes": {
+          "alpha_2": "TL",
+          "alpha_3": "TLS"
+        },
+        "capitals": [
+          {
+            "name": "Dili",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "por": "Portuguese",
+          "tet": "Tetum"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Tonga",
+          "official": "Kingdom of Tonga"
+        },
+        "codes": {
+          "alpha_2": "TO",
+          "alpha_3": "TON"
+        },
+        "capitals": [
+          {
+            "name": "Nuku'alofa",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "TOP": {
+            "name": "Tongan paʻanga",
+            "symbol": "T$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "ton": "Tongan"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Trinidad and Tobago",
+          "official": "Republic of Trinidad and Tobago"
+        },
+        "codes": {
+          "alpha_2": "TT",
+          "alpha_3": "TTO"
+        },
+        "capitals": [
+          {
+            "name": "Port of Spain",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "TTD": {
+            "name": "Trinidad and Tobago dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Tunisia",
+          "official": "Tunisian Republic"
+        },
+        "codes": {
+          "alpha_2": "TN",
+          "alpha_3": "TUN"
+        },
+        "capitals": [
+          {
+            "name": "Tunis",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "TND": {
+            "name": "Tunisian dinar",
+            "symbol": "د.ت"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Türkiye",
+          "official": "Republic of Türkiye"
+        },
+        "codes": {
+          "alpha_2": "TR",
+          "alpha_3": "TUR"
+        },
+        "capitals": [
+          {
+            "name": "Ankara",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "TRY": {
+            "name": "Turkish lira",
+            "symbol": "₺"
+          }
+        },
+        "languages": {
+          "tur": "Turkish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Tuvalu",
+          "official": "Tuvalu"
+        },
+        "codes": {
+          "alpha_2": "TV",
+          "alpha_3": "TUV"
+        },
+        "capitals": [
+          {
+            "name": "Funafuti",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "AUD": {
+            "name": "Australian dollar",
+            "symbol": "$"
+          },
+          "TVD": {
+            "name": "Tuvaluan dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "tvl": "Tuvaluan"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Taiwan",
+          "official": "Republic of China (Taiwan)"
+        },
+        "codes": {
+          "alpha_2": "TW",
+          "alpha_3": "TWN"
+        },
+        "capitals": [
+          {
+            "name": "Taipei",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "TWD": {
+            "name": "New Taiwan dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "zho": "Chinese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Tanzania",
+          "official": "United Republic of Tanzania"
+        },
+        "codes": {
+          "alpha_2": "TZ",
+          "alpha_3": "TZA"
+        },
+        "capitals": [
+          {
+            "name": "Dodoma",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "TZS": {
+            "name": "Tanzanian shilling",
+            "symbol": "Sh"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "swa": "Swahili"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Uganda",
+          "official": "Republic of Uganda"
+        },
+        "codes": {
+          "alpha_2": "UG",
+          "alpha_3": "UGA"
+        },
+        "capitals": [
+          {
+            "name": "Kampala",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "UGX": {
+            "name": "Ugandan shilling",
+            "symbol": "Sh"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "swa": "Swahili"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Ukraine",
+          "official": "Ukraine"
+        },
+        "codes": {
+          "alpha_2": "UA",
+          "alpha_3": "UKR"
+        },
+        "capitals": [
+          {
+            "name": "Kyiv",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "UAH": {
+            "name": "Ukrainian hryvnia",
+            "symbol": "₴"
+          }
+        },
+        "languages": {
+          "ukr": "Ukrainian"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "United States Minor Outlying Islands",
+          "official": "United States Minor Outlying Islands"
+        },
+        "codes": {
+          "alpha_2": "UM",
+          "alpha_3": "UMI"
+        },
+        "capitals": [],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Uruguay",
+          "official": "Oriental Republic of Uruguay"
+        },
+        "codes": {
+          "alpha_2": "UY",
+          "alpha_3": "URY"
+        },
+        "capitals": [
+          {
+            "name": "Montevideo",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "UYU": {
+            "name": "Uruguayan peso",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "United States",
+          "official": "United States of America"
+        },
+        "codes": {
+          "alpha_2": "US",
+          "alpha_3": "USA"
+        },
+        "capitals": [
+          {
+            "name": "Washington D.C.",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Uzbekistan",
+          "official": "Republic of Uzbekistan"
+        },
+        "codes": {
+          "alpha_2": "UZ",
+          "alpha_3": "UZB"
+        },
+        "capitals": [
+          {
+            "name": "Tashkent",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "UZS": {
+            "name": "Uzbekistani soʻm",
+            "symbol": "so'm"
+          }
+        },
+        "languages": {
+          "rus": "Russian",
+          "uzb": "Uzbek"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Vatican City",
+          "official": "Vatican City State"
+        },
+        "codes": {
+          "alpha_2": "VA",
+          "alpha_3": "VAT"
+        },
+        "capitals": [
+          {
+            "name": "Vatican City",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          }
+        },
+        "languages": {
+          "ita": "Italian",
+          "lat": "Latin"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Saint Vincent and the Grenadines",
+          "official": "Saint Vincent and the Grenadines"
+        },
+        "codes": {
+          "alpha_2": "VC",
+          "alpha_3": "VCT"
+        },
+        "capitals": [
+          {
+            "name": "Kingstown",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XCD": {
+            "name": "Eastern Caribbean dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Venezuela",
+          "official": "Bolivarian Republic of Venezuela"
+        },
+        "codes": {
+          "alpha_2": "VE",
+          "alpha_3": "VEN"
+        },
+        "capitals": [
+          {
+            "name": "Caracas",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "VES": {
+            "name": "Venezuelan bolívar soberano",
+            "symbol": "Bs.S."
+          }
+        },
+        "languages": {
+          "spa": "Spanish"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "British Virgin Islands",
+          "official": "Virgin Islands"
+        },
+        "codes": {
+          "alpha_2": "VG",
+          "alpha_3": "VGB"
+        },
+        "capitals": [
+          {
+            "name": "Road Town",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "United States Virgin Islands",
+          "official": "Virgin Islands of the United States"
+        },
+        "codes": {
+          "alpha_2": "VI",
+          "alpha_3": "VIR"
+        },
+        "capitals": [
+          {
+            "name": "Charlotte Amalie",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Vietnam",
+          "official": "Socialist Republic of Vietnam"
+        },
+        "codes": {
+          "alpha_2": "VN",
+          "alpha_3": "VNM"
+        },
+        "capitals": [
+          {
+            "name": "Hanoi",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "VND": {
+            "name": "Vietnamese đồng",
+            "symbol": "₫"
+          }
+        },
+        "languages": {
+          "vie": "Vietnamese"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Vanuatu",
+          "official": "Republic of Vanuatu"
+        },
+        "codes": {
+          "alpha_2": "VU",
+          "alpha_3": "VUT"
+        },
+        "capitals": [
+          {
+            "name": "Port Vila",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "VUV": {
+            "name": "Vanuatu vatu",
+            "symbol": "Vt"
+          }
+        },
+        "languages": {
+          "bis": "Bislama",
+          "eng": "English",
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Wallis and Futuna",
+          "official": "Territory of the Wallis and Futuna Islands"
+        },
+        "codes": {
+          "alpha_2": "WF",
+          "alpha_3": "WLF"
+        },
+        "capitals": [
+          {
+            "name": "Mata-Utu",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "XPF": {
+            "name": "CFP franc",
+            "symbol": "₣"
+          }
+        },
+        "languages": {
+          "fra": "French"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Samoa",
+          "official": "Independent State of Samoa"
+        },
+        "codes": {
+          "alpha_2": "WS",
+          "alpha_3": "WSM"
+        },
+        "capitals": [
+          {
+            "name": "Apia",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "WST": {
+            "name": "Samoan tālā",
+            "symbol": "T"
+          }
+        },
+        "languages": {
+          "eng": "English",
+          "smo": "Samoan"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Yemen",
+          "official": "Republic of Yemen"
+        },
+        "codes": {
+          "alpha_2": "YE",
+          "alpha_3": "YEM"
+        },
+        "capitals": [
+          {
+            "name": "Sana'a",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "YER": {
+            "name": "Yemeni rial",
+            "symbol": "﷼"
+          }
+        },
+        "languages": {
+          "ara": "Arabic"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "South Africa",
+          "official": "Republic of South Africa"
+        },
+        "codes": {
+          "alpha_2": "ZA",
+          "alpha_3": "ZAF"
+        },
+        "capitals": [
+          {
+            "name": "Pretoria",
+            "primary": true
+          },
+          {
+            "name": "Bloemfontein",
+            "primary": false
+          },
+          {
+            "name": "Cape Town",
+            "primary": false
+          }
+        ],
+        "currencies": {
+          "ZAR": {
+            "name": "South African rand",
+            "symbol": "R"
+          }
+        },
+        "languages": {
+          "afr": "Afrikaans",
+          "eng": "English",
+          "nbl": "Southern Ndebele",
+          "nso": "Northern Sotho",
+          "sot": "Southern Sotho",
+          "ssw": "Swazi",
+          "tsn": "Tswana",
+          "tso": "Tsonga",
+          "ven": "Venda",
+          "xho": "Xhosa",
+          "zul": "Zulu"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Zambia",
+          "official": "Republic of Zambia"
+        },
+        "codes": {
+          "alpha_2": "ZM",
+          "alpha_3": "ZMB"
+        },
+        "capitals": [
+          {
+            "name": "Lusaka",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "ZMW": {
+            "name": "Zambian kwacha",
+            "symbol": "ZK"
+          }
+        },
+        "languages": {
+          "eng": "English"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      },
+      {
+        "names": {
+          "common": "Zimbabwe",
+          "official": "Republic of Zimbabwe"
+        },
+        "codes": {
+          "alpha_2": "ZW",
+          "alpha_3": "ZWE"
+        },
+        "capitals": [
+          {
+            "name": "Harare",
+            "primary": true
+          }
+        ],
+        "currencies": {
+          "BWP": {
+            "name": "Botswana pula",
+            "symbol": "P"
+          },
+          "CNY": {
+            "name": "Chinese yuan",
+            "symbol": "¥"
+          },
+          "EUR": {
+            "name": "Euro",
+            "symbol": "€"
+          },
+          "GBP": {
+            "name": "British pound",
+            "symbol": "£"
+          },
+          "INR": {
+            "name": "Indian rupee",
+            "symbol": "₹"
+          },
+          "JPY": {
+            "name": "Japanese yen",
+            "symbol": "¥"
+          },
+          "USD": {
+            "name": "United States dollar",
+            "symbol": "$"
+          },
+          "ZAR": {
+            "name": "South African rand",
+            "symbol": "Rs"
+          },
+          "ZWB": {
+            "name": "Zimbabwean bonds",
+            "symbol": "$"
+          }
+        },
+        "languages": {
+          "bwg": "Chibarwe",
+          "eng": "English",
+          "kck": "Kalanga",
+          "khi": "Khoisan",
+          "ndc": "Ndau",
+          "nde": "Northern Ndebele",
+          "nya": "Chewa",
+          "sna": "Shona",
+          "sot": "Sotho",
+          "toi": "Tonga",
+          "tsn": "Tswana",
+          "tso": "Tsonga",
+          "ven": "Venda",
+          "xho": "Xhosa",
+          "zib": "Zimbabwean Sign Language"
+        },
+        "population": null,
+        "gini": {},
+        "maps": {}
+      }
+    ],
+    "meta": {
+      "total": 250,
+      "count": 250,
+      "limit": 250,
+      "offset": 0,
+      "more": false,
+      "snapshot": true,
+      "source": "https://raw.githubusercontent.com/mledoze/countries/master/countries.json",
+      "generated_at": "2026-09-04T11:20:28.822929+00:00"
+    }
+  }
+}
