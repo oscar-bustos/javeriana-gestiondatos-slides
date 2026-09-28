@@ -37,6 +37,7 @@
 
 !/homework/
 !/homework/**
+/homework/class2026-2/
 !/colab/
 !/colab/**
 docs/.DS_Store
